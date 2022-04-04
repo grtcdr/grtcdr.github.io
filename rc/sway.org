@@ -1,10 +1,33 @@
-#+INCLUDE: ../navbar.org
 #+STARTUP: overview
 #+EXPORT_FILE_NAME: ~/pro/website/html/rc/sway
 #+OPTIONS: html-postamble:nil
 #+TITLE: Sway With Me
 
 * A Compact Sway Configuration
+
+** Prerequisites
+
+This is a list of all the packages you'll need for full compatibility with this configuration:
+
+- Sway-specific:
+  + =swayidle=
+  + =swaylock=
+- Essential:
+  + =systemd=
+  + =xbacklight=
+  + =pamixer=
+  + =playerctl=
+- Terminal emulator:
+  + =foot=
+- Typeface:
+  + =Iosevka Aile=
+- Application launcher:
+  + =bemenu=
+    + =j4-dmenu-desktop=
+- Niceties:
+  + =wlsunset=
+  + =citron=
+
 ** Definitions
 Variables will make your life easier, and you can use them across
 files, too.

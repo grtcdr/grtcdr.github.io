@@ -3,25 +3,31 @@
 #+OPTIONS: html-postamble:nil num:nil toc:nil
 #+TITLE: grtcdr's dotfiles
 
-* Abstract
+* Preface
 
-Ever since I've transitioned over to Emacs to replace what I feel that Vim
-lacked, I've began documenting many aspects of my life.
+Ever since I've transitioned over to Emacs to acquire what I felt that
+Vim couldn't offer, I've began documenting many aspects of my
+life. This website would certainly not exist if it weren't for how
+extensible and enjoyable Emacs is.
 
 The following is a list of documented dotfiles, that I hope you may
-extract something useful out of.
+extract something useful out of. Feel free to borrow, take,
+whatever. /Mi casa es su casa./
 
-Feel free to borrow, take, whatever. /Mi casa es su casa./
+The documentation doesn't cover everything, yet. So, I invite you to
+[[https://git.sr.ht/~grtcdr/dotfiles][take a look at the repository]] where all of my dotfiles live.
 
-* Dotfiles
+* Literate dotfiles
 
-** [[file:rc/sway.html][Sway]]
+** [[file:rc/sway.html][sway]]
 
 A concoction of subtlety and elegance, making use of the bear minimum
 of software so as to achieve a coherent desktop environment without
 one being present.
 
-* Utilities
+*** TODO Add key features section.
+
+* Literate shell scripts
 
 ** [[file:sh/doch.html][doch]]
 

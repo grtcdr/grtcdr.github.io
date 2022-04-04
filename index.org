@@ -10,13 +10,13 @@ I know, what a terrible name... You can call me /"great crowd"/.
 You might know me as the author of macchina, or maybe we met on the
 train?
 
-I'm a 3rd year student majoring in software engineering. I mainly work
+I'm a 3^rd year student majoring in software engineering. I mainly work
 on open source software.
 
 I enjoy minimal web pages, so this abomination that you're looking at
-right now, might stay forever.
+right now, might stay forever. Your browser loves this website.
 
-#+CAPTION: [[https://www.flickr.com/photos/24662369@N07/4774472286][NGC 3603]].
+#+CAPTION: A snapshot of our vast universe, [[https://www.flickr.com/photos/24662369@N07/4774472286][NGC 3603]].
 #+ATTR_HTML: :width 180 :height 180
 [[file:assets/nasa-carina.jpg]]
 
@@ -24,7 +24,7 @@ right now, might stay forever.
 
 * Projects
 
-Here's what I've worked on:
+Here's what I've worked on over the years:
 
 - [[https://github.com/Macchina-CLI/macchina][macchina]]: a system information frontend for libmacchina *[maintained]*.
 - [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: a library providing all kinds of system information *[maintained]*.
@@ -33,4 +33,4 @@ Here's what I've worked on:
 - [[https://sr.ht/~grtcdr/paspio/][paspio]]: a lightweight password entropy calculator & library. *[maintained]*
 - [[https://github.com/grtcdr/aparato][aparato]]: a library for querying connected PCI devices and a pci.ids parser. *[abandoned]*
 
-Please contact me if you're willing to take on the challenge of reviving aparato.
+Please [[file:~/pro/website/html/contact.html][contact]] me if you're willing to take on the challenge of reviving aparato.

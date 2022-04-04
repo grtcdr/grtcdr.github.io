@@ -1,0 +1,15 @@
+#+INCLUDE: navbar.org
+#+EXPORT_FILE_NAME: ~/pro/website/html/contact
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+#+TITLE: grtcdr's contact info
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;}</style>
+
+#+ATTR_HTML: :width 120 :height 120
+[[file:assets/avatar.jpg]]
+
+* Get in touch
+
+- Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
+- Github: [[https://github.com/grtcdr][@grtcdr]]
+- SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
+- GPG: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]

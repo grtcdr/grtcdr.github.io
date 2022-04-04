@@ -1,5 +1,6 @@
+#+INCLUDE: ../navbar.org
 #+STARTUP: overview
-#+EXPORT_FILE_NAME: ../sway.org
+#+EXPORT_FILE_NAME: ~/pro/website/html/rc/sway
 #+OPTIONS: html-postamble:nil
 #+TITLE: Sway With Me
 

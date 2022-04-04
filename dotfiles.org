@@ -1,0 +1,29 @@
+#+INCLUDE: navbar.org
+#+EXPORT_FILE_NAME: ~/pro/website/html/dotfiles
+#+OPTIONS: html-postamble:nil num:nil toc:nil
+#+TITLE: grtcdr's dotfiles
+
+* Abstract
+
+Ever since I've transitioned over to Emacs to replace what I feel that Vim
+lacked, I've began documenting many aspects of my life.
+
+The following is a list of documented dotfiles, that I hope you may
+extract something useful out of.
+
+Feel free to borrow, take, whatever. /Mi casa es su casa./
+
+* Dotfiles
+
+** [[file:rc/sway.html][Sway]]
+
+A concoction of subtlety and elegance, making use of the bear minimum
+of software so as to achieve a coherent desktop environment without
+one being present.
+
+* Utilities
+
+** [[file:sh/doch.html][doch]]
+
+A bemenu utility that can list and open any HTML/PDF file found within
+my =org-directory=.

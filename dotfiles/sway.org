@@ -1,0 +1,356 @@
+#+STARTUP: overview
+#+EXPORT_FILE_NAME: ../sway.org
+#+OPTIONS: html-postamble:nil
+#+TITLE: Sway With Me
+
+* A Compact Sway Configuration
+** Definitions
+Variables will make your life easier, and you can use them across
+files, too.
+
+The following variable definitions are used all throughout the
+configuration, so keep your eyes peeled.
+
+*** Key definitions
+Let us define some modifiers and directional keys.
+
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  set {
+      $super   Mod4
+      $alt     Mod1
+      $left    h
+      $down    j
+      $up      k
+      $right   l
+  }
+#+end_src
+
+*** Workspace definitions
+Switching between workspaces is the most basic operation you will find
+yourself doing in a window manager, so why not make it as seamless as
+can be. [[https://github.com/qtile/qtile][Qtile]] by default sets ="qsdfuiop"= as the default workspace
+names, where each character in the aforementioned string represents
+the name of an individual workspace, and the /key/ to reach it.
+
+I have borrowed this brilliant design and have been carrying it
+with me, no matter which window manager I find myself using.
+
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  set {
+      $ws1   1:q
+      $ws2   2:s
+      $ws3   3:d
+      $ws4   4:f
+      $ws5   5:u
+      $ws6   6:i
+      $ws7   7:o
+      $ws8   8:p
+  }
+#+end_src
+
+*** Miscellaneous definitions
+~rsz~: Defines how many pixels a particular window gets resized.
+
+~locker~: Defines the screenlocking program.
+
+~session~: This represents the name of a mode I utilize to manage my session.
+
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  set {
+      $rsz       50px
+      $locker    swaylock -f -c 000000
+      $session   "Session"
+  }
+#+end_src
+
+*** Input configuration
+For more information on this topic, see [[https://www.mankier.com/5/sway-input][sway-input(5)]].
+
+**** Keyboard configuration
+Modal text editors require that you switch between modes very often,
+and as such, the need for a modifier that is within your reach suddenly
+appears. I have chosen to map *caps lock to escape* to solve this. You
+can map all sorts of keys together with the use of ~xkb_options~. For
+more information, see [[https://www.freebsd.org/cgi/man.cgi?query=xkeyboard-config&sektion=7&format=html][xkeyboard-config(1)]].
+
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  input "type:keyboard" {
+      xkb_layout     fr
+      xkb_options    shift:both_capslock,caps:escape
+      repeat_delay   250
+  }
+  
+#+end_src
+
+**** Touchpad configuration
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  input "type:touchpad" {
+      tap              enabled
+      natural_scroll   enabled
+      accel_profile    "adaptive"
+      pointer_accel    0.2
+  }
+#+end_src
+
+** Shortcuts
+My shortcuts are a blend of /ergonomics/, /mnemonics/ and a few hiccups here and there.
+
+*** Highlighting windows
+#+begin_src :padline no :tangle ~/.config/sway/config  
+  bindsym {
+      $super+$left    focus left
+      $super+$down    focus down
+      $super+$up      focus up
+      $super+$right   focus right
+  }
+#+end_src
+
+*** Tiling windows
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  bindsym {
+      $super+Shift+$left    move left
+      $super+Shift+$down    move down
+      $super+Shift+$up      move up
+      $super+Shift+$right   move right
+  }
+#+end_src
+
+*** Resizing windows
+Remember [[*Miscellaneous definitions][$rsz]]? We're going to use that here.
+
+#+begin_src :padline no :tangle ~/.config/sway/config 
+  bindsym {
+      $super+Control+$left    resize shrink width $rsz
+      $super+Control+$down    resize shrink height $rsz
+      $super+Control+$up      resize grow height $rsz
+      $super+Control+$right   resize grow width $rsz
+  }
+#+end_src
+
+*** Moving between workspaces
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      $super+q     workspace $ws1
+      $super+s     workspace $ws2
+      $super+d     workspace $ws3
+      $super+f     workspace $ws4
+      $super+u     workspace $ws5
+      $super+i     workspace $ws6
+      $super+o     workspace $ws7
+      $super+p     workspace $ws8
+      $super+tab   workspace back_and_forth
+  }
+#+end_src
+
+*** Moving windows between different workspaces
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      $super+Shift+q   move container to workspace $ws1
+      $super+Shift+s   move container to workspace $ws2
+      $super+Shift+d   move container to workspace $ws3
+      $super+Shift+f   move container to workspace $ws4
+      $super+Shift+u   move container to workspace $ws5
+      $super+Shift+i   move container to workspace $ws6
+      $super+Shift+o   move container to workspace $ws7
+      $super+Shift+p   move container to workspace $ws8
+  }
+#+end_src
+
+*** Splitting windows
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      $super+y   splith
+      $super+x   splitv
+      $super+t   layout tabbed
+      $super+m   layout toggle split
+  }
+#+end_src
+
+*** Window actions
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      $super+w           kill
+      $super+v           fullscreen
+      $super+c           floating toggle
+      $super+space       focus mode_toggle
+      $super+colon       scratchpad show
+      $super+comma       sticky toggle 
+      $super+backspace   move scratchpad
+  }
+#+end_src
+
+*** Session control
+
+This activates the [[* Modes][session manipulation mode]].
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym $super+exclam   mode $session
+#+end_src
+
+*** Playback control
+Control media playback with ~playerctl~.
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      XF86AudioPlay   exec playerctl play-pause
+      XF86AudioNext   exec playerctl next
+      XF86AudioPrev   exec playerctl previous
+  }
+#+end_src
+
+*** Volume control
+Control system volume with ~pamixer~.
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      XF86AudioRaiseVolume  exec pamixer -i 5
+      XF86AudioLowerVolume  exec pamixer -d 5
+      XF86AudioMute         exec pamixer -t
+  }
+#+end_src
+
+*** Brightness control
+Control display brightness with ~xbacklight~.
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      XF86MonBrightnessDown   exec xbacklight -dec 5
+      XF86MonBrightnessUp     exec xbacklight -inc 5
+  }
+#+end_src
+
+*** Miscellaneous shortcuts
+#+begin_src :padline no :tangle ~/.config/sway/config
+  bindsym {
+      $super+1           exec doch
+      $super+0           exec passmenu
+      $super+Return      exec footclient
+      $super+Alt+d       exec citron date
+      $super+Alt+b       exec citron battery
+      $super+Alt+n       exec citron network
+      $super+Alt+l       exec citron backlight
+      $super+r           exec j4-dmenu-desktop --term=foot --no-generic --dmenu=bemenu
+  }
+#+end_src
+
+** Modes
+Upon entering the session manipulation mode, whose keybinding was
+[[*Session control][previously defined in the shortcuts section]], you have the choice between
+4 different actions:
+- Reload the window manager's configuration, with =r=.
+- Lock the screen, with =!= (see [[*Miscellaneous definitions][$locker]]).
+- Log out, with =q=.
+- Suspend the system, with =s=.
+
+You may cancel at any point by hitting escape.
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  mode $session bindsym {
+      r        reload, mode "default"
+      q        exec swaymsg exit, mode "default"
+      s        exec systemctl suspend, mode "default"
+      exclam   exec $locker, mode "default"
+      escape   mode "default"
+  }
+#+end_src
+
+** Imports
+Import some handy prepackaged configurations:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  include /etc/sway/config.d/*
+#+end_src
+
+The ~visuals~ file defines all the visual aspects of this configuration:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  include visuals
+#+end_src
+
+The ~rules~ file defines all the window rules of this configuration:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  include rules
+#+end_src
+
+** Startup applications
+Computers are not very useful without daemons, so let us start a few.
+
+Launch the authentication agent, which allows applications to escalate their privileges when needed:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#+end_src
+
+Launch wlsunset, a day/night gamma adjustments utility:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  exec wlsunset -l 36.8 -L 10.1 -t 3800 -T 5800 &
+#+end_src
+
+Launch foot's server:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  exec foot --server &
+#+end_src
+
+Launch Sway's own idle manager:
+
+#+begin_src :padline no :tangle ~/.config/sway/config
+  exec swayidle -w \
+       timeout 300  '$locker' \
+       timeout 600  'swaymsg "output * dpms off"' \
+             resume 'swaymsg "output * dpms on"' \
+       timeout 1200 'systemctl suspend' \
+       before-sleep 'loginctl lock-session $XDG_SESSION_ID' \
+       after-resume '$locker'
+#+end_src
+
+** Visuals
+*** Palette
+The following variable definitions represent every color found in the =Nord= palette:
+
+#+begin_src :padline no :tangle ~/.config/sway/visuals
+  set {
+      $base06     #2E3440
+      $base05     #3B4252
+      $base04     #434C5E
+      $base03     #4C566A
+      $base02     #D8DEE9
+      $base01     #E5E9F0
+      $base00     #ECEFF4
+      $blue       #5E81AC
+      $yellow     #EBCB8B
+      $orange     #D08770
+      $red        #BF616A
+      $magenta    #B48EAD
+      $green      #A3BE8C
+  }
+#+end_src
+
+*** Configuration
+Let us put that palette to good use, eh.
+
+#+begin_src :padline no :tangle ~/.config/sway/visuals
+  client.unfocused          $base03     $base03         $base00
+  client.focused            $base06     $base06         $base00   $orange
+  client.focused_inactive   $base04     $base04         $base00
+  client.urgent             $red        $red            $red
+#+end_src
+
+Let us configure some of sway's looks, like the
+color of the background and the typeface, which I only see in a window's title bar.
+
+#+begin_src :padline no :tangle ~/.config/sway/visuals
+  output   * bg ~/img/wall/art/cottage.jpg fill
+  gaps     inner 12
+  font     Iosevka Aile Light 10
+#+end_src
+
+The last thing I will do is instruct Sway to behave in a manner that
+is suitable for my workflow.
+
+#+begin_src :padline no :tangle ~/.config/sway/visuals
+  smart_borders       on
+  floating_modifier   $super normal
+#+end_src

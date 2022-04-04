@@ -1,0 +1,70 @@
+#+OPTIONS: html-postamble:nil
+#+PROPERTY: header-args :tangle ~/.local/bin/doch :tangle-mode (identity #o744)
+#+TITLE: doch
+
+A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
+
+Define location of =org-directory=
+
+#+begin_src bash
+  ORG_DIR="$HOME"/doc/org
+#+end_src
+
+Define the bemenu function which is used all throughout this script:
+#+begin_src bash :shebang "#!/usr/bin/env bash"
+  menu() {
+      bemenu -i -l 6 -P "> " -p $1
+  }
+#+end_src
+
+Define the function which obtains the file type for the search:
+#+begin_src bash
+  choose_filetype() {
+      filetype=$(echo -e "PDF\nHTML" | menu "Filetype:")
+      [ $? -eq 1 ] && exit
+  }
+#+end_src
+
+Define the function which fetches the documents depending on their ~$filetype~:
+#+begin_src bash
+  find_documents() {
+      if [ "$1" = "HTML" ]; then
+	  readarray -d '' documents < <(find "$ORG_DIR" -type f -name "*.html")
+      elif [ "$1" = "PDF" ]; then
+	  readarray -d '' documents < <(find "$ORG_DIR" -type f -name "*.pdf")
+      fi
+  }
+#+end_src
+
+Define the function which lists available documents. Note that hitting
+~<ESC>~ returns to the main menu.
+#+begin_src bash
+  list_documents() {
+      if (( ${#documents[@]} )); then
+	  selected=$(echo -n "${documents[@]}" | menu "Open:")
+      else
+          exit
+      fi
+
+      [ $? -eq 1 ] && main
+  }
+#+end_src
+
+Define the functions we'll be executing:
+#+begin_src bash
+  main() {
+      choose_filetype
+      find_documents $filetype
+      list_documents $documents
+  }
+#+end_src
+
+Execute the functions we previously defined:
+#+begin_src bash
+  main
+#+end_src
+
+Open file with its associated application:
+#+begin_src bash
+  [ -n "$selected" ] && xdg-open $selected
+#+end_src

@@ -1,0 +1,48 @@
+#+INCLUDE: navbar.org
+#+OPTIONS: toc:nil html-postamble:nil num:nil
+#+TITLE: grtcdr's website
+
+* Hi there! I'm grtcdr.
+
+I know, what a terrible name... You can call me /"great crowd"/.
+
+You might know me as the author of macchina, or maybe we met on the
+train?
+
+I'm a 3rd year student majoring in software engineering. I mainly work
+on open source software.
+
+I enjoy minimal web pages, so this abomination that you're looking at
+right now, might stay forever.
+
+#+CAPTION: [[https://www.flickr.com/photos/24662369@N07/4774472286][NGC 3603]].
+#+ATTR_HTML: :width 180 :height 180
+[[file:assets/nasa-carina.jpg]]
+
+-----
+
+* Projects
+
+Here's what I've worked on:
+
+- [[https://github.com/Macchina-CLI/macchina][macchina]]: a system information frontend for libmacchina *[maintained]*.
+- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: a library providing all kinds of system information *[maintained]*.
+- [[https://sr.ht/~grtcdr/citron/][citron]]: a lightweight package providing access to system data via on-demand notifications. *[maintained]*
+- [[https://sr.ht/~grtcdr/dyna/][dyna]]: a package that takes the colorscheme of a terminal emulator, and converts it to another. *[maintained]*
+- [[https://sr.ht/~grtcdr/paspio/][paspio]]: a lightweight password entropy calculator & library. *[maintained]*
+- [[https://github.com/grtcdr/aparato][aparato]]: a library for querying connected PCI devices and a pci.ids parser. *[abandoned]*
+
+Please contact me if you're willing to take on the challenge of reviving aparato.
+
+* Dotfiles
+
+Ever since I've transitioned over to Emacs to replace what I feel that Vim
+lacked, I've began documenting many aspects of my life.
+
+The following is a list of documented dotfiles, that I hope you may
+extract something useful out of.
+
+Feel free to borrow, take, whatever. /Mi casa es su casa./
+
+- [[file:dotfiles/sway.html][sway]]
+- [[file:dotfiles/doch.html][doch]]

@@ -1,0 +1,73 @@
+#+TITLE: startw
+#+INCLUDE: ../navbar.org
+#+OPTIONS: toc:nil html-postamble:nil
+#+PROPERTY: header-args :tangle ~/.local/bin/startw :tangle-mode (identity #o744)
+
+* Introduction
+A simple utility to start sway.
+
+If NVIDIA kernel modules are loaded, meaning the graphics card is
+active, then sway will be launched with the =--unsupported-gpu= flag,
+otherwise, it starts normally.
+
+* Source
+Flags to export right before entering the sway session.
+
+The export of =_JAVA_AWT_WM_NONPARENTING= is highly recommended if you
+plan to use any Java applications. It essentially makes them behave
+well in a tiling window manager environment.
+
+#+begin_src bash
+    propagate_flags() {
+      export _JAVA_AWT_WM_NONREPARENTING=1
+    }
+#+end_src
+
+Define the function which will start sway with the appropriate flag:
+#+begin_src bash
+  launch_sway() {
+    HAS_NVIDIA=$(lsmod | grep -c nvidia)
+    propagate_flags
+
+    if [ "$HAS_NVIDIA" -eq 0 ]; then
+      exec sway
+    else
+      exec sway --unsupported-gpu
+    fi
+  }
+#+end_src
+
+Verify that a graphical session hasn't been started already:
+#+begin_src bash
+  check_console() {
+    if [ -n "$DISPLAY" ] && [ "$(tty)" != "/dev/tty1" ]; then
+      echo "Already in a graphical session."
+      exit 1
+    fi
+  }
+#+end_src
+
+Define the prompter.
+
+If the expected input (pressing y) isn't provided within 3 seconds,
+=startw= will back off, letting you continue to use the TTY.
+
+#+begin_src bash
+  prompt() {
+    check_console
+
+    echo "Start Sway?"
+    read -rst 3 -n 1 IN
+
+    if [ "$?" -ne 1 ]; then
+      case $IN in
+	"y" | "") launch_sway;;
+      esac
+    fi
+  }
+#+end_src
+
+Call the prompter:
+#+begin_src bash
+  prompt
+#+end_src

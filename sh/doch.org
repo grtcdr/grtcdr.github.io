@@ -1,13 +1,11 @@
-
-#+INCLUDE: ../navbar.org
-#+PROPERTY: header-args :tangle ~/.local/bin/doch :tangle-mode (identity #o744)
-#+EXPORT_FILE_NAME: ~/pro/website/html/sh/doch
-#+OPTIONS: html-postamble:nil toc:nil
 #+TITLE: doch
+#+INCLUDE: ../navbar.org
+#+OPTIONS: html-postamble:nil
+#+PROPERTY: header-args :tangle ~/.local/bin/doch :tangle-mode (identity #o744)
 
 A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
 
-Define location of =org-directory=
+Define location of =org-directory=, this is where doch attempts to search for the documents.
 
 #+begin_src bash
   ORG_DIR="$HOME"/doc/org
@@ -39,8 +37,9 @@ Define the function which fetches the documents depending on their ~$filetype~:
   }
 #+end_src
 
-Define the function which lists available documents. Note that hitting
-~<ESC>~ returns to the main menu.
+Define the function which lists available documents.
+
+Hitting ~<ESC>~ returns to the main menu.
 #+begin_src bash
   list_documents() {
       if (( ${#documents[@]} )); then
@@ -53,7 +52,8 @@ Define the function which lists available documents. Note that hitting
   }
 #+end_src
 
-Define the functions we'll be executing:
+Define the functions we'll be executing, in a wrapper function to
+emulate the layout of a menu:
 #+begin_src bash
   main() {
       choose_filetype
@@ -62,7 +62,8 @@ Define the functions we'll be executing:
   }
 #+end_src
 
-Execute the functions we previously defined:
+Execute =main= function, we recall it anytime =<ESC>= is pressed in the
+file selection menu:
 #+begin_src bash
   main
 #+end_src

@@ -1,10 +1,11 @@
-#+STARTUP: overview
-#+EXPORT_FILE_NAME: ~/pro/website/html/rc/sway
-#+OPTIONS: html-postamble:nil
 #+TITLE: Sway With Me
+#+INCLUDE: ../navbar.org
+#+OPTIONS: toc:nil html-postamble:nil
+#+STARTUP: overview
 
 * A Compact Sway Configuration
 
+#+TOC: headlines 1 local
 ** Prerequisites
 
 This is a list of all the packages you'll need for full compatibility with this configuration:

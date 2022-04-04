@@ -1,11 +1,10 @@
-#+INCLUDE: navbar.org
-#+EXPORT_FILE_NAME: ~/pro/website/html/contact
-#+OPTIONS: toc:nil html-postamble:nil num:nil
 #+TITLE: grtcdr's contact info
+#+INCLUDE: navbar.org
+#+OPTIONS: toc:nil html-postamble:nil num:nil
 #+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;}</style>
 
 #+ATTR_HTML: :width 120 :height 120
-[[file:assets/avatar.jpg]]
+[[file:img/avatar.jpg]]
 
 * Get in touch
 

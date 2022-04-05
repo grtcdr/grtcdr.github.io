@@ -1,5 +1,6 @@
 #+TITLE: grtcdr/sh/doch: A bemenu utility
 #+INCLUDE: ../navbar.org
+#+OPTIONS: html-postamble:nil
 #+PROPERTY: header-args :tangle ~/.local/bin/doch :tangle-mode (identity #o744)
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
 

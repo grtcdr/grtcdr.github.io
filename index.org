@@ -1,5 +1,6 @@
 #+TITLE: grtcdr/: index
 #+INCLUDE: navbar.org
+#+OPTIONS: html-postamble:nil
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
 * Hi there! I'm _grtcdr_.

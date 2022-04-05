@@ -1,5 +1,6 @@
 #+TITLE: grtcdr's website
 #+INCLUDE: navbar.org
+#+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
 * Hi there! I'm _grtcdr_.
 I know, what a terrible name...

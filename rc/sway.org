@@ -1,9 +1,9 @@
 #+TITLE: Sway With Me
-#+INCLUDE: ../navbar.org
-#+OPTIONS: toc:nil html-postamble:nil
 #+STARTUP: overview
+#+INCLUDE: ../navbar.org
+#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
 
-* A Compact Sway Configuration ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sway/.config/sway/config][view raw]])
+* A compact Sway configuration [[[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sway/.config/sway/config][raw]]]
 
 #+TOC: headlines 1 local
 ** Prerequisites
@@ -28,6 +28,13 @@ This is a list of all the packages you'll need for full compatibility with this 
 - Niceties:
   + =wlsunset=
   + =citron=
+
+** Features
+
++ [[https://www.nordtheme.com/][Nord]], as the palette.
++ [[https://typeof.net/Iosevka/][Iosevka Aile]], as the font.
+
+-----
 
 ** Definitions
 Variables will make your life easier, and you can use them across
@@ -89,14 +96,14 @@ since, no matter which window manager I find myself using.
 #+end_src
 
 *** Input configuration
-For more information on this topic, see [[https://www.mankier.com/5/sway-input][sway-input(5)]].
+For more information on this topic, see sway-input(5).
 
 **** Keyboard configuration
 Modal text editors require that you switch between modes very often,
 and as such, the need for a modifier that is within your reach suddenly
 appears. I have chosen to map *caps lock to escape* to solve this. You
 can map all sorts of keys together with the use of ~xkb_options~. For
-more information, see [[https://www.freebsd.org/cgi/man.cgi?query=xkeyboard-config&sektion=7&format=html][xkeyboard-config(1)]].
+more information, see xkeyboard-config(1).
 
 #+begin_src :padline no :tangle ~/.config/sway/config 
   input "type:keyboard" {
@@ -363,7 +370,7 @@ Let us put that palette to good use, eh.
   client.urgent             $red        $red            $red
 #+end_src
 
-Let us configure some of sway's looks, like the
+Let us configure some of Sway's looks, like the
 color of the background and the typeface, which I only see in a window's title bar.
 
 #+begin_src :padline no :tangle ~/.config/sway/visuals

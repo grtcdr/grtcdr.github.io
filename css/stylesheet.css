@@ -1,0 +1,46 @@
+body {
+    background-color: #e7e7e7;
+    color: #363D45;
+}
+
+.title {
+    padding-bottom: 10px;
+    font-size: 1.8em;
+    text-align: left;
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-size: 1.5em;
+}
+
+img {
+    border-radius: 10px;
+    width: 75%;
+}
+
+pre {
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.9em;
+    background-color: #E0E0E0;
+    border-radius: 8px;
+    border: 1px solid #D6D6D6
+}
+
+.content {
+    padding: 70px 40px;
+}
+
+::selection {
+    color: #424B54;
+    background: #E6F9AF;
+}
+
+a { color: #779286; }
+a:visited { color: #5B7167; }
+a:hover { color: #5B7167; }
+li { line-height: 1.6; }

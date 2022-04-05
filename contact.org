@@ -1,6 +1,6 @@
 #+TITLE: grtcdr's contact info
 #+INCLUDE: navbar.org
-#+OPTIONS: toc:nil html-postamble:nil num:nil
+#+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
 * Get in touch
 

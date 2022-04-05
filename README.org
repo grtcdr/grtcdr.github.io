@@ -4,7 +4,8 @@ See also [[https://github.com/grtcdr/grtcdr.github.io][github.com/grtcdr/grtcdr.
 
 ** Structure
 
-| Directory | Contents                     |
-|-----------+------------------------------|
-| =rc=        | Literate configuration files |
-| =sh=        | Literate shell scripts       |
+| Directory | Contents                          |
+|-----------+-----------------------------------|
+| =rc=        | Literate configuration files      |
+| =sh=        | Literate shell scripts            |
+| data      | Data files exposed to the website |

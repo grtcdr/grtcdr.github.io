@@ -3,7 +3,7 @@
 #+OPTIONS: toc:nil html-postamble:nil
 #+STARTUP: overview
 
-* A Compact Sway Configuration
+* A Compact Sway Configuration ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sway/.config/sway/config][view raw]])
 
 #+TOC: headlines 1 local
 ** Prerequisites

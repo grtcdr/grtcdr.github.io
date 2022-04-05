@@ -11,7 +11,7 @@ active, then sway will be launched with the =--unsupported-gpu= flag,
 otherwise, it starts normally.
 
 
-* Source ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/scripts/.local/bin/startw][view raw]])
+* Source ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sh/.local/bin/startw][view raw]])
 
 Flags to export right before entering the sway session.
 

@@ -57,8 +57,8 @@ can be. [[https://github.com/qtile/qtile][Qtile]] by default sets ="qsdfuiop"= a
 names, where each character in the aforementioned string represents
 the name of an individual workspace, and the /key/ to reach it.
 
-I have borrowed this brilliant design and have been carrying it
-with me, no matter which window manager I find myself using.
+I have borrowed this brilliant design and have been using it ever
+since, no matter which window manager I find myself using.
 
 #+begin_src :padline no :tangle ~/.config/sway/config 
   set {

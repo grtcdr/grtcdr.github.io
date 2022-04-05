@@ -11,12 +11,12 @@ A bemenu utility that can list and open any HTML/PDF file found within my =org-d
 
 Define location of =org-directory=, this is where doch attempts to search for the documents.
 
-#+begin_src bash
+#+begin_src bash :shebang "#!/usr/bin/env bash"
   ORG_DIR="$HOME"/doc/org
 #+end_src
 
 Define the bemenu function which is used all throughout this script:
-#+begin_src bash :shebang "#!/usr/bin/env bash"
+#+begin_src bash
   menu() {
       bemenu -i -l 6 -P "> " -p $1
   }

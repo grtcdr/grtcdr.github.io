@@ -19,7 +19,7 @@ The export of =_JAVA_AWT_WM_NONPARENTING= is highly recommended if you
 plan to use any Java applications. It essentially makes them behave
 well in a tiling window manager environment.
 
-#+begin_src bash
+#+begin_src bash :shebang "#!/usr/bin/env bash"
     propagate_flags() {
       export _JAVA_AWT_WM_NONREPARENTING=1
     }

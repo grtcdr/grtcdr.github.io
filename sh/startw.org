@@ -1,4 +1,5 @@
 #+TITLE: startw
+#+STARTUP: hideblocks
 #+INCLUDE: ../navbar.org
 #+OPTIONS: toc:nil html-postamble:nil
 #+PROPERTY: header-args :tangle ~/.local/bin/startw :tangle-mode (identity #o744)
@@ -6,70 +7,94 @@
 * About
 A simple utility to start sway.
 
-If NVIDIA kernel modules are loaded, meaning the graphics card is
-active, then sway will be launched with the =--unsupported-gpu= flag,
-otherwise, it starts normally.
+* Features
+
+If NVIDIA kernel modules are loaded (meaning an NVIDIA graphics card
+is present and active), sway will launch with the =--unsupported-gpu=
+flag. Otherwise, it starts normally, i.e. with no extra flags.
+
+* Use case
+It is intended to start automatically after a successful TTY login, to achieve this, one must append the following to their =.bash_profile= (bash), or =.zprofile= (zsh):
+
+#+begin_src bash
+  [[ -z $TMUX ]] && source "$HOME"/.local/bin/startw
+#+end_src
+
+To work around [[https://github.com/tmux/tmux][tmux]] loading this script for every new client, the
+script should only be sourced when the =TMUX= variable is not set. You
+may remove the condition if you do not rely on tmux.
 
 
 * Source ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sh/.local/bin/startw][view raw]])
+The following function definition determines the flags to export right
+before entering the sway session, so that they are available to any
+user-space application, and sway itself.
 
-Flags to export right before entering the sway session.
+1. [@1] Define local variables used within the script:
 
-The export of =_JAVA_AWT_WM_NONPARENTING= is highly recommended if you
-plan to use any Java applications. It essentially makes them behave
-well in a tiling window manager environment.
+   #+begin_src bash :shebang "#!/usr/bin/env bash"
+     TIMEOUT=3
+   #+end_src
 
-#+begin_src bash :shebang "#!/usr/bin/env bash"
-    propagate_flags() {
+   - =TIMEOUT= is the number of seconds this script waits before cancelling input[fn:3].
+
+2. [@2] Setting =_JAVA_AWT_WM_NONPARENTING= to =1= and *exporting* it is highly
+recommended if you plan to certain[fn:2] Java applications. It essentially
+makes them behave well in a tiling window manager environment.
+
+#+begin_src bash
+  propagate_flags() {
       export _JAVA_AWT_WM_NONREPARENTING=1
-    }
+  }
 #+end_src
 
-Define the function which will start sway with the appropriate flag:
+3. [@3] Define the function which will start sway with the appropriate flag:
 #+begin_src bash
   launch_sway() {
-    HAS_NVIDIA=$(lsmod | grep -c nvidia)
-    propagate_flags
+      HAS_NVIDIA=$(lsmod | grep -c nvidia)
+      propagate_flags
 
-    if [ "$HAS_NVIDIA" -eq 0 ]; then
-      exec sway
-    else
-      exec sway --unsupported-gpu
-    fi
+      if [ "$HAS_NVIDIA" -eq 0 ]; then
+	  exec sway
+      else
+	  exec sway --unsupported-gpu
+      fi
   }
 #+end_src
 
-Verify that a graphical session hasn't been started already:
+4. [@4] Verify that a graphical session hasn't been started already[fn:1]:
 #+begin_src bash
   check_console() {
-    if [ -n "$DISPLAY" ] && [ "$(tty)" != "/dev/tty1" ]; then
-      echo "Already in a graphical session."
-      exit 1
-    fi
+      if [ -n "$DISPLAY" ] && [ "$(tty)" != "/dev/tty1" ]; then
+	  echo "Already in a graphical session."
+	  exit 1
+      fi
   }
 #+end_src
 
-Define the prompter.
-
-If the expected input (pressing y) isn't provided within 3 seconds,
-=startw= will back off, letting you continue to use the TTY.
+5. [@5] Define the prompter:
 
 #+begin_src bash
   prompt() {
-    check_console
+      check_console
 
-    echo "Start Sway?"
-    read -rst 3 -n 1 IN
+      echo "Start Sway?"
+      read -rst TIMEOUT -n 1 IN
 
-    if [ "$?" -ne 1 ]; then
-      case $IN in
-	"y" | "") launch_sway;;
-      esac
-    fi
+      if [ "$?" -ne 1 ]; then
+	  case $IN in
+	      "y" | "") launch_sway;;
+	  esac
+      fi
   }
 #+end_src
 
-Call the prompter:
+6. [@6] Call the prompter:
 #+begin_src bash
   prompt
 #+end_src
+
+* Footnotes
+[fn:1] Adapted from [[https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login][this page in the Arch Wiki.]]
+[fn:2] The list of which Java applications don't play nicely with non-reparenting window managers is unknown, set the variable anyway to avoid future heachaches.
+[fn:3] If the expected input (pressing y) isn't provided within 3 seconds, =startw= will back off, letting you continue to use the TTY.

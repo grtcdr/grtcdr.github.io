@@ -3,7 +3,11 @@
 #+OPTIONS: html-postamble:nil
 #+PROPERTY: header-args :tangle ~/.local/bin/doch :tangle-mode (identity #o744)
 
+* About
+
 A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
+
+* Source ([[https://git.sr.ht/~grtcdr/dotfiles/blob/main/scripts/.local/bin/doch][view raw]])
 
 Define location of =org-directory=, this is where doch attempts to search for the documents.
 

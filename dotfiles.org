@@ -5,26 +5,33 @@
 * Preface
 
 Ever since I had transitioned over to Emacs to obtain what (I felt)
-Vim could not offer, I have made it my mission to finally configure the
-editor to work for me, and so I stumbled upon literal programming. And
+Vim[fn:1] could not offer, I have made it my mission to finally configure the
+editor to work for me. I had later stumbled upon [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]. And
 you know what? I am convinced, for the most part.
 
-I have began documenting many aspects of my day to day life, and this
+I have begun documenting many aspects of my day to day life, and this
 website is purely a result of the hard work of others who have
-pioneered this philosophy. I am grateful that Emacs adopts it in such
+driven this philosophy forward. I am grateful that Emacs adopts it in such
 an extensible and flexible manner. I suppose this is the advantage of
-Lisp in general.
+[[https://en.wikipedia.org/wiki/Lisp_(programming_language)][Lisp]] in general, and [[https://orgmode.org/][Org Mode]] in particular.
 
 -----
 
-* Literate dotfiles
-
 The following is a list of documented dotfiles, that I hope you may
-extract something useful out of. Feel free to borrow, take,
-whatever. /Mi casa es su casa./
+extract something useful out of.
+
+A small but significant portion of my configurations is a mold of
+what I've read in a blog, seen in a demonstration, or took from
+someone's neatly organized dotfiles.
 
 The documentation does not cover everything, yet. So, I invite you to
 [[https://git.sr.ht/~grtcdr/dotfiles][take a look at the repository]] where all of my dotfiles live.
+
+You are *free* to use and modify any of the material you may find therein.
+
+/Mi casa es su casa./
+
+* Literate dotfiles
 
 ** [[file:rc/sway.org][sway]]
 
@@ -45,5 +52,10 @@ my =org-directory=.
 
 ** [[file:sh/startw.org][startw]]
 
-A bemenu utility that can list and open any HTML/PDF file found within
-my =org-directory=.
+A simple utility to start sway (with the appropriate flags).
+
+* Footnotes
+
+[fn:1] Vim and Emacs follow entirely different
+philosophies, Vim is honest about its goals, while Emacs is
+all-encompassing. I still use Vim daily, though.

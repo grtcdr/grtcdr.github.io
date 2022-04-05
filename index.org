@@ -1,4 +1,4 @@
-#+TITLE: grtcdr's website
+#+TITLE: grtcdr/: index
 #+INCLUDE: navbar.org
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 

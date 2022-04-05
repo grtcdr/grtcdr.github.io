@@ -1,4 +1,4 @@
-#+TITLE: Sway With Me
+#+TITLE: grtcdr/rc/sway: A compact Sway configuration
 #+STARTUP: overview
 #+INCLUDE: ../navbar.org
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">

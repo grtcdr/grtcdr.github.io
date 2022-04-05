@@ -1,11 +1,11 @@
-#+TITLE: startw
+#+TITLE: grtcdr/sh/startw: A utility to start Sway intelligently
 #+STARTUP: hideblocks
 #+INCLUDE: ../navbar.org
 #+PROPERTY: header-args :tangle ~/.local/bin/startw :tangle-mode (identity #o744)
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
 
 * About
-A simple utility to start sway.
+A utility to start Sway intelligently.
 
 * Features
 

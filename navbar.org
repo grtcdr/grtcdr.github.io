@@ -1,6 +1,3 @@
-#+EXPORT_FILE_NAME: ~/pro/website/html/navbar
-#+OPTIONS: html-postamble:nil
-
 [[file:index.html][home]] | [[file:contact.org][contact]] | [[file:dotfiles.html][dotfiles]]
 
 -----

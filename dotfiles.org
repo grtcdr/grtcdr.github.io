@@ -1,4 +1,4 @@
-#+TITLE: grtcdr's dotfiles
+#+TITLE: grtcdr/: dotfiles
 #+INCLUDE: navbar.org
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 

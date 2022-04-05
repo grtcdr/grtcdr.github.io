@@ -27,9 +27,7 @@ someone's neatly organized dotfiles.
 The documentation does not cover everything, yet. So, I invite you to
 [[https://git.sr.ht/~grtcdr/dotfiles][take a look at the repository]] where all of my dotfiles live.
 
-You are *free* to use and modify any of the material you may find therein.
-
-/Mi casa es su casa./
+You are *free* to use and modify any of the material you may find therein — /Mi casa es su casa./
 
 * Literate dotfiles
 

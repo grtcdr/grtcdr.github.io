@@ -37,7 +37,7 @@ you might prefer this instead:
    #+end_src
 
    - =TIMEOUT= is the number of seconds this utility waits before cancelling input[fn:4].
-   - =JAVA_GUI_WORKAROUND_SUPPORT= is intended to workaround rendering issues[fn:2] of certain Java GUI applications.
+   - =JAVA_GUI_SUPPORT= is intended to workaround rendering issues[fn:2] of certain Java GUI applications.
 
 2. [@2] Define the function which will start sway with the appropriate flag:
 #+begin_src bash

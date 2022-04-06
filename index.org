@@ -4,10 +4,8 @@
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
 * Hi there! I'm _grtcdr_.
-I know, what a terrible name...
-
-You might know me as the author of macchina, or maybe we met on the
-train?
+You might know me as the author of macchina or some other command-line
+utility, or maybe we met at a red light at some point?
 
 Anyhow, I'm a 3^rd year student majoring in software engineering
 and I mainly work on open source software, making small tools that

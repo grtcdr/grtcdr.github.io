@@ -1,10 +1,9 @@
 #+TITLE: grtcdr/rc/sway: A compact Sway configuration
-#+STARTUP: overview
 #+INCLUDE: ../navbar.org
 #+OPTIONS: html-postamble:nil
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
 
-* A compact Sway configuration [[[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sway/.config/sway/config][raw]]]
+* A compact Sway configuration
 
 #+TOC: headlines 1 local
 ** Prerequisites

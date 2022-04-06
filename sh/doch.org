@@ -8,7 +8,7 @@
 
 A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
 
-* Source [[[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sh/.local/bin/doch][raw]]]
+* Source
 
 Define location of =org-directory=, this is where doch attempts to search for the documents.
 

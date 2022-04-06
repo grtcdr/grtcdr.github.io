@@ -40,7 +40,8 @@ pre {
     background: #E6F9AF;
 }
 
+li { line-height: 1.6; }
 a { color: #779286; }
 a:visited { color: #5B7167; }
 a:hover { color: #5B7167; }
-li { line-height: 1.6; }
+pre.src:hover:before { background-color: #E0E0E0; }

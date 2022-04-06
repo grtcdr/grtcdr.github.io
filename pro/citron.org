@@ -1,0 +1,67 @@
+#+TITLE: grtcdr/pro: citron
+#+INCLUDE: ../navbar.org
+#+OPTIONS: html-postamble:nil
+#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+
+* citron 🍋
+
+[[https://git.sr.ht/~grtcdr/citron][citron]] is a lightweight utility that provides system data via
+on-demand notifications. It essentially replaces the need for a task
+bar, without bringing the whole kit and caboodle.
+
+It is:
++ designed with customization[fn:1] and freedom[fn:2] in mind.
++ environment-agnostic; runs anywhere, on anything.
++ integrates nicely with your desktop via your notification daemon.
++ supports (but does not impose) the use of icon themes.
++ a frontend for [[https://github.com/Macchina-CLI/libmacchina][libmacchina ↪]].
+
+citron can be installed through cargo, simply run:
+
+#+begin_src 
+cargo install citron
+#+end_src
+
+For more information on citron, head over to the [[https://man.sr.ht/~grtcdr/citron/][wiki]].
+
+-----
+
+An interesting fact about citron is that it's very low on system
+resources, compared to your average task bar program. Don't take my
+word for it, see for yourself:
+
+#+begin_src
+valgrind citron memory
+#+end_src
+
+#+begin_example
+==184942== Memcheck, a memory error detector
+==184942== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==184942== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==184942== Command: citron memory
+==184942== 
+==184942== 
+==184942== HEAP SUMMARY:
+==184942==     in use at exit: 3,070 bytes in 34 blocks
+==184942==   total heap usage: 364 allocs, 330 frees, 51,981 bytes allocated
+==184942== 
+==184942== LEAK SUMMARY:
+==184942==    definitely lost: 0 bytes in 0 blocks
+==184942==    indirectly lost: 0 bytes in 0 blocks
+==184942==      possibly lost: 0 bytes in 0 blocks
+==184942==    still reachable: 3,070 bytes in 34 blocks
+==184942==         suppressed: 0 bytes in 0 blocks
+==184942== Rerun with --leak-check=full to see details of leaked memory
+==184942== 
+==184942== For lists of detected and suppressed errors, rerun with: -s
+==184942== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+#+end_example
+
+> Pulls out calculator.
+
+51,981 B is ±0.05 MB - demonstrating how neatly this citron tool I've been telling you all about, deals with your memory.
+
+* Footnotes
+
+[fn:1] Notification content can be customized with special formatters.
+[fn:2] Not opinionated; your system, your rules. Bind any of its subcommands to a specific keybinding in your window manager/desktop environment, and voilà!

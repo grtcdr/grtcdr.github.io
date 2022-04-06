@@ -29,7 +29,7 @@ you might prefer this instead:
   [[ -z $TMUX ]] && source "$HOME"/.local/bin/startw
 #+end_src
 
-* Source [[[https://git.sr.ht/~grtcdr/dotfiles/blob/main/sh/.local/bin/startw][raw]]]
+* Source
 1. [@1] Define local variables used within the script:
 
    #+begin_src bash :shebang "#!/usr/bin/env bash"

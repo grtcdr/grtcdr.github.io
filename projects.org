@@ -1,0 +1,17 @@
+#+TITLE: grtcdr/: projects
+#+INCLUDE: navbar.org
+#+OPTIONS: html-postamble:nil
+#+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
+
+* Projects
+
+Here's what I've worked on over the years:
+
+- [[https://github.com/Macchina-CLI/macchina][macchina]]: a system information frontend for libmacchina.                                       *[maintained]*
+- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: a library providing all kinds of system information.                              *[maintained]*
+- [[file:pro/citron.org][citron]]: a lightweight package providing access to system data via on-demand notifications.     *[maintained]*
+- [[https://sr.ht/~grtcdr/dyna/][dyna]]: a package that takes the colorscheme of a terminal emulator, and converts it to another. *[maintained]*
+- [[https://sr.ht/~grtcdr/paspio/][paspio]]: a lightweight password entropy calculator & library.                                   *[maintained]*
+- [[https://github.com/grtcdr/aparato][aparato]]: a library for querying connected PCI devices and a pci.ids parser.                     *[abandoned]*
+
+Please [[file:contact.org][contact]] me if you're willing to take on the challenge of reviving aparato.

@@ -12,9 +12,14 @@
 You might know me as the author of macchina or some other command-line
 utility, or maybe we met at a red light at some point?
 
-Anyhow, I'm a 3^rd year student majoring in software engineering
-and I mainly work on open source software, making small tools that
-solve small problems.
+Anyhow, I'm a 3^rd year student majoring in software engineering and I
+mainly work on open source software, making small tools that solve
+small problems.
+
+I enjoy long drives, good pasta, and free & open source software. I'm
+also really interested in astronomy. So, if you know a guy that knows
+a guy that could get me on a spaceship, preferably one that can land
+back on Earth, I would really appreciate.
 
 #+CAPTION: M16 Close Up (Courtesy and Copyright of [[https://www.martinpughastrophotography.space/about][Martin Pugh]])
 #+ATTR_HTML: :alt M16 Close Up (Copyright Martin Pugh) :style width:280px;

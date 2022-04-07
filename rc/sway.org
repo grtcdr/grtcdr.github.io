@@ -251,8 +251,8 @@ Control display brightness with ~xbacklight~.
 
 #+begin_src :padline no :tangle ~/.config/sway/config
   bindsym {
-      XF86MonBrightnessDown   exec xbacklight -dec 5
-      XF86MonBrightnessUp     exec xbacklight -inc 5
+      XF86MonBrightnessDown   exec xbacklight -5
+      XF86MonBrightnessUp     exec xbacklight +5
   }
 #+end_src
 

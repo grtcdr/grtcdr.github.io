@@ -2,11 +2,20 @@
 #+INCLUDE: navbar.org
 #+OPTIONS: html-postamble:nil
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
+#+HTML_HEAD_EXTRA: <style type="text/css">
+#+HTML_HEAD_EXTRA: .figure-number { display: none; }
+#+HTML_HEAD_EXTRA: </style>
+
 
 * Hi there! I'm _grtcdr_.
+
 You might know me as the author of macchina or some other command-line
 utility, or maybe we met at a red light at some point?
 
 Anyhow, I'm a 3^rd year student majoring in software engineering
 and I mainly work on open source software, making small tools that
 solve small problems.
+
+#+CAPTION: M16 Close Up (Courtesy and Copyright of [[https://www.martinpughastrophotography.space/about][Martin Pugh]])
+#+ATTR_HTML: :alt M16 Close Up (Copyright Martin Pugh) :style width:280px;
+[[file:img/M16SHO.jpg]]

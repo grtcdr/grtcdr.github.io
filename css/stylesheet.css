@@ -18,10 +18,7 @@ h5 {
     font-size: 1.5em;
 }
 
-img {
-    border-radius: 10px;
-    width: 75%;
-}
+div.figure p { text-align: center; }
 
 pre {
     font-family: "Roboto Mono", monospace;

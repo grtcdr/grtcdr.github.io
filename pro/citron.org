@@ -12,9 +12,9 @@ bar, without bringing the whole kit and caboodle.
 It is:
 + designed with customization[fn:1] and freedom[fn:2] in mind.
 + environment-agnostic; runs anywhere, on anything.
-+ integrates nicely with your desktop via your notification daemon.
-+ supports (but does not impose) the use of icon themes.
-+ a frontend for [[https://github.com/Macchina-CLI/libmacchina][libmacchina ↪]].
++ neatly integrated with your desktop via your notification daemon.
++ contextually-aware of the system state when configured to use an icon theme.
++ a frontend for [[https://github.com/Macchina-CLI/libmacchina][libmacchina]].
 
 citron can be installed through cargo, simply run:
 

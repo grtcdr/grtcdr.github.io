@@ -16,7 +16,7 @@ This is a list of all the packages you'll need for full compatibility with this 
 - Essential:
   + =systemd=
   + =xbacklight=
-  + =pamixer=
+  + =libpulse=
   + =playerctl=
 - Terminal emulator:
   + =foot=
@@ -231,13 +231,18 @@ Control media playback with ~playerctl~.
 #+end_src
 
 *** Volume control
-Control system volume with ~pamixer~.
+Control system volume with ~pactl~.
 
 #+begin_src :padline no :tangle ~/.config/sway/config
   bindsym {
-      XF86AudioRaiseVolume  exec pamixer -i 5
-      XF86AudioLowerVolume  exec pamixer -d 5
-      XF86AudioMute         exec pamixer -t
+      XF86AudioRaiseVolume   exec \
+         pactl set-sink-volume @DEFAULT_SINK@ +2%
+
+      XF86AudioLowerVolume   exec \
+         pactl set-sink-volume @DEFAULT_SINK@ -2%
+
+      XF86AudioMute          exec \
+         pactl set-sink-mute @DEFAULT_SINK@ toggle
   }
 #+end_src
 
@@ -332,7 +337,7 @@ Launch Sway's own idle manager:
   exec swayidle -w \
        timeout 300  '$locker' \
        timeout 600  'swaymsg "output * dpms off"' \
-             resume 'swaymsg "output * dpms on"' \
+          resume 'swaymsg "output * dpms on"' \
        timeout 1200 'systemctl suspend' \
        before-sleep 'loginctl lock-session $XDG_SESSION_ID' \
        after-resume '$locker'
@@ -374,7 +379,7 @@ Let us configure some of Sway's looks, like the
 color of the background and the typeface, which I only see in a window's title bar.
 
 #+begin_src :padline no :tangle ~/.config/sway/visuals
-  output   * bg ~/img/wall/art/cottage.jpg fill
+  output   * bg ~/img/wall/art/juno.png fill
   gaps     inner 12
   font     Iosevka Aile Light 10
 #+end_src

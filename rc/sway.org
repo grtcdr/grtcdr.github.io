@@ -10,22 +10,22 @@
 
 This is a list of all the packages you'll need for full compatibility with this configuration:
 
-- Sway-specific:
++ Sway-specific:
   + =swayidle=
   + =swaylock=
-- Essential:
++ Essential:
   + =systemd=
-  + =xbacklight=
-  + =libpulse=
-  + =playerctl=
-- Terminal emulator:
+  + =xbacklight=[fn:1]
+  + =libpulse=[fn:2]
+  + =playerctl=[fn:3]
++ Terminal emulator:
   + =foot=
-- Typeface:
++ Typeface:
   + =Iosevka Aile=
-- Application launcher:
++ Application launcher:
   + =bemenu=
     + =j4-dmenu-desktop=
-- Niceties:
++ Niceties:
   + =wlsunset=
   + =citron=
 
@@ -33,6 +33,7 @@ This is a list of all the packages you'll need for full compatibility with this 
 
 + [[https://www.nordtheme.com/][Nord]], as the palette.
 + [[https://typeof.net/Iosevka/][Iosevka Aile]], as the font.
++ [[https://www.vim.org/][Vim]]-like keybindings.
 
 -----
 
@@ -44,7 +45,7 @@ The following variable definitions are used all throughout the
 configuration, so keep your eyes peeled.
 
 *** Key definitions
-Let us define some modifiers and directional keys.
+Let's define some modifiers and directional keys.
 
 #+begin_src :padline no :tangle ~/.config/sway/config 
   set {
@@ -81,12 +82,6 @@ since, no matter which window manager I find myself using.
 #+end_src
 
 *** Miscellaneous definitions
-~rsz~: Defines how many pixels a particular window gets resized.
-
-~locker~: Defines the screenlocking program.
-
-~session~: This represents the name of a mode I utilize to manage my session.
-
 #+begin_src :padline no :tangle ~/.config/sway/config 
   set {
       $rsz       50px
@@ -95,15 +90,19 @@ since, no matter which window manager I find myself using.
   }
 #+end_src
 
+- ~rsz~: Defines how many pixels a particular window gets resized.
+- ~locker~: Defines the screenlocking program.
+- ~session~: This represents the name of a mode I utilize to manage my session.
+
 *** Input configuration
 For more information on this topic, see sway-input(5).
 
 **** Keyboard configuration
 Modal text editors require that you switch between modes very often,
-and as such, the need for a modifier that is within your reach suddenly
-appears. I have chosen to map *caps lock to escape* to solve this. You
-can map all sorts of keys together with the use of ~xkb_options~. For
-more information, see xkeyboard-config(1).
+and as such, a modifier that is within your reach suddenly becomes a
+necessity. I have chosen to map *caps lock to escape* to address
+this. You can map all sorts of keys together with the use of
+~xkb_options~. For more information, see xkeyboard-config(1).
 
 #+begin_src :padline no :tangle ~/.config/sway/config 
   input "type:keyboard" {
@@ -366,7 +365,7 @@ The following variable definitions represent every color found in the =Nord= pal
 #+end_src
 
 *** Configuration
-Let us put that palette to good use, eh.
+Let's put that palette to good use, eh.
 
 #+begin_src :padline no :tangle ~/.config/sway/visuals
   client.unfocused          $base03     $base03         $base00
@@ -375,19 +374,24 @@ Let us put that palette to good use, eh.
   client.urgent             $red        $red            $red
 #+end_src
 
-Let us configure some of Sway's looks, like the
-color of the background and the typeface, which I only see in a window's title bar.
+Let's configure some of Sway's looks, like the
+color of the background and the typeface (which I only see in a window's titlebar).
 
 #+begin_src :padline no :tangle ~/.config/sway/visuals
-  output   * bg ~/img/wall/art/juno.png fill
-  gaps     inner 12
+  output   * bg ~/img/wall/art/cottage.jpg fill
   font     Iosevka Aile Light 10
 #+end_src
 
-The last thing I will do is instruct Sway to behave in a manner that
+The last thing I'dd do is instruct Sway to behave in a manner that
 is suitable for my workflow.
 
 #+begin_src :padline no :tangle ~/.config/sway/visuals
   smart_borders       on
   floating_modifier   $super normal
 #+end_src
+
+* Footnotes
+
+[fn:1] Display/keyboard backlight controller, I only make use of the display functionality however.
+[fn:2] Lets us control system audio, among other things.
+[fn:3] Lets us control currently playing media, through MPRIS.

@@ -33,7 +33,7 @@ touch.
 |---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [[file:dots/sway/sway.org][Sway]]          | A concoction of subtlety and elegance, making use of the bear minimum of software so as to achieve a coherent desktop environment without one being present. |
 | [[file:dots/sh/doch.org][doch.sh]]       | A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.                                                                     |
-| [[file:dots/rc/startw.org][startw.sh]]     | A simple utility to start sway (with the appropriate flags).                                                                                                 |
+| [[file:dots/sh/startw.org][startw.sh]]     | A simple utility to start sway (with the appropriate flags).                                                                                                 |
 
 * Footnotes
 

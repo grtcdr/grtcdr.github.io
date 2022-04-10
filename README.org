@@ -6,8 +6,7 @@ See also [[https://github.com/grtcdr/grtcdr.github.io][github.com/grtcdr/grtcdr.
 
 | Directory | Contents                          |
 |-----------+-----------------------------------|
-| =rc=        | Literate configuration files      |
-| =sh=        | Literate shell scripts            |
+| =dots=      | Literate dotfiles                 |
 | =pro=       | List of projects I've worked on   |
 | =data=      | Data files exposed to the website |
 | =img=       | Images used throught the website  |

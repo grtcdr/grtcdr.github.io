@@ -4,7 +4,6 @@
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
 * Preface
-
 Ever since I had transitioned over to Emacs to obtain what (I felt)
 Vim[fn:1] could not offer, I have made it my mission to finally configure the
 editor to work for me. I had later stumbled upon [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]. And
@@ -36,7 +35,6 @@ touch.
 | [[file:dots/sh/startw.org][startw.sh]]     | A simple utility to start sway (with the appropriate flags).                                                                                                 |
 
 * Footnotes
-
 [fn:1] Vim and Emacs follow entirely different
 philosophies, Vim is honest about its goals, while Emacs is
 all-encompassing. I still use Vim daily, though.

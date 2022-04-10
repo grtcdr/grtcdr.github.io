@@ -1,14 +1,12 @@
 #+TITLE: grtcdr/: index
 #+INCLUDE: navbar.org
-#+OPTIONS: html-postamble:nil
+#+OPTIONS: html-postamble:nil toc:nil
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 #+HTML_HEAD_EXTRA: <style type="text/css">
 #+HTML_HEAD_EXTRA: .figure-number { display: none; }
 #+HTML_HEAD_EXTRA: </style>
 
-
 * Hi there! I'm _grtcdr_.
-
 You might know me as the author of macchina or some other command-line
 utility, or maybe we met at a red light at some point?
 
@@ -19,7 +17,7 @@ small problems.
 I enjoy long drives, good pasta, and free & open source software. I'm
 also really interested in astronomy. So, if you know a guy that knows
 a guy that could get me on a spaceship, preferably one that can land
-back on Earth, I would really appreciate.
+back on Earth, I would really appreciate it :)
 
 #+CAPTION: M16 Close Up (Courtesy and Copyright of [[https://www.martinpughastrophotography.space/about][Martin Pugh]])
 #+ATTR_HTML: :alt M16 Close Up (Copyright Martin Pugh) :style width:280px;

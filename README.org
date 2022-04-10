@@ -4,10 +4,10 @@ See also [[https://github.com/grtcdr/grtcdr.github.io][github.com/grtcdr/grtcdr.
 
 ** Structure
 
-| Directory | Contents                          |
-|-----------+-----------------------------------|
-| =dots=      | Literate dotfiles                 |
-| =pro=       | List of projects I've worked on   |
-| =data=      | Data files exposed to the website |
-| =img=       | Images used throught the website  |
-| =css=       | Stylesheets                       |
+| Directory | Contents                           |
+|-----------+------------------------------------|
+| =pro=       | List of projects I've worked on    |
+| =dots=      | Literate dotfiles                  |
+| =data=      | Data files exposed to the website  |
+| =img=       | Images used throughout the website |
+| =css=       | Stylesheets                        |

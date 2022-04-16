@@ -5,36 +5,31 @@
 
 * Preface
 Ever since I had transitioned over to Emacs to obtain what (I felt)
-Vim[fn:1] could not offer, I have made it my mission to finally configure the
-editor to work for me. I had later stumbled upon [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]. And
-you know what? I am convinced, for the most part.
+Vim could not offer, I have taken an immense effort to dive deep into
+unknown territories, explore new concepts, and make the editor truly
+work for me. I had later stumbled upon [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]. And you
+know what? I am convinced, for the most part.
 
-I have begun documenting many aspects of my day-to-day life, this
-website and the documentation found herein is purely a result of the
+I had later begun documenting many aspects of my day-to-day life, this
+[[https://github.com/grtcdr/website-org][website]] and the documentation found herein is purely a result of the
 hard work of others who have driven this philosophy forward. I am
-grateful that Emacs adopts it in such an extensible and flexible
-manner. I suppose this is the advantage of [[https://en.wikipedia.org/wiki/Lisp_(programming_language)][Lisp]] in general, and [[https://orgmode.org/][Org
-Mode]] in particular.
+grateful that Emacs adopts it in such flexible and unique manner. I
+suppose this is the advantage of [[https://en.wikipedia.org/wiki/Lisp_(programming_language)][Lisp]] in general, and [[https://orgmode.org/][Org Mode]] in
+particular.
 
 The documentation does not cover everything I use, yet. So, I invite
 you to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles live.
 
-You are *free* to use and modify any of the material you may find
-therein — /Mi casa es su casa./
+Please note that a small but significant portion of my configurations,
+is a mold of what I've read in a blog, seen in a demonstration, or
+just adapted from someone else's dotfiles.
 
-Do note that a small but significant portion of my configuration
-files, is a mold of what I've read in a blog, seen in a demonstration,
-or just adapted from someone else's dotfiles. In other words, not
-every line is mine, but I always make sure to add my own personal
-touch.
+You are *free* to use, modify, or do anything with any of the material
+you may find therein — /Mi casa es su casa./
 
-| Documentation | Description                                                                                                                                                  |
-|---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [[file:dots/sway/sway.org][Sway]]          | A concoction of subtlety and elegance, making use of the bear minimum of software so as to achieve a coherent desktop environment without one being present. |
-| [[file:dots/sh/doch.org][doch.sh]]       | A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.                                                                     |
-| [[file:dots/sh/startw.org][startw.sh]]     | A simple utility to start sway (with the appropriate flags).                                                                                                 |
+* Dotfiles
 
-* Footnotes
-[fn:1] Vim and Emacs follow entirely different
-philosophies, Vim is honest about its goals, while Emacs is
-all-encompassing. I still use Vim daily, though.
+- [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bear minimum of software so as to achieve a coherent desktop environment without one being present.
+- [[file:dots/zsh/zsh.org][zsh]]: A straightforward zsh configuration.
+- [[file:dots/sh/doch.org][doch.sh]]: A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
+- [[file:dots/sh/startw.org][startw.sh]]: A simple utility to start Sway (with the appropriate flags).

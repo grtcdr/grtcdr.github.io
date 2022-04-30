@@ -1,7 +1,5 @@
-#+TITLE: grtcdr/pro: citron
-#+INCLUDE: ../navbar.org
-#+OPTIONS: html-postamble:nil
-#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+#+TITLE: grtcdr: citron
+#+INCLUDE: setup.org
 
 * citron
 

@@ -1,12 +1,11 @@
-#+TITLE: grtcdr/: index
-#+INCLUDE: navbar.org
-#+OPTIONS: html-postamble:nil toc:nil
-#+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
+#+TITLE: grtcdr: index
+#+INCLUDE: setup.org
 #+HTML_HEAD_EXTRA: <style type="text/css">
 #+HTML_HEAD_EXTRA: .figure-number { display: none; }
 #+HTML_HEAD_EXTRA: </style>
 
 * Hi there! I'm _grtcdr_.
+
 You might know me as the author of macchina or some other command-line
 utility, or maybe we met at a red light at some point?
 

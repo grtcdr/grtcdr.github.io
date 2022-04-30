@@ -2,12 +2,35 @@
 
 See also [[https://github.com/grtcdr/grtcdr.github.io][github.com/grtcdr/grtcdr.github.io]].
 
+** Setup
+
+Clone the project:
+
+#+begin_example
+git clone https://github.com/grtcdr/website-org
+#+end_example
+
+Import [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles submodule]]:
+
+#+begin_example
+git submodule update --init
+#+end_example
+
+** Reproducing
+
+If for whatever reason, you wish to reproduce this website locally,
+the only requirement to do so, is an installation of [[https://www.gnu.org/software/emacs/][GNU Emacs]].
+
+You can then export each file individually, or make use of my
+[[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/editor/org.el][org-publish-project-alist]] configuration which will help you build the
+website in its entirety without much hassle, provided you modify the
+paths of each =:publishing-directory= property accordingly.
+
 ** Structure
 
 | Directory | Contents                           |
 |-----------+------------------------------------|
-| =pro=       | List of projects I've worked on    |
-| =dots=      | Literate dotfiles                  |
-| =data=      | Data files exposed to the website  |
-| =img=       | Images used throughout the website |
-| =css=       | Stylesheets                        |
+| =img=     | Images used throughout the website |
+| =css=     | Stylesheets                        |
+| =dots=    | Dotfiles submodule                 |
+| =data=    | Data files exposed to the website  |

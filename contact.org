@@ -6,4 +6,4 @@
 - Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
 - GitHub: [[https://github.com/grtcdr][@grtcdr]]
 - SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
-- PGP Key: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
+- PGP Key: [[file:data/publickey.txt][ACBF 041B DFD2 B01D]]

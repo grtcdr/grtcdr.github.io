@@ -1,3 +1,0 @@
-[[file:index.org][home]] | [[file:projects.org][projects]] | [[file:dotfiles.org][dotfiles]] | [[file:contact.org][contact]]
-
------

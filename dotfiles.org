@@ -1,5 +1,5 @@
 #+TITLE: grtcdr/: dotfiles
-#+INCLUDE: navbar.org
+#+INCLUDE: setup.org
 #+OPTIONS: html-postamble:nil
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 

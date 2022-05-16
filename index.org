@@ -4,12 +4,26 @@
 #+HTML_HEAD_EXTRA: .figure-number { display: none; }
 #+HTML_HEAD_EXTRA: </style>
 
-* Hey there! I'm _grtcdr_.
+* Hey there! I'm grtcdr.
 
 I'm a 3^rd year student majoring in software engineering. I mainly
 work on open source software, building small tools that solve small
 problems.
 
-#+CAPTION: M16 Close Up (Courtesy and Copyright of [[https://www.martinpughastrophotography.space/about][Martin Pugh]])
-#+ATTR_HTML: :alt M16 Close Up (Copyright Martin Pugh) :style width:280px;
-[[file:img/M16SHO.jpg]]
+#+begin_quote
+/Q/: How the heck do I pronounce your name?
+
+/A/: /gurt-sdur/ -- It's silly, I know.
+#+end_quote
+
+#+begin_quote
+/Q/: Can we chat?
+
+/A/: Certainly, my nickname is "grtcdr" on IRC and Matrix.
+#+end_quote
+
+#+begin_quote
+/Q/: Can I see your dotfiles?
+
+/A/: [[file:dotfiles.org][Sure thing]].
+#+end_quote

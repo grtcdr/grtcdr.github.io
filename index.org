@@ -1,8 +1,5 @@
 #+TITLE: grtcdr: index
 #+INCLUDE: setup.org
-#+HTML_HEAD_EXTRA: <style type="text/css">
-#+HTML_HEAD_EXTRA: .figure-number { display: none; }
-#+HTML_HEAD_EXTRA: </style>
 
 * Hey there! I'm grtcdr.
 
@@ -13,13 +10,14 @@ problems.
 #+begin_quote
 /Q/: How the heck do I pronounce your name?
 
-/A/: /gurt-sdur/ -- It's silly, I know.
+/A/: /gurt-sdur/ -- It's a silly pseudonym, I know. 
 #+end_quote
 
 #+begin_quote
 /Q/: Can we chat?
 
-/A/: Certainly, my nickname is "grtcdr" on IRC and Matrix.
+/A/: Certainly, my nickname is /grtcdr/ on both IRC and Matrix.  But
+for anything serious, I'd prefer it if you sent me an [[file:contact.org][email]].
 #+end_quote
 
 #+begin_quote

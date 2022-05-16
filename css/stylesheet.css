@@ -31,6 +31,8 @@ blockquote {
     border-left: 0.2em solid #5C5D8D;
     padding-left: 20px;
     margin: 50px;
+    overflow: hidden;
+    max-width: 75ch;
 }
 
 /* -- Source code -- */
@@ -49,16 +51,12 @@ pre.src:hover:before {
 /* -- Links -- */
 
 a {
-    color: #8484AE;
+    color: #5C5D8D;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-a:visited {
-    color: #5C5D8D;
 }
 
 /* -- Content -- */

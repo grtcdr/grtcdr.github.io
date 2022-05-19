@@ -1,36 +1,26 @@
 #+TITLE: grtcdr: citron
 #+INCLUDE: setup.org
 
-* citron
+* citron 🍋
 
 [[https://git.sr.ht/~grtcdr/citron][citron]] is a lightweight utility that provides system data via
-on-demand notifications. It essentially replaces the need for a task
-bar, without bringing the whole kit and caboodle.
+on-demand notifications. It essentially replaces the need for the
+traditional taskbar, without bringing the whole kit and caboodle.
 
 It is:
 + designed with customization[fn:1] and freedom[fn:2] in mind.
 + environment-agnostic; runs anywhere, on anything.
-+ neatly integrated with your desktop via your notification daemon.
-+ contextually-aware of the system state when configured to use an icon theme.
-+ a frontend for [[https://github.com/Macchina-CLI/libmacchina][libmacchina]].
-
-citron can be installed through cargo, simply run:
-
-#+begin_src 
-cargo install citron
-#+end_src
++ neatly integrated with your desktop via a notification daemon of your choosing.
++ contextually-aware of the system state when configured to use an
+  icon theme of your liking.
 
 For more information on citron, head over to the [[https://man.sr.ht/~grtcdr/citron/][wiki]].
 
 -----
 
-An interesting fact about citron is that it's very low on system
-resources, compared to your average task bar program. Don't take my
-word for it, see for yourself:
+*Fun fact*: citron is very low on system resources.
 
-#+begin_src
-valgrind citron memory
-#+end_src
+Don't take my word for it, see for yourself:
 
 #+begin_example
 ==184942== Memcheck, a memory error detector
@@ -57,9 +47,14 @@ valgrind citron memory
 
 > Pulls out calculator.
 
-51,981 B is ±0.05 MB - demonstrating how neatly this citron tool I've been telling you all about, deals with your memory.
+51,981 B is ± 0.05 MB - demonstrating how neatly this citron tool I've been telling you all about, deals with your memory.
+
+You probably already have a notification daemon running, so why not
+use it to its full potential?
 
 * Footnotes
 
 [fn:1] Notification content can be customized with special formatters.
-[fn:2] Not opinionated; your system, your rules. Bind any of its subcommands to a specific keybinding in your window manager/desktop environment, and voilà!
+[fn:2] Not opinionated; your system, your rules. Map any (or all) of
+its subcommands to a keybinding in your window manager/desktop
+environment, et voilà, you're good to go!

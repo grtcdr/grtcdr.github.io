@@ -1,6 +1,5 @@
-#+OPTIONS: html-postamble:nil toc:nil
-#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+Exclude Org-specific elements.
+#+OPTIONS: todo:nil inline:nil p:nil pri:nil stat:nil tasks:nil
 
-#+ATTR_HTML: :class navigation
-+ [[https://grtcdr.github.io/index.html][Home]]
-+ [[file:index.org][Top]]
+Include a stylesheet.
+#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">

@@ -5,25 +5,15 @@ body {
 
 /* -- Headings -- */
 
-h1 {
-    font-size: 2em;
-}
+h1 { font-size: 2em }
 
-h2 {
-    font-size: 1.8em;
-}
+h2 { font-size: 1.8em }
 
-h3 {
-    font-size: 1.6em;
-}
+h3 { font-size: 1.6em }
 
-h4 {
-    font-size: 1.4em;
-}
+h4 { font-size: 1.4em }
 
-h5 {
-    font-size: 1.2em;
-}
+h5 { font-size: 1.2em }
 
 /* -- Quotes -- */
 
@@ -56,32 +46,43 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 /* -- Content -- */
 
 .content {
-    padding-top: 50px;
+    padding-top: 50px
 }
 
 /* -- Figures -- */
 
 div.figure p {
-    text-align: center;
+    text-align: center
 }
 
 /* -- Navigation -- */
 
 .navigation {
-    margin-top: 0;
-    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navigation li {
-    display: inline;
+    display: inline
 }
 
-.navigation li + li:before {
-    content: " :: ";
+.navigation li + li::before {
+    content: " :: "
+}
+
+.tag {
+    display: block;
+    background-color: unset;
+}
+
+.tag > span {
+    background-color: #F5F5F5;
+    padding: 4px;
 }

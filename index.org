@@ -16,8 +16,7 @@ problems.
 #+begin_quote
 /Q/: Can we chat?
 
-/A/: Certainly, my nickname is /grtcdr/ on both IRC and Matrix.  But
-for anything serious, I'd prefer it if you sent me an [[file:contact.org][email]].
+/A/: Certainly, my nickname is /grtcdr/ on *IRC* and /@grtcdr:matrix.org/ on *Matrix*.
 #+end_quote
 
 #+begin_quote

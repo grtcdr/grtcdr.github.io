@@ -1,21 +1,43 @@
 #+TITLE: Purely Org Site
-#+INCLUDE: .setup.org
+#+DATE: <2022-05-18>
+#+SETUPFILE: .setup.org
+#+INCLUDE: .navigation.org
 
-* Purely Org Site
+* Purely Org Site :org:emacs:
 :PROPERTIES:
 :CUSTOM_ID: intro
 :END:
 
 I would like to make a confession... I detest most websites I visit on
-a daily basis. I wanted to make a difference with my little
-personal corner of the internet. What do you know? /Emacs can totally do that/.
+a daily basis. I wanted to make a difference with my little personal
+corner of the internet. What do you know? /Emacs can totally do that/.
 
 You see, Emacs comes with an exceptional tool called Org, that comes
 with many wonderful functions. That which powers this entire website
 goes by ~org-publish-project-alist~.
 
 In short, you specify where a particular =$thing= is, and where it
-should go upon export.
+should go upon export. Allow me to show you the project structure to
+help you visualize the layout of the project.
+
+#+begin_example
+~/projects/grtcdr.github.io
+├── html/
+│   ├── blog/
+│   ├── css/
+│   ├── data/
+│   ├── img/
+│   ├── index.html
+│   └── contant.html
+│
+└── org/
+    ├── blog/
+    ├── css/
+    ├── data/
+    ├── img/
+    ├── index.org
+    └── contact.org
+#+end_example
 
 * Getting started
 
@@ -42,8 +64,8 @@ That's exactly what we would need if we had tens or hundreds of =.org=
 documents and wanted to automate the export process.
 
 Things to keep in mind:
-+ =:base-extension:= expects an extension, without a =.= prefix.
-+ =:publishing-function:= depends on the type of content you intend to export.
++ =:base-extension= expects an extension, without a =.= prefix.
++ =:publishing-function= depends on the type of content you intend to export.
 
 Let's have a look at another example, though this time, we'll
 export some stylesheets, too.
@@ -107,81 +129,61 @@ with strangers on IRC :^)
 #+begin_src emacs-lisp
 (use-package ox-publish
   :custom
-  (org-publish-timestamp-directory "~/.cache/org-timestamps/")
   (org-publish-project-alist
-	`(("grtcdr.github.io/org"
-	   :base-directory ,(site-content-directory 'base)
-	   :base-extension "org"
-	   :publishing-directory ,(site-content-directory 'publish)
-	   :publishing-function org-html-publish-to-html
-	   :exclude "\\(README\\|setup\\).org"
-	   :recursive t
-	   :auto-preamble t
+   `(("grtcdr.github.io/content"
+      :base-directory ,(site-content-directory 'base)
+      :base-extension "org"
+      :publishing-directory ,(site-content-directory 'publish)
+      :publishing-function org-html-publish-to-html
+      :exclude "\\(README\\|setup\\).org"
+      :recursive t
+      :sitemap-filename "index.org"
+      :sitemap-title "grtcdr's website"
+      :with-author nil
+      :with-creator nil
+      :with-date nil
+      :with-email nil
+      :with-title nil
+      :with-toc nil
+      :section-numbers nil)
 
-	   :sitemap-filename "index.org"
-	   :sitemap-title "grtcdr's website"
+     ("grtcdr.github.io/img"
+      :base-directory ,(site-content-directory 'base "img/")
+      :base-extension "png\\|jpe?g"
+      :publishing-directory ,(site-content-directory 'publish "img/")
+      :publishing-function org-publish-attachment)
 
-	   :with-author nil
-	   :with-creator nil
-	   :with-date nil
-	   :with-email nil
-	   :with-title nil
+     ("grtcdr.github.io/blog"
+      :base-directory ,(site-content-directory 'base "blog/")
+      :base-extension "org"
+      :publishing-directory ,(site-content-directory 'publish "blog/")
+      :publishing-function org-html-publish-to-html
+      :exclude ".\\(setup\\|navigation\\).org"
+      :with-date t
+      :with-title nil
+      :with-toc nil
+      :section-numbers nil)
 
-	   :with-toc nil
-	   :section-numbers nil)
+     ("grtcdr.github.io/css"
+      :base-directory ,(site-content-directory 'base "css/")
+      :base-extension "css"
+      :publishing-directory ,(site-content-directory 'publish "css/")
+      :publishing-function org-publish-attachment)
 
-	  ("grtcdr.github.io/img"
-	   :base-directory ,(site-content-directory 'base "img/")
-	   :base-extension "png\\|jpe?g"
-	   :publishing-directory ,(site-content-directory 'publish "img/")
-	   :publishing-function org-publish-attachment)
+     ("grtcdr.github.io/data"
+      :base-directory ,(site-content-directory 'base "data/")
+      :base-extension "txt\\|pdf"
+      :publishing-directory ,(site-content-directory 'publish "data/")
+      :publishing-function org-publish-attachment)
 
-	   ("grtcdr.github.io/blog"
-	   :base-directory ,(site-content-directory 'base "blog/")
-	   :base-extension "org"
-	   :publishing-directory ,(site-content-directory 'publish "blog/")
-	   :publishing-function org-publish-attachment)
-
-	  ("grtcdr.github.io/css"
-	   :base-directory ,(site-content-directory 'base "css/")
-	   :base-extension "css"
-	   :publishing-directory ,(site-content-directory 'publish "css/")
-	   :publishing-function org-publish-attachment)
-
-	  ("grtcdr.github.io/data"
-	   :base-directory ,(site-content-directory 'base "data/")
-	   :base-extension "txt\\|pdf"
-	   :publishing-directory ,(site-content-directory 'publish "data/")
-	   :publishing-function org-publish-attachment)
-
-	  ("grtcdr.github.io" :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/org")))))
+     ("grtcdr.github.io" :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/content" "grtcdr.github.io/blog")))))
 #+end_src
 
 There's a project identifier for every *component* of the website, and
 the last one groups them all together, so that I don't have to
 selectively export every single one.
 
-Allow me to show you the project structure to help you visualize the
-layout of the project.
+If you'd like to explore this topic in greater detail,
+please read [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][the wonderful documentation]] provided by the Org project.
 
-#+begin_example
-~/projects/grtcdr.github.io
-├── html/
-│   ├── blog/
-│   ├── css/
-│   ├── data/
-│   └── img/
-│
-└── org/
-    ├── blog/
-    ├── css/
-    ├── data/
-    ├── img/
-    ├── index.org
-    └── contact.org
-#+end_example
-
-I won't document every single property, because that would be a
-disservice to the wonderful, and much more detailed [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][documentation provided by the Org project]].
-
-Farewell stranger!
+Farewell!

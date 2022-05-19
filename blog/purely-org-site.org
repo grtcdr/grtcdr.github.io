@@ -28,7 +28,7 @@ help you visualize the layout of the project.
 │   ├── data/
 │   ├── img/
 │   ├── index.html
-│   └── contant.html
+│   └── contact.html
 │
 └── org/
     ├── blog/

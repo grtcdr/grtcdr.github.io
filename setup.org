@@ -1,5 +1,9 @@
 #+OPTIONS: html-postamble:nil toc:nil
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
 
-#+ATTR_HTML: :class sidebar
-| [[file:index.org][Home]] | [[file:projects.org][Projects]] | [[file:contact.org][Contact]] | [[file:data/resume.pdf][Résumé]] |
+#+ATTR_HTML: :class navigation
++ [[file:index.org][Home]]
++ [[file:projects.org][Projects]]
++ [[file:blog/index.org][Blog]]
++ [[file:contact.org][Contact]]
++ [[file:data/resume.pdf][Résumé]]

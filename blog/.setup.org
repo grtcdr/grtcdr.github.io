@@ -1,0 +1,6 @@
+#+OPTIONS: html-postamble:nil toc:nil
+#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+
+#+ATTR_HTML: :class navigation
++ [[https://grtcdr.github.io/index.html][Home]]
++ [[file:index.org][Top]]

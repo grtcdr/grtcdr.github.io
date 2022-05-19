@@ -52,7 +52,7 @@ pre.src:hover:before {
 
 a {
     color: #5C5D8D;
-    text-decoration: none;
+    text-decoration-style: dotted;
 }
 
 a:hover {
@@ -71,25 +71,17 @@ div.figure p {
     text-align: center;
 }
 
-/* -- Sidebar -- */
+/* -- Navigation -- */
 
-.sidebar {
-    position: absolute;
-    margin-top: 10px;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 2px solid #57445F;
-    background-color: #654F6F;
+.navigation {
+    margin-top: 0;
+    text-align: center;
 }
 
-.sidebar td {
-    border-right: 1px solid #57445F;
-    padding-left: 1.2em;
-    padding-right: 1.2em;
+.navigation li {
+    display: inline;
 }
 
-.sidebar [href] {
-    color: white;
-    font-family: monospace;
+.navigation li + li:before {
+    content: " :: ";
 }

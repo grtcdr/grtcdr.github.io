@@ -1,0 +1,7 @@
+#+TITLE: grtcdr's blog
+#+INCLUDE: .setup.org
+#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+
+* Blog Posts
+** [[file:purely-org-site.org][Purely Org Site]]
+#+INCLUDE: "./purely-org-site.org::#intro" :only-contents t :lines "1-5"

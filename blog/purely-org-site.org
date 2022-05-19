@@ -1,0 +1,187 @@
+#+TITLE: Purely Org Site
+#+INCLUDE: .setup.org
+
+* Purely Org Site
+:PROPERTIES:
+:CUSTOM_ID: intro
+:END:
+
+I would like to make a confession... I detest most websites I visit on
+a daily basis. I wanted to make a difference with my little
+personal corner of the internet. What do you know? /Emacs can totally do that/.
+
+You see, Emacs comes with an exceptional tool called Org, that comes
+with many wonderful functions. That which powers this entire website
+goes by ~org-publish-project-alist~.
+
+In short, you specify where a particular =$thing= is, and where it
+should go upon export.
+
+* Getting started
+
+I want to introduce you to the most basic form of a working ~org-publish-project-alist~:
+
+#+begin_src emacs-lisp
+(require 'ox-html)
+
+(setq org-publish-project-alist
+      '(("example.com/org"
+	 :base-directory "~/website/org/"
+	 :base-extension "org"
+	 :publishing-directory "~/website/html/"
+	 :publishing-function org-html-publish-to-html)))
+#+end_src
+
+What happens you create a =.org= document within your =:base-directory= -- save
+it -- hit =M-x org-publish RET=, is simply magical!
+
+Org, being the smarty pants tool it is, takes the original file and
+publishes it to =:publishing-directory= in =HTML= format.
+
+That's exactly what we would need if we had tens or hundreds of =.org=
+documents and wanted to automate the export process.
+
+Things to keep in mind:
++ =:base-extension:= expects an extension, without a =.= prefix.
++ =:publishing-function:= depends on the type of content you intend to export.
+
+Let's have a look at another example, though this time, we'll
+export some stylesheets, too.
+
+#+begin_src emacs-lisp
+(setq org-publish-project-alist
+     '(("example.com/org"
+	 :base-directory "~/website/org/"
+	 :base-extension "org"
+	 :publishing-directory "~/website/html/"
+	 :publishing-function org-html-publish-to-html)
+       ("example.com/css"
+	 :base-directory "~/website/css/"
+	 :base-extension "css"
+	 :publishing-directory "~/website/css/"
+	 :publishing-function org-publish-attachment)))
+#+end_src
+
+Now we have two different publishing projects, one for =org= documents
+and another for =css=.
+
+The main differences being, the =:publishing-function= and the project
+identifier, i.e. the =CAR= of the association list. My advice, pick
+meaningful names for your project identifiers. It doesn't necessarily
+have to start with a URL, that's just my preference.
+
+Okay! This is enough to get your website rolling, although you might want to
+see the next section for a more complicated setup.
+
+* Initialization
+
+I always like to experiment with the structure of my =$HOME=, which
+leaves me with a temporarily broken setup sometimes.
+
+I took the steps to remedy this with a few functions, which I'll use
+with the =:base-directory= and =:publishing-directory= properties, the
+more sensitive area of this setup.
+
+#+begin_src emacs-lisp
+(defvar site-base-directory
+  "~/projects/grtcdr.github.io/"
+  "The base of the site where files will are to be processed and exported.")
+
+(defun site-content-directory (context &optional directory)
+  "Prefixes the provided DIRECTORY with the ’site-base-directory’ given the CONTEXT."
+  (cond ((equal context 'publish) (concat site-base-directory "html/" directory))
+	((equal context 'base) (concat site-base-directory "org/" directory))))
+#+end_src
+
+=site-base-directory= is the base location of my site, and
+=site-content-directory= will build a path depending on the parameters
+I pass. This makes it a lot safer if I ever decide to move things
+around.
+
+* Setup
+
+Now I'd like to present my setup. It does all of the heavy lifting for
+me, and allows me to focus on more important things - like chatting
+with strangers on IRC :^)
+
+#+begin_src emacs-lisp
+(use-package ox-publish
+  :custom
+  (org-publish-timestamp-directory "~/.cache/org-timestamps/")
+  (org-publish-project-alist
+	`(("grtcdr.github.io/org"
+	   :base-directory ,(site-content-directory 'base)
+	   :base-extension "org"
+	   :publishing-directory ,(site-content-directory 'publish)
+	   :publishing-function org-html-publish-to-html
+	   :exclude "\\(README\\|setup\\).org"
+	   :recursive t
+	   :auto-preamble t
+
+	   :sitemap-filename "index.org"
+	   :sitemap-title "grtcdr's website"
+
+	   :with-author nil
+	   :with-creator nil
+	   :with-date nil
+	   :with-email nil
+	   :with-title nil
+
+	   :with-toc nil
+	   :section-numbers nil)
+
+	  ("grtcdr.github.io/img"
+	   :base-directory ,(site-content-directory 'base "img/")
+	   :base-extension "png\\|jpe?g"
+	   :publishing-directory ,(site-content-directory 'publish "img/")
+	   :publishing-function org-publish-attachment)
+
+	   ("grtcdr.github.io/blog"
+	   :base-directory ,(site-content-directory 'base "blog/")
+	   :base-extension "org"
+	   :publishing-directory ,(site-content-directory 'publish "blog/")
+	   :publishing-function org-publish-attachment)
+
+	  ("grtcdr.github.io/css"
+	   :base-directory ,(site-content-directory 'base "css/")
+	   :base-extension "css"
+	   :publishing-directory ,(site-content-directory 'publish "css/")
+	   :publishing-function org-publish-attachment)
+
+	  ("grtcdr.github.io/data"
+	   :base-directory ,(site-content-directory 'base "data/")
+	   :base-extension "txt\\|pdf"
+	   :publishing-directory ,(site-content-directory 'publish "data/")
+	   :publishing-function org-publish-attachment)
+
+	  ("grtcdr.github.io" :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/org")))))
+#+end_src
+
+There's a project identifier for every *component* of the website, and
+the last one groups them all together, so that I don't have to
+selectively export every single one.
+
+Allow me to show you the project structure to help you visualize the
+layout of the project.
+
+#+begin_example
+~/projects/grtcdr.github.io
+├── html/
+│   ├── blog/
+│   ├── css/
+│   ├── data/
+│   └── img/
+│
+└── org/
+    ├── blog/
+    ├── css/
+    ├── data/
+    ├── img/
+    ├── index.org
+    └── contact.org
+#+end_example
+
+I won't document every single property, because that would be a
+disservice to the wonderful, and much more detailed [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][documentation provided by the Org project]].
+
+Farewell stranger!

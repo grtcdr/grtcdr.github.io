@@ -1,5 +1,6 @@
 #+TITLE: grtcdr: projects
-#+INCLUDE: setup.org
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Projects
 

@@ -1,6 +1,6 @@
 #+TITLE: grtcdr: blog
-#+INCLUDE: setup.org
-#+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Blog Posts
 ** 2022

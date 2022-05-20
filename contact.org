@@ -1,5 +1,6 @@
 #+TITLE: grtcdr: contact
-#+INCLUDE: setup.org
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Get in touch
 

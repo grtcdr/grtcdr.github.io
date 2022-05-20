@@ -1,5 +1,6 @@
 #+TITLE: grtcdr: index
-#+INCLUDE: setup.org
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Hey there! I'm grtcdr.
 

@@ -1,7 +1,7 @@
 #+TITLE: Purely Org Site
 #+DATE: <2022-05-18>
 #+SETUPFILE: .setup.org
-#+INCLUDE: .navigation.org
+#+INCLUDE: .nav.org
 
 * Purely Org Site :org:emacs:
 :PROPERTIES:

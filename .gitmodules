@@ -1,6 +1,3 @@
-[submodule "dotfiles"]
-	path = dotfiles
-	url = git@git.sr.ht:~grtcdr/dotfiles
 [submodule "dots"]
 	path = dots
 	url = git@git.sr.ht:~grtcdr/dotfiles

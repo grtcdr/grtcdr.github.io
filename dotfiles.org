@@ -1,7 +1,6 @@
 #+TITLE: grtcdr/: dotfiles
-#+INCLUDE: setup.org
-#+OPTIONS: html-postamble:nil
-#+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Preface
 Ever since I had transitioned over to Emacs to obtain what (I felt)

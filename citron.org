@@ -8,7 +8,7 @@
 on-demand notifications. It essentially replaces the need for the
 traditional taskbar, without bringing the whole kit and caboodle.
 
-It is:
+citron is:
 + designed with customization[fn:1] and freedom[fn:2] in mind.
 + environment-agnostic; runs anywhere, on anything.
 + neatly integrated with your desktop via a notification daemon of your choosing.

@@ -32,6 +32,7 @@ pre {
     font-family: monospace;
     background-color: #F5F5F5;
     border: 1px solid #F5F5F5;
+    line-height: initial;
 }
 
 pre.src:hover:before {
@@ -81,6 +82,7 @@ div.figure p {
 .tag {
     display: block;
     background-color: unset;
+    line-height: 3em;
 }
 
 .tag > span {

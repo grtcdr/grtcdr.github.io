@@ -23,5 +23,5 @@ problems.
 #+begin_quote
 /Q/: Can I see your dotfiles?
 
-/A/: [[file:dotfiles.org][Sure thing]].
+/A/: [[file:dotfiles.org][Sure thing]]!
 #+end_quote

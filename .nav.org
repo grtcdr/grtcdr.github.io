@@ -1,6 +1,6 @@
 #+ATTR_HTML: :class navigation
 + [[file:index.org][Home]]
 + [[file:projects.org][Projects]]
-+ [[file:blog.org][Blog]]
++ [[file:posts.org][Posts]]
 + [[file:contact.org][Contact]]
 + [[file:data/resume.pdf][Résumé]]

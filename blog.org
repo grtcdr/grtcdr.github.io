@@ -1,8 +1,0 @@
-#+TITLE: grtcdr: blog
-#+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
-
-* Blog Posts
-** 2022
-*** [[file:blog/purely-org-site.org][Purely Org Site]]
-#+INCLUDE: "./blog/purely-org-site.org::#intro" :only-contents t :lines "1-5"

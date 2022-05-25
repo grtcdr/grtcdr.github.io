@@ -1,0 +1,8 @@
+#+TITLE: grtcdr: posts
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
+
+* Posts
+** 2022
+*** [[file:posts/purely-org-site.org][Purely Org Site]]
+#+INCLUDE: "./posts/purely-org-site.org::#intro" :only-contents t :lines "1-5"

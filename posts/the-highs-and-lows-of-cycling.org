@@ -4,13 +4,16 @@
 #+INCLUDE: .nav.org
 
 * The Highs (and Lows) of Cycling :experience:
+:PROPERTIES:
+:CUSTOM_ID: intro
+:END:
 
 Just today, I went cycling, something I've been meaning to do for a
 really long time.
 
 Between university, personal projects, hobbies and relationships, it's
-really hard to fit in a time to cycle to clear my head, head right
-through the wind, smelling fresh air at high speeds.
+really hard to fit in a time to cycle to clear my mind and head right
+through the wind, smelling cold fresh air at high speeds.
 
 The ride was butter smooth, it brought back all the lovely memories
 and I was truly enjoying myself.
@@ -25,3 +28,6 @@ they have installed.
 
 Long story short, I had to walk back home like an idiot, while the
 tire was squeaking the entire way back.
+
+#+ATTR_HTML: :width 300px
+[[../img/posts/bike-incident.png]]

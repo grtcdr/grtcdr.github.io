@@ -1,0 +1,27 @@
+#+TITLE: Purely Org Site
+#+DATE: <2022-05-27>
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
+
+* The Highs (and Lows) of Cycling :experience:
+
+Just today, I went cycling, something I've been meaning to do for a
+really long time.
+
+Between university, personal projects, hobbies and relationships, it's
+really hard to fit in a time to cycle to clear my head, head right
+through the wind, smelling fresh air at high speeds.
+
+The ride was butter smooth, it brought back all the lovely memories
+and I was truly enjoying myself.
+
+As I was returning home, I thought it'd be a good idea to stop by
+the gas station and pump the tires - they felt a little too
+light, but this turned out to be a huge mistake.
+
+As I was pumping the front tire, I noticed that it wasn't getting any
+stiffer... Turns out the valves are too small for the garbage air pump
+they have installed.
+
+Long story short, I had to walk back home like an idiot, while the
+tire was squeaking the entire way back.

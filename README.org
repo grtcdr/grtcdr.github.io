@@ -33,3 +33,8 @@ website in its entirety without much hassle.
 | =css=     | Stylesheets                        |
 | =dots=    | Dotfiles submodule                 |
 | =data=    | Data files exposed to the website  |
+
+
+** Copying
+
+The contents of this repository are [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]].

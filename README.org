@@ -12,12 +12,12 @@ git clone --recursive https://github.com/grtcdr/website-org.git
 
 ** Reproducing
 
-If for whatever reason, you wish to reproduce this website locally,
-the only requirement to do so, is an installation of [[https://www.gnu.org/software/emacs/][GNU Emacs]].
+If you wish to reproduce this website locally, the only requirement to
+do so, is an installation of [[https://www.gnu.org/software/emacs/][GNU Emacs]].
 
 You can then export each file individually, or make use of my
-[[https://grtcdr.github.io/blog/purely-org-site.html][org-publish-project-alist]] configuration which will help you build the
-website in its entirety without much hassle.
+[[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/lisp/grt-publish.el][org-publish-project-alist]] configuration that automatically builds the
+whole website for you.
 
 ** Structure
 

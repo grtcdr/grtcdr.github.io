@@ -11,7 +11,7 @@ problems.
 #+begin_quote
 /Q/: How the heck do I pronounce your name?
 
-/A/: /gurt-sdur/ -- It's a silly pseudonym, I know. 
+/A/: /gurt-sdur/ -- It's a silly pseudonym, I know.
 #+end_quote
 
 #+begin_quote

@@ -1,4 +1,4 @@
-#+TITLE: grtcdr/: dotfiles
+#+TITLE: grtcdr: dotfiles
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org
 
@@ -28,9 +28,12 @@ you may find therein — /Mi casa es su casa./
 
 * Literate dotfiles
 ** Packages
-- [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bear minimum of software so as to achieve a coherent desktop environment without one being present.
+- [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bear
+  minimum of software so as to achieve a coherent desktop environment
+  without one being present.
 - [[file:dots/zsh/zsh.org][zsh]]: A straightforward zsh configuration.
 
 ** Scripts
-- [[file:dots/sh/doch.org][doch]]: A bemenu utility that can list and open any HTML/PDF file found within my =org-directory=.
+- [[file:dots/sh/doch.org][doch]]: A bemenu utility that can list and open any HTML/PDF file
+  found within my =org-directory=.
 - [[file:dots/sh/startw.org][startw]]: A utility to start Sway intelligently.

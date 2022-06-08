@@ -1,12 +1,9 @@
-#+TITLE: The Highs (and Lows) of Cycling
+#+TITLE: Cycling incident
 #+DATE: <2022-05-27>
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org
 
-* The Highs (and Lows) of Cycling :experience:
-:PROPERTIES:
-:CUSTOM_ID: intro
-:END:
+* Cycling incident :experience:
 
 Just today, I went cycling, something I've been meaning to do for a
 really long time.
@@ -23,11 +20,8 @@ the gas station and pump the tires - they felt a little too
 light, but this turned out to be a huge mistake.
 
 As I was pumping the front tire, I noticed that it wasn't getting any
-stiffer... Turns out the valves are too small for the garbage air pump
-they have installed.
+stiffer... In fact, it was deflating. Turns out the valves are too
+small for the garbage air pump they have installed.
 
 Long story short, I had to walk back home like an idiot, while the
 tire was squeaking the entire way back.
-
-#+ATTR_HTML: :width 300px
-[[../img/posts/bike-incident.png]]

@@ -1,12 +1,9 @@
-#+TITLE: Purely Org Site
+#+TITLE: Purely Org site
 #+DATE: <2022-05-18>
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org
 
-* Purely Org Site :org:emacs:
-:PROPERTIES:
-:CUSTOM_ID: intro
-:END:
+* Purely Org site :org:emacs:
 
 I would like to make a confession... I detest most websites I visit on
 a daily basis. I wanted to make a difference with my little personal

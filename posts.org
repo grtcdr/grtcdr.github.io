@@ -4,5 +4,5 @@
 
 * Posts
 ** 2022
-*** [[file:posts/the-highs-and-lows-of-cycling.org][The Highs (and Lows) of Cycling]]
-*** [[file:posts/purely-org-site.org][Purely Org Site]]
+*** [[file:posts/cycling-incident.org][Cycling incident]]
+*** [[file:posts/purely-org-site.org][Purely Org site]]

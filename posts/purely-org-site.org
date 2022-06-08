@@ -1,4 +1,4 @@
-#+TITLE: Purely Org site
+#+TITLE: grtcdr: purely org site
 #+DATE: <2022-05-18>
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org

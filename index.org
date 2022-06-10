@@ -2,26 +2,20 @@
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org
 
-* Hey there! I'm grtcdr.
+* ~grtcdr
 
-I'm a 3^rd year student majoring in software engineering. I mainly
-work on open source software, building small tools that solve small
-problems.
-
++ Linux enthusiast
++ Emacs devotee
++ Occasional cyclist
+  
 #+begin_quote
-/Q/: How the heck do I pronounce your name?
+"grtcdr"... How am I supposed to pronounce that?
 
-/A/: /gurt-sdur/ -- It's a silly pseudonym, I know.
+/gurts-dur/ -- It's a little silly, I know.
 #+end_quote
 
 #+begin_quote
-/Q/: Can we chat?
+Can I see your dotfiles?
 
-/A/: Certainly, my nickname is /grtcdr/ on *IRC* and /@grtcdr:matrix.org/ on *Matrix*.
-#+end_quote
-
-#+begin_quote
-/Q/: Can I see your dotfiles?
-
-/A/: [[file:dotfiles.org][Sure thing]]!
+[[file:dotfiles.org][Of course]].
 #+end_quote

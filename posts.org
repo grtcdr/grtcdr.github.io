@@ -5,4 +5,4 @@
 * Posts
 ** 2022
 *** [[file:posts/cycling-incident.org][Cycling incident]]
-*** [[file:posts/purely-org-site.org][Purely =org= site]]
+*** [[file:posts/purely-org-site.org][Purely Org site]]

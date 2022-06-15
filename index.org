@@ -13,9 +13,3 @@
 
 /gurts-dur/ -- It's a little silly, I know.
 #+end_quote
-
-#+begin_quote
-Can I see your dotfiles?
-
-[[file:dotfiles.org][Of course]].
-#+end_quote

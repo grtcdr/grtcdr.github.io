@@ -1,20 +1,37 @@
+* {
+    font-size: 1rem;
+}
+
 body {
+    font-family: monospace;
     background-color: white;
     color: #363D45;
-    line-height: 1.6em;
+    line-height: 1.7em;
+}
+
+/* -- Horizontal line -- */
+
+hr {
+    border: 1px solid #EBEBEB;
 }
 
 /* -- Headings -- */
 
-h1 { font-size: 2em }
+h1 {
+    font-size: 2em; 
+}
 
-h2 { font-size: 1.8em }
+h2 {
+    font-size: 1.7em;
+}
 
-h3 { font-size: 1.6em }
+h3 {
+    font-size: 1.5em;
+}
 
 h4 { font-size: 1.4em }
 
-h5 { font-size: 1.2em }
+h5 { font-size: 1.3em }
 
 /* -- Quotes -- */
 
@@ -30,14 +47,22 @@ blockquote {
 
 pre {
     font-family: monospace;
-    background-color: #F5F5F5;
-    border: 1px solid #F5F5F5;
+    background-color: #FAFAFA;
+    border: 0;
+    border-left: 2px dashed #9C9DBF;
+    color: #5C5D8D;
+    border-radius: 0;
     line-height: initial;
+    margin: 0;
+    padding-left: 1.5em;
 }
 
 pre.src:hover:before {
-    background-color: #F5F5F5;
     font-size: 0;
+}
+
+code {
+    color: #5C5D8D;
 }
 
 /* -- Links -- */

@@ -3,37 +3,35 @@
 #+INCLUDE: .nav.org
 
 * Preface
-Ever since I had transitioned over to Emacs to obtain what (I felt)
-Vim could not offer, I have taken an immense effort to dive deep into
-unknown territories, explore new concepts, and make the editor truly
-work for me. I had later stumbled upon [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]. And you
-know what? I am convinced, for the most part.
+The documentation found herein follows the [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]
+principle.
 
-I had later begun documenting many aspects of my day-to-day life, this
-[[https://github.com/grtcdr/website-org][website]] and the documentation found herein is purely a result of the
-hard work of others who have driven this philosophy forward. I am
-grateful that Emacs adopts it in such flexible and unique manner. I
-suppose this is the advantage of [[https://en.wikipedia.org/wiki/Lisp_(programming_language)][Lisp]] in general, and [[https://orgmode.org/][Org Mode]] in
-particular.
+It's only possible thanks to the [[https://www.gnu.org/software/emacs/][Emacs]] text editor, and the [[https://orgmode.org/][Org Mode]]
+ecosystem.
 
-The documentation does not cover everything I use, yet. So, I invite
-you to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles live.
+The documentation does not cover all of my configurations. And so, I
+invite you to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles
+live.
 
 Please note that a small but significant portion of my configurations,
 is a mold of what I've read in a blog, seen in a demonstration, or
 just adapted from someone else's dotfiles.
 
-You are *free* to use, modify, or do anything with any of the material
-you may find therein — /Mi casa es su casa./
+You are *free* to use, modify and redistribute any of the material you
+may find therein.
 
 * Literate dotfiles
+
 ** Packages
+
 - [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bear
   minimum of software so as to achieve a coherent desktop environment
   without one being present.
-- [[file:dots/zsh/zsh.org][zsh]]: A straightforward zsh configuration.
+- [[file:dots/zsh/zsh.org][zsh]]: A straightforward =zsh= configuration.
 
 ** Scripts
-- [[file:dots/sh/doch.org][doch]]: A bemenu utility that can list and open any HTML/PDF file
-  found within my =org-directory=.
-- [[file:dots/sh/startw.org][startw]]: A utility to start Sway intelligently.
+
+- [[file:dots/sh/doch.org][doch]]: A tiny =bemenu= script that lists and opens HTML/PDF files found
+  within my =org-directory=.
+- [[file:dots/sh/startw.org][startw]]: A tiny script that intelligently starts =sway=.
+- [[file:dots/sh/mus.org][mus]]: shell.start(mpd).and_then(ncmcpp)

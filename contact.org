@@ -8,4 +8,8 @@
 - GitHub: [[https://github.com/grtcdr][@grtcdr]]
 - SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
 - PGP Key: [[file:data/publickey.txt][ACBF 041B DFD2 B01D]]
-- Keyoxide:[[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][keyoxide.org/EFA6E...]]
+
+#+begin_quote
+You could also [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][verify my identity]].
+#+end_quote
+

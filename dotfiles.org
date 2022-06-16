@@ -29,7 +29,8 @@ may find therein.
 
 * Scripts
 
-- [[file:dots/sh/doch.org][doch]]: A tiny =bemenu= script that lists and opens HTML/PDF files found
-  within my =org-directory=.
-- [[file:dots/sh/startw.org][startw]]: A tiny script that intelligently starts =sway=.
-- [[file:dots/sh/mus.org][mus]]: =shell.start(mpd).and_then(ncmpcpp)=
+- [[file:dots/sh/doch.org][doch]]: A shell =bemenu= script that lists and opens HTML/PDF files
+  found within my =org-directory=.
+- [[file:dots/sh/startw.org][startw]]: A shell script that intelligently starts =sway=.
+- [[file:dots/sh/mus.org][mus]]: A shell script to automate the starting and stopping of =mpd=
+  and =ncmpcpp=.

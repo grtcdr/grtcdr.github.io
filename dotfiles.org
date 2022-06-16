@@ -17,7 +17,7 @@ Please note that a small but significant portion of my configurations,
 is a mold of what I've read in a blog, seen in a demonstration, or
 just adapted from someone else's dotfiles.
 
-You are *free* to use, modify and redistribute any of the material you
+You are free to use, modify and redistribute any of the material you
 may find therein.
 
 * Packages
@@ -32,4 +32,4 @@ may find therein.
 - [[file:dots/sh/doch.org][doch]]: A tiny =bemenu= script that lists and opens HTML/PDF files found
   within my =org-directory=.
 - [[file:dots/sh/startw.org][startw]]: A tiny script that intelligently starts =sway=.
-- [[file:dots/sh/mus.org][mus]]: =shell.start(mpd).and_then(ncmcpp)=
+- [[file:dots/sh/mus.org][mus]]: =shell.start(mpd).and_then(ncmpcpp)=

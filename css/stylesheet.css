@@ -65,6 +65,17 @@ code {
     color: #5C5D8D;
 }
 
+.org-src-name {
+    display: block;
+    color: #CCCCCC;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.org-src-name > .listing-number {
+    display: none;
+}
+
 /* -- Links -- */
 
 a {

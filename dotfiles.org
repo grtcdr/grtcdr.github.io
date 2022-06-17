@@ -22,7 +22,7 @@ may find therein.
 
 * Packages
 
-- [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bear
+- [[file:dots/sway/sway.org][sway et al.]]: A concoction of subtlety and elegance, making use of the bear
   minimum of software so as to achieve a coherent desktop environment
   without one being present.
 - [[file:dots/zsh/zsh.org][zsh]]: A straightforward =zsh= configuration.

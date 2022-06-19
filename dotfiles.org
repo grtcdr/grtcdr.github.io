@@ -22,9 +22,10 @@ may find therein.
 
 * Packages
 
-- [[file:dots/sway/sway.org][sway et al.]]: A concoction of subtlety and elegance, making use of the bear
+- [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bare
   minimum of software so as to achieve a coherent desktop environment
   without one being present.
+- [[file:dots/mako/mako.org][mako]]: A simple =mako= configuration.
 - [[file:dots/zsh/zsh.org][zsh]]: A straightforward =zsh= configuration.
 
 * Scripts
@@ -32,5 +33,5 @@ may find therein.
 - [[file:dots/sh/doch.org][doch]]: A shell =bemenu= script that lists and opens HTML/PDF files
   found within my =org-directory=.
 - [[file:dots/sh/startw.org][startw]]: A shell script that intelligently starts =sway=.
-- [[file:dots/sh/mus.org][mus]]: A shell script to automate the starting and stopping of =mpd=
-  and =ncmpcpp=.
+- [[file:dots/sh/mus.org][mus]]: A shell script that automates the starting and stopping of
+  =mpd= and =ncmpcpp=.

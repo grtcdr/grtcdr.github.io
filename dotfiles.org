@@ -25,7 +25,7 @@ may find therein.
 - [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bare
   minimum of software so as to achieve a coherent desktop environment
   without one being present.
-  - [[file:dots/mako/mako.org][swaylock]]: A =swaylock= configuration.
+  - [[file:dots/swaylock/swaylock.org][swaylock]]: A =swaylock= configuration.
   - [[file:dots/mako/mako.org][mako]]: A =mako= configuration.
 - [[file:dots/zsh/zsh.org][zsh]]: A straightforward =zsh= configuration that is optimized for speed.
 

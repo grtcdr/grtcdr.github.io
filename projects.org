@@ -4,12 +4,11 @@
 
 * Projects
 
-- [[https://github.com/Macchina-CLI/macchina][macchina]]: a system information fetcher, with an (unhealthy) emphasis on performance.
-- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: a library providing access to all sorts of system information.
-- [[file:citron.org][citron]]: system data via on-demand notifications.
+- [[https://github.com/Macchina-CLI/macchina][macchina]]: system information frontend, with an (unhealthy) emphasis on performance.
+- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: library providing access to all sorts of system information.
+- [[file:citron.org][citron]]: memory-friendly tool that provides system data via on-demand notifications.
 - [[https://sr.ht/~grtcdr/paspio/][paspio]]: password entropy calculator & library.
-- [[https://github.com/grtcdr/aparato][aparato]]: a library for querying connected PCI devices and a pci.ids parser.
+- [[https://github.com/grtcdr/aparato][aparato]]: library for querying connected PCI devices and a pci.ids parser.
 - [[https://sr.ht/~grtcdr/dyna/][dyna]]: convert a colorscheme from one terminal emulator to another, previously known as /acfc/.
-- [[https://github.com/grtcdr/bombay][bombay]]: helps you bring order to your working directory.
+- [[https://github.com/grtcdr/bombay][bombay]]: categorical file stacker to bring order to your working directory.
 - [[https://git.sr.ht/~grtcdr/startpages][startpages]]: a collection of startpages.
-

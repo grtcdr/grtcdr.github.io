@@ -3,6 +3,7 @@
 #+INCLUDE: .nav.org
 
 * Preface
+
 The documentation found herein follows the [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]
 principle.
 

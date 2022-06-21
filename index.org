@@ -1,8 +1,8 @@
-#+TITLE: grtcdr: index
-#+SETUPFILE: .setup.org
+#+TITLE: grtcdr: home
 #+INCLUDE: .nav.org
+#+SETUPFILE: .setup.org
 
-* ~grtcdr
+* ~ grtcdr
 
 + Linux enthusiast
 + Emacs devotee

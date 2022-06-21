@@ -1,5 +1,8 @@
-Exclude Org-specific elements.
+Exclude certain elements.
 #+OPTIONS: todo:nil inline:nil p:nil pri:nil stat:nil tasks:nil
+
+Include preamble and postamble.
+#+OPTIONS: html-postamble:t
 
 Include a stylesheet.
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">

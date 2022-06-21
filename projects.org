@@ -1,14 +1,19 @@
 #+TITLE: grtcdr: projects
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
+#+INCLUDE: .nav.org 
 
 * Projects
 
-- [[https://github.com/Macchina-CLI/macchina][macchina]]: system information frontend, with an (unhealthy) emphasis on performance.
-- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: library providing access to all sorts of system information.
-- [[file:citron.org][citron]]: memory-friendly tool that provides system data via on-demand notifications.
-- [[https://sr.ht/~grtcdr/paspio/][paspio]]: password entropy calculator & library.
-- [[https://github.com/grtcdr/aparato][aparato]]: library for querying connected PCI devices and a pci.ids parser.
-- [[https://sr.ht/~grtcdr/dyna/][dyna]]: convert a colorscheme from one terminal emulator to another, previously known as /acfc/.
-- [[https://github.com/grtcdr/bombay][bombay]]: categorical file stacker to bring order to your working directory.
-- [[https://git.sr.ht/~grtcdr/startpages][startpages]]: a collection of startpages.
+Every bit of software I have ever produced for my own use has been
+made open source in the hopes of sharing the knowledge I've acquired
+with everyone else.
+
+- [[https://github.com/Macchina-CLI/macchina][macchina]]: system information frontend, with an (unhealthy) emphasis on performance. (Rust)
+- [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]: library providing access to all sorts of system information. (Rust)
+- [[file:citron.org][citron]]: memory-friendly tool that provides system data via on-demand notifications. (Rust)
+- [[https://sr.ht/~grtcdr/paspio/][paspio]]: password entropy calculator & library. (Rust)
+- [[https://github.com/grtcdr/aparato][aparato]]: library for querying connected PCI devices and a pci.ids parser. (Rust)
+- [[https://sr.ht/~grtcdr/dyna/][dyna]]: convert a colorscheme from one terminal emulator to another, previously known as /acfc/. (Rust)
+- [[https://github.com/grtcdr/bombay][bombay]]: categorical file stacker to bring order to your working directory. (Ruby)
+- [[https://git.sr.ht/~grtcdr/startpages][startpages]]: a collection of startpages. (JavaScript)
+- [[https://github.com/grtcdr/site.org][this site]]: a purely Org site. (Org)

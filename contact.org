@@ -9,4 +9,7 @@
 - SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
 - PGP: [[file:data/publickey.txt][ACBF 041B DFD2 B01D]]
 
-You could [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][verify my identity]], too.
+-----
+
+#+ATTR_HTML: :style text-align:right;
+⤷  [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][Verify my identity]] while you're at it.

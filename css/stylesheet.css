@@ -118,8 +118,36 @@ div.figure p {
     padding: 4px;
 }
 
-#postamble {
-    padding-top: 30px;
-    font-size: .9em;
-    text-align: center;
+.project-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+@media (max-width: 700px) {
+    .project-wrapper {
+	grid-template-columns: 1fr;
+    }
+}
+
+.project {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F5F5F5;
+    border: 1px solid #CCCCCC;
+}
+
+.project > * {
+    margin: 0;
+}
+
+.project-title + .project-description {
+    margin-bottom: 10px;
+}
+
+.project-title, .project-link {
+    align-self: start;
+    font-weight: 300;
 }

@@ -2,14 +2,14 @@
 #+INCLUDE: .nav.org
 #+SETUPFILE: .setup.org
 
-* ~ grtcdr
+* Hi
 
-+ Linux enthusiast
-+ Emacs devotee
-+ Occasional cyclist
-  
-#+begin_quote
-"grtcdr"... How am I supposed to pronounce that?
+Welcome to my own little corner of the internet!
 
-/gurts-dur/ -- It's a little silly, I know.
-#+end_quote
+Take a look around... It's not as empty as it looks.
+
+Did you come here looking for my [[file:dotfiles.org][dotfiles]]?
+
+Perhaps you want to see some of the [[file:projects.org][projects]] I've worked on?
+
+*~ grtcdr*

@@ -1,8 +1,5 @@
 Exclude certain elements.
-#+OPTIONS: todo:nil inline:nil p:nil pri:nil stat:nil tasks:nil
-
-Include preamble and postamble.
-#+OPTIONS: html-postamble:t
+#+OPTIONS: todo:nil
 
 Include a stylesheet.
 #+HTML_HEAD: <link rel="stylesheet" href="../css/stylesheet.css">

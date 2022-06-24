@@ -18,10 +18,7 @@ Please note that a small but significant portion of my configurations,
 is a mold of what I've read in a blog, seen in a demonstration, or
 just adapted from someone else's dotfiles.
 
-You are free to use, modify and redistribute any of the material you
-may find therein.
-
-* Packages
+* Documentation
 
 - [[file:dots/sway/sway.org][sway]]: A concoction of subtlety and elegance, making use of the bare
   minimum of software so as to achieve a coherent desktop environment
@@ -30,10 +27,7 @@ may find therein.
   - [[file:dots/swaylock/swaylock.org][swaylock]]: A =swaylock= configuration.
   - [[file:dots/mako/mako.org][mako]]: A =mako= configuration.
 - [[file:dots/zsh/zsh.org][zsh]]: A straightforward =zsh= configuration that is optimized for speed.
-
-* Scripts
-
-- [[file:dots/sh/doch.org][doch]]: A shell =bemenu= script that lists and opens HTML/PDF files
+- [[file:dots/sh/doch.org][doch]]: A shell script that lists and opens HTML/PDF files
   found within my =org-directory=.
 - [[file:dots/sh/startw.org][startw]]: A shell script that intelligently starts =sway=.
 - [[file:dots/sh/mus.org][mus]]: A shell script that automates the starting and stopping of

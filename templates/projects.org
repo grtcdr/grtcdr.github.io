@@ -1,0 +1,44 @@
+#+begin_export html
+<div class="project-wrapper">
+  <div class="project">
+    <h3 class="project-title">macchina</h3>
+    <a class="project-link" href="https://github.com/Macchina-CLI/macchina">GitHub</a>
+    <p class="project-description">System information frontend, with an (unhealthy) emphasis on performance.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">libmacchina</h3>
+    <a class="project-link" href="https://github.com/Macchina-CLI/libmacchina">GitHub</a>
+    <p class="project-description">Library providing access to all sorts of system information.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title"><a href="https://grtcdr.github.io/citron.html">citron</a></h3>
+    <a class="project-link" href="https://git.sr.ht/~grtcdr/citron">SourceHut</a>
+    <p class="project-description">Lightweight tool providing system data via on-demand notifications.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">paspio</h3>
+    <a class="project-link" href="https://git.sr.ht/~grtcdr/paspio">SourceHut</a>
+    <p class="project-description">Password entropy calculator & library.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">dyna</h3>
+    <a class="project-link" href="https://sr.ht/~grtcdr/dyna/">SourceHut</a>
+    <p class="project-description">Convert a colorscheme from one terminal emulator to another.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">bombay</h3>
+    <a class="project-link" href="https://github.com/grtcdr/bombay">GitHub</a>
+    <p class="project-description">Categorical file stacker that automagically organizes your working directory.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">startpages</h3>
+    <a class="project-link" href="https://git.sr.ht/~grtcdr/startpages">SourceHut</a>
+    <p class="project-description">A collection of startpages for the browser.</p>
+  </div>
+  <div class="project">
+    <h3 class="project-title">grtcdr.github.io</h3>
+    <a class="project-link" href="https://github.com/grtcdr/site.org">GitHub</a>
+    <p class="project-description">The source code powering this website.</p>
+  </div>
+</div>
+#+end_export

@@ -8,4 +8,4 @@ Every bit of software I've produced for myself has been made open
 source in the hopes of sharing the tools that I've built, and the knowledge
 that I've acquired, with everyone else.
 
-#+include: templates/projects.org
+#+include: _templates/_projects.org

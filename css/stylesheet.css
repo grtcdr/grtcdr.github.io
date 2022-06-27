@@ -14,15 +14,13 @@ hr {
 
 /* -- Headings -- */
 
-h1 { font-size: 2em }
+h2 { font-size: 1.8em }
 
-h2 { font-size: 1.7em }
+h3 { font-size: 1.6em }
 
-h3 { font-size: 1.5em }
+h4 { font-size: 1.2em }
 
-h4 { font-size: 1.4em }
-
-h5 { font-size: 1.3em }
+h5 { font-size: 1.2em }
 
 /* -- Quotes -- */
 
@@ -104,8 +102,11 @@ div.figure p {
 }
 
 .navigation li + li::before {
-    content: " :: "
+    content: " ; ";
+    color: #CCCCCC;
 }
+
+/* -- Tags -- */
 
 .tag {
     display: block;
@@ -118,13 +119,15 @@ div.figure p {
     padding: 4px;
 }
 
+/* -- Projects -- */
+
 .project-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     .project-wrapper {
 	grid-template-columns: 1fr;
     }
@@ -135,19 +138,46 @@ div.figure p {
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: #F5F5F5;
-    border: 1px solid #CCCCCC;
+    padding: 1.2rem;
 }
 
 .project > * {
     margin: 0;
 }
 
-.project-title + .project-description {
-    margin-bottom: 10px;
-}
-
 .project-title, .project-link {
     align-self: start;
     font-weight: 300;
+}
+
+/* -- Properties -- */
+
+.properties ul {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    list-style: none;
+}
+
+.properties ul li {
+    display: inline;
+    position: relative;
+    top: -20px;
+    font-size: 14px;
+}
+
+.properties ul .START_DATE::before, .POSITION::before {
+    content: "~";
+}
+
+.properties ul .START_DATE::after {
+    content: " .. ";
+}
+
+.properties ul .POSITION {
+    display: block;
+}
+
+.POSITION, .START_DATE, .END_DATE {
+    color: #B8B8B8;
 }

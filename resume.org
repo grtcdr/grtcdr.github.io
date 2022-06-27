@@ -1,0 +1,66 @@
+#+TITLE: grtcdr: résumé
+#+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
+#+OPTIONS: prop:t
+
+* Aziz Ben Ali
+
+[[[file:data/resume.pdf][PDF]]]
+
+** Education
+
+*** École Supérieur Privée d'Ingénierie et de Technologies
+:PROPERTIES:
+:START_DATE: Sep. 2019
+:END_DATE: Present
+:END:
+
+** Employers
+
+*** HLi Group
+:PROPERTIES:
+:POSITION: Intern
+:START_DATE: Jul. 2021
+:END_DATE: Sep. 2021
+:END:
+
++ Developed and optimized internal .NET web applications, including the improvement of legacy backend components as well as doing some frontend work.
+
+*** Thermecatex
+:PROPERTIES:
+:POSITION: Intern
+:START_DATE: Aug. 2018
+:END_DATE: Sep. 2018
+:END:
+
++ Helped develop and migrate to a new inventory system, a digitalized version of its predecessor.
+
+** Open Source Projects
+
+#+INCLUDE: _templates/_projects.org
+
+** Skills
+
+*** Programming Languages
+
+- Proficient in Rust and (PL/)SQL.
+- Comfortable with PHP and shell scripting.
+- Acquainted with Python, Ruby and Java.
+
+*** Tools
+
+- Proficient in Linux, i.e. Ubuntu and Arch. I've self-hosted an internet-facing server and exposed various web applications through it.
+- Comfortable with Git, which I use to version control my personal and public projects.
+- Comfortable with PlantUML, which I utilize to create plain-text, reproducible and version-controllable UML diagrams.
+
+*** Documentation and markup languages
+
+- Proficient in Markdown.
+- Comfortable with Org Mode and HTML.
+- Acquainted with LaTeX and Asciidoctor.
+
+** Interests
+
+- Cycling
+- Text editors
+- Minimalism

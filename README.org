@@ -5,7 +5,7 @@ whose content is readable by the browser.
 
 * Setup
 
-Clone the repository and [[file:.gitmodules][submodules]]:
+Clone the repository and its [[file:.gitmodules][submodules]]:
 
 #+begin_example
 git clone --recursive https://github.com/grtcdr/site.org.git
@@ -30,12 +30,10 @@ modular and flexible structure:
 - [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]
 - [[https://github.com/grtcdr/resume][resume]]
 
-This allows me to work on these two projects separately, and also be
-able to push them to the world wide web.
+This allows me to work on these two projects separately, maintaining composability.
 
 For more information on submodules, visit this [[https://git-scm.com/book/en/v2/Git-Tools-Submodules][manual]].
 
 * Copying
 
-The contents of this repository, and the grtcdr.github.io repository
-are [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]].
+- The contents of [[https://github.com/grtcdr/site.org][this repository]], and the [[https://github.com/grtcdr/grtcdr.github.io][grtcdr.github.io repository]] are [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]]. The source code of both is licensed under the [[file:COPYING][MIT license]].

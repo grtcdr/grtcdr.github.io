@@ -145,6 +145,10 @@ div.figure p {
     margin: 0;
 }
 
+.project-title + .project-description {
+    margin-bottom: 16px;
+}
+
 .project-title, .project-link {
     align-self: start;
     font-weight: 300;
@@ -155,23 +159,20 @@ div.figure p {
 .properties ul {
     margin: 0;
     padding: 0;
-    font-size: 0;
     list-style: none;
 }
 
 .properties ul li {
     display: inline;
-    position: relative;
-    top: -20px;
-    font-size: 14px;
+    font-size: 0.9em;
 }
 
 .properties ul .START_DATE::before, .POSITION::before {
-    content: "~";
+    content: "+";
 }
 
 .properties ul .START_DATE::after {
-    content: " .. ";
+    content: " - ";
 }
 
 .properties ul .POSITION {

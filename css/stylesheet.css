@@ -6,6 +6,101 @@ body {
     line-height: 1.7em;
 }
 
+#content { max-width: 60em; margin: auto; }
+
+/* -- General settings -- */
+
+.title  { text-align: center;
+	  margin-bottom: .2em; }
+.subtitle { text-align: center;
+	    font-size: medium;
+	    font-weight: bold;
+	    margin-top:0; }
+.todo   { font-family: monospace; color: red; }
+.done   { font-family: monospace; color: green; }
+.priority { font-family: monospace; color: orange; }
+.tag    { background-color: #eee; font-family: monospace;
+	  padding: 2px; font-size: 80%; font-weight: normal; }
+.timestamp { color: #bebebe; }
+.timestamp-kwd { color: #5f9ea0; }
+.underline { text-decoration: underline; }
+p.verse { margin-left: 3%; }
+dt { font-weight: bold; }
+.footpara { display: inline; }
+.footdef  { margin-bottom: 1em; }
+.inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+}
+.linenr { font-size: smaller }
+.code-highlighted { background-color: #ffff00; }
+
+/* -- Figures -- */
+.figure { padding: 1em; }
+.figure p { text-align: center; }
+
+/* -- Mathematical equations -- */
+
+.equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+}
+.equation {
+    vertical-align: middle;
+}
+.equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* -- Captions -- */
+
+caption.t-above { caption-side: top; }
+caption.t-bottom { caption-side: bottom; }
+
+/* -- Org specific -- */
+
+#org-div-home-and-up {
+    text-align: right;
+    font-size: 70%;
+    white-space: nowrap;
+}
+
+.org-svg { width: 90%; }
+
+.org-right  {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left   {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* -- Tables -- */
+
+table { border-collapse:collapse; }
+td, th { vertical-align:top;  }
+th.org-right  { text-align: center;  }
+th.org-left   { text-align: center;   }
+th.org-center { text-align: center; }
+td.org-right  { text-align: right;  }
+td.org-left   { text-align: left;   }
+td.org-center { text-align: center; }
+
 /* -- Horizontal line -- */
 
 hr {
@@ -43,11 +138,13 @@ pre {
     border-radius: 0;
     line-height: initial;
     margin: 0;
-    padding-left: 1.5em;
+    overflow: auto;
+    padding: 1.0em;
 }
 
-pre.src:hover:before {
-    font-size: 0;
+pre.src {
+    position: relative;
+    overflow: auto;
 }
 
 code {
@@ -145,10 +242,6 @@ div.figure p {
     margin: 0;
 }
 
-.project-title + .project-description {
-    margin-bottom: 16px;
-}
-
 .project-title, .project-link {
     align-self: start;
     font-weight: 300;
@@ -160,25 +253,56 @@ div.figure p {
     margin: 0;
     padding: 0;
     list-style: none;
+    border-left: 2px solid #EBEBEB;
+    padding-left: 1.0em;
 }
 
 .properties ul li {
     display: inline;
     font-size: 0.9em;
-}
-
-.properties ul .START_DATE::before, .POSITION::before {
-    content: "+";
+    color: #636F7E;
 }
 
 .properties ul .START_DATE::after {
-    content: " - ";
+    content: " -> ";
 }
 
-.properties ul .POSITION {
+.STUDY:before {
+    content: "Study: ";
+}
+
+.POSITION:before {
+    content: "Position: "
+}
+
+.START_DATE:before {
+    content: "Date: "
+}
+
+.LOCATION:before {
+    content: "Location: "
+}
+
+.TYPE:before {
+    content: "Type: "
+}
+
+.properties ul .POSITION,
+.properties ul .LOCATION,
+.properties ul .STUDY {
     display: block;
 }
 
-.POSITION, .START_DATE, .END_DATE {
-    color: #B8B8B8;
+/* -- Miscellaneous -- */
+.dim {
+    color: #ADADAD;
+}
+
+.btn-link a {
+    text-decoration: none;
+}
+
+.btn-link a:hover {
+    color: #5C5D8D;
+    transition: color 0.2s;
 }

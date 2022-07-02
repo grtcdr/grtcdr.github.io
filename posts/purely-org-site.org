@@ -116,7 +116,6 @@ more sensitive area of this setup.
 =site-content-directory= will build a path depending on the parameters
 I pass. This makes it a lot safer if I ever decide to move things
 around.
-
 * Setup
 
 Now I'd like to present my setup. It does all of the heavy lifting for

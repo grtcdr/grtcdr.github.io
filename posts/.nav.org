@@ -1,3 +1,4 @@
 #+ATTR_HTML: :class navigation
 + [[../index.org][Home]]
-+ [[../posts.org][Top]]
++ [[../contact.org][Contact]]
++ [[../resume.org][Résumé]]

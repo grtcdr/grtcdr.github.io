@@ -1,5 +1,2 @@
-Disable certain elements.
-#+OPTIONS: toc:nil html-preamble:nil html-postamble:nil
-
 Include a stylesheet.
 #+HTML_HEAD: <link rel="stylesheet" href="css/stylesheet.css">

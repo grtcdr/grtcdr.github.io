@@ -1,14 +1,14 @@
-#+TITLE: grtcdr: home
-#+INCLUDE: .nav.org
+#+TITLE: grtcdr: index
 #+SETUPFILE: .setup.org
+#+INCLUDE: .nav.org
 
 * Greetings
 
-I'm grtcdr - a student and open source software developer from
+I'm grtcdr, a student and open source software developer from
 Tunisia.
 
-I spend a lot of time tinkering with software, I also enjoy
-taking my bike out for a ride, which I do pretty frequently.
+I spend a lot of time tinkering with software, I also enjoy taking my
+bike out for a ride, which I do pretty frequently.
 
 * Highlights
 
@@ -17,5 +17,12 @@ personal computing environment]]. I've put a lot of effort to make it
 composable and modular, both for myself, and you, the reader.
 
 What this has taught me is a vital lesson in knowing how to properly
-structure my digital life, improving its coherence and extending its
-value.
+structure my digital life, enhancing its coherence, extending its
+value, and exploring my creative abilities.
+
+* Posts
+
+I like to write about things that I find interesting, such as my
+toolset, workflow and life experiences.
+
+#+INCLUDE: posts/index.org

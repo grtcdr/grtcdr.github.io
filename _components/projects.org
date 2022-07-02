@@ -11,7 +11,7 @@
     <p class="project-description">Library providing access to all sorts of system information.</p>
   </div>
   <div class="project">
-    <h3 class="project-title"><a href="https://grtcdr.github.io/citron.html">citron</a></h3>
+    <h3 class="project-title"><a href="./citron.html">citron</a></h3>
     <a class="project-link" href="https://git.sr.ht/~grtcdr/citron">SourceHut</a>
     <p class="project-description">Lightweight tool providing system data via on-demand notifications.</p>
   </div>

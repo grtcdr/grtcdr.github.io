@@ -1,8 +1,0 @@
-#+TITLE: grtcdr: posts
-#+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
-
-* Posts
-** 2022
-*** [[file:posts/cycling-incident.org][Cycling incident]]
-*** [[file:posts/purely-org-site.org][Purely Org site]]

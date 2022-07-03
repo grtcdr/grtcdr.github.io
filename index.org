@@ -1,8 +1,8 @@
-#+TITLE: grtcdr: index
+#+TITLE: Bonjour!
 #+SETUPFILE: .setup.org
 #+INCLUDE: .nav.org
 
-* Greetings
+* Bonjour!
 
 I'm grtcdr, a student and open source software developer from
 Tunisia.
@@ -17,12 +17,12 @@ personal computing environment]]. I've put a lot of effort to make it
 composable and modular, both for myself, and you, the reader.
 
 What this has taught me is a vital lesson in knowing how to properly
-structure my digital life, enhancing its coherence, extending its
-value, and exploring my creative abilities.
+structure my digital life, an opportunity for exploring my creative
+abilities.
 
 * Posts
 
 I like to write about things that I find interesting, such as my
 toolset, workflow and life experiences.
 
-#+INCLUDE: posts/index.org
+#+INCLUDE: posts/index.org :lines "2-"

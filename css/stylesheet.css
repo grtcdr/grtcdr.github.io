@@ -299,7 +299,7 @@ div.figure p {
 }
 
 .btn-link a {
-    text-decoration: none;
+    text-decoration: overline;
 }
 
 .btn-link a:hover {

@@ -32,8 +32,7 @@ just adapted from someone else's dotfiles.
 
 - [[file:dots/zsh/zsh.org][zsh]]
 
-  A short =zsh= configuration targeting simplicity and optimizing
-  performance.
+  A short =zsh= configuration targeting simplicity.
 
 - [[file:dots/sh/doch.org][doch]]
 
@@ -48,3 +47,8 @@ just adapted from someone else's dotfiles.
 
   A shell script that automates the starting and stopping of =mpd= and
   =ncmpcpp=.
+
+-----
+
+#+ATTR_HTML: :style text-align:center;
+C'est tout!

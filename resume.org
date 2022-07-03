@@ -4,7 +4,7 @@
 #+OPTIONS: prop:t todo:nil
 
 #+begin_export html
-<h2>Aziz Ben Ali <span class="btn-link dim" style="float:right">; <a class="dim" href="./data/resume.pdf">PDF</a></span></h2>
+<h2>Aziz Ben Ali <span class="btn-link dim" style="float:right"><a class="dim" href="./data/resume.pdf">PDF</a></span></h2>
 #+end_export
 
 -----
@@ -56,7 +56,6 @@
 #+INCLUDE: _components/projects.org
 
 ** Skills
-
 *** Programming Languages
 
 - Proficient in Rust and (PL/)SQL.
@@ -74,6 +73,10 @@
 - Proficient in Markdown.
 - Comfortable with Org Mode and HTML.
 - Acquainted with LaTeX and Asciidoctor.
+*** Languages
+- English, fluent
+- French, conversational
+- Arabic, native
 
 ** Interests
 

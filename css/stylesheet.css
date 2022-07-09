@@ -1,57 +1,25 @@
 body {
-    color: #363D45;
-    background-color: #FFF;
-    font-family: monospace;
-    font-size: 1.2em;
-}
-
-p, li {
-    line-height: 1.8em;
+  color: #363D45;
+  background-color: #FFF;
+  font-family: monospace;
+  font-size: 1.2em;
 }
 
 #preamble, #content {
-    max-width: 60em;
-    margin: auto;
-    padding: 0;
+  max-width: 60em;
+  margin: auto;
 }
-
-/* -- Figures -- */
-.figure { padding: 1em; }
-.figure p { text-align: center; }
-
-/* -- Mathematical equations -- */
-
-.equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-}
-
-.equation {
-    vertical-align: middle;
-}
-
-.equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-}
-
-/* -- Captions -- */
-
-caption.t-above { caption-side: top; }
-caption.t-bottom { caption-side: bottom; }
 
 /* -- Tables -- */
 
-table { border-collapse:collapse; }
-td, th { vertical-align:top;  }
-th.org-right  { text-align: center;  }
-th.org-left   { text-align: center;   }
-th.org-center { text-align: center; }
-td.org-right  { text-align: right;  }
-td.org-left   { text-align: left;   }
-td.org-center { text-align: center; }
+table { border-collapse:collapse }
+td, th { vertical-align:top }
+th.org-right { text-align: center }
+th.org-left { text-align: center }
+th.org-center { text-align: center }
+td.org-right { text-align: right }
+td.org-left { text-align: left }
+td.org-center { text-align: center }
 
 /* -- Horizontal line -- */
 
@@ -66,8 +34,9 @@ h4 { font-size: 22px }
 h5 { font-size: 18px }
 h6 { font-size: 14px }
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: serif;
+  font-weight: 500;
 }
 
 h2 a,
@@ -75,8 +44,8 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-    text-decoration: none;
-    color: unset;
+  color: unset;
+  text-decoration: none;
 }
 
 h2 a:hover,
@@ -84,7 +53,7 @@ h3 a:hover,
 h4 a:hover,
 h5 a:hover,
 h6 a:hover {
-    text-decoration: none;
+  text-decoration: none
 }
 
 h2 a:hover::before,
@@ -92,247 +61,238 @@ h3 a:hover::before,
 h4 a:hover::before,
 h5 a:hover::before,
 h6 a:hover::before {
-    content: "# ";
-    color: #CCCCCC;
+  content: "# ";
+  color: #CCCCCC;
 }
 
 /* -- Quotes -- */
 
 blockquote {
-    margin: 20px;
-    max-width: 75ch;
-    padding-left: 20px;
-    overflow: hidden;
-    border-left: 0.2em solid #5C5D8D;
+  margin: 20px;
+  max-width: 75ch;
+  padding-left: 20px;
+  overflow: hidden;
+  border-left: 0.2em solid #5C5D8D;
 }
 
 /* -- Source code -- */
 
 pre {
-    font-family: monospace;
-    background-color: #FAFAFA;
-    border: 0;
-    border-left: 2px dashed #9C9DBF;
-    color: #5C5D8D;
-    border-radius: 0;
-    line-height: initial;
-    margin: 0;
-    overflow: auto;
-    padding: 1.0em;
+  line-height: initial;
+  overflow: auto;
+  margin: 0;
+  padding: 1.0em;
+  background-color: #FAFAFA;
+  color: #5C5D8D;
+  border: 0;
+  border-left: 2px dashed #9C9DBF;
 }
 
 pre.src {
-    position: relative;
-    overflow: auto;
+  position: relative;
+  overflow: auto;
 }
 
-code {
-    color: #5C5D8D;
-}
+code { color: #718F94 }
 
 .org-src-name {
-    display: block;
-    color: #CCCCCC;
-    font-size: 0.9em;
-    text-align: right;
+  display: block;
+  color: #CCCCCC;
+  font-size: 0.9em;
+  text-align: right;
 }
 
 .org-src-name > .listing-number {
-    display: none;
+  display: none
 }
 
 /* -- Links -- */
 
 a {
-    color: #5C5D8D;
-    text-decoration-style: dotted;
+  color: #5C5D8D;
+  text-decoration-style: dotted;
 }
 
 a:hover {
-    text-decoration: underline
-}
-
-/* -- Content -- */
-
-.content {
-    padding-top: 30px;
-    padding-bottom: 30px;
+  text-decoration: underline
 }
 
 /* -- Figures -- */
 
 div.figure p {
-    text-align: center
+  text-align: center
 }
 
 /* -- Navigation -- */
 
 .navigation {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navigation li {
-    display: inline;
+  display: inline
 }
 
 .navigation li + li::before {
-    content: " ; ";
-    color: #CCCCCC;
+  content: " > ";
+  color: #CCCCCC;
 }
 
-/* -- Tags -- */
+/* -- Figures -- */
 
-.tag {
-    display: block;
-    color: #ADADAD;
-    font-size: 0.6em;
-    background-color: unset;
-    margin-top: 1em;
+.figure { padding: 1em }
+.figure p { text-align: center }
+
+/* -- Mathematical equations -- */
+
+.equation-container {
+  display: table;
+  text-align: center;
+  width: 100%;
 }
 
-.tag > span + span {
-    content: "|"
+.equation {
+  vertical-align: middle
 }
+
+.equation-label {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+}
+
+/* -- Captions -- */
+
+caption.t-above { caption-side: top; }
+caption.t-bottom { caption-side: bottom; }
 
 /* -- Projects -- */
 
 .project-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 @media (max-width: 700px) {
-    .project-wrapper {
-	grid-template-columns: 1fr;
-    }
+  .project-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
 }
 
 .project > * {
-    margin: 0;
+  margin: 0
 }
 
 .project-title, .project-link {
-    align-self: start;
-    font-weight: 300;
+  align-self: start;
+  font-weight: 300;
 }
 
 /* -- Properties -- */
 
 .properties ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-left: 2px solid #EBEBEB;
-    padding-left: 1.0em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid #EBEBEB;
+  padding-left: 1.0em;
 }
 
 .properties ul li {
-    display: inline;
-    font-size: 0.9em;
-    color: #636F7E;
+  display: inline;
+  font-size: 0.9em;
+  color: #636F7E;
 }
 
 .properties ul .START_DATE::after {
-    content: " -> ";
+  content: " — "
 }
 
-.STUDY:before {
-    content: "Study: ";
+.properties ul .TYPE::before {
+  content: "—"
 }
 
-.POSITION:before {
-    content: "Position: "
-}
-
-.START_DATE:before {
-    content: "Date: "
-}
-
-.LOCATION:before {
-    content: "Location: "
-}
-
-.TYPE:before {
-    content: "Type: "
-}
-
-.properties ul .POSITION,
 .properties ul .LOCATION,
 .properties ul .STUDY {
-    display: block;
+  display: block
+}
+
+/* -- Text -- */
+p, li {
+  line-height: 1.8em
 }
 
 /* -- Miscellaneous -- */
-.dim {
-    color: #ADADAD;
+.title { margin-bottom: .2em }
+
+.subtitle {
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  margin-top:0;
 }
 
-.btn-link a:hover {
-    color: #5C5D8D;
-    transition: color 0.2s;
+.tag {
+  background-color: #eee;
+  padding: 2px;
+  font-size: 80%;
+  font-weight: normal;
 }
 
-.title  { margin-bottom: .2em }
-.subtitle { text-align: center;
-	    font-size: medium;
-	    font-weight: bold;
-	    margin-top:0; }
-.todo   { font-family: monospace; color: red; }
-.done   { font-family: monospace; color: green; }
-.priority { font-family: monospace; color: orange; }
-.tag    { background-color: #eee; font-family: monospace;
-	  padding: 2px; font-size: 80%; font-weight: normal; }
-.timestamp { color: #bebebe; }
-.timestamp-kwd { color: #5f9ea0; }
-.underline { text-decoration: underline; }
+.todo { color: #DBB1AF }
+.done { color: #90B494 }
+.priority { color: #DBCFB0 }
+.timestamp { color: #CCCCCC }
+.timestamp-kwd { color: #5F9EA0 }
+.underline { text-decoration: underline }
+.footpara { display: inline }
+.footdef { margin-bottom: 1em }
+.linenr { font-size: smaller }
+.inlinetask {
+  padding: 10px;
+  border: 2px solid gray;
+  margin: 10px;
+  background: #ffffcc;
+}
+
 p.verse { margin-left: 3%; }
 dt { font-weight: bold; }
-.footpara { display: inline; }
-.footdef  { margin-bottom: 1em; }
-.inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-}
-.linenr { font-size: smaller }
-.code-highlighted { background-color: #ffff00; }
 
 /* -- Org specific -- */
 
 #org-div-home-and-up {
-    text-align: right;
-    font-size: 70%;
-    white-space: nowrap;
+  text-align: right;
+  font-size: 70%;
+  white-space: nowrap;
 }
 
 .org-svg { width: 90%; }
 
 .org-right  {
-    margin-left: auto;
-    margin-right: 0px;
-    text-align: right;
+  margin-left: auto;
+  margin-right: 0px;
+  text-align: right;
 }
 
 .org-left   {
-    margin-left: 0px;
-    margin-right: auto;
-    text-align: left;
+  margin-left: 0px;
+  margin-right: auto;
+  text-align: left;
 }
 
 .org-center {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }

@@ -18,4 +18,4 @@ composable and modular, both for myself, and you - the reader.
 I like to write about things that I find interesting, such as my
 toolset, workflow and life experiences.
 
-#+INCLUDE: posts/index.org :lines "2-"
+#+INCLUDE: posts/sitemap.org :lines "2-"

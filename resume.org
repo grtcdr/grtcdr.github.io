@@ -2,6 +2,8 @@
 #+SETUPFILE: .setup.org
 #+OPTIONS: prop:t todo:nil
 
+[[[file:data/resume.pdf][PDF Format]]]
+
 ** Education
 
 *** École Supérieur Privée d'Ingénierie et de Technologies

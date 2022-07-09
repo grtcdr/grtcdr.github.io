@@ -1,8 +1,5 @@
-#+TITLE: Bonjour!
+#+TITLE: Bonjour
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
-
-* Bonjour!
 
 I'm grtcdr, a student and open source software developer from
 Tunisia.
@@ -14,11 +11,7 @@ bike out for a ride, which I do pretty frequently.
 
 I've taken it upon myself to document [[file:dotfiles.org][the various configurations of my
 personal computing environment]]. I've put a lot of effort to make it
-composable and modular, both for myself, and you, the reader.
-
-What this has taught me is a vital lesson in knowing how to properly
-structure my digital life, an opportunity for exploring my creative
-abilities.
+composable and modular, both for myself, and you - the reader.
 
 * Posts
 

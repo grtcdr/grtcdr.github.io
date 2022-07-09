@@ -1,41 +1,19 @@
 body {
-    font-size: 1rem;
-    font-family: monospace;
-    background-color: white;
     color: #363D45;
-    line-height: 1.7em;
+    background-color: #FFF;
+    font-family: monospace;
+    font-size: 1.2em;
 }
 
-#content { max-width: 60em; margin: auto; }
-
-/* -- General settings -- */
-
-.title  { text-align: center;
-	  margin-bottom: .2em; }
-.subtitle { text-align: center;
-	    font-size: medium;
-	    font-weight: bold;
-	    margin-top:0; }
-.todo   { font-family: monospace; color: red; }
-.done   { font-family: monospace; color: green; }
-.priority { font-family: monospace; color: orange; }
-.tag    { background-color: #eee; font-family: monospace;
-	  padding: 2px; font-size: 80%; font-weight: normal; }
-.timestamp { color: #bebebe; }
-.timestamp-kwd { color: #5f9ea0; }
-.underline { text-decoration: underline; }
-p.verse { margin-left: 3%; }
-dt { font-weight: bold; }
-.footpara { display: inline; }
-.footdef  { margin-bottom: 1em; }
-.inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
+p, li {
+    line-height: 1.8em;
 }
-.linenr { font-size: smaller }
-.code-highlighted { background-color: #ffff00; }
+
+#preamble, #content {
+    max-width: 60em;
+    margin: auto;
+    padding: 0;
+}
 
 /* -- Figures -- */
 .figure { padding: 1em; }
@@ -48,9 +26,11 @@ dt { font-weight: bold; }
     text-align: center;
     width: 100%;
 }
+
 .equation {
     vertical-align: middle;
 }
+
 .equation-label {
     display: table-cell;
     text-align: right;
@@ -61,34 +41,6 @@ dt { font-weight: bold; }
 
 caption.t-above { caption-side: top; }
 caption.t-bottom { caption-side: bottom; }
-
-/* -- Org specific -- */
-
-#org-div-home-and-up {
-    text-align: right;
-    font-size: 70%;
-    white-space: nowrap;
-}
-
-.org-svg { width: 90%; }
-
-.org-right  {
-    margin-left: auto;
-    margin-right: 0px;
-    text-align: right;
-}
-
-.org-left   {
-    margin-left: 0px;
-    margin-right: auto;
-    text-align: left;
-}
-
-.org-center {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
 
 /* -- Tables -- */
 
@@ -103,19 +55,46 @@ td.org-center { text-align: center; }
 
 /* -- Horizontal line -- */
 
-hr {
-    border: 1px solid #EBEBEB;
-}
+hr { border: 1px solid #EBEBEB }
 
 /* -- Headings -- */
 
-h2 { font-size: 1.8em }
+h1 { font-size: 38px }
+h2 { font-size: 31px }
+h3 { font-size: 26px }
+h4 { font-size: 22px }
+h5 { font-size: 18px }
+h6 { font-size: 14px }
 
-h3 { font-size: 1.6em }
+h1,h2,h3,h4,h5,h6 {
+    font-family: serif;
+}
 
-h4 { font-size: 1.2em }
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    text-decoration: none;
+    color: unset;
+}
 
-h5 { font-size: 1.2em }
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+    text-decoration: none;
+}
+
+h2 a:hover::before,
+h3 a:hover::before,
+h4 a:hover::before,
+h5 a:hover::before,
+h6 a:hover::before {
+    content: "# ";
+    color: #CCCCCC;
+}
 
 /* -- Quotes -- */
 
@@ -195,7 +174,7 @@ div.figure p {
 }
 
 .navigation li {
-    display: inline
+    display: inline;
 }
 
 .navigation li + li::before {
@@ -207,13 +186,14 @@ div.figure p {
 
 .tag {
     display: block;
+    color: #ADADAD;
+    font-size: 0.6em;
     background-color: unset;
-    line-height: 3em;
+    margin-top: 1em;
 }
 
-.tag > span {
-    background-color: #F5F5F5;
-    padding: 4px;
+.tag > span + span {
+    content: "|"
 }
 
 /* -- Projects -- */
@@ -298,11 +278,61 @@ div.figure p {
     color: #ADADAD;
 }
 
-.btn-link a {
-    text-decoration: overline;
-}
-
 .btn-link a:hover {
     color: #5C5D8D;
     transition: color 0.2s;
+}
+
+.title  { margin-bottom: .2em }
+.subtitle { text-align: center;
+	    font-size: medium;
+	    font-weight: bold;
+	    margin-top:0; }
+.todo   { font-family: monospace; color: red; }
+.done   { font-family: monospace; color: green; }
+.priority { font-family: monospace; color: orange; }
+.tag    { background-color: #eee; font-family: monospace;
+	  padding: 2px; font-size: 80%; font-weight: normal; }
+.timestamp { color: #bebebe; }
+.timestamp-kwd { color: #5f9ea0; }
+.underline { text-decoration: underline; }
+p.verse { margin-left: 3%; }
+dt { font-weight: bold; }
+.footpara { display: inline; }
+.footdef  { margin-bottom: 1em; }
+.inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+}
+.linenr { font-size: smaller }
+.code-highlighted { background-color: #ffff00; }
+
+/* -- Org specific -- */
+
+#org-div-home-and-up {
+    text-align: right;
+    font-size: 70%;
+    white-space: nowrap;
+}
+
+.org-svg { width: 90%; }
+
+.org-right  {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left   {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

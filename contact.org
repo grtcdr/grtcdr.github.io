@@ -1,6 +1,6 @@
-#+TITLE: grtcdr: contact
+#+TITLE: Get in touch
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
+#+OPTIONS: title:nil
 
 * Get in touch with me
 

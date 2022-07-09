@@ -1,9 +1,6 @@
 #+TITLE: Cycling incident
 #+DATE: <2022-05-27>
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
-
-* Cycling incident :experience:
 
 Just today, I went cycling, something I've been meaning to do for a
 really long time.

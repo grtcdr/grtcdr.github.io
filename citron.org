@@ -1,6 +1,5 @@
 #+TITLE: grtcdr: citron
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
 
 * citron
 

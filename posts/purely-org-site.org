@@ -1,9 +1,6 @@
 #+TITLE: Purely Org site
 #+DATE: <2022-05-18>
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
-
-* Purely Org site :org:emacs:
 
 I would like to make a confession... I detest most websites I visit on
 a daily basis. I wanted to make a difference with my little personal
@@ -37,6 +34,9 @@ help you visualize the layout of the project.
 #+end_example
 
 * Getting started
+:PROPERTIES:
+:CUSTOM_ID: getting-started
+:END:
 
 I want to introduce you to the most basic form of a working ~org-publish-project-alist~:
 
@@ -93,6 +93,9 @@ Okay! This is enough to get your website rolling, although you might want to
 see the next section for a more complicated setup.
 
 * Initialization
+:PROPERTIES:
+:CUSTOM_ID: initialization
+:END:
 
 I always like to experiment with the structure of my =$HOME=, which
 leaves me with a temporarily broken setup sometimes.
@@ -116,7 +119,11 @@ more sensitive area of this setup.
 =site-content-directory= will build a path depending on the parameters
 I pass. This makes it a lot safer if I ever decide to move things
 around.
+
 * Setup
+:PROPERTIES:
+:CUSTOM_ID: setup
+:END:
 
 Now I'd like to present my setup. It does all of the heavy lifting for
 me, and allows me to focus on more important things - like chatting

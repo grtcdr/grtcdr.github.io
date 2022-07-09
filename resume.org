@@ -1,13 +1,6 @@
-#+TITLE: grtcdr: résumé
+#+TITLE: Aziz Ben Ali
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
 #+OPTIONS: prop:t todo:nil
-
-#+begin_export html
-<h2>Aziz Ben Ali <span class="btn-link dim" style="float:right"><a class="dim" href="./data/resume.pdf">PDF</a></span></h2>
-#+end_export
-
------
 
 ** Education
 
@@ -19,15 +12,6 @@
 :END:
 
 ** Employers
-
-*** TODO Greentech Training
-:PROPERTIES:
-:POSITION: Backend Developer
-:TYPE: Internship
-:LOCATION: Berlin, Germany
-:START_DATE: Jul. 2022
-:END_DATE: Present
-:END:
 
 *** HLi Group
 :PROPERTIES:
@@ -53,7 +37,7 @@
 
 ** Open Source Projects
 
-#+INCLUDE: _components/projects.org
+#+INCLUDE: snippets/projects.html export html
 
 ** Skills
 *** Programming Languages

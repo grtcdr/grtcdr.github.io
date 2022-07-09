@@ -1,6 +1,5 @@
-#+TITLE: grtcdr: dotfiles
+#+TITLE: dotfiles
 #+SETUPFILE: .setup.org
-#+INCLUDE: .nav.org
 
 * Preface
 
@@ -47,8 +46,3 @@ just adapted from someone else's dotfiles.
 
   A shell script that automates the starting and stopping of =mpd= and
   =ncmpcpp=.
-
------
-
-#+ATTR_HTML: :style text-align:center;
-C'est tout!

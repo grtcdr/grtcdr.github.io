@@ -1,8 +1,7 @@
 #+TITLE: Bonjour
 #+SETUPFILE: .setup.org
 
-I'm grtcdr, a student and open source software developer from
-Tunisia.
+I'm grtcdr, a student and open source software developer from Tunisia.
 
 I spend a lot of time tinkering with software, I also enjoy taking my
 bike out for a ride, which I do pretty frequently.

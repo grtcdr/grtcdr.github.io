@@ -1,5 +1,5 @@
-[submodule "dots"]
-	path = dots
+[submodule "dotfiles"]
+	path = dotfiles
 	url = git@git.sr.ht:~grtcdr/dotfiles
 [submodule "data/resume"]
 	path = data/resume

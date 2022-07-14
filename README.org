@@ -13,8 +13,9 @@ git clone --recursive https://github.com/grtcdr/site.org.git
 
 * Reproducing
 
-If you wish to reproduce this website locally, the only requirement to
-do so, is an installation of [[https://www.gnu.org/software/emacs/][GNU Emacs]].
+If you wish to reproduce this website locally, there are two requirements:
++ an installation of [[https://www.gnu.org/software/emacs/][GNU Emacs]]
++ and [[https://lesscss.org/][lesscss]]
 
 You can then export each file individually, or make use of my
 [[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/lisp/grt-publish.el][org-publish-project-alist]] configuration that automatically builds the

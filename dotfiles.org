@@ -19,30 +19,30 @@ just adapted from someone else's dotfiles.
 
 -----
 
-- [[file:dots/sway/sway.org][sway]]
+- [[file:dotfiles/sway/sway.org][sway]]
 
   A concoction of functionalism and elegance, making use of the bare
   minimum of software so as to achieve a coherent desktop environment
   without one being present.
 
-  - [[file:dots/sway/colorschemes.org][colorschemes]]
-  - [[file:dots/swaylock/swaylock.org][swaylock]]
-  - [[file:dots/mako/mako.org][mako]]
+  - [[file:dotfiles/sway/colorschemes.org][colorschemes]]
+  - [[file:dotfiles/swaylock/swaylock.org][swaylock]]
+  - [[file:dotfiles/mako/mako.org][mako]]
 
-- [[file:dots/zsh/zsh.org][zsh]]
+- [[file:dotfiles/zsh/zsh.org][zsh]]
 
   A short =zsh= configuration targeting simplicity.
 
-- [[file:dots/sh/doch.org][doch]]
+- [[file:dotfiles/sh/doch.org][doch]]
 
   A shell script that lists and opens HTML/PDF files found within my
   =org-directory=.
 
-- [[file:dots/sh/startw.org][startw]]
+- [[file:dotfiles/sh/startw.org][startw]]
 
   A shell script that intelligently starts =sway=.
 
-- [[file:dots/sh/mus.org][mus]]
+- [[file:dotfiles/sh/mus.org][mus]]
 
   A shell script that automates the starting and stopping of =mpd= and
   =ncmpcpp=.

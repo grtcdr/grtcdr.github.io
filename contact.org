@@ -6,7 +6,7 @@
 
 - Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
 
-  I usually reply within the same day.
+  I usually reply within the day.
 
 - PGP: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
 

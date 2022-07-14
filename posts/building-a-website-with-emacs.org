@@ -2,10 +2,6 @@
 #+DATE: <2022-05-18>
 #+SETUPFILE: .setup.org
 
-| Date             | Change            |
-|------------------+-------------------|
-| <2022-07-09 Sat> | Updated the title |
-
 I would like to make a confession... I detest most websites I visit on
 a daily basis. I wanted to make a difference with my little personal
 corner of the internet. What do you know? /Emacs can totally do that/.
@@ -183,7 +179,8 @@ with strangers on IRC :^)
       :publishing-directory ,(site-content-directory 'publish "data/")
       :publishing-function org-publish-attachment)
 
-     ("grtcdr.github.io" :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/content" "grtcdr.github.io/blog")))))
+     ("grtcdr.github.io"
+      :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/content" "grtcdr.github.io/blog")))))
 #+end_src
 
 There's a project identifier for every *component* of the website, and

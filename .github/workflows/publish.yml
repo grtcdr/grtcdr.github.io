@@ -1,6 +1,9 @@
-name: Publish website
+name: Publish
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,7 +13,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: No Jekyll, No!
+      run: touch public/.nojekyll
+
     - name: Deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      uses: ./public
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: public

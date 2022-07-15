@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-07-15 Fri 10:05 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>qutebrowser</title>
+<meta name="author" content="Aziz Ben Ali" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+<div id="preamble" class="status">
+<ul class="navigation">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/dotfiles.html">Top</a></li>
+</ul>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">qutebrowser</h1>
+</header>
+<div id="outline-container-org4fa7dd9" class="outline-2">
+<h2 id="org4fa7dd9"><span class="section-number-2">1.</span> General settings</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Disable the sourcing of the automatically created configuration file.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">config.load_autoconfig(False)
+</pre>
+</div>
+
+<p>
+Save the session, so that I can pick up where I left off.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">c.auto_save.session = True
+</pre>
+</div>
+
+<p>
+Customize the format of the tab title.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">c.tabs.title.format = '{index}: {current_title}'
+</pre>
+</div>
+
+<p>
+Set the new tab and default pages to something custom:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">c.url.default_page = 'file:///home/grtcdr/.config/qutebrowser/startpage/index.html'
+c.url.start_pages = 'file:///home/grtcdr/.config/qutebrowser/startpage/index.html'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e19530" class="outline-2">
+<h2 id="org2e19530"><span class="section-number-2">2.</span> Search engines</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When performing a search, I could prefix my query, e.g. "System
+maintenance", with a search engine identifier, e.g. "aw". This will
+send the search query to the Arch Wiki instead of doing it with the
+<code>DEFAULT</code> search engine. A neat feature indeed!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">c.url.searchengines = {
+	'aw': 'https://wiki.archlinux.org/index.php?search={}',
+	'aur': 'https://aur.archlinux.org/packages/?O=0&amp;K={}',
+	'DEFAULT': 'https://www.google.com/search?q={}'
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

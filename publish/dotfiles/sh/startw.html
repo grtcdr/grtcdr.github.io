@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-07-15 Fri 10:05 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>startw</title>
+<meta name="author" content="Aziz Ben Ali" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+<div id="preamble" class="status">
+<ul class="navigation">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/dotfiles.html">Top</a></li>
+</ul>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">startw</h1>
+</header>
+<div id="outline-container-org4eed7a5" class="outline-2">
+<h2 id="org4eed7a5"><span class="section-number-2">1.</span> Preface</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This script is intended to be executed after a successful TTY login.
+</p>
+
+<p>
+If the NVIDIA kernel module is detected, i.e. an NVIDIA GPU is present
+and active, sway will be passed the <code>--unsupported-gpu</code> flag,
+otherwise, it will start with no additional flags.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd567919" class="outline-2">
+<h2 id="orgd567919"><span class="section-number-2">2.</span> Source</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li value="1">This function starts sway with the appropriate flags:</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-bash">init() {
+    HAS_NVIDIA=$(lsmod | grep -c nvidia)
+
+    if [ "$HAS_NVIDIA" -eq 0 ]; then
+	exec sway
+    else
+	exec sway --unsupported-gpu
+    fi
+}
+</pre>
+</div>
+
+<ol class="org-ol">
+<li value="2">This function verifies whether a graphical session is already running<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>:</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-bash">check_gui() {
+    if [ -n "$DISPLAY" ] &amp;&amp; [ "$(tty)" != "/dev/tty1" ]; then
+	echo "Already in a graphical session."
+	return 1
+    fi
+}
+</pre>
+</div>
+
+<ol class="org-ol">
+<li value="3">Launch the graphical session:</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-bash">check_gui &amp;&amp; init
+</pre>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Adapted from <a href="https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login">this page in the Arch Wiki</a>.
+</p></div></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

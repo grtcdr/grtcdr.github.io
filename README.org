@@ -22,7 +22,7 @@ You can then export each file individually, or make use of my
 whole website for you.
 
 I have written [[https://grtcdr.github.io/posts/purely-org-site.html][a post]] that answers the "why" and "how" of
-org-publish-project-alist.
+~org-publish-project-alist~.
 
 * Structure
 

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-07-15 Fri 10:05 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mus</title>
+<meta name="author" content="Aziz Ben Ali" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+<div id="preamble" class="status">
+<ul class="navigation">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/dotfiles.html">Top</a></li>
+</ul>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">mus</h1>
+</header>
+<div id="outline-container-org7878d0f" class="outline-2">
+<h2 id="org7878d0f"><span class="section-number-2">1.</span> Preface</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <a href="https://en.wikipedia.org/wiki/Unix_philosophy">UNIX philosophy</a> places a huge emphasis on building minimal and
+modular programs.
+</p>
+
+<p>
+Two good examples of this, is <a href="https://github.com/ncmpcpp/ncmpcpp">ncmpcpp</a> and <a href="https://github.com/MusicPlayerDaemon/MPD">mpd</a>, the former being a
+(fantastic) client for the latter.
+</p>
+
+<p>
+The fragmentation and unusual simplicity of UNIX is not to cause
+inconvenience to the user - rather, it provides them with an
+environment where they can practice their freedoms - to glue their
+tools together as they see fit.
+</p>
+
+<p>
+This script, unimaginatively named <code>mus</code>, was inspired by the
+following points:
+</p>
+<ul class="org-ul">
+<li>I like listening to music</li>
+<li>I dislike having stray services hogging system resources</li>
+</ul>
+
+<p>
+Previously, I used to this to listen to my music?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">systemctl start --user mpd
+ncmpcpp --quiet
+</pre>
+</div>
+
+<p>
+But, that's too much work!
+</p>
+
+<blockquote>
+<p>
+<i>What shall I do?</i>
+</p>
+
+<p>
+Aha! I'll write a shell script to automate this process.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org8aa8fbd" class="outline-2">
+<h2 id="org8aa8fbd"><span class="section-number-2">2.</span> Source</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+If the script is called upon with <code>die</code> as an argument, the <code>ncmpcpp</code>
+process is killed and the <code>mpd</code> user service is stopped.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">if [ "$1" = "die" ]; then
+  killall ncmpcpp 2&gt; /dev/null
+  systemctl stop --user mpd
+
+  exit 0
+fi
+</pre>
+</div>
+
+<p>
+Otherwise, the <code>mpd</code> user service is started.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">systemctl --user start mpd
+</pre>
+</div>
+
+<p>
+And <code>ncmpcpp</code> is launched - let's tell it to keep quiet, though.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">ncmpcpp --quiet
+</pre>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

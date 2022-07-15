@@ -20,7 +20,7 @@ You can then export each file individually, or make use of my
 [[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/lisp/grt-publish.el][org-publish-project-alist]] configuration that automatically builds the
 whole website for you.
 
-I have written [[https://grtcdr.github.io/posts/purely-org-site.html][a post]] that answers the "why" and "how" of
+I have written [[https://grtcdr.github.io/posts/building-a-website-with-emacs.html][a post]] that answers the "why" and "how" of
 ~org-publish-project-alist~.
 
 * Structure

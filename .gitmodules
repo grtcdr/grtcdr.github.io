@@ -1,6 +1,6 @@
 [submodule "dotfiles"]
 	path = dotfiles
-	url = git@git.sr.ht:~grtcdr/dotfiles
+	url = https://git.sr.ht/~grtcdr/dotfiles
 [submodule "data/resume"]
 	path = data/resume
-	url = git@github.com:grtcdr/resume.git
+	url = https://github.com/grtcdr/resume

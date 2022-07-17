@@ -31,6 +31,10 @@ p {
 li {
   line-height: 1.8em;
 }
+img {
+  margin: auto;
+  display: block;
+}
 .properties ul {
   list-style: none;
   text-align: left;
@@ -119,13 +123,10 @@ li {
   padding: 10px;
   margin: 10px;
 }
-div.figure p {
-  text-align: center;
-}
 .figure {
   padding: 1em;
 }
-.figure p {
+figcaption {
   text-align: center;
 }
 pre {
@@ -247,4 +248,8 @@ h5 a:hover::before,
 h6 a:hover::before {
   content: "# ";
   color: #CCCCCC;
+}
+span[class^='section-number'] {
+  color: #CCCCCC;
+  font-size: 0.75em;
 }

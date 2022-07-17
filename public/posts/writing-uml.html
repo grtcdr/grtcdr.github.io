@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-07-20 Wed 12:16 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Writing UML</title>
+<meta name="author" content="Aziz Ben Ali" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
+<div id="preamble" class="status">
+<ul class="navigation">
+  <li> <a href="/index.html">Home</a> </li>
+  <li> <a href="/contact.html">Contact</a> </li>
+  <li> <a href="/resume.html">Résumé</a> </li>
+</ul>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Writing UML</h1>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#foreword"><a href="#foreword">Foreword</a></a></li>
+<li><a href="#reproducibility"><a href="#reproducibility">Reproducibility</a></a></li>
+<li><a href="#versioning"><a href="#versioning">Versioning</a></a></li>
+<li><a href="#reliability"><a href="#reliability">Reliability</a></a></li>
+<li><a href="#integration"><a href="#integration">Integration</a></a></li>
+<li><a href="#getting-things-done"><a href="#getting-things-done">Getting things done</a></a></li>
+<li><a href="#showcase"><a href="#showcase">Showcase</a></a></li>
+<li><a href="#conclusion"><a href="#conclusion">Conclusion</a></a></li>
+</ul>
+</div>
+</nav>
+
+<div id="outline-container-foreword" class="outline-2">
+<h2 id="foreword"><a href="#foreword">Foreword</a></h2>
+<div class="outline-text-2" id="text-foreword">
+<blockquote>
+<p>
+Modeling is the designing of software applications before coding.
+</p>
+</blockquote>
+
+<p>
+A lot of developers believe this is a waste of time, and while I
+mostly agree, I certainly see a use in abstracting complex systems
+through diagrams that non-programmers can wrap their heads around.
+</p>
+
+<p>
+UML is a topic that is still taught in academia, but I don't think
+it's taught right. In every academic project I was part of, I've
+noticed people misusing UML, or at least, not using it to its full
+potential.
+</p>
+
+<p>
+<i>Allow me to elaborate.</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-reproducibility" class="outline-2">
+<h2 id="reproducibility"><a href="#reproducibility">Reproducibility</a></h2>
+<div class="outline-text-2" id="text-reproducibility">
+<p>
+When UML is a prerequisite, I choose to use a solution that can be
+reproduced by people other than myself. A proprietary format is
+likely to change over time, and heavy software is simply a no-go.
+</p>
+</div>
+</div>
+
+<div id="outline-container-versioning" class="outline-2">
+<h2 id="versioning"><a href="#versioning">Versioning</a></h2>
+<div class="outline-text-2" id="text-versioning">
+<p>
+Git and all other version control systems favor text.
+</p>
+
+<p>
+I always <i>sigh</i> when I see projects that host things other than
+software, my first instinct is to yell at the maintainer for choosing
+Git, because it's not what Git was designed for.
+</p>
+
+<p>
+PlantUML is human-readable, human-writable and is simply plain text -
+this allows your VCS to do its compression magic, which in turn saves
+you loads of time. You can always check back with your commit history
+to see what had changed, and how the diagram has evolved over time.
+</p>
+</div>
+</div>
+
+<div id="outline-container-reliability" class="outline-2">
+<h2 id="reliability"><a href="#reliability">Reliability</a></h2>
+<div class="outline-text-2" id="text-reliability">
+<p>
+PlantUML, being a text-driven solution, does not face the issues that
+plague GUI-driven alternatives. I've used multiple UML diagramming
+software, and they all break down at some point. Their UI is usually
+cluttered with a sea of diagrams, none of which you'll ever use in a
+real-world scenario.
+</p>
+
+<p>
+I just want to model this system so I can be done with it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-integration" class="outline-2">
+<h2 id="integration"><a href="#integration">Integration</a></h2>
+<div class="outline-text-2" id="text-integration">
+<p>
+PlantUML automatically integrates with your workflow because you can
+literally use it anywhere. You're not limited as to where you write
+UML; this allows you to mold the tool into your workflow as you see
+fit.
+</p>
+</div>
+</div>
+
+<div id="outline-container-getting-things-done" class="outline-2">
+<h2 id="getting-things-done"><a href="#getting-things-done">Getting things done</a></h2>
+<div class="outline-text-2" id="text-getting-things-done">
+<p>
+My computing environment is revolved around a keyboard-centric
+worfklow. I find that it saves me a lot of time not to move around too
+much, and it's gratifying to move throughout your desktop quicker than
+that pesky <a href="https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">brown fox</a>.
+</p>
+
+<p>
+PlantUML, being text-driven, does not hamper my workflow, rather, it
+extends it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-showcase" class="outline-2">
+<h2 id="showcase"><a href="#showcase">Showcase</a></h2>
+<div class="outline-text-2" id="text-showcase">
+<p>
+Let's represent the animal kingdom in a class diagram, abstracting it
+the objected oriented way.
+</p>
+
+<p>
+Give this a good read, and then jump to the next section to understand
+what everything means.
+</p>
+
+<pre class="example" id="org20ac8d7">
+@startuml
+package Animalia {
+
+  Animal &lt;|-- Feline
+  Animal &lt;|-- Canine
+
+  Feline --&gt; Felidae
+  Canine --&gt; Canidae
+
+  abstract class Animal {
+     {abstract} void jump(height: int)
+     {abstract} void run(velocity: int)
+  }
+  
+  class Feline {
+     - species: Enum&lt;Felidae&gt;
+     + jump(height: int)
+     + run(velocity: int)
+  }
+  
+  class Canine {
+     - species: Enum&lt;Canidae&gt;
+     + jump(height: int)
+     + run(velocity: int)
+  }
+
+  enum Felidae {
+     Jaguar,
+     Lion,
+     Cougar
+  }
+  
+  enum Canidae {
+     Wolf,
+     Fox,
+     Dog
+  }
+}
+@enduml
+</pre>
+
+<p>
+Reading over the syntax, we can see that everything is wrapped inside
+<code>@startuml</code> and <code>@enduml</code>, a notation that is required for PlantUML to
+recognize its own syntax, kind of like a shebang.
+</p>
+
+<p>
+Inside the <code>Animalia</code> package, we find two classes, <code>Feline</code> and
+<code>Canine</code> which implement the functions defined in <code>Animal</code>, our
+abstract class. We've also got two enums, <code>Felidae</code>, and <code>Canidae</code>,
+which hold as many species of the two families as I can possibly think
+of.
+</p>
+
+<p>
+Okay, so how do we tie everything together? You guessed it, with
+arrows!
+</p>
+
+<p>
+We can represent aggregation between two classes with <code>&lt;|--</code> or
+<code>--|&gt;</code>.
+</p>
+
+<blockquote>
+<p>
+Tip: The direction of the pointy bit will be reflected in the actual
+diagram.
+</p>
+</blockquote>
+
+<p>
+We can make a simple arrow as can be seen between the enums and
+classes, with <code>&lt;--</code> or <code>--&gt;</code>.
+</p>
+
+<p>
+The last thing I'll cover is access modifiers, all of which are
+assigned a unique icon by PlantUML. Prepending a method or attribute
+with a <code>+</code> will indicate that it's <code>public</code> &#x2013; <code>-</code> is private &#x2013; <code>#</code> is
+protected and <code>~</code> is package private. It's sort of your responsibility
+to use them appropriately, as PlantUML won't stop you from shooting
+yourself in the foot.
+</p>
+
+<p>
+Dying to compile it? Give this command a go, and pick whatever format you like.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">plantuml animalia.uml -tpng animalia.png
+#                     -tsvg animalia.svg
+#                     -teps animalia.eps
+#                     -tpdf animalia.pdf
+</pre>
+</div>
+
+<p>
+It's about time I show you the output of all that hard work&#x2026; Behold!
+</p>
+
+
+<figure id="org864f003">
+<img src="../images/posts/animalia.svg" alt="Animalia class diagram" class="org-svg" style="width:60%">
+
+<figcaption><span class="figure-number">Figure 1: </span>The output of the compilation process</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-conclusion" class="outline-2">
+<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
+<div class="outline-text-2" id="text-conclusion">
+<p>
+This is a pretty lengthy post, yet it doesn't even come close to
+scratching the surface of the offerings of this wonderful tool.
+</p>
+
+<p>
+I'm truly happy that such a tool exists, because it's always saved me
+my sanity and time.
+</p>
+
+<p>
+Looking for a more general-purpose, but text-driven diagramming piece
+of software? Check out <a href="https://graphviz.org">GraphViz</a>. I made use of it in my language
+theory course, and used it to draw finite state machines, and it's an
+excellent tool for this very use-case.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

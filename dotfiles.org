@@ -1,5 +1,5 @@
 #+TITLE: dotfiles
-#+SETUPFILE: .setup.org
+#+SETUPFILE: _setup.org
 
 * Preface
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-15 Fri 10:12 -->
+<!-- 2022-07-20 Wed 12:11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>zsh</title>
@@ -20,46 +20,7 @@
 <div id="content" class="content">
 <header>
 <h1 class="title">zsh</h1>
-</header><nav id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#zshrc">1. .zshrc</a>
-<ul>
-<li><a href="#zshrc-startup">1.1. Startup</a></li>
-<li><a href="#zshrc-completions">1.2. Completions</a></li>
-<li><a href="#zshrc-common-options">1.3. Common options</a></li>
-<li><a href="#zshrc-prompt">1.4. Prompt</a></li>
-<li><a href="#zshrc-plugins">1.5. Plugins</a></li>
-<li><a href="#zshrc-functions">1.6. Functions</a></li>
-<li><a href="#zshrc-keybindings">1.7. Keybindings</a></li>
-</ul>
-</li>
-<li><a href="#zshenv">2. .zshenv</a></li>
-<li><a href="#zprofile">3. .zprofile</a>
-<ul>
-<li><a href="#zprofile-environment-variables">3.1. Environment variables</a></li>
-<li><a href="#orga04ef6c">3.2. Miscellaneous</a>
-<ul>
-<li><a href="#zprofile-miscellaneous">3.2.1. bemenu</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#alias">4. alias</a>
-<ul>
-<li><a href="#aliases-core">4.1. Core</a></li>
-<li><a href="#aliases-movement">4.2. Movement</a></li>
-<li><a href="#aliases-listing">4.3. Listing</a></li>
-<li><a href="#aliases-programs">4.4. Programs</a></li>
-<li><a href="#aliases-package-manager">4.5. Package manager</a></li>
-</ul>
-</li>
-<li><a href="#environ">5. environ</a></li>
-</ul>
-</div>
-</nav>
-
+</header>
 <div id="outline-container-zshrc" class="outline-2">
 <h2 id="zshrc"><span class="section-number-2">1.</span> .zshrc</h2>
 <div class="outline-text-2" id="text-zshrc">
@@ -165,7 +126,7 @@ Source my aliases, one of the best features of UNIX shells.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org5c4b706">for file in "$ZDOTDIR"/alias; do . "$file"; done
+<pre class="src src-sh" id="org3a8227e">for file in "$ZDOTDIR"/alias; do . "$file"; done
 </pre>
 </div>
 </div>
@@ -180,7 +141,7 @@ them.
 </p>
 
 <p>
-This is aliased to <code>cd</code> in <code>.zalias</code>, which was <a href="#org5c4b706">previously sourced</a>.
+This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org3a8227e">previously sourced</a>.
 </p>
 
 <div class="org-src-container">
@@ -196,7 +157,7 @@ we placed them in the background:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org69510f7">fancy-ctrl-z() {
+<pre class="src src-sh" id="orgf8aac88">fancy-ctrl-z() {
     if [[ $#BUFFER -eq 0 ]]; then
 	BUFFER="fg"
 	zle accept-line -w
@@ -334,13 +295,9 @@ set +o allexport
 </div>
 </div>
 
-<div id="outline-container-orga04ef6c" class="outline-3">
-<h3 id="orga04ef6c"><span class="section-number-3">3.2.</span> Miscellaneous</h3>
-<div class="outline-text-3" id="text-3-2">
-</div>
-<div id="outline-container-zprofile-miscellaneous" class="outline-4">
-<h4 id="zprofile-miscellaneous"><span class="section-number-4">3.2.1.</span> bemenu</h4>
-<div class="outline-text-4" id="text-zprofile-miscellaneous">
+<div id="outline-container-zprofile-bemenu" class="outline-3">
+<h3 id="zprofile-bemenu"><span class="section-number-3">3.2.</span> Bootstrapping bemenu</h3>
+<div class="outline-text-3" id="text-zprofile-bemenu">
 <p>
 The only way to configure <a href="https://man.archlinux.org/man/community/bemenu/bemenu.1.en">bemenu(1)</a> is to set the <code>BEMENU_OPTS</code>
 environment variable, it takes the same flags just as if you were to
@@ -352,9 +309,8 @@ The following snippet handles this very task, and does so neatly.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">BM_PROMPT="&gt; "
+<pre class="src src-sh">BM_PROMPT="⌘ "
 BM_FONT="Roboto Mono 12"
-
 BM_TITLE_FG="#839496"
 BM_TITLE_BG="#073642"
 BM_NORMAL_BG="#073642"
@@ -362,6 +318,7 @@ BM_SELECT_BG="#2AA198"
 BM_FILTER_BG="#073642"
 BM_HIGHLIGHT_FG="#2AA198"
 BM_HIGHLIGHT_BG="#073642"
+BM_ALTERNATING_BG="#073642"
 
 build_bemenu_options() {
     OPT="-i -b"
@@ -374,12 +331,12 @@ build_bemenu_options() {
     OPT="$OPT --fb '$BM_FILTER_BG'"
     OPT="$OPT --hb '$BM_HIGHLIGHT_BG'"
     OPT="$OPT --hf '$BM_HIGHLIGHT_FG'"
+    OPT="$OPT --ab '$BM_ALTERNATING_BG'"
     echo $OPT
 }
 
 export BEMENU_OPTS="$(build_bemenu_options)"
 </pre>
-</div>
 </div>
 </div>
 </div>

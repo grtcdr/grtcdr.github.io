@@ -1,14 +1,11 @@
-#+TITLE: Get in touch
-#+SETUPFILE: .setup.org
-#+OPTIONS: title:nil
+#+TITLE: Get in touch with me
+#+SETUPFILE: _setup.org
 
-* Get in touch with me
-
-- Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
++ Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
 
   I usually reply within the day.
 
-- PGP: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
++ PGP: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
 
   For secure communications, you should encrypt the messages you
   intend to send my way with my public key.
@@ -16,8 +13,5 @@
   You can [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][verify my identity]] to rest assured that you're speaking to
   me, not some stranger.
 
-* Places you can find me
-
-- GitHub: [[https://github.com/grtcdr][@grtcdr]]
-- SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
-- LinkedIn: [[https://www.linkedin.com/in/grtcdr/][@grtcdr]] 
++ GitHub: [[https://github.com/grtcdr][@grtcdr]]
++ SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]

@@ -1,6 +1,6 @@
 #+TITLE: Cycling incident
 #+DATE: <2022-05-27>
-#+SETUPFILE: .setup.org
+#+SETUPFILE: ../_setup.org
 
 Just today, I went cycling, something I've been meaning to do for a
 really long time.

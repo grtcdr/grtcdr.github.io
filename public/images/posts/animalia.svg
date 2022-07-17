@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="483px" preserveAspectRatio="none" style="width:461px;height:483px;background:#FFFFFF;" version="1.1" viewBox="0 0 461 483" width="461px" zoomAndPan="magnify"><defs/><g><!--MD5=[3060d5ec5c3b5b033f7a063c933bac0f]
+cluster Animalia--><g id="cluster_Animalia"><path d="M8.5,6.602 L70.5,6.602 A3.75,3.75 0 0 1 73,9.102 L80,31.6699 L451.5,31.6699 A2.5,2.5 0 0 1 454,34.1699 L454,474.102 A2.5,2.5 0 0 1 451.5,476.602 L8.5,476.602 A2.5,2.5 0 0 1 6,474.102 L6,9.102 A2.5,2.5 0 0 1 8.5,6.602 " style="stroke:#000000;stroke-width:1.5;fill:none;"/><line style="stroke:#000000;stroke-width:1.5;fill:none;" x1="6" x2="80" y1="31.6699" y2="31.6699"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="61" x="10" y="23.5679">Animalia</text></g><!--MD5=[7fd4401f5c5cb0e3d029c879cad30c04]
+class Animal--><g id="elem_Animal"><rect codeLine="9" fill="#F1F1F1" height="86.1358" id="Animal" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="154" y="44.602"/><ellipse cx="201.75" cy="60.602" fill="#A9DCDF" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M196.9219,66.352 L200.2656,54.1645 L203.4063,54.1645 L206.7813,66.352 L204.3125,66.352 L203.5781,63.3364 L200.0625,63.3364 L199.3125,66.352 L196.9219,66.352 Z M201.3281,58.3051 L200.5781,61.3051 L203.0938,61.3051 L202.375,58.3051 Q202.2344,57.727 202.1094,57.1801 Q201.9844,56.6176 201.8438,56.0395 Q201.7344,56.6176 201.5938,57.1801 Q201.4531,57.727 201.3281,58.3051 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="44" x="222.25" y="66.034">Animal</text><line style="stroke:#181818;stroke-width:0.5;" x1="155" x2="301" y1="76.602" y2="76.602"/><line style="stroke:#181818;stroke-width:0.5;" x1="155" x2="301" y1="84.602" y2="84.602"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="136" x="160" y="103.5679">void jump(height: int)</text><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="134" x="160" y="122.6358">void run(velocity: int)</text></g><!--MD5=[e249f0d9e23c809c92f69cb750eafa2e]
+class Feline--><g id="elem_Feline"><rect codeLine="14" fill="#F1F1F1" height="105.2038" id="Feline" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="187" x="21.5" y="190.602"/><ellipse cx="90.75" cy="206.602" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M90.2188,213.5239 Q88.4688,213.5239 87.3281,212.7895 Q86.2031,212.0395 85.6406,210.6957 Q85.0938,209.3364 85.0938,207.5395 Q85.0938,205.5082 85.75,204.0551 Q86.4063,202.602 87.6875,201.8207 Q88.9688,201.0395 90.8438,201.0395 Q91.7344,201.0395 92.4063,201.227 Q93.0781,201.3989 93.7656,201.7426 L92.9531,203.7582 Q92.3281,203.4457 91.7813,203.3207 Q91.25,203.1957 90.7656,203.1957 Q89.5938,203.1957 88.8906,203.727 Q88.1875,204.2582 87.8906,205.2114 Q87.5938,206.1645 87.5938,207.4301 Q87.5938,209.4457 88.3125,210.4145 Q89.0313,211.3676 90.625,211.3676 Q91.2188,211.3676 91.8438,211.2114 Q92.4688,211.0551 93.2969,210.6801 L93.2969,212.8989 Q92.5625,213.2114 91.7656,213.3676 Q90.9844,213.5239 90.2188,213.5239 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40" x="111.25" y="212.034">Feline</text><line style="stroke:#181818;stroke-width:0.5;" x1="22.5" x2="207.5" y1="222.602" y2="222.602"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="29.5" y="230.602"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="161" x="41.5" y="241.5679">species: Enum&lt;Felidae&gt;</text><line style="stroke:#181818;stroke-width:0.5;" x1="22.5" x2="207.5" y1="249.6699" y2="249.6699"/><ellipse cx="32.5" cy="260.6699" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="41.5" y="268.6358">jump(height: int)</text><ellipse cx="32.5" cy="279.7378" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="41.5" y="287.7038">run(velocity: int)</text></g><!--MD5=[a739e5290913aaea617ce41159f0ecef]
+class Canine--><g id="elem_Canine"><rect codeLine="20" fill="#F1F1F1" height="105.2038" id="Canine" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="194" x="244" y="190.602"/><ellipse cx="313.25" cy="206.602" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M312.7188,213.5239 Q310.9688,213.5239 309.8281,212.7895 Q308.7031,212.0395 308.1406,210.6957 Q307.5938,209.3364 307.5938,207.5395 Q307.5938,205.5082 308.25,204.0551 Q308.9063,202.602 310.1875,201.8207 Q311.4688,201.0395 313.3438,201.0395 Q314.2344,201.0395 314.9063,201.227 Q315.5781,201.3989 316.2656,201.7426 L315.4531,203.7582 Q314.8281,203.4457 314.2813,203.3207 Q313.75,203.1957 313.2656,203.1957 Q312.0938,203.1957 311.3906,203.727 Q310.6875,204.2582 310.3906,205.2114 Q310.0938,206.1645 310.0938,207.4301 Q310.0938,209.4457 310.8125,210.4145 Q311.5313,211.3676 313.125,211.3676 Q313.7188,211.3676 314.3438,211.2114 Q314.9688,211.0551 315.7969,210.6801 L315.7969,212.8989 Q315.0625,213.2114 314.2656,213.3676 Q313.4844,213.5239 312.7188,213.5239 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="333.75" y="212.034">Canine</text><line style="stroke:#181818;stroke-width:0.5;" x1="245" x2="437" y1="222.602" y2="222.602"/><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="252" y="230.602"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="264" y="241.5679">species: Enum&lt;Canidae&gt;</text><line style="stroke:#181818;stroke-width:0.5;" x1="245" x2="437" y1="249.6699" y2="249.6699"/><ellipse cx="255" cy="260.6699" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="264" y="268.6358">jump(height: int)</text><ellipse cx="255" cy="279.7378" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108" x="264" y="287.7038">run(velocity: int)</text></g><!--MD5=[e003bd0ad492c1594c85cd962a1e9016]
+class Felidae--><g id="elem_Felidae"><rect codeLine="26" fill="#F1F1F1" height="105.2038" id="Felidae" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="75" y="355.602"/><ellipse cx="90" cy="371.602" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M86.3594,378.102 L86.3594,365.9614 L94.0156,365.9614 L94.0156,368.0864 L88.7344,368.0864 L88.7344,370.7426 L93.75,370.7426 L93.75,372.8676 L88.7344,372.8676 L88.7344,375.977 L94.0156,375.977 L94.0156,378.102 L86.3594,378.102 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="104" y="377.034">Felidae</text><line style="stroke:#181818;stroke-width:0.5;" x1="76" x2="154" y1="387.602" y2="387.602"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="81" y="406.5679">Jaguar,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="81" y="425.6358">Lion,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="81" y="444.7038">Cougar</text><line style="stroke:#181818;stroke-width:0.5;" x1="76" x2="154" y1="452.8057" y2="452.8057"/></g><!--MD5=[daecc7eff46ea50911bc75fa897b79e5]
+class Canidae--><g id="elem_Canidae"><rect codeLine="32" fill="#F1F1F1" height="105.2038" id="Canidae" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="87" x="297.5" y="355.602"/><ellipse cx="312.5" cy="371.602" fill="#EB937F" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M308.8594,378.102 L308.8594,365.9614 L316.5156,365.9614 L316.5156,368.0864 L311.2344,368.0864 L311.2344,370.7426 L316.25,370.7426 L316.25,372.8676 L311.2344,372.8676 L311.2344,375.977 L316.5156,375.977 L316.5156,378.102 L308.8594,378.102 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="55" x="326.5" y="377.034">Canidae</text><line style="stroke:#181818;stroke-width:0.5;" x1="298.5" x2="383.5" y1="387.602" y2="387.602"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34" x="303.5" y="406.5679">Wolf,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="303.5" y="425.6358">Fox,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="303.5" y="444.7038">Dog</text><line style="stroke:#181818;stroke-width:0.5;" x1="298.5" x2="383.5" y1="452.8057" y2="452.8057"/></g><!--MD5=[5ad1dd8f6cffe74230053c20893a10ec]
+reverse link Animal to Feline--><g id="link_Animal_Feline"><path codeLine="3" d="M184.87,147.192 C174.35,161.482 163.17,176.672 152.91,190.602 " fill="none" id="Animal-backto-Feline" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="179.33,142.912,196.82,130.952,190.6,151.212,179.33,142.912" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[2de52706d3995c6ebdeaa719a31095ea]
+reverse link Animal to Canine--><g id="link_Animal_Canine"><path codeLine="4" d="M271.13,147.192 C281.65,161.482 292.83,176.672 303.09,190.602 " fill="none" id="Animal-backto-Canine" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="265.4,151.212,259.18,130.952,276.67,142.912,265.4,151.212" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[914bd8d47da67fc87fd0c4dc9e2daf14]
+link Feline to Felidae--><g id="link_Feline_Felidae"><path codeLine="6" d="M115,295.672 C115,313.002 115,332.432 115,350.142 " fill="none" id="Feline-to-Felidae" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="115,355.582,119,346.582,115,350.582,111,346.582,115,355.582" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5817f2798a1c9d1eb1590a02e5d1c4c2]
+link Canine to Canidae--><g id="link_Canine_Canidae"><path codeLine="7" d="M341,295.672 C341,313.002 341,332.432 341,350.142 " fill="none" id="Canine-to-Canidae" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="341,355.582,345,346.582,341,350.582,337,346.582,341,355.582" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[be51d1a9230a7f4853ad1b6360a92749]
+@startuml
+package Animalia {
+
+  Animal <|- - Feline
+  Animal <|- - Canine
+
+  Feline - -> Felidae
+  Canine - -> Canidae
+
+  abstract class Animal {
+     {abstract} void jump(height: int)
+     {abstract} void run(velocity: int)
+  }
+  
+  class Feline {
+     - species: Enum<Felidae>
+     + jump(height: int)
+     + run(velocity: int)
+  }
+  
+  class Canine {
+     - species: Enum<Canidae>
+     + jump(height: int)
+     + run(velocity: int)
+  }
+
+  enum Felidae {
+     Jaguar,
+     Lion,
+     Cougar
+  }
+  
+  enum Canidae {
+     Wolf,
+     Fox,
+     Dog
+  }
+}
+@enduml
+
+PlantUML version 1.2022.4(Sat Apr 09 14:29:17 CET 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

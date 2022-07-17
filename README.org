@@ -1,6 +1,14 @@
 This is the source for [[https://grtcdr.github.io][grtcdr.github.io]].
 
-After processing, the output is placed in the ~public~ directory.
+* How it works
+
+These files are compiled and placed in the ~public~ directory.
+
+With every commit, CI pulls the changes, creates a new commit in the
+~gh-pages~ branch and deploys it.
+
+Jekyll is configured not to interfere with this process, and this is
+done by creating a ~.nojekyll~ file at the root of the project.
 
 * Setup
 
@@ -27,10 +35,12 @@ I have written [[https://grtcdr.github.io/posts/building-a-website-with-emacs.ht
 
 This website utilizes the following submodules to achieve a more
 modular and flexible structure:
-- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]
-- [[https://github.com/grtcdr/resume][resume]]
 
-This allows me to work on these two projects separately, maintaining composability.
+- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]], a repository that hosts my personal configuration files, some of which are documented.
+- [[https://github.com/grtcdr/resume][resume]], a repository that hosts my résumé.
+
+This allows me to work on these two projects independently, whilst
+maintaining their individual composability.
 
 For more information on submodules, visit this [[https://git-scm.com/book/en/v2/Git-Tools-Submodules][manual]].
 

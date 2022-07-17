@@ -41,10 +41,9 @@ blockquote {
 a {
   color: @accent02;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline
+  &:hover {
+    text-decoration: underline
+  }
 }
 
 p {
@@ -53,6 +52,11 @@ p {
 
 li {
   line-height: 1.8em
+}
+
+img {
+  margin: auto;
+  display: block;
 }
 
 // =========== Properties
@@ -143,15 +147,12 @@ li {
 
 // =========== Figures
 
-div.figure p {
-  text-align: center
-}
-
 .figure {
   padding: 1em;
-  p {
-    text-align: center
-  }
+}
+
+figcaption {
+  text-align: center
 }
 
 // =========== Source
@@ -249,4 +250,9 @@ h1, h2, h3, h4, h5, h6 {
       color: #CCCCCC;
     }
   }
+}
+
+span[class^='section-number'] {
+  color: #CCCCCC;
+  font-size: 0.75em;
 }

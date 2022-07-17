@@ -1,5 +1,5 @@
 #+TITLE: Aziz Ben Ali
-#+SETUPFILE: .setup.org
+#+SETUPFILE: _setup.org
 #+OPTIONS: prop:t tasks:nil
 
 #+begin_quote
@@ -17,16 +17,14 @@ You can view my résumé in [[file:data/resume.pdf][PDF format]].
 
 * Employers
 
-** TODO Arab Tunisian Bank
+** Arab Tunisian Bank
 :PROPERTIES:
 :POSITION: Software Developer
 :TYPE: Internship
 :LOCATION: Ariana, Tunisia
 :START_DATE: Jul. 11, 2022
-:END_DATE: Aug. 31, 2022
+:END_DATE: Present
 :END:
-
-Ongoing.
 
 ** HLi Group
 :PROPERTIES:

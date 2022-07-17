@@ -1,0 +1,199 @@
+#+TITLE: Writing UML
+#+DATE: <2022-07-15 Fri>
+#+SETUPFILE: ../_setup.org
+
+* Foreword
+:PROPERTIES:
+:CUSTOM_ID: foreword
+:END:
+
+#+begin_quote
+Modeling is the designing of software applications before coding.
+#+end_quote
+
+A lot of developers believe this is a waste of time, and while I
+mostly agree, I certainly see a use in abstracting complex systems
+through diagrams that non-programmers can wrap their heads around.
+
+UML is a topic that is still taught in academia, but I don't think
+it's taught right. In every academic project I was part of, I've
+noticed people misusing UML, or at least, not using it to its full
+potential.
+
+/Allow me to elaborate./
+
+* Reproducibility
+:PROPERTIES:
+:CUSTOM_ID: reproducibility
+:END:
+
+When UML is a prerequisite, I choose to use a solution that can be
+reproduced by people other than myself. A proprietary format is
+likely to change over time, and heavy software is simply a no-go.
+
+* Versioning
+:PROPERTIES:
+:CUSTOM_ID: versioning
+:END:
+
+Git and all other version control systems favor text.
+
+I always /sigh/ when I see projects that host things other than
+software, my first instinct is to yell at the maintainer for choosing
+Git, because it's not what Git was designed for.
+
+PlantUML is human-readable, human-writable and is simply plain text -
+this allows your VCS to do its compression magic, which in turn saves
+you loads of time. You can always check back with your commit history
+to see what had changed, and how the diagram has evolved over time.
+
+* Reliability
+:PROPERTIES:
+:CUSTOM_ID: reliability
+:END:
+
+PlantUML, being a text-driven solution, does not face the issues that
+plague GUI-driven alternatives. I've used multiple UML diagramming
+software, and they all break down at some point. Their UI is usually
+cluttered with a sea of diagrams, none of which you'll ever use in a
+real-world scenario.
+
+I just want to model this system so I can be done with it.
+
+* Integration
+:PROPERTIES:
+:CUSTOM_ID: integration
+:END:
+
+PlantUML automatically integrates with your workflow because you can
+literally use it anywhere. You're not limited as to where you write
+UML; this allows you to mold the tool into your workflow as you see
+fit.
+
+* Getting things done
+:PROPERTIES:
+:CUSTOM_ID: getting-things-done
+:END:
+
+My computing environment is revolved around a keyboard-centric
+worfklow. I find that it saves me a lot of time not to move around too
+much, and it's gratifying to move throughout your desktop quicker than
+that pesky [[https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog][brown fox]].
+
+PlantUML, being text-driven, does not hamper my workflow, rather, it
+extends it.
+
+* Showcase
+:PROPERTIES:
+:CUSTOM_ID: showcase
+:END:
+
+Let's represent the animal kingdom in a class diagram, abstracting it
+the objected oriented way.
+
+Give this a good read, and then jump to the next section to understand
+what everything means.
+
+#+begin_example
+@startuml
+package Animalia {
+
+  Animal <|-- Feline
+  Animal <|-- Canine
+
+  Feline --> Felidae
+  Canine --> Canidae
+
+  abstract class Animal {
+     {abstract} void jump(height: int)
+     {abstract} void run(velocity: int)
+  }
+  
+  class Feline {
+     - species: Enum<Felidae>
+     + jump(height: int)
+     + run(velocity: int)
+  }
+  
+  class Canine {
+     - species: Enum<Canidae>
+     + jump(height: int)
+     + run(velocity: int)
+  }
+
+  enum Felidae {
+     Jaguar,
+     Lion,
+     Cougar
+  }
+  
+  enum Canidae {
+     Wolf,
+     Fox,
+     Dog
+  }
+}
+@enduml
+#+end_example
+
+Reading over the syntax, we can see that everything is wrapped inside
+~@startuml~ and ~@enduml~, a notation that is required for PlantUML to
+recognize its own syntax, kind of like a shebang.
+
+Inside the ~Animalia~ package, we find two classes, ~Feline~ and
+~Canine~ which implement the functions defined in ~Animal~, our
+abstract class. We've also got two enums, ~Felidae~, and ~Canidae~,
+which hold as many species of the two families as I can possibly think
+of.
+
+Okay, so how do we tie everything together? You guessed it, with
+arrows!
+
+We can represent aggregation between two classes with ~<|--~ or
+~--|>~.
+
+#+begin_quote
+Tip: The direction of the pointy bit will be reflected in the actual
+diagram.
+#+end_quote
+
+We can make a simple arrow as can be seen between the enums and
+classes, with ~<--~ or ~-->~.
+
+The last thing I'll cover is access modifiers, all of which are
+assigned a unique icon by PlantUML. Prepending a method or attribute
+with a ~+~ will indicate that it's ~public~ -- ~-~ is private -- ~#~ is
+protected and ~~~ is package private. It's sort of your responsibility
+to use them appropriately, as PlantUML won't stop you from shooting
+yourself in the foot.
+
+Dying to compile it? Give this command a go, and pick whatever format you like.
+
+#+begin_src sh :eval no
+plantuml animalia.uml -tpng animalia.png
+#                     -tsvg animalia.svg
+#                     -teps animalia.eps
+#                     -tpdf animalia.pdf
+#+end_src
+
+It's about time I show you the output of all that hard work... Behold!
+
+#+caption: The output of the compilation process
+#+attr_html: :alt Animalia class diagram :style width:60%
+[[../images/posts/animalia.svg]]
+
+* Conclusion
+:PROPERTIES:
+:CUSTOM_ID: conclusion
+:END:
+
+This is a pretty lengthy post, yet it doesn't even come close to
+scratching the surface of the offerings of this wonderful tool.
+
+I'm truly happy that such a tool exists, because it's always saved me
+my sanity and time.
+
+Looking for a more general-purpose, but text-driven diagramming piece
+of software? Check out [[https://graphviz.org][GraphViz]]. I made use of it in my language
+theory course, and used it to draw finite state machines, and it's an
+excellent tool for this very use-case.

@@ -1,5 +1,5 @@
 #+TITLE: Bonjour
-#+SETUPFILE: .setup.org
+#+SETUPFILE: _setup.org
 
 I'm grtcdr, a student and open source software developer from Tunisia.
 

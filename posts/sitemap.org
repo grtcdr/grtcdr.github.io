@@ -1,4 +1,5 @@
-#+TITLE: Sitemap for project grtcdr.github.io/posts
+#+TITLE: Posts
 
+- 2022-07-15 - [[file:writing-uml.org][Writing UML]]
 - 2022-05-27 - [[file:cycling-incident.org][Cycling incident]]
 - 2022-05-18 - [[file:building-a-website-with-emacs.org][Building a website with Emacs]]

@@ -18,6 +18,9 @@ jobs:
 
     - name: No Jekyll, No!
       run: touch public/.nojekyll
+      
+    - name: Robots
+      run: echo "grtcdr.tn" > public/CNAME
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4

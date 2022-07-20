@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-20 Wed 12:11 -->
+<!-- 2022-07-20 Wed 20:58 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>zsh</title>
@@ -126,7 +126,7 @@ Source my aliases, one of the best features of UNIX shells.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org3a8227e">for file in "$ZDOTDIR"/alias; do . "$file"; done
+<pre class="src src-sh" id="org6df4e6c">for file in "$ZDOTDIR"/alias; do . "$file"; done
 </pre>
 </div>
 </div>
@@ -141,7 +141,7 @@ them.
 </p>
 
 <p>
-This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org3a8227e">previously sourced</a>.
+This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org6df4e6c">previously sourced</a>.
 </p>
 
 <div class="org-src-container">
@@ -157,7 +157,7 @@ we placed them in the background:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgf8aac88">fancy-ctrl-z() {
+<pre class="src src-sh" id="orgcaa9f0c">fancy-ctrl-z() {
     if [[ $#BUFFER -eq 0 ]]; then
 	BUFFER="fg"
 	zle accept-line -w

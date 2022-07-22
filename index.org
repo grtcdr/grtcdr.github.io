@@ -1,10 +1,14 @@
 #+TITLE: Bonjour
 #+SETUPFILE: _setup.org
 
-I'm grtcdr, a student and open source software developer from Tunisia.
+I'm /grtcdr/, a student and open source software developer. I spend a
+lot of time tinkering with software, I also enjoy taking my bike out
+for a ride, which I do pretty frequently.
 
-I spend a lot of time tinkering with software, I also enjoy taking my
-bike out for a ride, which I do pretty frequently.
+Find me on:
+
++ GitHub: [[https://github.com/grtcdr][@grtcdr]]
++ SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
 
 * Highlights
 

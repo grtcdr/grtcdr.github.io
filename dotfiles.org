@@ -1,4 +1,4 @@
-#+TITLE: dotfiles
+#+TITLE: ~/.config
 #+SETUPFILE: _setup.org
 
 * Preface
@@ -7,7 +7,9 @@ The documentation found herein follows the [[https://en.wikipedia.org/wiki/Liter
 principle.
 
 It's only possible thanks to the [[https://www.gnu.org/software/emacs/][Emacs]] text editor, and the [[https://orgmode.org/][Org Mode]]
-ecosystem.
+ecosystem - this is not to say that a literate programming
+implementation is exclusive to these two, but I happen to like their
+integration and extensibility.
 
 The documentation does not cover all of my configurations. Hence, I
 invite you to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles
@@ -40,7 +42,8 @@ just adapted from someone else's dotfiles.
 
 - [[file:dotfiles/sh/startw.org][startw]]
 
-  A shell script that intelligently starts =sway=.
+  A shell script that intelligently starts =sway=, built with NVIDIA
+  GPUs in mind.
 
 - [[file:dotfiles/sh/mus.org][mus]]
 

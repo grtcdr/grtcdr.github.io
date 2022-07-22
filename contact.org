@@ -12,6 +12,3 @@
 
   You can [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][verify my identity]] to rest assured that you're speaking to
   me, not some stranger.
-
-+ GitHub: [[https://github.com/grtcdr][@grtcdr]]
-+ SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]

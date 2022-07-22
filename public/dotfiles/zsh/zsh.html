@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-20 Wed 20:58 -->
+<!-- 2022-07-22 Fri 01:53 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>zsh</title>
@@ -20,7 +20,42 @@
 <div id="content" class="content">
 <header>
 <h1 class="title">zsh</h1>
-</header>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#zshrc">1. .zshrc</a>
+<ul>
+<li><a href="#zshrc-startup">1.1. Startup</a></li>
+<li><a href="#zshrc-completions">1.2. Completions</a></li>
+<li><a href="#zshrc-common-options">1.3. Common options</a></li>
+<li><a href="#zshrc-prompt">1.4. Prompt</a></li>
+<li><a href="#zshrc-plugins">1.5. Plugins</a></li>
+<li><a href="#zshrc-functions">1.6. Functions</a></li>
+<li><a href="#zshrc-keybindings">1.7. Keybindings</a></li>
+</ul>
+</li>
+<li><a href="#zshenv">2. .zshenv</a></li>
+<li><a href="#zprofile">3. .zprofile</a>
+<ul>
+<li><a href="#zprofile-environment-variables">3.1. Environment variables</a></li>
+<li><a href="#zprofile-bemenu">3.2. Bootstrapping bemenu</a></li>
+</ul>
+</li>
+<li><a href="#alias">4. alias</a>
+<ul>
+<li><a href="#aliases-core">4.1. Core</a></li>
+<li><a href="#aliases-movement">4.2. Movement</a></li>
+<li><a href="#aliases-listing">4.3. Listing</a></li>
+<li><a href="#aliases-programs">4.4. Programs</a></li>
+<li><a href="#aliases-package-manager">4.5. Package manager</a></li>
+</ul>
+</li>
+<li><a href="#environ">5. environ</a></li>
+</ul>
+</div>
+</nav>
+
 <div id="outline-container-zshrc" class="outline-2">
 <h2 id="zshrc"><span class="section-number-2">1.</span> .zshrc</h2>
 <div class="outline-text-2" id="text-zshrc">
@@ -126,7 +161,7 @@ Source my aliases, one of the best features of UNIX shells.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org6df4e6c">for file in "$ZDOTDIR"/alias; do . "$file"; done
+<pre class="src src-sh" id="orgabde3c0">for file in "$ZDOTDIR"/alias; do . "$file"; done
 </pre>
 </div>
 </div>
@@ -141,7 +176,7 @@ them.
 </p>
 
 <p>
-This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org6df4e6c">previously sourced</a>.
+This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#orgabde3c0">previously sourced</a>.
 </p>
 
 <div class="org-src-container">
@@ -157,7 +192,7 @@ we placed them in the background:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgcaa9f0c">fancy-ctrl-z() {
+<pre class="src src-sh" id="org044cac5">fancy-ctrl-z() {
     if [[ $#BUFFER -eq 0 ]]; then
 	BUFFER="fg"
 	zle accept-line -w

@@ -17,7 +17,7 @@ Please note that a small but significant portion of my configurations,
 is a mold of what I've read in a blog, seen in a demonstration, or
 just adapted from someone else's dotfiles.
 
------
+* Explore
 
 - [[file:dotfiles/sway/sway.org][sway]]
 

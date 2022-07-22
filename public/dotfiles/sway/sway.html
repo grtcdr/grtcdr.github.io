@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-20 Wed 20:58 -->
+<!-- 2022-07-22 Fri 01:53 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sway</title>
@@ -20,7 +20,59 @@
 <div id="content" class="content">
 <header>
 <h1 class="title">sway</h1>
-</header>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#prerequisites">1. Prerequisites</a></li>
+<li><a href="#key-features">2. Key features</a></li>
+<li><a href="#related-configurations">3. Related configurations</a></li>
+<li><a href="#file-structure">4. File structure</a></li>
+<li><a href="#definitions">5. Definitions</a>
+<ul>
+<li><a href="#orgfe326f1">5.1. Keys</a></li>
+<li><a href="#orgd8ee5e7">5.2. Workspaces</a></li>
+<li><a href="#orgda86cd9">5.3. Modes</a></li>
+<li><a href="#org7d78846">5.4. Miscellaneous</a></li>
+</ul>
+</li>
+<li><a href="#input-configuration">6. Inputs</a>
+<ul>
+<li><a href="#input-keyboard">6.1. Keyboard</a></li>
+<li><a href="#input-touchpad">6.2. Touchpad</a></li>
+<li><a href="#input-mouse">6.3. Mouse</a></li>
+</ul>
+</li>
+<li><a href="#org88db004">7. Outputs</a></li>
+<li><a href="#keybindings">8. Keybindings</a>
+<ul>
+<li><a href="#keybindings-highlighting-windows">8.1. Highlighting windows</a></li>
+<li><a href="#keybinding-tiling-windows">8.2. Tiling windows</a></li>
+<li><a href="#keybindings-resizing-windows">8.3. Resizing windows</a></li>
+<li><a href="#keybindings-moving-between-workspaces">8.4. Moving between workspaces</a></li>
+<li><a href="#keybindings-moving-windows-between-workspaces">8.5. Moving windows between workspaces</a></li>
+<li><a href="#keybindings-splitting-windows">8.6. Splitting windows</a></li>
+<li><a href="#keybindings-window-actions">8.7. Window actions</a></li>
+<li><a href="#keybindings-playback-control">8.8. Playback control</a></li>
+<li><a href="#keybindings-volume-control">8.9. Volume control</a></li>
+<li><a href="#keybindings-brightness-control">8.10. Brightness control</a></li>
+<li><a href="#keybindings-modes">8.11. Modes</a></li>
+<li><a href="#keybindings-miscellaneous">8.12. Miscellaneous</a></li>
+</ul>
+</li>
+<li><a href="#modes">9. Modes</a>
+<ul>
+<li><a href="#mode-session">9.1. Session</a></li>
+<li><a href="#mode-citron">9.2. Citron</a></li>
+</ul>
+</li>
+<li><a href="#visuals">10. Visuals</a></li>
+<li><a href="#imports">11. Imports</a></li>
+<li><a href="#startup">12. Startup</a></li>
+</ul>
+</div>
+</nav>
+
 <div id="outline-container-prerequisites" class="outline-2">
 <h2 id="prerequisites"><span class="section-number-2">1.</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-prerequisites">
@@ -86,7 +138,7 @@ The following is a tree structure that should help you visualize the
 layout of my configuration:
 </p>
 
-<pre class="example" id="org519b9fd">
+<pre class="example" id="org68ef1d5">
 ~/.config/sway/
 ├── config         #  General configurations
 ├── rules          #  Window rules
@@ -119,8 +171,8 @@ configuration, so keep your eyes peeled.
 </p>
 </div>
 
-<div id="outline-container-orgd5beaa1" class="outline-3">
-<h3 id="orgd5beaa1"><span class="section-number-3">5.1.</span> Keys</h3>
+<div id="outline-container-orgfe326f1" class="outline-3">
+<h3 id="orgfe326f1"><span class="section-number-3">5.1.</span> Keys</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Let's define the modifiers and directional keys:
@@ -140,8 +192,8 @@ Let's define the modifiers and directional keys:
 </div>
 </div>
 
-<div id="outline-container-org3a2d769" class="outline-3">
-<h3 id="org3a2d769"><span class="section-number-3">5.2.</span> Workspaces</h3>
+<div id="outline-container-orgd8ee5e7" class="outline-3">
+<h3 id="orgd8ee5e7"><span class="section-number-3">5.2.</span> Workspaces</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Switching between workspaces is the most basic operation you will find
@@ -173,8 +225,8 @@ using.
 </div>
 </div>
 
-<div id="outline-container-org5f2c25c" class="outline-3">
-<h3 id="org5f2c25c"><span class="section-number-3">5.3.</span> Modes</h3>
+<div id="outline-container-orgda86cd9" class="outline-3">
+<h3 id="orgda86cd9"><span class="section-number-3">5.3.</span> Modes</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 <pre class="src src-sh">set {
@@ -191,8 +243,8 @@ using.
 </div>
 </div>
 
-<div id="outline-container-org8e07e68" class="outline-3">
-<h3 id="org8e07e68"><span class="section-number-3">5.4.</span> Miscellaneous</h3>
+<div id="outline-container-org7d78846" class="outline-3">
+<h3 id="org7d78846"><span class="section-number-3">5.4.</span> Miscellaneous</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 This variable represents how many pixels a particular window should get <a href="#keybindings-resizing-windows">resized</a>.
@@ -269,8 +321,8 @@ the left and right mouse buttons respectively.
 </div>
 </div>
 
-<div id="outline-container-org8aacf87" class="outline-2">
-<h2 id="org8aacf87"><span class="section-number-2">7.</span> Outputs</h2>
+<div id="outline-container-org88db004" class="outline-2">
+<h2 id="org88db004"><span class="section-number-2">7.</span> Outputs</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 I use a single screen, thus my output configuration is simple. I've

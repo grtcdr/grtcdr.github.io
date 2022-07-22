@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-20 Wed 20:48 -->
+<!-- 2022-07-22 Fri 02:13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Writing UML</title>
+<title>A short introduction to PlantUML</title>
 <meta name="author" content="Aziz Ben Ali" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/stylesheets/main.css">
@@ -13,14 +13,14 @@
 <body>
 <div id="preamble" class="status">
 <ul class="navigation">
-  <li> <a href="/index.html">Home</a> </li>
-  <li> <a href="/contact.html">Contact</a> </li>
-  <li> <a href="/resume.html">Résumé</a> </li>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="/data/resume.pdf">Résumé</a></li>
 </ul>
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Writing UML</h1>
+<h1 class="title">A short introduction to PlantUML</h1>
 </header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
@@ -32,7 +32,6 @@
 <li><a href="#integration"><a href="#integration">Integration</a></a></li>
 <li><a href="#getting-things-done"><a href="#getting-things-done">Getting things done</a></a></li>
 <li><a href="#showcase"><a href="#showcase">Showcase</a></a></li>
-<li><a href="#conclusion"><a href="#conclusion">Conclusion</a></a></li>
 </ul>
 </div>
 </nav>
@@ -42,14 +41,15 @@
 <div class="outline-text-2" id="text-foreword">
 <blockquote>
 <p>
-Modeling is the designing of software applications before coding.
+Modeling is the designing of software applications before coding. &#x2013; uml.org
 </p>
 </blockquote>
 
 <p>
-A lot of developers believe this is a waste of time, and while I
-mostly agree, I certainly see a use in abstracting complex systems
-through diagrams that non-programmers can wrap their heads around.
+Many developers believe this is a waste of time, and while I mostly
+agree, I certainly see a lot of benefit in abstracting complex systems
+through diagrams that even non-programmers can wrap their heads
+around.
 </p>
 
 <p>
@@ -60,7 +60,7 @@ potential.
 </p>
 
 <p>
-<i>Allow me to elaborate.</i>
+Allow me to elaborate.
 </p>
 </div>
 </div>
@@ -84,16 +84,18 @@ Git and all other version control systems favor text.
 </p>
 
 <p>
-I always <i>sigh</i> when I see projects that host things other than
-software, my first instinct is to yell at the maintainer for choosing
-Git, because it's not what Git was designed for.
+I always <i>sigh</i> when I see projects hosting things that are not
+primarily software in a VCS. My first instinct is to yell at the
+maintainer for choosing Git, because it's not what Git was designed
+for.
 </p>
 
 <p>
-PlantUML is human-readable, human-writable and is simply plain text -
+<a href="https://github.com/plantuml/plantuml">PlantUML</a> is human-readable, human-writable and is simply plain text -
 this allows your VCS to do its compression magic, which in turn saves
-you loads of time. You can always check back with your commit history
-to see what had changed, and how the diagram has evolved over time.
+you a non-negligible amount of time. Since it is merely a textual
+representation, a language out of which spring visual diagrams, one
+can track the changes that occur within the file overtime.
 </p>
 </div>
 </div>
@@ -103,14 +105,14 @@ to see what had changed, and how the diagram has evolved over time.
 <div class="outline-text-2" id="text-reliability">
 <p>
 PlantUML, being a text-driven solution, does not face the issues that
-plague GUI-driven alternatives. I've used multiple UML diagramming
-software, and they all break down at some point. Their UI is usually
-cluttered with a sea of diagrams, none of which you'll ever use in a
-real-world scenario.
+plague GUI-driven alternatives, all of which start to break down at
+some point. Their UI is usually cluttered with all of the diagrams
+they support&#x2026; None of which you'll actually ever use in a real-world
+scenario.
 </p>
 
 <p>
-I just want to model this system so I can be done with it.
+I just want to model this system so I can be done with it, dude.
 </p>
 </div>
 </div>
@@ -131,10 +133,11 @@ fit.
 <h2 id="getting-things-done"><a href="#getting-things-done">Getting things done</a></h2>
 <div class="outline-text-2" id="text-getting-things-done">
 <p>
-My computing environment is revolved around a keyboard-centric
-worfklow. I find that it saves me a lot of time not to move around too
-much, and it's gratifying to move throughout your desktop quicker than
-that pesky <a href="https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog">brown fox</a>.
+My computing environment is revolved around the philosophy of a
+keyboard-centric worfklow. I find that it saves me a lot of time and
+energy not having to move my hands beyond the <a href="https://en.wikipedia.org/wiki/Touch_typing">home row</a>, and it's
+gratifying to jump back and forth between my windows and workspaces at
+the speed of light.
 </p>
 
 <p>
@@ -153,11 +156,10 @@ the objected oriented way.
 </p>
 
 <p>
-Give this a good read, and then jump to the next section to understand
-what everything means.
+Give this a good read, and then jump to the next section for my explanation.
 </p>
 
-<pre class="example" id="orgaba066c">
+<pre class="example" id="org4077f2b">
 @startuml
 package Animalia {
 
@@ -220,19 +222,14 @@ arrows!
 
 <p>
 We can represent aggregation between two classes with <code>&lt;|--</code> or
-<code>--|&gt;</code>.
+<code>--|&gt;</code>, and to represent a normal relationship between two things,
+such as what you see between the different enums and classes, we can
+use <code>&lt;--</code> or <code>--&gt;</code>.
 </p>
 
-<blockquote>
 <p>
-Tip: The direction of the pointy bit will be reflected in the actual
-diagram.
-</p>
-</blockquote>
-
-<p>
-We can make a simple arrow as can be seen between the enums and
-classes, with <code>&lt;--</code> or <code>--&gt;</code>.
+The direction of the pointy bit matters, and it will be reflected <b>as
+is</b>, in the <a href="#org4327339">output diagram</a>.
 </p>
 
 <p>
@@ -245,48 +242,33 @@ yourself in the foot.
 </p>
 
 <p>
-Dying to compile it? Give this command a go, and pick whatever format you like.
+Dying to compile it? Pop your terminal open, and give this command a
+go.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-sh">plantuml animalia.uml -tpng animalia.png
-#                     -tsvg animalia.svg
-#                     -teps animalia.eps
-#                     -tpdf animalia.pdf
 </pre>
 </div>
 
 <p>
-It's about time I show you the output of all that hard work&#x2026; Behold!
+If all goes smoothly, you should see an <code>animalia.png</code> file appear in
+your working directory&#x2026; Go on, open it!
 </p>
 
 
-<figure id="org4c0f24e">
-<img src="../images/posts/animalia.svg" alt="Animalia class diagram" class="org-svg" style="width:60%">
+<figure id="org4327339">
+<img src="../images/posts/animalia.svg" alt="Animalia class diagram" class="org-svg" style="width:60%;">
 
-<figcaption><span class="figure-number">Figure 1: </span>The output of the compilation process</figcaption>
 </figure>
-</div>
-</div>
 
-<div id="outline-container-conclusion" class="outline-2">
-<h2 id="conclusion"><a href="#conclusion">Conclusion</a></h2>
-<div class="outline-text-2" id="text-conclusion">
 <p>
-This is a pretty lengthy post, yet it doesn't even come close to
-scratching the surface of the offerings of this wonderful tool.
+I hope I've given PlantUML the proper introduction it deserves - it's a
+pretty neat program, don't you think?
 </p>
 
 <p>
-I'm truly happy that such a tool exists, because it's always saved me
-my sanity and time.
-</p>
-
-<p>
-Looking for a more general-purpose, but text-driven diagramming piece
-of software? Check out <a href="https://graphviz.org">GraphViz</a>. I made use of it in my language
-theory course, and used it to draw finite state machines, and it's an
-excellent tool for this very use-case.
+<i>Okay, catch you later!</i>
 </p>
 </div>
 </div>

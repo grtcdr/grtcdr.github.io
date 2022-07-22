@@ -6,13 +6,14 @@ I would like to make a confession... I detest most websites I visit on
 a daily basis. I wanted to make a difference with my little personal
 corner of the internet. What do you know? /Emacs can totally do that/.
 
-You see, Emacs comes with an exceptional tool called Org, that comes
+You see, Emacs packs an exceptional mode, called Org Mode, that comes
 with many wonderful functionalities. That which powers this website
 goes by ~org-publish-project-alist~.
 
 In short, you specify where a particular =$thing= is, and where it
-should go upon export. Allow me to show you the project structure to
-help you visualize the layout of the project.
+should go upon export. The /really fun/ part is, we have the utmost
+freedom to design our own file hierarchy - here's what
+I've come up with:
 
 #+begin_example
 ~/projects/grtcdr.github.io
@@ -33,12 +34,12 @@ help you visualize the layout of the project.
     └── contact.html
 #+end_example
 
-* Getting started
+* An example to get you started
 :PROPERTIES:
 :CUSTOM_ID: getting-started
 :END:
 
-I want to introduce you to the most basic form of a working ~org-publish-project-alist~:
+I'd like to introduce you to the most basic form of a working ~org-publish-project-alist~.
 
 #+begin_src emacs-lisp :eval no
 (require 'ox-html)
@@ -51,10 +52,11 @@ I want to introduce you to the most basic form of a working ~org-publish-project
 	 :publishing-function org-html-publish-to-html)))
 #+end_src
 
-What happens you create a =.org= document within your =:base-directory= -- save
-it -- hit =M-x org-publish RET=, is simply magical!
+What happens you create a =.org= document within your
+=:base-directory= -- save it -- hit =M-x org-publish RET=, is nothing
+short of magic!
 
-Org, being the smarty pants tool it is, takes the original file and
+Org, being the smarty-pants tool it is, takes the original file and
 publishes it to =:publishing-directory= in =HTML= format.
 
 That's exactly what we would need if we had tens or hundreds of =.org=

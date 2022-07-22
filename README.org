@@ -1,21 +1,11 @@
-This is the source for [[https://grtcdr.github.io][grtcdr.github.io]].
-
-* How it works
-
-These files are compiled and placed in the ~public~ directory.
-
-With every commit, CI pulls the changes, creates a new commit in the
-~gh-pages~ branch and deploys it.
-
-Jekyll is configured not to interfere with this process, and this is
-done by creating a ~.nojekyll~ file at the root of the project.
+Hola!
 
 * Setup
 
 Clone the repository and its [[file:.gitmodules][submodules]]:
 
 #+begin_example
-git clone --recursive https://github.com/grtcdr/site.org.git
+git clone --recursive https://github.com/grtcdr/grtcdr.github.io.git grtcdr.tn
 #+end_example
 
 * Reproducing
@@ -30,6 +20,18 @@ whole website for you.
 
 I have written [[https://grtcdr.github.io/posts/building-a-website-with-emacs.html][a post]] that answers the "why" and "how" of
 ~org-publish-project-alist~.
+
+* Development
+
+In order to fully utilize the website during development, you should
+serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]].
+
+Serving the site with miniserve:
+
+#+begin_src sh
+cd grtcdr.tn
+miniserve public
+#+end_src
 
 * Structure
 
@@ -46,5 +48,4 @@ For more information on submodules, visit this [[https://git-scm.com/book/en/v2/
 
 * Copying
 
-The contents of [[https://github.com/grtcdr/site.org][this repository]] is [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]], the source code is
-[[file:COPYING][MIT]].
+The content in this site is [[file:COPYING/CONTENT.txt][CC-BY-SA 2.0]] — The source code is [[file:COPYING/SOURCE.txt][MIT]].

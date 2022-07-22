@@ -1,4 +1,4 @@
-#+TITLE: Writing UML
+#+TITLE: A short introduction to PlantUML
 #+DATE: <2022-07-15 Fri>
 #+SETUPFILE: ../_setup.org
 
@@ -8,19 +8,20 @@
 :END:
 
 #+begin_quote
-Modeling is the designing of software applications before coding.
+Modeling is the designing of software applications before coding. -- uml.org
 #+end_quote
 
-A lot of developers believe this is a waste of time, and while I
-mostly agree, I certainly see a use in abstracting complex systems
-through diagrams that non-programmers can wrap their heads around.
+Many developers believe this is a waste of time, and while I mostly
+agree, I certainly see a lot of benefit in abstracting complex systems
+through diagrams that even non-programmers can wrap their heads
+around.
 
 UML is a topic that is still taught in academia, but I don't think
 it's taught right. In every academic project I was part of, I've
 noticed people misusing UML, or at least, not using it to its full
 potential.
 
-/Allow me to elaborate./
+Allow me to elaborate.
 
 * Reproducibility
 :PROPERTIES:
@@ -38,14 +39,16 @@ likely to change over time, and heavy software is simply a no-go.
 
 Git and all other version control systems favor text.
 
-I always /sigh/ when I see projects that host things other than
-software, my first instinct is to yell at the maintainer for choosing
-Git, because it's not what Git was designed for.
+I always /sigh/ when I see projects hosting things that are not
+primarily software in a VCS. My first instinct is to yell at the
+maintainer for choosing Git, because it's not what Git was designed
+for.
 
-PlantUML is human-readable, human-writable and is simply plain text -
+[[https://github.com/plantuml/plantuml][PlantUML]] is human-readable, human-writable and is simply plain text -
 this allows your VCS to do its compression magic, which in turn saves
-you loads of time. You can always check back with your commit history
-to see what had changed, and how the diagram has evolved over time.
+you a non-negligible amount of time. Since it is merely a textual
+representation, a language out of which spring visual diagrams, one
+can track the changes that occur within the file overtime.
 
 * Reliability
 :PROPERTIES:
@@ -53,12 +56,12 @@ to see what had changed, and how the diagram has evolved over time.
 :END:
 
 PlantUML, being a text-driven solution, does not face the issues that
-plague GUI-driven alternatives. I've used multiple UML diagramming
-software, and they all break down at some point. Their UI is usually
-cluttered with a sea of diagrams, none of which you'll ever use in a
-real-world scenario.
+plague GUI-driven alternatives, all of which start to break down at
+some point. Their UI is usually cluttered with all of the diagrams
+they support... None of which you'll actually ever use in a real-world
+scenario.
 
-I just want to model this system so I can be done with it.
+I just want to model this system so I can be done with it, dude.
 
 * Integration
 :PROPERTIES:
@@ -75,10 +78,11 @@ fit.
 :CUSTOM_ID: getting-things-done
 :END:
 
-My computing environment is revolved around a keyboard-centric
-worfklow. I find that it saves me a lot of time not to move around too
-much, and it's gratifying to move throughout your desktop quicker than
-that pesky [[https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog][brown fox]].
+My computing environment is revolved around the philosophy of a
+keyboard-centric worfklow. I find that it saves me a lot of time and
+energy not having to move my hands beyond the [[https://en.wikipedia.org/wiki/Touch_typing][home row]], and it's
+gratifying to jump back and forth between my windows and workspaces at
+the speed of light.
 
 PlantUML, being text-driven, does not hamper my workflow, rather, it
 extends it.
@@ -91,8 +95,7 @@ extends it.
 Let's represent the animal kingdom in a class diagram, abstracting it
 the objected oriented way.
 
-Give this a good read, and then jump to the next section to understand
-what everything means.
+Give this a good read, and then jump to the next section for my explanation.
 
 #+begin_example
 @startuml
@@ -150,15 +153,12 @@ Okay, so how do we tie everything together? You guessed it, with
 arrows!
 
 We can represent aggregation between two classes with ~<|--~ or
-~--|>~.
+~--|>~, and to represent a normal relationship between two things,
+such as what you see between the different enums and classes, we can
+use ~<--~ or ~-->~.
 
-#+begin_quote
-Tip: The direction of the pointy bit will be reflected in the actual
-diagram.
-#+end_quote
-
-We can make a simple arrow as can be seen between the enums and
-classes, with ~<--~ or ~-->~.
+The direction of the pointy bit matters, and it will be reflected *as
+is*, in the [[diagram][output diagram]].
 
 The last thing I'll cover is access modifiers, all of which are
 assigned a unique icon by PlantUML. Prepending a method or attribute
@@ -167,33 +167,21 @@ protected and ~~~ is package private. It's sort of your responsibility
 to use them appropriately, as PlantUML won't stop you from shooting
 yourself in the foot.
 
-Dying to compile it? Give this command a go, and pick whatever format you like.
+Dying to compile it? Pop your terminal open, and give this command a
+go.
 
 #+begin_src sh :eval no
 plantuml animalia.uml -tpng animalia.png
-#                     -tsvg animalia.svg
-#                     -teps animalia.eps
-#                     -tpdf animalia.pdf
 #+end_src
 
-It's about time I show you the output of all that hard work... Behold!
+If all goes smoothly, you should see an ~animalia.png~ file appear in
+your working directory... Go on, open it!
 
-#+caption: The output of the compilation process
-#+attr_html: :alt Animalia class diagram :style width:60%
+#+name: diagram
+#+attr_html: :alt Animalia class diagram :style width:60%;
 [[../images/posts/animalia.svg]]
 
-* Conclusion
-:PROPERTIES:
-:CUSTOM_ID: conclusion
-:END:
+I hope I've given PlantUML the proper introduction it deserves - it's a
+pretty neat program, don't you think?
 
-This is a pretty lengthy post, yet it doesn't even come close to
-scratching the surface of the offerings of this wonderful tool.
-
-I'm truly happy that such a tool exists, because it's always saved me
-my sanity and time.
-
-Looking for a more general-purpose, but text-driven diagramming piece
-of software? Check out [[https://graphviz.org][GraphViz]]. I made use of it in my language
-theory course, and used it to draw finite state machines, and it's an
-excellent tool for this very use-case.
+/Okay, catch you later!/

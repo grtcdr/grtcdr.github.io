@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-20 Wed 20:48 -->
+<!-- 2022-07-22 Fri 01:53 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Building a website with Emacs</title>
@@ -13,9 +13,9 @@
 <body>
 <div id="preamble" class="status">
 <ul class="navigation">
-  <li> <a href="/index.html">Home</a> </li>
-  <li> <a href="/contact.html">Contact</a> </li>
-  <li> <a href="/resume.html">Résumé</a> </li>
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="/data/resume.pdf">Résumé</a></li>
 </ul>
 </div>
 <div id="content" class="content">
@@ -25,7 +25,7 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#getting-started"><a href="#getting-started">Getting started</a></a></li>
+<li><a href="#getting-started"><a href="#getting-started">An example to get you started</a></a></li>
 <li><a href="#initialization"><a href="#initialization">Initialization</a></a></li>
 <li><a href="#setup"><a href="#setup">Setup</a></a></li>
 </ul>
@@ -38,18 +38,19 @@ corner of the internet. What do you know? <i>Emacs can totally do that</i>.
 </p>
 
 <p>
-You see, Emacs comes with an exceptional tool called Org, that comes
+You see, Emacs packs an exceptional mode, called Org Mode, that comes
 with many wonderful functionalities. That which powers this website
 goes by <code>org-publish-project-alist</code>.
 </p>
 
 <p>
 In short, you specify where a particular <code>$thing</code> is, and where it
-should go upon export. Allow me to show you the project structure to
-help you visualize the layout of the project.
+should go upon export. The <i>really fun</i> part is, we have the utmost
+freedom to design our own file hierarchy - here's what
+I've come up with:
 </p>
 
-<pre class="example" id="org5d06814">
+<pre class="example" id="org025488b">
 ~/projects/grtcdr.github.io
 ├── org/
 │   ├── blog/
@@ -69,10 +70,10 @@ help you visualize the layout of the project.
 </pre>
 
 <div id="outline-container-getting-started" class="outline-2">
-<h2 id="getting-started"><a href="#getting-started">Getting started</a></h2>
+<h2 id="getting-started"><a href="#getting-started">An example to get you started</a></h2>
 <div class="outline-text-2" id="text-getting-started">
 <p>
-I want to introduce you to the most basic form of a working <code>org-publish-project-alist</code>:
+I'd like to introduce you to the most basic form of a working <code>org-publish-project-alist</code>.
 </p>
 
 <div class="org-src-container">
@@ -88,12 +89,13 @@ I want to introduce you to the most basic form of a working <code>org-publish-pr
 </div>
 
 <p>
-What happens you create a <code>.org</code> document within your <code>:base-directory</code> &#x2013; save
-it &#x2013; hit <code>M-x org-publish RET</code>, is simply magical!
+What happens you create a <code>.org</code> document within your
+<code>:base-directory</code> &#x2013; save it &#x2013; hit <code>M-x org-publish RET</code>, is nothing
+short of magic!
 </p>
 
 <p>
-Org, being the smarty pants tool it is, takes the original file and
+Org, being the smarty-pants tool it is, takes the original file and
 publishes it to <code>:publishing-directory</code> in <code>HTML</code> format.
 </p>
 

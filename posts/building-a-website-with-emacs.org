@@ -52,7 +52,7 @@ I'd like to introduce you to the most basic form of a working ~org-publish-proje
 	 :publishing-function org-html-publish-to-html)))
 #+end_src
 
-What happens you create a =.org= document within your
+What happens when you create a =.org= document within your
 =:base-directory= -- save it -- hit =M-x org-publish RET=, is nothing
 short of magic!
 

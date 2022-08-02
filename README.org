@@ -24,9 +24,7 @@ I have written [[https://grtcdr.github.io/posts/building-a-website-with-emacs.ht
 * Development
 
 In order to fully utilize the website during development, you should
-serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]].
-
-Serving the site with miniserve:
+serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
 
 #+begin_src sh
 cd grtcdr.tn

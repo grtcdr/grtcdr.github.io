@@ -1,23 +1,18 @@
-#+TITLE: ~/.config
+#+TITLE: Depot
 #+SETUPFILE: _setup.org
 
-* Preface
-
 The documentation found herein follows the [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]
-principle.
+principle, it /does not/ cover all of my configurations, so you are
+invited to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles live.
 
-It's only possible thanks to the [[https://www.gnu.org/software/emacs/][Emacs]] text editor, and the [[https://orgmode.org/][Org Mode]]
-ecosystem - this is not to say that a literate programming
-implementation is exclusive to these two, but I happen to like their
-integration and extensibility.
+This project was made possible thanks to the [[https://www.gnu.org/software/emacs/][Emacs]] text editor, and
+the [[https://orgmode.org/][Org Mode]] ecosystem - this is not to say that a literate
+programming implementation is exclusive to these two, but I happen to
+like their integration and extensibility.
 
-The documentation does not cover all of my configurations. Hence, I
-invite you to [[https://git.sr.ht/~grtcdr/dotfiles][browse the repository]] where the rest of my dotfiles
-live.
-
-Please note that a small but significant portion of my configurations,
-is a mold of what I've read in a blog, seen in a demonstration, or
-just adapted from someone else's dotfiles.
+Please note that a small portion of my configurations may contain
+something adapted from someone's /[a]/ blog, /[b]/ video demonstration
+or /[c]/ dotfiles.
 
 * Explore
 

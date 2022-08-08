@@ -1,0 +1,40 @@
+#+TITLE: Extending project.el with to-do functionality
+#+DATE: <2022-08-08 Mon> 
+#+SETUPFILE: ../_setup.org
+#+FILETAGS: emacs
+
+When I work on a personal project which has the potential to grow
+beyond a few tasks, I like to maintain the project's to-do list within
+a =TODO.org= file which I like to place at the tippity-top of the
+project, or in more technical terms, the project root.
+
+It's sort of annoying having to ~find-file~ anytime I want to make a
+change to my to-dos. So, I wrote up this tiny function which
+automatically opens the =TODO.org= file from anywhere inside the
+project.
+
+#+begin_src elisp
+(defun project-todo ()
+  "Opens the TODO.org file at the root of the current project."
+  (interactive)
+  (let* ((base (project-root (project-current)))
+	 (todo (file-name-concat base "TODO.org")))
+    (if (file-exists-p todo)
+	(find-file todo)
+      (message "Project does not contain a TODO.org file."))))
+#+end_src
+
+That's very nice, how about we make a keybinding for it!
+
+#+begin_src 
+(global-set-key (kbd "C-x p t") 'project-todo)
+#+end_src
+
+To further extend =project.el=, we should perhaps register this
+command in the list of options that appear when we [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html][switch to a project]]
+with ~C-x p p~. We can do this by appending the command we just
+created to ~project-switch-commands~, like so:
+
+#+begin_src elisp
+(push '(project-todo "Todo") project-switch-commands)
+#+end_src

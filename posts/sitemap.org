@@ -1,4 +1,5 @@
 #+TITLE: Posts
 
+- 2022-08-08 - [[file:extending-project-with-todo-functionality.org][Extending project.el with to-do functionality]]
 - 2022-07-15 - [[file:a-short-introduction-to-plantuml.org][A short introduction to PlantUML]]
 - 2022-05-18 - [[file:building-a-website-with-emacs.org][Building a website with Emacs]]

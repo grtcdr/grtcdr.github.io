@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-08-08 Mon 17:51 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Extending project.el with to-do functionality</title>
+<meta name="author" content="Aziz Ben Ali" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/stylesheets/main.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<meta name="description" content="grtcdr's personal website, containing everything from his blog and résumé, to the scripts and configurations that power his system.">
+</head>
+<body>
+<div id="preamble" class="status">
+<ul class="navigation">
+  <li><a href="/index.html">Home</a></li>
+  <li><a href="/contact.html">Contact</a></li>
+  <li><a href="/data/resume.pdf">Résumé</a></li>
+</ul>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Extending project.el with to-do functionality</h1>
+</header><p>
+When I work on a personal project which has the potential to grow
+beyond a few tasks, I like to maintain the project's to-do list within
+a <code>TODO.org</code> file which I like to place at the tippity-top of the
+project, or in more technical terms, the project root.
+</p>
+
+<p>
+It's sort of annoying having to <code>find-file</code> anytime I want to make a
+change to my to-dos. So, I wrote up this tiny function which
+automatically opens the <code>TODO.org</code> file from anywhere inside the
+project.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(defun project-todo ()
+  "Opens the TODO.org file at the root of the current project."
+  (interactive)
+  (let* ((base (project-root (project-current)))
+	 (todo (file-name-concat base "TODO.org")))
+    (if (file-exists-p todo)
+	(find-file todo)
+      (message "Project does not contain a TODO.org file."))))
+</pre>
+</div>
+
+<p>
+That's very nice, how about we make a keybinding for it!
+</p>
+
+<pre class="example">
+(global-set-key (kbd "C-x p t") 'project-todo)
+</pre>
+
+<p>
+To further extend <code>project.el</code>, we should perhaps register this
+command in the list of options that appear when we <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html">switch to a project</a>
+with <code>C-x p p</code>. We can do this by appending the command we just
+created to <code>project-switch-commands</code>, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(push '(project-todo "Todo") project-switch-commands)
+</pre>
+</div>
+</div>
+</body>
+</html>

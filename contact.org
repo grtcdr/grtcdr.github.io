@@ -1,4 +1,4 @@
-#+TITLE: Get in touch with me
+#+TITLE: Get in touch
 #+SETUPFILE: _setup.org
 
 + Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]

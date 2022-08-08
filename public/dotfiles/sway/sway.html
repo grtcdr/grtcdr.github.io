@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-22 Fri 01:53 -->
+<!-- 2022-08-08 Mon 17:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>sway</title>
@@ -14,7 +14,7 @@
 <div id="preamble" class="status">
 <ul class="navigation">
   <li><a href="/index.html">Home</a></li>
-  <li><a href="/dotfiles.html">Top</a></li>
+  <li><a href="/depot.html">Top</a></li>
 </ul>
 </div>
 <div id="content" class="content">
@@ -24,57 +24,57 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#prerequisites">1. Prerequisites</a></li>
-<li><a href="#key-features">2. Key features</a></li>
-<li><a href="#related-configurations">3. Related configurations</a></li>
-<li><a href="#file-structure">4. File structure</a></li>
-<li><a href="#definitions">5. Definitions</a>
+<li><a href="#prerequisites">1. <a href="#prerequisites">Prerequisites</a></a></li>
+<li><a href="#key-features">2. <a href="#key-features">Key features</a></a></li>
+<li><a href="#related-configurations">3. <a href="#related-configurations">Related configurations</a></a></li>
+<li><a href="#file-structure">4. <a href="#file-structure">File structure</a></a></li>
+<li><a href="#definitions">5. <a href="#definitions">Definitions</a></a>
 <ul>
-<li><a href="#orgfe326f1">5.1. Keys</a></li>
-<li><a href="#orgd8ee5e7">5.2. Workspaces</a></li>
-<li><a href="#orgda86cd9">5.3. Modes</a></li>
-<li><a href="#org7d78846">5.4. Miscellaneous</a></li>
+<li><a href="#definitions-keys">5.1. <a href="#definitions-keys">Keys</a></a></li>
+<li><a href="#definitions-workspaces">5.2. <a href="#definitions-workspaces">Workspaces</a></a></li>
+<li><a href="#definitions-modes">5.3. <a href="#definitions-modes">Modes</a></a></li>
+<li><a href="#definitions-miscellaneous">5.4. <a href="#definitions-miscellaneous">Miscellaneous</a></a></li>
 </ul>
 </li>
-<li><a href="#input-configuration">6. Inputs</a>
+<li><a href="#inputs-configuration">6. <a href="#inputs-configuration">Inputs</a></a>
 <ul>
-<li><a href="#input-keyboard">6.1. Keyboard</a></li>
-<li><a href="#input-touchpad">6.2. Touchpad</a></li>
-<li><a href="#input-mouse">6.3. Mouse</a></li>
+<li><a href="#inputs-keyboard">6.1. <a href="#inputs-keyboard">Keyboard</a></a></li>
+<li><a href="#inputs-touchpad">6.2. <a href="#inputs-touchpad">Touchpad</a></a></li>
+<li><a href="#inputs-mouse">6.3. <a href="#inputs-mouse">Mouse</a></a></li>
 </ul>
 </li>
-<li><a href="#org88db004">7. Outputs</a></li>
-<li><a href="#keybindings">8. Keybindings</a>
+<li><a href="#outputs">7. <a href="#outputs">Outputs</a></a></li>
+<li><a href="#keybindings">8. <a href="#keybindings">Keybindings</a></a>
 <ul>
-<li><a href="#keybindings-highlighting-windows">8.1. Highlighting windows</a></li>
-<li><a href="#keybinding-tiling-windows">8.2. Tiling windows</a></li>
-<li><a href="#keybindings-resizing-windows">8.3. Resizing windows</a></li>
-<li><a href="#keybindings-moving-between-workspaces">8.4. Moving between workspaces</a></li>
-<li><a href="#keybindings-moving-windows-between-workspaces">8.5. Moving windows between workspaces</a></li>
-<li><a href="#keybindings-splitting-windows">8.6. Splitting windows</a></li>
-<li><a href="#keybindings-window-actions">8.7. Window actions</a></li>
-<li><a href="#keybindings-playback-control">8.8. Playback control</a></li>
-<li><a href="#keybindings-volume-control">8.9. Volume control</a></li>
-<li><a href="#keybindings-brightness-control">8.10. Brightness control</a></li>
-<li><a href="#keybindings-modes">8.11. Modes</a></li>
-<li><a href="#keybindings-miscellaneous">8.12. Miscellaneous</a></li>
+<li><a href="#keybindings-highlighting-windows">8.1. <a href="#keybindings-highlighting-windows">Highlighting windows</a></a></li>
+<li><a href="#keybindings-tiling-windows">8.2. <a href="#keybindings-tiling-windows">Tiling windows</a></a></li>
+<li><a href="#keybindings-resizing-windows">8.3. <a href="#keybindings-resizing-windows">Resizing windows</a></a></li>
+<li><a href="#keybindings-moving-between-workspaces">8.4. <a href="#keybindings-moving-between-workspaces">Moving between workspaces</a></a></li>
+<li><a href="#keybindings-moving-windows-between-workspaces">8.5. <a href="#keybindings-moving-windows-between-workspaces">Moving windows between workspaces</a></a></li>
+<li><a href="#keybindings-splitting-windows">8.6. <a href="#keybindings-splitting-windows">Splitting windows</a></a></li>
+<li><a href="#keybindings-window-actions">8.7. <a href="#keybindings-window-actions">Window actions</a></a></li>
+<li><a href="#keybindings-playback-control">8.8. <a href="#keybindings-playback-control">Playback control</a></a></li>
+<li><a href="#keybindings-volume-control">8.9. <a href="#keybindings-volume-control">Volume control</a></a></li>
+<li><a href="#keybindings-brightness-control">8.10. <a href="#keybindings-brightness-control">Brightness control</a></a></li>
+<li><a href="#keybindings-modes">8.11. <a href="#keybindings-modes">Modes</a></a></li>
+<li><a href="#keybindings-miscellaneous">8.12. <a href="#keybindings-miscellaneous">Miscellaneous</a></a></li>
 </ul>
 </li>
-<li><a href="#modes">9. Modes</a>
+<li><a href="#modes">9. <a href="#modes">Modes</a></a>
 <ul>
-<li><a href="#mode-session">9.1. Session</a></li>
-<li><a href="#mode-citron">9.2. Citron</a></li>
+<li><a href="#modes-session">9.1. <a href="#modes-session">Session</a></a></li>
+<li><a href="#modes-citron">9.2. <a href="#modes-citron">Citron</a></a></li>
 </ul>
 </li>
-<li><a href="#visuals">10. Visuals</a></li>
-<li><a href="#imports">11. Imports</a></li>
-<li><a href="#startup">12. Startup</a></li>
+<li><a href="#visuals">10. <a href="#visuals">Visuals</a></a></li>
+<li><a href="#imports">11. <a href="#imports">Imports</a></a></li>
+<li><a href="#startup">12. <a href="#startup">Startup</a></a></li>
 </ul>
 </div>
 </nav>
 
 <div id="outline-container-prerequisites" class="outline-2">
-<h2 id="prerequisites"><span class="section-number-2">1.</span> Prerequisites</h2>
+<h2 id="prerequisites"><span class="section-number-2">1.</span> <a href="#prerequisites">Prerequisites</a></h2>
 <div class="outline-text-2" id="text-prerequisites">
 <p>
 The following is a list of all the packages required in order to fully
@@ -85,7 +85,7 @@ reproduce this configuration.
 <li>Essential:
 <ul class="org-ul">
 <li><code>systemd</code>, for systemctl commands.</li>
-<li><code>light</code>, to control backlight volume.</li>
+<li><code>light</code>, to control backlight.</li>
 <li><code>pamixer</code>, to control volume.</li>
 <li><code>playerctl</code>, to control MPRIS-aware media players.</li>
 <li><code>foot</code>, my terminal emulator of choice.</li>
@@ -109,7 +109,7 @@ reproduce this configuration.
 </div>
 
 <div id="outline-container-key-features" class="outline-2">
-<h2 id="key-features"><span class="section-number-2">2.</span> Key features</h2>
+<h2 id="key-features"><span class="section-number-2">2.</span> <a href="#key-features">Key features</a></h2>
 <div class="outline-text-2" id="text-key-features">
 <ul class="org-ul">
 <li><a href="colorschemes.html">Multiple colorschemes</a></li>
@@ -119,7 +119,7 @@ reproduce this configuration.
 </div>
 
 <div id="outline-container-related-configurations" class="outline-2">
-<h2 id="related-configurations"><span class="section-number-2">3.</span> Related configurations</h2>
+<h2 id="related-configurations"><span class="section-number-2">3.</span> <a href="#related-configurations">Related configurations</a></h2>
 <div class="outline-text-2" id="text-related-configurations">
 <ul class="org-ul">
 <li><a href="../mako/mako.html">mako</a></li>
@@ -131,14 +131,14 @@ reproduce this configuration.
 </div>
 
 <div id="outline-container-file-structure" class="outline-2">
-<h2 id="file-structure"><span class="section-number-2">4.</span> File structure</h2>
+<h2 id="file-structure"><span class="section-number-2">4.</span> <a href="#file-structure">File structure</a></h2>
 <div class="outline-text-2" id="text-file-structure">
 <p>
 The following is a tree structure that should help you visualize the
 layout of my configuration:
 </p>
 
-<pre class="example" id="org68ef1d5">
+<pre class="example" id="org67ae81d">
 ~/.config/sway/
 ├── config         #  General configurations
 ├── rules          #  Window rules
@@ -157,7 +157,7 @@ entirely, it's really up to you!
 </div>
 
 <div id="outline-container-definitions" class="outline-2">
-<h2 id="definitions"><span class="section-number-2">5.</span> Definitions</h2>
+<h2 id="definitions"><span class="section-number-2">5.</span> <a href="#definitions">Definitions</a></h2>
 <div class="outline-text-2" id="text-definitions">
 <p>
 Variables will make your life easier, and you can reference them
@@ -171,15 +171,15 @@ configuration, so keep your eyes peeled.
 </p>
 </div>
 
-<div id="outline-container-orgfe326f1" class="outline-3">
-<h3 id="orgfe326f1"><span class="section-number-3">5.1.</span> Keys</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-definitions-keys" class="outline-3">
+<h3 id="definitions-keys"><span class="section-number-3">5.1.</span> <a href="#definitions-keys">Keys</a></h3>
+<div class="outline-text-3" id="text-definitions-keys">
 <p>
 Let's define the modifiers and directional keys:
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>~/.config/sway/config</label><pre class="src src-sh">set {
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>~/.config/sway/config</label><pre class="src src-conf">set {
     $super  Mod4
     $alt    Mod1
     $left   h
@@ -192,9 +192,9 @@ Let's define the modifiers and directional keys:
 </div>
 </div>
 
-<div id="outline-container-orgd8ee5e7" class="outline-3">
-<h3 id="orgd8ee5e7"><span class="section-number-3">5.2.</span> Workspaces</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-definitions-workspaces" class="outline-3">
+<h3 id="definitions-workspaces"><span class="section-number-3">5.2.</span> <a href="#definitions-workspaces">Workspaces</a></h3>
+<div class="outline-text-3" id="text-definitions-workspaces">
 <p>
 Switching between workspaces is the most basic operation you will find
 yourself doing in a window manager, so why not make it as seamless as
@@ -210,7 +210,7 @@ using.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">set {
+<pre class="src src-conf">set {
     $ws1  1:q
     $ws2  2:s
     $ws3  3:d
@@ -225,11 +225,11 @@ using.
 </div>
 </div>
 
-<div id="outline-container-orgda86cd9" class="outline-3">
-<h3 id="orgda86cd9"><span class="section-number-3">5.3.</span> Modes</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-definitions-modes" class="outline-3">
+<h3 id="definitions-modes"><span class="section-number-3">5.3.</span> <a href="#definitions-modes">Modes</a></h3>
+<div class="outline-text-3" id="text-definitions-modes">
 <div class="org-src-container">
-<pre class="src src-sh">set {
+<pre class="src src-conf">set {
     $session_mode  "Session"
     $citron_mode    "Citron"
 }
@@ -238,44 +238,44 @@ using.
 
 <ul class="org-ul">
 <li><code>session_mode</code>: Represents the name of a mode used to manage the <a href="#modes">session</a>.</li>
-<li><code>citron_mode</code>: Represents the name of a mode used to <a href="#mode-citron">display notifications about the system state</a>.</li>
+<li><code>citron_mode</code>: Represents the name of a mode used to <a href="#modes-citron">display notifications about the system state</a>.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7d78846" class="outline-3">
-<h3 id="org7d78846"><span class="section-number-3">5.4.</span> Miscellaneous</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-definitions-miscellaneous" class="outline-3">
+<h3 id="definitions-miscellaneous"><span class="section-number-3">5.4.</span> <a href="#definitions-miscellaneous">Miscellaneous</a></h3>
+<div class="outline-text-3" id="text-definitions-miscellaneous">
 <p>
 This variable represents how many pixels a particular window should get <a href="#keybindings-resizing-windows">resized</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">set $resize_factor  40px
+<pre class="src src-conf">set $resize_factor  40px
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-input-configuration" class="outline-2">
-<h2 id="input-configuration"><span class="section-number-2">6.</span> Inputs</h2>
-<div class="outline-text-2" id="text-input-configuration">
+<div id="outline-container-inputs-configuration" class="outline-2">
+<h2 id="inputs-configuration"><span class="section-number-2">6.</span> <a href="#inputs-configuration">Inputs</a></h2>
+<div class="outline-text-2" id="text-inputs-configuration">
 <p>
 For more information on this topic, see <a href="https://man.archlinux.org/man/sway-input.5">sway-input(5)</a>.
 </p>
 </div>
 
-<div id="outline-container-input-keyboard" class="outline-3">
-<h3 id="input-keyboard"><span class="section-number-3">6.1.</span> Keyboard</h3>
-<div class="outline-text-3" id="text-input-keyboard">
+<div id="outline-container-inputs-keyboard" class="outline-3">
+<h3 id="inputs-keyboard"><span class="section-number-3">6.1.</span> <a href="#inputs-keyboard">Keyboard</a></h3>
+<div class="outline-text-3" id="text-inputs-keyboard">
 <p>
 You can remap many keys with the use of <code>xkb_options</code>. For more
 information, see <a href="https://man.archlinux.org/man/xkeyboard-config.7">xkeyboard-config(1)</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">input "type:keyboard" {
+<pre class="src src-conf">input "type:keyboard" {
     xkb_layout    fr
     xkb_options   shift:both_capslock,compose:prsc
     repeat_rate   50
@@ -286,15 +286,15 @@ information, see <a href="https://man.archlinux.org/man/xkeyboard-config.7">xkey
 </div>
 </div>
 
-<div id="outline-container-input-touchpad" class="outline-3">
-<h3 id="input-touchpad"><span class="section-number-3">6.2.</span> Touchpad</h3>
-<div class="outline-text-3" id="text-input-touchpad">
+<div id="outline-container-inputs-touchpad" class="outline-3">
+<h3 id="inputs-touchpad"><span class="section-number-3">6.2.</span> <a href="#inputs-touchpad">Touchpad</a></h3>
+<div class="outline-text-3" id="text-inputs-touchpad">
 <p>
 You can ignore this snippet if you don't have a touchpad.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">input "type:touchpad" {
+<pre class="src src-conf">input "type:touchpad" {
     tap             enabled
     natural_scroll  enabled
     accel_profile   "adaptive"
@@ -305,47 +305,46 @@ You can ignore this snippet if you don't have a touchpad.
 </div>
 </div>
 
-<div id="outline-container-input-mouse" class="outline-3">
-<h3 id="input-mouse"><span class="section-number-3">6.3.</span> Mouse</h3>
-<div class="outline-text-3" id="text-input-mouse">
+<div id="outline-container-inputs-mouse" class="outline-3">
+<h3 id="inputs-mouse"><span class="section-number-3">6.3.</span> <a href="#inputs-mouse">Mouse</a></h3>
+<div class="outline-text-3" id="text-inputs-mouse">
 <p>
 Move and resize windows with the mouse by holding the <code>$super</code> key and
 the left and right mouse buttons respectively.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">floating_modifier $super normal
+<pre class="src src-conf">floating_modifier $super normal
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org88db004" class="outline-2">
-<h2 id="org88db004"><span class="section-number-2">7.</span> Outputs</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-outputs" class="outline-2">
+<h2 id="outputs"><span class="section-number-2">7.</span> <a href="#outputs">Outputs</a></h2>
+<div class="outline-text-2" id="text-outputs">
 <p>
-I use a single screen, thus my output configuration is simple. I've
-settled for the least obtrusive background available, a solid color.
+I use a single screen, thus my output configuration is simple.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-conf">output * bg #073642 solid_color
+<pre class="src src-conf">output * bg ~/images/wallpapers/nebula.jpg fill
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-keybindings" class="outline-2">
-<h2 id="keybindings"><span class="section-number-2">8.</span> Keybindings</h2>
+<h2 id="keybindings"><span class="section-number-2">8.</span> <a href="#keybindings">Keybindings</a></h2>
 <div class="outline-text-2" id="text-keybindings">
 </div>
 
 <div id="outline-container-keybindings-highlighting-windows" class="outline-3">
-<h3 id="keybindings-highlighting-windows"><span class="section-number-3">8.1.</span> Highlighting windows</h3>
+<h3 id="keybindings-highlighting-windows"><span class="section-number-3">8.1.</span> <a href="#keybindings-highlighting-windows">Highlighting windows</a></h3>
 <div class="outline-text-3" id="text-keybindings-highlighting-windows">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+$left   focus left
   $super+$down   focus down
   $super+$up     focus up
@@ -356,11 +355,11 @@ settled for the least obtrusive background available, a solid color.
 </div>
 </div>
 
-<div id="outline-container-keybinding-tiling-windows" class="outline-3">
-<h3 id="keybinding-tiling-windows"><span class="section-number-3">8.2.</span> Tiling windows</h3>
-<div class="outline-text-3" id="text-keybinding-tiling-windows">
+<div id="outline-container-keybindings-tiling-windows" class="outline-3">
+<h3 id="keybindings-tiling-windows"><span class="section-number-3">8.2.</span> <a href="#keybindings-tiling-windows">Tiling windows</a></h3>
+<div class="outline-text-3" id="text-keybindings-tiling-windows">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+Shift+$left   move left
   $super+Shift+$down   move down
   $super+Shift+$up     move up
@@ -372,14 +371,14 @@ settled for the least obtrusive background available, a solid color.
 </div>
 
 <div id="outline-container-keybindings-resizing-windows" class="outline-3">
-<h3 id="keybindings-resizing-windows"><span class="section-number-3">8.3.</span> Resizing windows</h3>
+<h3 id="keybindings-resizing-windows"><span class="section-number-3">8.3.</span> <a href="#keybindings-resizing-windows">Resizing windows</a></h3>
 <div class="outline-text-3" id="text-keybindings-resizing-windows">
 <p>
 Sway by default hides resizing behind a mode, but I like to be able to
 directly resize my windows on the fly.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+Control+$left   resize shrink width $resize_factor
   $super+Control+$down   resize shrink height $resize_factor
   $super+Control+$up     resize grow height $resize_factor
@@ -391,10 +390,10 @@ directly resize my windows on the fly.
 </div>
 
 <div id="outline-container-keybindings-moving-between-workspaces" class="outline-3">
-<h3 id="keybindings-moving-between-workspaces"><span class="section-number-3">8.4.</span> Moving between workspaces</h3>
+<h3 id="keybindings-moving-between-workspaces"><span class="section-number-3">8.4.</span> <a href="#keybindings-moving-between-workspaces">Moving between workspaces</a></h3>
 <div class="outline-text-3" id="text-keybindings-moving-between-workspaces">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+q    workspace $ws1
   $super+s    workspace $ws2
   $super+d    workspace $ws3
@@ -411,10 +410,10 @@ directly resize my windows on the fly.
 </div>
 
 <div id="outline-container-keybindings-moving-windows-between-workspaces" class="outline-3">
-<h3 id="keybindings-moving-windows-between-workspaces"><span class="section-number-3">8.5.</span> Moving windows between workspaces</h3>
+<h3 id="keybindings-moving-windows-between-workspaces"><span class="section-number-3">8.5.</span> <a href="#keybindings-moving-windows-between-workspaces">Moving windows between workspaces</a></h3>
 <div class="outline-text-3" id="text-keybindings-moving-windows-between-workspaces">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+Shift+q  move container to workspace $ws1
   $super+Shift+s  move container to workspace $ws2
   $super+Shift+d  move container to workspace $ws3
@@ -430,10 +429,10 @@ directly resize my windows on the fly.
 </div>
 
 <div id="outline-container-keybindings-splitting-windows" class="outline-3">
-<h3 id="keybindings-splitting-windows"><span class="section-number-3">8.6.</span> Splitting windows</h3>
+<h3 id="keybindings-splitting-windows"><span class="section-number-3">8.6.</span> <a href="#keybindings-splitting-windows">Splitting windows</a></h3>
 <div class="outline-text-3" id="text-keybindings-splitting-windows">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+greater  splith
   $super+less     splitv
   $super+t        layout tabbed
@@ -445,10 +444,10 @@ directly resize my windows on the fly.
 </div>
 
 <div id="outline-container-keybindings-window-actions" class="outline-3">
-<h3 id="keybindings-window-actions"><span class="section-number-3">8.7.</span> Window actions</h3>
+<h3 id="keybindings-window-actions"><span class="section-number-3">8.7.</span> <a href="#keybindings-window-actions">Window actions</a></h3>
 <div class="outline-text-3" id="text-keybindings-window-actions">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+w          kill
   $super+n          fullscreen
   $super+b          floating toggle
@@ -463,13 +462,13 @@ directly resize my windows on the fly.
 </div>
 
 <div id="outline-container-keybindings-playback-control" class="outline-3">
-<h3 id="keybindings-playback-control"><span class="section-number-3">8.8.</span> Playback control</h3>
+<h3 id="keybindings-playback-control"><span class="section-number-3">8.8.</span> <a href="#keybindings-playback-control">Playback control</a></h3>
 <div class="outline-text-3" id="text-keybindings-playback-control">
 <p>
 Control media playback with <code>playerctl</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   XF86AudioPlay  exec playerctl play-pause
   XF86AudioNext  exec playerctl next
   XF86AudioPrev  exec playerctl previous
@@ -480,10 +479,10 @@ Control media playback with <code>playerctl</code>.
 </div>
 
 <div id="outline-container-keybindings-volume-control" class="outline-3">
-<h3 id="keybindings-volume-control"><span class="section-number-3">8.9.</span> Volume control</h3>
+<h3 id="keybindings-volume-control"><span class="section-number-3">8.9.</span> <a href="#keybindings-volume-control">Volume control</a></h3>
 <div class="outline-text-3" id="text-keybindings-volume-control">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   XF86AudioRaiseVolume  exec pamixer -i 5
   XF86AudioLowerVolume  exec pamixer -d 5
   XF86AudioMute         exec pamixer -t
@@ -494,13 +493,13 @@ Control media playback with <code>playerctl</code>.
 </div>
 
 <div id="outline-container-keybindings-brightness-control" class="outline-3">
-<h3 id="keybindings-brightness-control"><span class="section-number-3">8.10.</span> Brightness control</h3>
+<h3 id="keybindings-brightness-control"><span class="section-number-3">8.10.</span> <a href="#keybindings-brightness-control">Brightness control</a></h3>
 <div class="outline-text-3" id="text-keybindings-brightness-control">
 <p>
 Control display brightness with <code>xbacklight</code>.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   XF86MonBrightnessUp    exec light -A 5
   XF86MonBrightnessDown  exec light -U 5
 }
@@ -510,7 +509,7 @@ Control display brightness with <code>xbacklight</code>.
 </div>
 
 <div id="outline-container-keybindings-modes" class="outline-3">
-<h3 id="keybindings-modes"><span class="section-number-3">8.11.</span> Modes</h3>
+<h3 id="keybindings-modes"><span class="section-number-3">8.11.</span> <a href="#keybindings-modes">Modes</a></h3>
 <div class="outline-text-3" id="text-keybindings-modes">
 <p>
 Modes turn keybindings into keychords, which evidently save your
@@ -518,30 +517,30 @@ precious fingers.
 </p>
 
 <p>
-This keybinding activates the <a href="#mode-session">session management mode</a>.
+This keybinding activates the <a href="#modes-session">session management mode</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">bindsym $super+exclam   mode $session_mode
+<pre class="src src-conf">bindsym $super+exclam   mode $session_mode
 </pre>
 </div>
 
 <p>
-This one activates <a href="#mode-citron">citron<sub>mode</sub></a>.
+This one activates <a href="#modes-citron">citron<sub>mode</sub></a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">bindsym $super+z   mode $citron_mode
+<pre class="src src-conf">bindsym $super+z   mode $citron_mode
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-keybindings-miscellaneous" class="outline-3">
-<h3 id="keybindings-miscellaneous"><span class="section-number-3">8.12.</span> Miscellaneous</h3>
+<h3 id="keybindings-miscellaneous"><span class="section-number-3">8.12.</span> <a href="#keybindings-miscellaneous">Miscellaneous</a></h3>
 <div class="outline-text-3" id="text-keybindings-miscellaneous">
 <div class="org-src-container">
-<pre class="src src-sh">bindsym {
+<pre class="src src-conf">bindsym {
   $super+Return  exec footclient
   $super+0       exec passmenu
   $super+e       exec emacsclient -c
@@ -554,13 +553,13 @@ This one activates <a href="#mode-citron">citron<sub>mode</sub></a>.
 </div>
 
 <div id="outline-container-modes" class="outline-2">
-<h2 id="modes"><span class="section-number-2">9.</span> Modes</h2>
+<h2 id="modes"><span class="section-number-2">9.</span> <a href="#modes">Modes</a></h2>
 <div class="outline-text-2" id="text-modes">
 </div>
 
-<div id="outline-container-mode-session" class="outline-3">
-<h3 id="mode-session"><span class="section-number-3">9.1.</span> Session</h3>
-<div class="outline-text-3" id="text-mode-session">
+<div id="outline-container-modes-session" class="outline-3">
+<h3 id="modes-session"><span class="section-number-3">9.1.</span> <a href="#modes-session">Session</a></h3>
+<div class="outline-text-3" id="text-modes-session">
 <p>
 Upon entering the session manipulation mode, whose keybinding was
 <a href="#modes">previously defined</a>, I can choose to run one of the many different
@@ -569,7 +568,7 @@ actions as listed below. I can also cancel at any time by hitting
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mode $session_mode bindsym {
+<pre class="src src-conf">mode $session_mode bindsym {
   r        reload, mode "default"
   q        exec swaymsg exit, mode "default"
   s        exec systemctl suspend, mode "default"
@@ -582,9 +581,9 @@ actions as listed below. I can also cancel at any time by hitting
 </div>
 
 
-<div id="outline-container-mode-citron" class="outline-3">
-<h3 id="mode-citron"><span class="section-number-3">9.2.</span> Citron</h3>
-<div class="outline-text-3" id="text-mode-citron">
+<div id="outline-container-modes-citron" class="outline-3">
+<h3 id="modes-citron"><span class="section-number-3">9.2.</span> <a href="#modes-citron">Citron</a></h3>
+<div class="outline-text-3" id="text-modes-citron">
 <p>
 Because I don't use a panel, there must be a different way I can keep
 tabs on the system state. <code>citron</code> lets me do that - notifications are
@@ -592,7 +591,7 @@ triggered when the key they are bound to is pressed.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">mode $citron_mode bindsym {
+<pre class="src src-conf">mode $citron_mode bindsym {
   d        exec citron date, mode "default"
   b        exec citron battery, mode "default"
   n        exec citron network, mode "default"
@@ -606,7 +605,7 @@ triggered when the key they are bound to is pressed.
 </div>
 
 <div id="outline-container-visuals" class="outline-2">
-<h2 id="visuals"><span class="section-number-2">10.</span> Visuals</h2>
+<h2 id="visuals"><span class="section-number-2">10.</span> <a href="#visuals">Visuals</a></h2>
 <div class="outline-text-2" id="text-visuals">
 <p>
 Configure the typeface.
@@ -638,7 +637,7 @@ Declutter the desktop by hiding the cursor after a set period of inactivity.
 </div>
 
 <div id="outline-container-imports" class="outline-2">
-<h2 id="imports"><span class="section-number-2">11.</span> Imports</h2>
+<h2 id="imports"><span class="section-number-2">11.</span> <a href="#imports">Imports</a></h2>
 <div class="outline-text-2" id="text-imports">
 <p>
 Import some handy prepackaged configurations<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>:
@@ -670,7 +669,7 @@ Import the <code>solarized</code> colorscheme:
 </div>
 
 <div id="outline-container-startup" class="outline-2">
-<h2 id="startup"><span class="section-number-2">12.</span> Startup</h2>
+<h2 id="startup"><span class="section-number-2">12.</span> <a href="#startup">Startup</a></h2>
 <div class="outline-text-2" id="text-startup">
 <p>
 Computers are not very useful without <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemons</a>; let's start a few.
@@ -681,7 +680,7 @@ Launch wlsunset, a wonderful day/night gamma adjustments utility:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">exec wlsunset -l 36.8 -L 10.1 -t 3800 -T 5800
+<pre class="src src-conf">exec wlsunset -l 36.8 -L 10.1 -t 3800 -T 5800
 </pre>
 </div>
 
@@ -692,7 +691,7 @@ capabilities disabled (except for stderr):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">exec foot -Ss
+<pre class="src src-conf">exec foot -Ss
 </pre>
 </div>
 
@@ -717,7 +716,7 @@ the laptop's lid.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">exec swayidle -w \
+<pre class="src src-conf">exec swayidle -w \
      timeout 300  'swaylock' \
      timeout 480  'swaymsg "output * dpms off"' \
 	  resume  'swaymsg "output * dpms on"' \
@@ -737,7 +736,7 @@ escalate their privileges in a secure manner when required:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+<pre class="src src-conf">exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 </pre>
 </div>
 

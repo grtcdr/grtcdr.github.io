@@ -1,4 +1,4 @@
-// =========== Colors
+// = Colors
 
 @accent00: #8A89A6;
 @accent01: #9C9DBF;
@@ -14,7 +14,36 @@
 @blue:     #A2AEAE;
 @green:    #90B494;    
 
-// =========== Base
+// = Headings
+
+h1 { font-size: 2.5em }
+h2 { font-size: 2.2em }
+h3 { font-size: 2.0em }
+h4 { font-size: 1.84em }
+h5 { font-size: 1.72em }
+h6 { font-size: 1.53em }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+
+  & > a {
+    color: unset;
+
+    &:hover {
+      text-decoration: none;
+      color: @accent02;
+    }
+  }
+}
+
+// = Header section-numbering
+
+span[class^='section-number'] {
+  color: @fg00;
+  font-size: 0.75em;
+}
+
+// = Base
 
 body {
   color: @fg02;
@@ -32,7 +61,7 @@ hr {
 }
 
 p {
-  line-height: 1.6em;
+  line-height: 1.6em
 }
 
 blockquote {
@@ -94,7 +123,7 @@ img {
   border-top: 1px solid @bg02;
 }
 
-// =========== Navigation
+// = Navigation
 
 .navigation {
   padding: 0;
@@ -109,11 +138,11 @@ img {
 
 .navigation li + li::before {
   content: '‧';
-  padding: 0.4em;
+  padding: 0.5em;
   color: @fg00;
 }
 
-// =========== Org
+// = Org
 
 .org-svg { width: 90%; }
 
@@ -136,10 +165,10 @@ img {
 }
 
 .tag {
-  background-color: @blue;
-  padding: 2px;
-  font-size: 80%;
-  font-weight: normal;
+  display: block;
+  color: @blue;
+  font-style: italic;
+  font-size: 0.7em;
 }
 
 .todo { color: @red }
@@ -156,7 +185,7 @@ img {
   margin: 10px;
 }
 
-// =========== Figures
+// = Figures
 
 .figure {
   padding: 1em;
@@ -166,7 +195,7 @@ figcaption {
   text-align: center
 }
 
-// =========== Source
+// = Source
 
 pre {
   line-height: initial;
@@ -176,8 +205,7 @@ pre {
   padding: 1.0em;
   background-color: @bg01;
   color: @accent02;
-  border: 0;
-  border-left: 2px dashed @accent01;
+  border-left: 2px dashed @bg02;
 }
 
 pre.src {
@@ -191,16 +219,18 @@ code {
 
 .org-src-name {
   display: block;
-  color: @fg00;
-  font-size: 0.9em;
-  text-align: right;
+  font-family: monospace;
+  padding: 0.3em;
+
+  color: @fg01;
+  background-color: @bg02;
 
   > .listing-number {
     display: none
   }
 }
 
-// =========== Text
+// = Text
 
 .title {
   margin-bottom: .2em
@@ -221,7 +251,7 @@ caption.t-bottom {
   caption-side: bottom
 }
 
-// =========== Tables
+// = Tables
 
 table {
   border-spacing: 5px;
@@ -235,35 +265,17 @@ td.org-right { text-align: right }
 td.org-left { text-align: left }
 td.org-center { text-align: center }
 
-// =========== Headers
+// = Properties
 
-h1 { font-size: 38px }
-h2 { font-size: 31px }
-h3 { font-size: 26px }
-h4 { font-size: 22px }
-h5 { font-size: 18px }
-h6 { font-size: 14px }
+.properties ul {
+  list-style: none;
+  text-align: left;
+  border-left: 0.24em solid @bg02;
+  padding: 0.48em;
+  margin: 0;
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: serif;
-  font-weight: 500;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  a {
-    color: unset;
-    text-decoration: none;
-    &:hover {
-      text-decoration: none
-    }
-    &:hover::before {
-      content: "# ";
-      color: @fg00;
-    }
+  li {
+    display: block;
+    color: @blue;
   }
-}
-
-span[class^='section-number'] {
-  color: @fg00;
-  font-size: 0.75em;
 }

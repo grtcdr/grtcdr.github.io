@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-07-22 Fri 01:53 -->
+<!-- 2022-08-08 Mon 17:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>zsh</title>
@@ -14,7 +14,7 @@
 <div id="preamble" class="status">
 <ul class="navigation">
   <li><a href="/index.html">Home</a></li>
-  <li><a href="/dotfiles.html">Top</a></li>
+  <li><a href="/depot.html">Top</a></li>
 </ul>
 </div>
 <div id="content" class="content">
@@ -24,45 +24,82 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#zshrc">1. .zshrc</a>
+<li><a href="#preface">1. <a href="#preface">Preface</a></a></li>
+<li><a href="#zshrc">2. <a href="#zshrc">.zshrc</a></a>
 <ul>
-<li><a href="#zshrc-startup">1.1. Startup</a></li>
-<li><a href="#zshrc-completions">1.2. Completions</a></li>
-<li><a href="#zshrc-common-options">1.3. Common options</a></li>
-<li><a href="#zshrc-prompt">1.4. Prompt</a></li>
-<li><a href="#zshrc-plugins">1.5. Plugins</a></li>
-<li><a href="#zshrc-functions">1.6. Functions</a></li>
-<li><a href="#zshrc-keybindings">1.7. Keybindings</a></li>
+<li><a href="#zshrc-startup">2.1. <a href="#zshrc-startup">Startup</a></a></li>
+<li><a href="#zshrc-completions">2.2. <a href="#zshrc-completions">Completions</a></a></li>
+<li><a href="#zshrc-common-options">2.3. <a href="#zshrc-common-options">Common options</a></a></li>
+<li><a href="#zshrc-prompt">2.4. <a href="#zshrc-prompt">Prompt</a></a></li>
+<li><a href="#zshrc-plugins">2.5. <a href="#zshrc-plugins">Plugins</a></a></li>
+<li><a href="#zshrc-functions">2.6. <a href="#zshrc-functions">Functions</a></a></li>
+<li><a href="#zshrc-keybindings">2.7. <a href="#zshrc-keybindings">Keybindings</a></a></li>
 </ul>
 </li>
-<li><a href="#zshenv">2. .zshenv</a></li>
-<li><a href="#zprofile">3. .zprofile</a>
+<li><a href="#zshenv">3. <a href="#zshenv">.zshenv</a></a></li>
+<li><a href="#zprofile">4. <a href="#zprofile">.zprofile</a></a>
 <ul>
-<li><a href="#zprofile-environment-variables">3.1. Environment variables</a></li>
-<li><a href="#zprofile-bemenu">3.2. Bootstrapping bemenu</a></li>
+<li><a href="#zprofile-environment-variables">4.1. <a href="#zprofile-environment-variables">Environment variables</a></a></li>
+<li><a href="#zprofile-bemenu">4.2. <a href="#zprofile-bemenu">Bootstrapping bemenu</a></a></li>
 </ul>
 </li>
-<li><a href="#alias">4. alias</a>
+<li><a href="#environ">5. <a href="#environ">environ</a></a></li>
+<li><a href="#aliases">6. <a href="#aliases">aliases</a></a>
 <ul>
-<li><a href="#aliases-core">4.1. Core</a></li>
-<li><a href="#aliases-movement">4.2. Movement</a></li>
-<li><a href="#aliases-listing">4.3. Listing</a></li>
-<li><a href="#aliases-programs">4.4. Programs</a></li>
-<li><a href="#aliases-package-manager">4.5. Package manager</a></li>
+<li><a href="#aliases-core">6.1. <a href="#aliases-core">Core</a></a></li>
+<li><a href="#aliases-movement">6.2. <a href="#aliases-movement">Movement</a></a></li>
+<li><a href="#aliases-listing">6.3. <a href="#aliases-listing">Listing</a></a></li>
+<li><a href="#aliases-programs">6.4. <a href="#aliases-programs">Programs</a></a></li>
+<li><a href="#aliases-package-manager">6.5. <a href="#aliases-package-manager">Package manager</a></a></li>
 </ul>
 </li>
-<li><a href="#environ">5. environ</a></li>
 </ul>
 </div>
 </nav>
 
+<div id="outline-container-preface" class="outline-2">
+<h2 id="preface"><span class="section-number-2">1.</span> <a href="#preface">Preface</a></h2>
+<div class="outline-text-2" id="text-preface">
+<p>
+As this configuration has no prerequisites, I was not tied to any
+particular file hierarchy, so I decided to design my own.
+</p>
+
+<p>
+An important thing to keep in mind whilst you browse this
+configuration, is my usage of <code>$ZDOTDIR</code>. When set, <code>zsh</code> will expect
+its files, e.g. <code>.zshrc</code>, <code>.zshenv</code>, <code>.zprofile</code> etc. in the path this
+variable points to.
+</p>
+
+<p>
+Here's a <a href="https://linux.die.net/man/1/tree">tree</a> representation of this configuration:
+</p>
+
+<pre class="example" id="org1db9424">
+$ZDOTDIR/
+├── aliases
+├── environ
+├── .zprofile
+├── .zshenv
+└── .zshrc
+</pre>
+
+<p>
+You are free to meddle within your shell in search of the best
+structure that works for you, just keep in mind that certain
+operations have a preference as to <a href="https://unix.stackexchange.com/a/71258/505006">where they are stored</a>.
+</p>
+</div>
+</div>
+
 <div id="outline-container-zshrc" class="outline-2">
-<h2 id="zshrc"><span class="section-number-2">1.</span> .zshrc</h2>
+<h2 id="zshrc"><span class="section-number-2">2.</span> <a href="#zshrc">.zshrc</a></h2>
 <div class="outline-text-2" id="text-zshrc">
 </div>
 
 <div id="outline-container-zshrc-startup" class="outline-3">
-<h3 id="zshrc-startup"><span class="section-number-3">1.1.</span> Startup</h3>
+<h3 id="zshrc-startup"><span class="section-number-3">2.1.</span> <a href="#zshrc-startup">Startup</a></h3>
 <div class="outline-text-3" id="text-zshrc-startup">
 <p>
 Autoload <code>compinit</code>, a module that provides completions to <code>zsh</code>.
@@ -86,7 +123,7 @@ solution.
 </div>
 
 <div id="outline-container-zshrc-completions" class="outline-3">
-<h3 id="zshrc-completions"><span class="section-number-3">1.2.</span> Completions</h3>
+<h3 id="zshrc-completions"><span class="section-number-3">2.2.</span> <a href="#zshrc-completions">Completions</a></h3>
 <div class="outline-text-3" id="text-zshrc-completions">
 <p>
 Configure the completion system. For more information, see <a href="https://linux.die.net/man/1/zshcompsys">zshcompsys(1)</a>.
@@ -102,7 +139,7 @@ zstyle ':completion:*' file-sort access  #  Sort files by access
 </div>
 
 <div id="outline-container-zshrc-common-options" class="outline-3">
-<h3 id="zshrc-common-options"><span class="section-number-3">1.3.</span> Common options</h3>
+<h3 id="zshrc-common-options"><span class="section-number-3">2.3.</span> <a href="#zshrc-common-options">Common options</a></h3>
 <div class="outline-text-3" id="text-zshrc-common-options">
 <p>
 Configure some of zsh's options.
@@ -121,7 +158,7 @@ setopt IGNOREEOF
 </div>
 
 <div id="outline-container-zshrc-prompt" class="outline-3">
-<h3 id="zshrc-prompt"><span class="section-number-3">1.4.</span> Prompt</h3>
+<h3 id="zshrc-prompt"><span class="section-number-3">2.4.</span> <a href="#zshrc-prompt">Prompt</a></h3>
 <div class="outline-text-3" id="text-zshrc-prompt">
 <p>
 Configure the prompt.
@@ -135,7 +172,7 @@ Configure the prompt.
 </div>
 
 <div id="outline-container-zshrc-plugins" class="outline-3">
-<h3 id="zshrc-plugins"><span class="section-number-3">1.5.</span> Plugins</h3>
+<h3 id="zshrc-plugins"><span class="section-number-3">2.5.</span> <a href="#zshrc-plugins">Plugins</a></h3>
 <div class="outline-text-3" id="text-zshrc-plugins">
 <p>
 Source system-installed plugins:
@@ -161,14 +198,14 @@ Source my aliases, one of the best features of UNIX shells.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="orgabde3c0">for file in "$ZDOTDIR"/alias; do . "$file"; done
+<pre class="src src-sh" id="orge2011ac">for file in "$ZDOTDIR"/aliases; do . "$file"; done
 </pre>
 </div>
 </div>
 </div>
 
 <div id="outline-container-zshrc-functions" class="outline-3">
-<h3 id="zshrc-functions"><span class="section-number-3">1.6.</span> Functions</h3>
+<h3 id="zshrc-functions"><span class="section-number-3">2.6.</span> <a href="#zshrc-functions">Functions</a></h3>
 <div class="outline-text-3" id="text-zshrc-functions">
 <p>
 Define a function that lists the contents of directories upon entering
@@ -176,7 +213,7 @@ them.
 </p>
 
 <p>
-This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#orgabde3c0">previously sourced</a>.
+This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#orge2011ac">previously sourced</a>.
 </p>
 
 <div class="org-src-container">
@@ -192,7 +229,7 @@ we placed them in the background:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org044cac5">fancy-ctrl-z() {
+<pre class="src src-sh" id="org5aec193">fancy-ctrl-z() {
     if [[ $#BUFFER -eq 0 ]]; then
 	BUFFER="fg"
 	zle accept-line -w
@@ -216,7 +253,7 @@ Load the function.
 </div>
 
 <div id="outline-container-zshrc-keybindings" class="outline-3">
-<h3 id="zshrc-keybindings"><span class="section-number-3">1.7.</span> Keybindings</h3>
+<h3 id="zshrc-keybindings"><span class="section-number-3">2.7.</span> <a href="#zshrc-keybindings">Keybindings</a></h3>
 <div class="outline-text-3" id="text-zshrc-keybindings">
 <p>
 Bind fancy-ctrl-z to <code>Ctrl + z</code>.
@@ -240,7 +277,7 @@ Use Emacs-style keybindings, they're very handy!
 </div>
 
 <div id="outline-container-zshenv" class="outline-2">
-<h2 id="zshenv"><span class="section-number-2">2.</span> .zshenv</h2>
+<h2 id="zshenv"><span class="section-number-2">3.</span> <a href="#zshenv">.zshenv</a></h2>
 <div class="outline-text-2" id="text-zshenv">
 <p>
 Export the infamous <code>PATH</code>.
@@ -266,12 +303,12 @@ I don't know, <a href="https://man.archlinux.org/man/gpg-agent.1#EXAMPLES">gpg-a
 </div>
 
 <div id="outline-container-zprofile" class="outline-2">
-<h2 id="zprofile"><span class="section-number-2">3.</span> .zprofile</h2>
+<h2 id="zprofile"><span class="section-number-2">4.</span> <a href="#zprofile">.zprofile</a></h2>
 <div class="outline-text-2" id="text-zprofile">
 </div>
 
 <div id="outline-container-zprofile-environment-variables" class="outline-3">
-<h3 id="zprofile-environment-variables"><span class="section-number-3">3.1.</span> Environment variables</h3>
+<h3 id="zprofile-environment-variables"><span class="section-number-3">4.1.</span> <a href="#zprofile-environment-variables">Environment variables</a></h3>
 <div class="outline-text-3" id="text-zprofile-environment-variables">
 <p>
 Export the usual stuff:
@@ -322,7 +359,7 @@ work, I need to set a location for the socket:
 Export the environment variables defined in <code>environ</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">set -o allexport
+<pre class="src src-sh" id="org90b0e28">set -o allexport
 source "$ZDOTDIR"/environ
 set +o allexport
 </pre>
@@ -331,7 +368,7 @@ set +o allexport
 </div>
 
 <div id="outline-container-zprofile-bemenu" class="outline-3">
-<h3 id="zprofile-bemenu"><span class="section-number-3">3.2.</span> Bootstrapping bemenu</h3>
+<h3 id="zprofile-bemenu"><span class="section-number-3">4.2.</span> <a href="#zprofile-bemenu">Bootstrapping bemenu</a></h3>
 <div class="outline-text-3" id="text-zprofile-bemenu">
 <p>
 The only way to configure <a href="https://man.archlinux.org/man/community/bemenu/bemenu.1.en">bemenu(1)</a> is to set the <code>BEMENU_OPTS</code>
@@ -377,143 +414,8 @@ export BEMENU_OPTS="$(build_bemenu_options)"
 </div>
 </div>
 
-<div id="outline-container-alias" class="outline-2">
-<h2 id="alias"><span class="section-number-2">4.</span> alias</h2>
-<div class="outline-text-2" id="text-alias">
-</div>
-
-<div id="outline-container-aliases-core" class="outline-3">
-<h3 id="aliases-core"><span class="section-number-3">4.1.</span> Core</h3>
-<div class="outline-text-3" id="text-aliases-core">
-<p>
-I prefer to have commands that perform changes to the filesystem to be
-verbose, and to prompt for the operation just in case I type the wrong
-filename.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
-</pre>
-</div>
-
-<p>
-I can always bypass the prompt by running <code>yes | &lt;cp,rm,mv&gt; ...</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-aliases-movement" class="outline-3">
-<h3 id="aliases-movement"><span class="section-number-3">4.2.</span> Movement</h3>
-<div class="outline-text-3" id="text-aliases-movement">
-<p>
-Moving between directories should be intuitive, which is why I alias
-<code>cd</code> to <code>cdls</code> to see the content of the directory without manually
-doing so.
-</p>
-
-<p>
-And sometimes you want to hop up a directory, in that case, <code>..</code> is
-better than <code>cd ..</code>
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias cd='cdls'
-alias ..='cd ..'
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-aliases-listing" class="outline-3">
-<h3 id="aliases-listing"><span class="section-number-3">4.3.</span> Listing</h3>
-<div class="outline-text-3" id="text-aliases-listing">
-<p>
-We want colors, and we want them bad!
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias ls='ls --color=always --group-directories-first'
-alias la='ls -la'
-alias ll='ls -l'
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-aliases-programs" class="outline-3">
-<h3 id="aliases-programs"><span class="section-number-3">4.4.</span> Programs</h3>
-<div class="outline-text-3" id="text-aliases-programs">
-<p>
-Whenever I get the chance to make a long command short, I always seize
-it.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias z='zathura'
-alias v='vim'
-alias e='emacsclient -nw'
-</pre>
-</div>
-
-<p>
-These programs don't respect the XDG base directory specification, so
-I force them to!
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias wget='wget --hsts-file="$HOME/.cache/wget-hsts"'
-alias mbsync='mbsync -c ~/.config/isync/mbsyncrc'
-</pre>
-</div>
-
-<p>
-A nice little alias to get the current weather.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias weather='curl "wttr.in/Tunis?format=3"'
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-aliases-package-manager" class="outline-3">
-<h3 id="aliases-package-manager"><span class="section-number-3">4.5.</span> Package manager</h3>
-<div class="outline-text-3" id="text-aliases-package-manager">
-<p>
-Again, short commands over long commands.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias pac='sudo pacman'
-</pre>
-</div>
-
-<p>
-Browse a list of installed packages and their metadata:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias packages='pacman -Qq | fzf --preview-window sharp --preview "pacman -Qi {1}"'
-</pre>
-</div>
-
-<p>
-Browse a list of all packages available for download:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">alias search='pacman -Slq | fzf --multi --preview "pacman -Si {1}" | xargs -ro sudo pacman -S'
-</pre>
-</div>
-</div>
-</div>
-</div>
-
 <div id="outline-container-environ" class="outline-2">
-<h2 id="environ"><span class="section-number-2">5.</span> environ</h2>
+<h2 id="environ"><span class="section-number-2">5.</span> <a href="#environ">environ</a></h2>
 <div class="outline-text-2" id="text-environ">
 <p>
 <a href="https://wiki.archlinux.org/title/XDG_Base_Directory#Supported">A lot of software</a> on Linux doesn't respect the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG Base Directory Specification</a>,
@@ -521,13 +423,24 @@ which means I have to fiddle with environment variables to relocate their config
 </p>
 
 <p>
-These environment variables are located in the <code>environ</code> file, which
-follows a simple <code>KEY=VALUE</code> syntax.
+It's enough to define these variables in <code>.zprofile</code> but that doesn't
+cover all use cases, such as using Emacs in a server-client setting as
+a systemd user service. The reason being is that systemd isolates
+system/user services, leaving them blind to environment variables
+outside of their jurisdiction.
+</p>
+
+<p>
+After many lengthy discussions on IRC, someone suggested I use the
+<code>EnvironmentFile</code> option that systemd offers, which expects as its
+value a path to a file containing enviroment variables written in the
+form of <code>KEY=VALUE</code>. Once specified, systemd will parse the file,
+exposing the defined environment variables to the service. Also, the
+syntax is so standard, that even <code>zsh</code> can <a href="#org90b0e28">parse it as well</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"># System
-GNUPGHOME=/home/grtcdr/.local/share/gnupg
+<pre class="src src-sh">GNUPGHOME=/home/grtcdr/.local/share/gnupg
 PASSWORD_STORE_DIR=/home/grtcdr/.local/share/pass
 WGETRC=/home/grtcdr/.config/wgetrc
 SCREENRC=/home/grtcdr/.config/screen/screenrc
@@ -572,6 +485,142 @@ BUNDLE_USER_PLUGIN=/home/grtcdr/.local/share/bundle
 PYTHONSTARTUP=/home/grtcdr/.config/python/startup.py
 SQLITE_HISTORY=/home/grtcdr/.local/state/sqlite/history
 </pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-aliases" class="outline-2">
+<h2 id="aliases"><span class="section-number-2">6.</span> <a href="#aliases">aliases</a></h2>
+<div class="outline-text-2" id="text-aliases">
+</div>
+
+<div id="outline-container-aliases-core" class="outline-3">
+<h3 id="aliases-core"><span class="section-number-3">6.1.</span> <a href="#aliases-core">Core</a></h3>
+<div class="outline-text-3" id="text-aliases-core">
+<p>
+I prefer to have commands that perform changes to the filesystem to be
+verbose, and to prompt for the operation just in case I type the wrong
+filename.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+</pre>
+</div>
+
+<p>
+I can always bypass the prompt by running <code>yes | &lt;cp,rm,mv&gt; ...</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-aliases-movement" class="outline-3">
+<h3 id="aliases-movement"><span class="section-number-3">6.2.</span> <a href="#aliases-movement">Movement</a></h3>
+<div class="outline-text-3" id="text-aliases-movement">
+<p>
+Moving between directories should be intuitive, which is why I alias
+<code>cd</code> to <code>cdls</code> to see the content of the directory without manually
+doing so.
+</p>
+
+<p>
+And sometimes you want to hop up a directory, in that case, <code>..</code> is
+better than <code>cd ..</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias cd='cdls'
+alias ..='cd ..'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-aliases-listing" class="outline-3">
+<h3 id="aliases-listing"><span class="section-number-3">6.3.</span> <a href="#aliases-listing">Listing</a></h3>
+<div class="outline-text-3" id="text-aliases-listing">
+<p>
+We want colors, and we want them bad!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias ls='ls --color=always --group-directories-first'
+alias la='ls -la'
+alias ll='ls -l'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-aliases-programs" class="outline-3">
+<h3 id="aliases-programs"><span class="section-number-3">6.4.</span> <a href="#aliases-programs">Programs</a></h3>
+<div class="outline-text-3" id="text-aliases-programs">
+<p>
+Whenever I get the chance to make a long command short, I always seize
+it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias z='zathura'
+alias v='vim'
+alias e='emacsclient -nw'
+</pre>
+</div>
+
+<p>
+These programs don't respect the XDG base directory specification, so
+I force them to!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias wget='wget --hsts-file="$HOME/.cache/wget-hsts"'
+alias mbsync='mbsync -c ~/.config/isync/mbsyncrc'
+</pre>
+</div>
+
+<p>
+A nice little alias to get the current weather.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias weather='curl "wttr.in/Tunis?format=3"'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-aliases-package-manager" class="outline-3">
+<h3 id="aliases-package-manager"><span class="section-number-3">6.5.</span> <a href="#aliases-package-manager">Package manager</a></h3>
+<div class="outline-text-3" id="text-aliases-package-manager">
+<p>
+Again, short commands over long commands.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias pac='sudo pacman'
+</pre>
+</div>
+
+<p>
+Browse a list of installed packages and their metadata:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias packages='pacman -Qq | fzf --preview-window sharp --preview "pacman -Qi {1}"'
+</pre>
+</div>
+
+<p>
+Browse a list of all packages available for download:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">alias search='pacman -Slq | fzf --multi --preview "pacman -Si {1}" | xargs -ro sudo pacman -S'
+</pre>
+</div>
 </div>
 </div>
 </div>

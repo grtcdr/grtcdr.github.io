@@ -1,6 +1,7 @@
 (require 'ox-publish)
 
 (setq org-src-fontify-natively nil
+      org-export-time-stamp-file nil
       org-publish-timestamp-directory ".timestamps/")
 
 (defun sitemap-format-entry (entry style project)

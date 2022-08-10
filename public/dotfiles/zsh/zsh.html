@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-08-10 Wed 07:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>zsh</title>
@@ -77,7 +76,7 @@ variable points to.
 Here's a <a href="https://linux.die.net/man/1/tree">tree</a> representation of this configuration:
 </p>
 
-<pre class="example" id="orgd6c317c">
+<pre class="example" id="org1aaca00">
 $ZDOTDIR/
 ├── aliases
 ├── environ
@@ -199,7 +198,7 @@ Source my aliases, one of the best features of UNIX shells.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org502da66">for file in "$ZDOTDIR"/aliases; do . "$file"; done
+<pre class="src src-sh" id="org7bbaf77">for file in "$ZDOTDIR"/aliases; do . "$file"; done
 </pre>
 </div>
 </div>
@@ -214,7 +213,7 @@ them.
 </p>
 
 <p>
-This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org502da66">previously sourced</a>.
+This is aliased to <code>cd</code> in the <code>alias</code> file, which was <a href="#org7bbaf77">previously sourced</a>.
 </p>
 
 <div class="org-src-container">
@@ -230,7 +229,7 @@ we placed them in the background:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org1b4645f">fancy-ctrl-z() {
+<pre class="src src-sh" id="org3e6cf4b">fancy-ctrl-z() {
     if [[ $#BUFFER -eq 0 ]]; then
 	BUFFER="fg"
 	zle accept-line -w
@@ -360,7 +359,7 @@ work, I need to set a location for the socket:
 Export the environment variables defined in <code>environ</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh" id="orgc6c18dd">set -o allexport
+<pre class="src src-sh" id="org80272bf">set -o allexport
 source "$ZDOTDIR"/environ
 set +o allexport
 </pre>
@@ -437,7 +436,7 @@ After many lengthy discussions on IRC, someone suggested I use the
 value a path to a file containing enviroment variables written in the
 form of <code>KEY=VALUE</code>. Once specified, systemd will parse the file,
 exposing the defined environment variables to the service. Also, the
-syntax is so standard, that even <code>zsh</code> can <a href="#orgc6c18dd">parse it as well</a>.
+syntax is so standard, that even <code>zsh</code> can <a href="#org80272bf">parse it as well</a>.
 </p>
 
 <div class="org-src-container">

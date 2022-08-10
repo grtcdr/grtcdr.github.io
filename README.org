@@ -46,4 +46,4 @@ This allows me to work on these two projects independently, whilst maintaining t
 
 * Copying
 
-The content in this site is [[file:COPYING/CONTENT.txt][CC-BY-SA 2.0]] -- The source code is [[file:COPYING/SOURCE.txt][MIT]].
+The content in this site is [[file:licenses/content.txt][CC-BY-SA 2.0]] -- The source code is [[file:licenses/source.txt][MIT]].

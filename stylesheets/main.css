@@ -106,20 +106,22 @@ img {
   margin: auto;
   display: block;
 }
-#postamble {
-  margin-top: 3rem;
-  border-top: 1px solid #EBEBEB;
+#preamble .metadata {
+  font-family: monospace;
+  font-weight: 300;
+  padding-bottom: 1rem;
+  color: #A3A3A3;
 }
-.navigation {
+#preamble .navigation {
   padding: 0;
   margin-top: 30px;
   border-bottom: 1px solid #EBEBEB;
   padding-bottom: 8px;
 }
-.navigation li {
+#preamble .navigation li {
   display: inline;
 }
-.navigation li + li::before {
+#preamble .navigation li + li::before {
   content: '‧';
   padding: 0.5em;
   color: #CCCCCC;

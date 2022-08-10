@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-08-08 Mon 17:51 -->
+<!-- 2022-08-10 Wed 08:48 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Extending project.el with to-do functionality</title>
@@ -18,6 +18,8 @@
   <li><a href="/contact.html">Contact</a></li>
   <li><a href="/data/resume.pdf">Résumé</a></li>
 </ul>
+
+<p class="metadata">2022-08-08 Mon 00:00, by Aziz Ben Ali.</p>
 </div>
 <div id="content" class="content">
 <header>
@@ -38,18 +40,31 @@ project.
 
 <div class="org-src-container">
 <pre class="src src-elisp">(defun project-todo ()
-  "Opens the TODO.org file at the root of the current project."
+  "Edit the TODO.org file at the root of the current project."
   (interactive)
-  (let* ((base (project-root (project-current)))
+  (let* ((base (ignore-errors (project-root (project-current))))
 	 (todo (file-name-concat base "TODO.org")))
-    (if (file-exists-p todo)
-	(find-file todo)
-      (message "Project does not contain a TODO.org file."))))
+    (cond ((and base (file-exists-p todo)) (find-file todo))
+	  ((not base) (error "Not in a project"))
+	  (t (error "Project does not contain a TODO.org file.")))))
 </pre>
 </div>
 
 <p>
-That's very nice, how about we make a keybinding for it!
+To further extend <code>project.el</code>, we should perhaps register this
+command in the list of options that appear when we <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html">switch to a project</a>
+with <code>C-x p p</code>. The <code>project-switch-commands</code> variable is what we're
+after, and we should append an expression in the form of <code>(COMMAND
+LABEL &amp;optional KEY)</code> if we'd like to see it listed. Let's do that.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(push '(project-todo "Todo") project-switch-commands)
+</pre>
+</div>
+
+<p>
+Map it to something memorable.
 </p>
 
 <pre class="example">
@@ -57,16 +72,8 @@ That's very nice, how about we make a keybinding for it!
 </pre>
 
 <p>
-To further extend <code>project.el</code>, we should perhaps register this
-command in the list of options that appear when we <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html">switch to a project</a>
-with <code>C-x p p</code>. We can do this by appending the command we just
-created to <code>project-switch-commands</code>, like so:
+And that's it, we're all set.
 </p>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(push '(project-todo "Todo") project-switch-commands)
-</pre>
-</div>
 </div>
 </body>
 </html>

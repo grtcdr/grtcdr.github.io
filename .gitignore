@@ -1,1 +1,6 @@
+# Ignore these directories
 node_modules/
+.timestamps/
+
+# Ignore backup files
+*~

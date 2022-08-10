@@ -1,5 +1,5 @@
 #+TITLE: Bonjour
-#+SETUPFILE: _setup.org
+#+SETUPFILE: setup.org
 #+HTML_HEAD: <script src="javascripts/main.js"></script>
 
 I'm /grtcdr/, a student and open source software developer. I spend a
@@ -13,9 +13,9 @@ Find me on:
 
 * Highlights
 
-I've taken it upon myself to document [[file:depot.org][the various configurations of my computing environment]], a creative project driven by a motivation of converging art with system configuration.
-
-I've begun working on yet another creative project, a [[file:musichronicle.org][chronicle of the artists and albums]] near and dear to me.
+I've taken it upon myself to document [[file:depot.org][the various configurations of my
+computing environment]], a creative project driven by a motivation to
+converge art with system configuration.
  
 * Posts
 

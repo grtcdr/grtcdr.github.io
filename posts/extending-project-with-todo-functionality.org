@@ -1,6 +1,6 @@
 #+TITLE: Extending project.el with to-do functionality
 #+DATE: <2022-08-08 Mon> 
-#+SETUPFILE: ../_setup.org
+#+SETUPFILE: ../setup.org
 #+FILETAGS: emacs
 
 When I work on a personal project which has the potential to grow
@@ -15,26 +15,29 @@ project.
 
 #+begin_src elisp
 (defun project-todo ()
-  "Opens the TODO.org file at the root of the current project."
+  "Edit the TODO.org file at the root of the current project."
   (interactive)
-  (let* ((base (project-root (project-current)))
+  (let* ((base (ignore-errors (project-root (project-current))))
 	 (todo (file-name-concat base "TODO.org")))
-    (if (file-exists-p todo)
-	(find-file todo)
-      (message "Project does not contain a TODO.org file."))))
+    (cond ((and base (file-exists-p todo)) (find-file todo))
+	  ((not base) (error "Not in a project"))
+	  (t (error "Project does not contain a TODO.org file.")))))
 #+end_src
 
-That's very nice, how about we make a keybinding for it!
+To further extend =project.el=, we should perhaps register this
+command in the list of options that appear when we [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html][switch to a project]]
+with ~C-x p p~. The ~project-switch-commands~ variable is what we're
+after, and we should append an expression in the form of ~(COMMAND
+LABEL &optional KEY)~ if we'd like to see it listed. Let's do that.
+
+#+begin_src elisp
+(push '(project-todo "Todo") project-switch-commands)
+#+end_src
+
+Map it to something memorable.
 
 #+begin_src 
 (global-set-key (kbd "C-x p t") 'project-todo)
 #+end_src
 
-To further extend =project.el=, we should perhaps register this
-command in the list of options that appear when we [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Switching-Projects.html][switch to a project]]
-with ~C-x p p~. We can do this by appending the command we just
-created to ~project-switch-commands~, like so:
-
-#+begin_src elisp
-(push '(project-todo "Todo") project-switch-commands)
-#+end_src
+And that's it, we're all set.

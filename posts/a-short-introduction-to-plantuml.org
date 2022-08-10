@@ -1,6 +1,6 @@
 #+TITLE: A short introduction to PlantUML
-#+DATE: <2022-07-15 Fri>
-#+SETUPFILE: ../_setup.org
+#+DATE: <2022-07-15>
+#+SETUPFILE: ../setup.org
 
 * Foreword
 :PROPERTIES:
@@ -171,14 +171,14 @@ Dying to compile it? Pop your terminal open, and give this command a
 go.
 
 #+begin_src sh :eval no
-plantuml animalia.uml -tpng animalia.png
+plantuml animalia.puml -tpng animalia.png
 #+end_src
 
 If all goes smoothly, you should see an ~animalia.png~ file appear in
 your working directory... Go on, open it!
 
 #+name: diagram
-#+attr_html: :alt Animalia class diagram :style width:60%;
+#+attr_html: :alt Animalia class diagram :style width:50%;
 [[../images/posts/animalia.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves - it's a

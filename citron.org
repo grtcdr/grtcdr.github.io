@@ -1,5 +1,5 @@
 #+TITLE: citron
-#+SETUPFILE: _setup.org
+#+SETUPFILE: setup.org
 
 [[https://git.sr.ht/~grtcdr/citron][citron]] is a lightweight utility that provides system data via
 on-demand notifications. It essentially replaces the need for the

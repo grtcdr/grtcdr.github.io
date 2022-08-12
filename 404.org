@@ -1,0 +1,11 @@
+#+TITLE: Page not found
+#+OPTIONS: title:nil
+#+SETUPFILE: setup.org
+
+#+ATTR_HTML: :style font-size:1em;text-align:center;
+#+begin_export html
+<div style="text-align:center;margin-top:10em">
+<h2 style="font-weight:700">Page not found</h2>
+<p>I couldn't locate the page you requested, it <i>most likely</i> doesn't exist.</p>
+</div>
+#+end_export

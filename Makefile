@@ -17,4 +17,3 @@ clean:
 	@echo "Cleaning up..."
 	@rm -rvf public/
 	@rm -rvf .timestamps
-	rm -f $(DIAGRAMS_SVG)

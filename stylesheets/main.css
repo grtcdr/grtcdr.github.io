@@ -100,7 +100,6 @@ img {
 #preamble .metadata {
   font-family: monospace;
   font-weight: 300;
-  padding-bottom: 1rem;
 }
 #preamble .navigation {
   padding: 0;
@@ -110,7 +109,6 @@ img {
 #preamble .navigation a {
   text-decoration: none;
   font-family: monospace;
-  color: #363D45;
 }
 #preamble .navigation li {
   display: inline;

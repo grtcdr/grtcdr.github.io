@@ -3,13 +3,11 @@ LESSC = npm x lessc
 
 all: css publish
 
-.PHONY: all
+css: $(CSS_FILES)
 
 ./stylesheets/%.css: stylesheets/%.less
 	@echo "$< -> $@"
 	$(LESSC) $< $@
-
-css: $(CSS_FILES)
 
 publish: publish.el
 	@echo "Publishing..."
@@ -17,5 +15,6 @@ publish: publish.el
 
 clean:
 	@echo "Cleaning up..."
-	@rm -rvf public
-	@rm .timestamps/grtcdr.tn/*
+	@rm -rvf public/
+	@rm -rvf .timestamps
+	rm -f $(DIAGRAMS_SVG)

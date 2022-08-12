@@ -14,7 +14,8 @@
 ;; Org source blocks:
 
 (setq org-src-fontify-natively t
-      org-src-preserve-indentation t)
+      org-src-preserve-indentation t
+      org-html-htmlize-output-type nil)
 
 ;;; Functions:
 
@@ -47,9 +48,10 @@
 ;;; Project specification:
 
 (setq org-publish-project-alist
-      (let ((preamble-posts (read-snippet "preamble-posts.html"))
-	     (preamble-site (read-snippet "preamble-site.html"))
-	     (preamble-dotfiles (read-snippet "preamble-dotfiles.html")))
+      (let ((postamble-posts (read-snippet "postamble-posts.html"))
+	    (preamble-posts (read-snippet "preamble-posts.html"))
+	    (preamble-site (read-snippet "preamble-site.html"))
+	    (preamble-dotfiles (read-snippet "preamble-dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -80,7 +82,7 @@
 	       :html-doctype "html5"
 	       :html-format-headline-function 'org-html-format-headline-function
 	       :html-preamble preamble-posts
-	       :html-postamble nil
+	       :html-postamble postamble-posts
 	       :html-head-include-default-style nil)
 	 (list "dotfiles"
 	       :recursive t

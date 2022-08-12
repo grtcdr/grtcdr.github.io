@@ -11,7 +11,7 @@ programming implementation is exclusive to these two, but I happen to
 like their integration and extensibility.
 
 Please note that a small portion of my configurations may contain
-something adapted from someone's /[a]/ blog, /[b]/ video demonstration
+things adapted from someone's /[a]/ blog, /[b]/ video demonstration
 or /[c]/ dotfiles.
 
 * Explore

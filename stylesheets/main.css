@@ -22,7 +22,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
+  font-weight: 300;
+  font-family: sans-serif;
 }
 h1 > a,
 h2 > a,
@@ -31,15 +32,7 @@ h4 > a,
 h5 > a,
 h6 > a {
   color: unset;
-}
-h1 > a:hover,
-h2 > a:hover,
-h3 > a:hover,
-h4 > a:hover,
-h5 > a:hover,
-h6 > a:hover {
   text-decoration: none;
-  color: #5C5D8D;
 }
 span[class^='section-number'] {
   color: #CCCCCC;
@@ -48,30 +41,40 @@ span[class^='section-number'] {
 body {
   color: #363D45;
   background-color: #FFFFFF;
-  font-family: serif;
+  font-family: sans-serif;
 }
 #preamble,
 #content,
 #postamble {
-  max-width: 60em;
+  max-width: 58vw;
   margin: auto;
+}
+#content {
+  margin-bottom: 6em;
 }
 hr {
   border: 1px solid #EBEBEB;
 }
 p {
-  line-height: 1.6em;
+  line-height: 1.7em;
+}
+a {
+  color: #363D45;
+  text-decoration-style: dotted;
+}
+a:hover {
+  background-color: #EBEBEB;
+  transition: background-color 0.2s;
 }
 blockquote {
   margin: 0;
   font-size: 1.32em;
   text-align: center;
   quotes: "“" "”" "‘" "’";
-  color: #5C5D8D;
+  color: #363D45;
 }
 blockquote::before,
 blockquote::after {
-  color: #9C9DBF;
   font-size: 1.4em;
 }
 blockquote::before {
@@ -84,21 +87,6 @@ blockquote p {
   display: inline;
   font-style: italic;
 }
-blockquote a {
-  display: inline;
-  text-decoration: underline;
-  color: #5C5D8D;
-}
-blockquote a:hover {
-  color: #9C9DBF;
-}
-a {
-  color: #5C5D8D;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
 li {
   line-height: 1.8em;
 }
@@ -106,25 +94,31 @@ img {
   margin: auto;
   display: block;
 }
+#preamble {
+  color: #363D45;
+}
 #preamble .metadata {
   font-family: monospace;
   font-weight: 300;
   padding-bottom: 1rem;
-  color: #A3A3A3;
 }
 #preamble .navigation {
   padding: 0;
-  margin-top: 30px;
-  border-bottom: 1px solid #EBEBEB;
-  padding-bottom: 8px;
+  margin-top: 6em;
+  border-bottom: 0.1em dotted #363D45;
+}
+#preamble .navigation a {
+  text-decoration: none;
+  font-family: monospace;
+  color: #363D45;
 }
 #preamble .navigation li {
   display: inline;
+  font-size: 1.4em;
+  font-weight: 600;
 }
-#preamble .navigation li + li::before {
-  content: '‧';
-  padding: 0.5em;
-  color: #CCCCCC;
+#preamble .navigation li:not(:last-child) {
+  padding-right: 1em;
 }
 .org-svg {
   width: 90%;
@@ -194,7 +188,6 @@ pre {
   margin: 0;
   padding: 1em;
   background-color: #FAFAFA;
-  color: #5C5D8D;
   border-left: 2px dashed #EBEBEB;
 }
 pre.src {
@@ -202,7 +195,7 @@ pre.src {
   overflow: auto;
 }
 code {
-  color: #9C9DBF;
+  color: #A3A3A3;
 }
 .org-src-name {
   display: block;

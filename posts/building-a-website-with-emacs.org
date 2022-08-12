@@ -128,8 +128,8 @@ around.
 :END:
 
 Now I'd like to present my setup. It does all of the heavy lifting for
-me, and allows me to focus on more important things - like chatting
-with strangers on IRC :^)
+me, and allows me to focus on more important things such as chatting
+with strangers on IRC.
 
 #+begin_src emacs-lisp :eval no
 (use-package ox-publish

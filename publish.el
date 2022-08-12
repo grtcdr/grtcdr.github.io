@@ -1,8 +1,18 @@
 (require 'ox-publish)
 
-(setq org-src-fontify-natively nil
-      org-export-time-stamp-file nil
+;;; Org caching:
+
+(setq org-export-time-stamp-file nil
       org-publish-timestamp-directory ".timestamps/")
+
+;;; Org content metadata:
+
+(setq org-html-metadata-timestamp-format "%b. %d, %Y")
+
+;;; Org source blocks:
+
+(setq org-src-fontify-natively t
+      org-src-preserve-indentation t)
 
 (defun sitemap-format-entry (entry style project)
   (format "%s - [[file:%s][%s]]"

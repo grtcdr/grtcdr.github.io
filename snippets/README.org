@@ -13,4 +13,4 @@ to either the =:html-preamble= or =:html-postamble= option.
 
 The naming scheme aims to be consistent between the filenames in this
 directory and the various project names specified under the
-=org-publish-project-alist= variable in [[file:~/projects/grtcdr.tn/publish.el][publish.el]].
+=org-publish-project-alist= variable in [[../publish.el][publish.el]].

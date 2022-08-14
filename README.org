@@ -34,7 +34,7 @@ and run the following:
 make
 #+end_src
 
-The provided =Makefile= contains two recipes, one to compile the
+The provided [[file:Makefile][Makefile]] contains two recipes, one to compile the
 included stylesheets from =.less= to =.css=, and another to publish
 the website, which outputs a =public/= directory as per the [[file:publish.el][website
 specification]].

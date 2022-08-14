@@ -11,22 +11,6 @@
 @blue:     #A2AEAE;
 @green:    #90B494;    
 
-// = Mixins
-
-#hovered-link-effect-bg() {
-  &:hover {
-    background-color: @bg02;
-    transition: background-color .2s;
-  }
-}
-
-#hovered-link-effect-fg() {
-  &:hover {
-    color: @fg01;
-    transition: color .2s;
-  }
-}
-
 // = Headings
 
 h1 { font-size: 2.5em }
@@ -59,15 +43,14 @@ body {
   color: @fg02;
   background-color: @bg00;
   font-family: sans-serif;
+
+  margin-top: 6em;
+  margin-bottom: 6em;
 }
 
 #preamble, #content, #postamble {
   max-width: 58vw;
   margin: auto;
-}
-
-#content {
-  margin-bottom: 6em
 }
 
 hr {
@@ -81,7 +64,11 @@ p {
 a {
   color: @fg02;
   text-decoration-style: dotted;
-  #hovered-link-effect-bg();
+
+  &:hover {
+    background-color: @bg02;
+    transition: background-color .2s;
+  }
 }
 
 blockquote {
@@ -120,30 +107,34 @@ img {
 
 #preamble {
   color: @fg02;
+}
 
-  .metadata {
+.metadata {
+  font-family: monospace;
+  font-weight: 300;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 0;
+  border-bottom: .1em dotted @fg02;
+
+  a {
+    text-decoration: none;
     font-family: monospace;
-    font-weight: 300;
   }
 
-  .navigation {
-    padding: 0;
-    margin-top: 6em;
-    border-bottom: .1em dotted @fg02;
+  li {
+    display: inline;
+    font-size: 1.4em;
+    font-weight: 600;
 
-    a {
-      text-decoration: none;
-      font-family: monospace;
-    }
-
-    li {
-      display: inline;
-      font-size: 1.4em;
-      font-weight: 600;
-
-      &:not(:last-child) {
-	padding-right: 1em;
-      }
+    &:not(:last-child) {
+      padding-right: 1em;
     }
   }
 }

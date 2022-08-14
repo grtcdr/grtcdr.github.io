@@ -1,10 +1,7 @@
-;;; publish.el -- prepares your website for publishing
-
-;; Copyright (C) 2022 by Aziz Ben Ali
+;;; publish.el --- prepares websites for publishing -*- lexical-binding: t; -*-
 
 ;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
-
-;; SPDX-License-Identifier: GPL-3.0-or-later
+;; URL: https://github.com/grtcdr/grtcdr.github.io
 
 ;; publish.el is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
@@ -50,6 +47,11 @@
 ;; Emacs:
 
 (setq make-backup-files nil)
+
+;; Metadata:
+
+(setq user-full-name "Aziz Ben Ali"
+      user-mail-address "ba.tahaaziz@gmail.com")
 
 ;;; Functions:
 

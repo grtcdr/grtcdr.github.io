@@ -42,15 +42,14 @@ body {
   color: #363D45;
   background-color: #FFFFFF;
   font-family: sans-serif;
+  margin-top: 6em;
+  margin-bottom: 6em;
 }
 #preamble,
 #content,
 #postamble {
   max-width: 58vw;
   margin: auto;
-}
-#content {
-  margin-bottom: 6em;
 }
 hr {
   border: 1px solid #EBEBEB;
@@ -97,25 +96,28 @@ img {
 #preamble {
   color: #363D45;
 }
-#preamble .metadata {
+.metadata {
   font-family: monospace;
   font-weight: 300;
 }
-#preamble .navigation {
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 0;
-  margin-top: 6em;
   border-bottom: 0.1em dotted #363D45;
 }
-#preamble .navigation a {
+.navigation a {
   text-decoration: none;
   font-family: monospace;
 }
-#preamble .navigation li {
+.navigation li {
   display: inline;
   font-size: 1.4em;
   font-weight: 600;
 }
-#preamble .navigation li:not(:last-child) {
+.navigation li:not(:last-child) {
   padding-right: 1em;
 }
 .org-svg {

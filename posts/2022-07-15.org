@@ -177,11 +177,9 @@ plantuml animalia.puml -tpng animalia.png
 If all goes smoothly, you should see an ~animalia.png~ file appear in
 your working directory... Go on, open it!
 
-#+name: diagram
-#+attr_html: :alt Animalia class diagram :style width:50%;
-[[../images/posts/animalia.svg]]
-
 I hope I've given PlantUML the proper introduction it deserves - it's a
 pretty neat program, don't you think?
 
-/Okay, catch you later!/
+#+name: diagram
+#+attr_html: :alt Animalia class diagram :style width:50%;
+[[../images/posts/animalia.svg]]

@@ -18,7 +18,9 @@ module named [[https://github.com/emacs-mirror/emacs/blob/master/lisp/org/ox-pub
 builder.
 
 Once you've set that up, you should install this project's development
-dependencies, in order to do that, simply run =npm install=.
+dependencies. In order to do that, place yourself at the project root,
+i.e. the location where you cloned this repository, and then run =npm
+install=.
 
 You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the [[https://en.wikipedia.org/wiki/Build_automation][build
 system]] in use.

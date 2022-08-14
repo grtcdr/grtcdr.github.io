@@ -1,6 +1,6 @@
-Hola!
+* Salut!
 
-This repository stores the source code of grtcdr.github.io (grtcdr.tn).
+This repository stores the source code of [[https://grtcdr.tn][grtcdr.tn]].
 
 * Setup
 
@@ -18,7 +18,7 @@ module named [[https://github.com/emacs-mirror/emacs/blob/master/lisp/org/ox-pub
 builder.
 
 Once you've set that up, you should install this project's development
-dependencies. In order to do that, place yourself at the project root,
+dependencies. In order to do that, position yourself at the project root,
 i.e. the location where you cloned this repository, and then run =npm
 install=.
 
@@ -27,7 +27,7 @@ system]] in use.
   
 * Building
 
-From the command-line, position yourself at the root of this project,
+From the command-line, position yourself at the root of the project,
 and run the following:
 
 #+begin_src sh
@@ -41,7 +41,8 @@ specification]].
 
 * Development
 
-In order to fully utilize the website during development, you should serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
+In order to fully utilize the website during development, you should
+serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
 
 #+begin_src sh
 cd grtcdr.tn
@@ -50,12 +51,15 @@ miniserve public
 
 * Structure
 
-This skeleton of this website is defined in [[file:publish.el][publish.el]] and it utilizes the following submodules to achieve a more modular structure:
+This skeleton of this website is defined in [[file:publish.el][publish.el]] and it utilizes
+the following submodules to achieve a more modular structure:
 
-- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]], a repository that hosts my personal configuration files, many of which are documented.
+- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]], a repository that hosts my personal configuration files,
+  many of which are documented.
 - [[https://github.com/grtcdr/resume][resume]], a repository that hosts my résumé.
 
-This allows me to work on these two projects independently, whilst maintaining their individual composability.
+This allows me to work on these two projects independently, whilst
+maintaining their individual composability.
 
 * Copying
 

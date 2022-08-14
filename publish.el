@@ -84,10 +84,10 @@
 ;;; Project specification:
 
 (setq org-publish-project-alist
-      (let ((posts-postamble (read-snippet "postamble-posts.html"))
-	    (posts-preamble (read-snippet "preamble-posts.html"))
-	    (site-preamble (read-snippet "preamble-site.html"))
-	    (dotfiles-preamble (read-snippet "preamble-dotfiles.html")))
+      (let ((posts-postamble (read-snippet "posts-postamble.html"))
+	    (posts-preamble (read-snippet "posts-preamble.html"))
+	    (site-preamble (read-snippet "site-preamble.html"))
+	    (dotfiles-preamble (read-snippet "dotfiles-preamble.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"

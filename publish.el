@@ -74,20 +74,20 @@
                  text)))
     (org-html-format-headline-default-function todo todo-type priority link tags info)))
 
-(defun read-snippet (file)
+(defun read-snippet (directory file)
   "Read a snippet from the snippets directory."
   (with-temp-buffer
     (insert-file-contents
-     (file-name-concat "snippets" file))
+     (file-name-concat "snippets" directory file))
     (buffer-string)))
 
 ;;; Project specification:
 
 (setq org-publish-project-alist
-      (let ((posts-postamble (read-snippet "posts-postamble.html"))
-	    (posts-preamble (read-snippet "posts-preamble.html"))
-	    (site-preamble (read-snippet "site-preamble.html"))
-	    (dotfiles-preamble (read-snippet "dotfiles-preamble.html")))
+      (let ((posts-postamble (read-snippet "postamble" "posts.html"))
+	    (posts-preamble (read-snippet "preamble" "posts.html"))
+	    (content-preamble (read-snippet "preamble" "content.html"))
+	    (dotfiles-preamble (read-snippet "preamble" "dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -100,7 +100,7 @@
 	       :with-title t
 	       :html-doctype "html5"
 	       :html-html5-fancy t
-	       :html-preamble site-preamble
+	       :html-preamble content-preamble
 	       :html-postamble nil
 	       :html-head-include-default-style nil)
 	 (list "posts"

@@ -1,0 +1,16 @@
+* =snippets=
+
+The purpose of this directory is to provide the various =.html=
+snippets that are automatically prepended/appended to the =.org=
+content of the website at *compile time*.
+
+For example, in the /posts/ area of the website, a navigation bar is
+displayed above the content, and a footer is displayed at the very
+end.
+
+This is done by reading the contents of the snippets and setting them
+to either the =:html-preamble= or =:html-postamble= option.
+
+The naming scheme aims to be consistent between the filenames in this
+directory and the various project names specified under the
+=org-publish-project-alist= variable in [[file:~/projects/grtcdr.tn/publish.el][publish.el]].

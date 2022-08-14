@@ -1,3 +1,33 @@
+;;; publish.el -- prepares your website for publishing
+
+;; Copyright (C) 2022 by Aziz Ben Ali
+
+;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
+
+;; SPDX-License-Identifier: GPL-3.0-or-later
+
+;; publish.el is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published
+;; by the Free Software Foundation, either version 3 of the License,
+;; or (at your option) any later version.
+;;
+;; publish.el is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with publish.el.  If not, see <https://www.gnu.org/licenses/>.
+
+;; This file contains code taken from GNU Emacs, which is
+;; Copyright (C) 1976-2022 Free Software Foundation, Inc.
+
+;;; Commentary:
+
+;; publish.el specifies the structure of a website built atop
+;; org-publish-project-alist.  It should also specify any other
+;; options that affect the building of the website.
+
 (require 'ox-publish)
 
 ;;; Configurations:
@@ -16,6 +46,10 @@
 (setq org-src-fontify-natively t
       org-src-preserve-indentation t
       org-html-htmlize-output-type nil)
+
+;; Emacs:
+
+(setq make-backup-files nil)
 
 ;;; Functions:
 
@@ -48,10 +82,10 @@
 ;;; Project specification:
 
 (setq org-publish-project-alist
-      (let ((postamble-posts (read-snippet "postamble-posts.html"))
-	    (preamble-posts (read-snippet "preamble-posts.html"))
-	    (preamble-site (read-snippet "preamble-site.html"))
-	    (preamble-dotfiles (read-snippet "preamble-dotfiles.html")))
+      (let ((posts-postamble (read-snippet "postamble-posts.html"))
+	    (posts-preamble (read-snippet "preamble-posts.html"))
+	    (site-preamble (read-snippet "preamble-site.html"))
+	    (dotfiles-preamble (read-snippet "preamble-dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -64,7 +98,7 @@
 	       :with-title t
 	       :html-doctype "html5"
 	       :html-html5-fancy t
-	       :html-preamble preamble-site
+	       :html-preamble site-preamble
 	       :html-postamble nil
 	       :html-head-include-default-style nil)
 	 (list "posts"
@@ -81,8 +115,8 @@
 	       :html-html5-fancy t
 	       :html-doctype "html5"
 	       :html-format-headline-function 'org-html-format-headline-function
-	       :html-preamble preamble-posts
-	       :html-postamble postamble-posts
+	       :html-preamble posts-preamble
+	       :html-postamble posts-postamble
 	       :html-head-include-default-style nil)
 	 (list "dotfiles"
 	       :recursive t
@@ -97,7 +131,7 @@
 	       :html-html5-fancy t
 	       :html-doctype "html5"
 	       :html-format-headline-function 'org-html-format-headline-function
-	       :html-preamble preamble-dotfiles
+	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
 	       :html-head-include-default-style nil)
 	 (list "data"

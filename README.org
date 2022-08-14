@@ -12,19 +12,30 @@ git clone --recursive https://github.com/grtcdr/grtcdr.github.io.git grtcdr.tn
 
 * Reproducing
 
-If you wish to reproduce this website locally, the most overarching dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]].
+If you wish to reproduce this website locally, the most overarching
+dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]]. Among its many features, Emacs includes a
+module named [[https://github.com/emacs-mirror/emacs/blob/master/lisp/org/ox-publish.el][ox-publish]] which can be summarized as a static site
+builder.
 
-After that, you should proceed by installing the packages listed in [[file:package.json][package.json]].
+Once you've set that up, you should install this project's development
+dependencies, in order to do that, simply run =npm install=.
 
-You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the [[https://en.wikipedia.org/wiki/Build_automation][build system]] in use.
+You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the [[https://en.wikipedia.org/wiki/Build_automation][build
+system]] in use.
   
 * Building
 
-From the command-line, position yourself at the root of this project, and run the following:
+From the command-line, position yourself at the root of this project,
+and run the following:
 
 #+begin_src sh
 make
 #+end_src
+
+The provided =Makefile= contains two recipes, one to compile the
+included stylesheets from =.less= to =.css=, and another to publish
+the website, which outputs a =public/= directory as per the [[file:publish.el][website
+specification]].
 
 * Development
 

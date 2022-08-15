@@ -67,7 +67,7 @@ site from scratch, using the provided =Makefile=.
 
 The output of this process generates an artifact, the =public= directory.
 
-This artifact is then transferred =deploy=, which handles the
+This artifact is then transferred to =deploy=, which handles the
 deployment of the site to the GitHub Pages servers.
 
 * Copying

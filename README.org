@@ -4,15 +4,15 @@ This repository stores the source code of [[https://grtcdr.tn][grtcdr.tn]].
 
 * Structure
 
-This skeleton of this website is defined in [[file:publish.el][publish.el]] and it utilizes
-the following submodules to achieve a more modular structure:
+The skeleton, i.e. the specification describing the various components
+of this site, is defined in [[file:publish.el][publish.el]].
 
-- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]], a repository that hosts my personal configuration files,
-  many of which are documented.
-- [[https://github.com/grtcdr/resume][resume]], a repository that hosts my résumé.
+This site uses the following submodules to achieve a more modular and
+composable structure:
 
-This allows me to work on these two projects independently, whilst
-maintaining their individual composability.
+- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]: contains my personal configuration files, many of which are
+  documented.
+- [[https://github.com/grtcdr/resume][resume]]: contains the source code of my résumé.
 
 * Setup
 
@@ -24,36 +24,30 @@ git clone --recursive https://github.com/grtcdr/grtcdr.github.io.git grtcdr.tn
 
 * Reproducing
 
-If you wish to reproduce this website locally, the most overarching
+If you wish to reproduce this site locally, the most overarching
 dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]]. Among its many features, Emacs includes a
 module named [[https://github.com/emacs-mirror/emacs/blob/master/lisp/org/ox-publish.el][ox-publish]] which can be summarized as a static site
 builder.
 
 Once you've set that up, you should install this project's development
-dependencies. In order to do that, position yourself at the project root,
-i.e. the location where you cloned this repository, and then run =npm
-install=.
+dependencies. In order to do that, position yourself at the project
+root, i.e. the location where you cloned this repository, and then run
+=npm install=.
 
-You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the [[https://en.wikipedia.org/wiki/Build_automation][build
-system]] in use.
+You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the [[https://en.wikipedia.org/wiki/Build_automation][build system]] in use.
   
 * Building
 
-From the command-line, position yourself at the root of the project,
-and run the following:
-
-#+begin_src sh
-make
-#+end_src
-
 The provided [[file:Makefile][Makefile]] contains two recipes, one to compile the
 included stylesheets from =.less= to =.css=, and another to publish
-the website, which outputs a =public/= directory as per the [[file:publish.el][website
-specification]].
+the site, which outputs a =public/= directory as per the [[file:publish.el][site specification]].
+
+From the command-line, position yourself at the root of the project,
+and run =make=.
 
 * Development
 
-In order to fully utilize the website during development, you should
+In order to fully utilize the site during development, you should
 serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
 
 #+begin_src sh
@@ -63,19 +57,18 @@ miniserve public
 
 * Deployment
 
-This website is hosted on GitHub Pages, and utilizes a [[file:.github/workflows/pages.yml][continuous
-integration workflow]] to build and deploy the site on every commit made
-to the =main= branch.
+This site is hosted on GitHub Pages, and utilizes a [[file:.github/workflows/pages.yml][CI/CD workflow]] to
+build and deploy the site with every commit made to the =main= branch.
 
-The workflow is split into two major jobs, =build= and =deploy=:
+The workflow is split into two major jobs, =build= and =deploy=.
 
-The first one installs the project's development dependencies and
-builds the website from scratch, using the provided =Makefile=.
+=build= installs the project's development dependencies and builds the
+site from scratch, using the provided =Makefile=.
 
 The output of this process generates an artifact, the =public= directory.
 
-That directory is then transferred to the second job, which handles
-the deployment of the website to GitHub Pages' servers.
+This artifact is then transferred =deploy=, which handles the
+deployment of the site to the GitHub Pages servers.
 
 * Copying
 

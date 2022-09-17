@@ -2,7 +2,7 @@
 
 # Behind the scenes, `npm {x|exec} lessc` locates the `lessc`
 # executable and runs it
-LESSC = npm exec lessc
+LESSC = npx lessc
 
 # Convert and store filenames from `.less` to `.css`
 CSS_FILES := $(patsubst %.less, %.css, $(wildcard ./stylesheets/*.less))
@@ -27,5 +27,5 @@ publish: publish.el
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:
 	@echo "Cleaning up..."
-	@rm -rvf public
-	@rm -rvf .timestamps
+	@rm -rvf public/
+	@rm -rvf .timestamps/

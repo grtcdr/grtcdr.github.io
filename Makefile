@@ -1,28 +1,31 @@
-# Creates the filenames of `.css` files from `.less` files in the
-# `stylesheets` directory.
-CSS_FILES := $(patsubst %.less, %.css, $(wildcard ./stylesheets/*.less))
+# ---- Variables ----
 
 # Behind the scenes, `npm {x|exec} lessc` locates the `lessc`
-# executable and runs it.
-LESSC = npm x lessc
+# executable and runs it
+LESSC = npm exec lessc
 
-all: css publish
+# Convert and store filenames from `.less` to `.css`
+CSS_FILES := $(patsubst %.less, %.css, $(wildcard ./stylesheets/*.less))
 
-css: $(CSS_FILES)
+# ---- Recipes ----
 
-# Recipe to compile `.less`̉ files into `.css` files.
+all: less publish
+
+less: $(CSS_FILES)
+
+# Compile `.less` files into `.css` files
 ./stylesheets/%.css: stylesheets/%.less
 	@echo "$< -> $@"
 	$(LESSC) $< $@
 
-# Recipe relying on publish.el (website specification) to publish the
-# website.
+# Publish the website
 publish: publish.el
 	@echo "Publishing..."
-	emacs --quick --batch --load publish.el --funcall org-publish-all
+	emacs --quick --batch --load publish.el --funcall org-publish-all t t
+	@rm $(CSS_FILES)
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:
 	@echo "Cleaning up..."
-	@rm -rvf public/
+	@rm -rvf public
 	@rm -rvf .timestamps

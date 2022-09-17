@@ -2,6 +2,7 @@
 node_modules/
 .timestamps/
 public/
+stylesheets/*.css
 
 # Ignore backup files
 *~

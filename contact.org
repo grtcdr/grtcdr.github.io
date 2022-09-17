@@ -1,7 +1,7 @@
 #+TITLE: Get in touch
 #+SETUPFILE: setup.org
 
-+ Email: [[mailto:ba.tahaaziz@gmail.com][ba.tahaaziz@gmail.com]]
++ Email: [[mailto:tahaaziz.benali@esprit.tn][tahaaziz.benali@esprit.tn]]
 
   I usually reply within the day.
 

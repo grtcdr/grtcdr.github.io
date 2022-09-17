@@ -1,3 +1,8 @@
+// = Typefaces
+
+@mono: 'Roboto Mono', monospace;
+@sans: 'Noto Sans', sans-serif;
+
 // = Colors
 
 @fg00:     #CCCCCC;
@@ -22,7 +27,7 @@ h6 { font-size: 1.53em }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
-  font-family: sans-serif;
+  font-family: @sans;
 
   & > a {
     color: unset;
@@ -42,7 +47,7 @@ span[class^='section-number'] {
 body {
   color: @fg02;
   background-color: @bg00;
-  font-family: sans-serif;
+  font-family: 'Noto Mono', sans-serif;
 
   margin-top: 6em;
   margin-bottom: 6em;
@@ -110,7 +115,7 @@ img {
 }
 
 .metadata {
-  font-family: monospace;
+  font-family: @mono;
   font-weight: 300;
 }
 
@@ -125,7 +130,7 @@ img {
 
   a {
     text-decoration: none;
-    font-family: monospace;
+    font-family: @mono;
   }
 
   li {
@@ -196,7 +201,7 @@ figcaption {
 
 pre {
   line-height: initial;
-  font-family: monospace;
+  font-family: @mono;
   overflow: auto;
   margin: 0;
   padding: 1.0em;
@@ -215,7 +220,7 @@ code {
 
 .org-src-name {
   display: block;
-  font-family: monospace;
+  font-family: @mono;
   padding: 0.3em;
 
   color: @fg01;

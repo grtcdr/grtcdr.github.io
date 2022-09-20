@@ -4,8 +4,13 @@
 # executable and runs it
 LESSC = npx lessc
 
-# Convert and store filenames from `.less` to `.css`
-CSS_FILES := $(patsubst %.less, %.css, $(wildcard ./stylesheets/*.less))
+# These two variables indicate the source and destination directories
+LESS_DIR = stylesheets
+CSS_DIR = public/stylesheets
+
+# Get a list of all less and css files
+LESS_FILES = $(wildcard $(LESS_DIR)/*.less)
+CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
 # ---- Recipes ----
 
@@ -14,18 +19,15 @@ all: less publish
 less: $(CSS_FILES)
 
 # Compile `.less` files into `.css` files
-./stylesheets/%.css: stylesheets/%.less
-	@echo "$< -> $@"
-	$(LESSC) $< $@
+$(CSS_FILES): $(LESS_FILES)
+	@echo "Publishing file $< to $@"
+	@$(LESSC) $< $@
 
 # Publish the website
 publish: publish.el
-	@echo "Publishing..."
-	emacs --quick --batch --load publish.el --funcall org-publish-all t t
-	@rm $(CSS_FILES)
+	@emacs --quick --batch --load publish.el --funcall org-publish-all t t
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:
-	@echo "Cleaning up..."
 	@rm -rvf public/
 	@rm -rvf .timestamps/

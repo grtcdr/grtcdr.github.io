@@ -26,6 +26,7 @@ $(CSS_FILES): $(LESS_FILES)
 # Publish the website
 publish: publish.el
 	@emacs --quick --batch --load publish.el --funcall org-publish-all t t
+	@grunt cssmin --no-color
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:

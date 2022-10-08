@@ -8,16 +8,17 @@ publicly available, it's not quite visible. I intend to finally fix
 that, and this post is going to detail that experience.
 
 We're going to build on top of =ox-html=, and we're going to make sure
-that every blog post links back to its source code, this way I don't
-have to write up a changelog for my posts, we'll be indirectly
-leveraging Git's primary superpower, *source control*.
+that every blog post links back to its source code, meaning I don't
+have to worry about including a changelog with every one of my
+posts. We will indirectly leverage git's primary superpower, *source
+control*.
 
 I'm not by any means an Elisp connoisseur, but I'm going to give it my
 best shot. And hopefully by the end of this post, I can learn a thing
 or two about this topic.
 
 So, we'll need to implement a format string, similar to =%a= and =%e=
-which are translated respectively by =ox-latex= into the author's name
+which are translated respectively by =ox-html= into the author's name
 and email.
 
 A little bit of research landed me on [[info:elisp#Custom Format Strings][format-spec]], which allows anyone

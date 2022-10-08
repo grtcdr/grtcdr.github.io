@@ -1,0 +1,173 @@
+#+TITLE: Tracking blog post changes by leveraging version control systems
+#+DATE: <2022-10-08 Sat>
+#+SETUPFILE: ../setup.org
+
+This site has been a super fun side-project, but there's a lot that
+needs to be worked on. For example, even though the source code is
+publicly available, it's not quite visible. I intend to fix that, and
+this post is going to detail that experience.
+
+We're going to build on top of =ox-html=, and we're going to make sure
+that every blog post links back to its source code, this way I don't
+have to write up a changelog for my posts, we'll be indirectly
+leveraging Git's primary superpower, *source control*.
+
+I'm not by any means an Elisp connoisseur, but I'm going to give it my
+best shot. And hopefully by the end of this post, I can learn a thing
+or two about this topic.
+
+So, we'll need to implement a format string, similar to =%a= and =%e=
+which are translated respectively by =ox-latex= into the author's name
+and email.
+
+A little bit of research landed me on [[info:elisp#Custom Format Strings][format-spec]], which allows anyone
+to create their own format strings, instead of using the ones provided
+by the standard libraries. This provides the format strings with more
+context and can help give them more meaning.
+
+Fortunately for us, this applies to =ox-html=, and the macro in
+question that utilizes this feature is =org-html-format-spec=, which
+as of Org Mode v9.5.5 looks like this:
+
+#+begin_src emacs-lisp
+(defun org-html-format-spec (info)
+  "Return format specification for preamble and postamble.
+INFO is a plist used as a communication channel."
+  (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
+    `((?t . ,(org-export-data (plist-get info :title) info))
+      (?s . ,(org-export-data (plist-get info :subtitle) info))
+      (?d . ,(org-export-data (org-export-get-date info timestamp-format)
+			      info))
+      (?T . ,(format-time-string timestamp-format))
+      (?a . ,(org-export-data (plist-get info :author) info))
+      (?e . ,(mapconcat
+	      (lambda (e) (format "<a href=\"mailto:%s\">%s</a>" e e))
+	      (split-string (plist-get info :email)  ",+ *")
+	      ", "))
+      (?c . ,(plist-get info :creator))
+      (?C . ,(let ((file (plist-get info :input-file)))
+	       (format-time-string timestamp-format
+				   (and file (file-attribute-modification-time
+					      (file-attributes file))))))
+      (?v . ,(or (plist-get info :html-validation-link) "")))))
+#+end_src
+
+If I understand this correctly, whatever format string I specify
+within this list, is going to be parsed by the library and handed over
+to =org-html--build-pre/postamble= as a "format specification".
+
+Before we do anything we might regret, it's important that we inspect
+how GitHub references source files and dissect the URLs' various
+components. For example, the URL of my first ever blog, "Building a
+website with Emacs" is ~https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-05-18.org~.
+
+- ~https://github.com~ is my version control provider.
+- ~grtcdr/grtcdr.tn~ is the repository's identifier.
+- ~blob~ is a generalization over the nature of data.
+- ~main~ refers to the ~main~ branch.
+- ~posts~ is the directory that contains, well... my posts.
+- ~2022-05-18.org~ is the filename we're after.
+
+That's all that we need, if someone were to inspect the
+changes that I made to any given post, they can just view the file's
+*history*.
+
+/Okay, let's start hacking!/
+
+The objective is to redefine =org-html-format-spec=, and that'll take
+place inside [[../publish.el][publish.el]], which controls how the website's structure is
+laid out.
+
+The first step is to define of the source URL prefix.
+
+#+begin_src emacs-lisp :results none :eval no
+(defvar blog-post-source-url-prefix
+  "https://github.com/grtcdr/grtcdr.tn/blob/main/posts")
+#+end_src
+
+The second is to create a function which will determine the current
+buffer's base file name, i.e. just the file name of the active blog post
+(to be exported).
+
+#+begin_src emacs-lisp :results none :eval no
+(defun blog-post-file-name ()
+    (concat (file-name-base (buffer-file-name)) ".org"))
+#+end_src
+
+The last step is to combine these two into a single function that
+returns the whole URL that anyone can visit.
+
+#+name: blog-post-source-url
+#+begin_src emacs-lisp :results none :eval no
+(defun blog-post-source-url ()
+  (format "%s/%s"
+	  blog-post-source-url-prefix
+	  (blog-post-file-name)))
+#+end_src
+
+Now, If I visit any particular blog post inside Emacs, e.g. "Extending
+project.el with to-do functionality" aka =2022-08-08.org=, and call
+[[blog-post-source-url][blog-post-source-url]], I'll get back the following:
+
+#+begin_src emacs-lisp :exports results :eval no
+(blog-post-source-url)
+#+end_src
+
+#+RESULTS:
+: https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org
+
+We'll need to embed this within some HTML, so the final version of
+=blog-post-source-url= should look like:
+
+#+begin_src emacs-lisp :exports code
+(format "<a href=%S>Source</a>" (blog-post-source-url))
+#+end_src
+
+And here's what that returns:
+
+#+RESULTS:
+: <a href="https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org">Source</a>
+
+Let's add that bit of code to our redefined =org-html-format-spec=,
+we'll associate this function with our new =%S= format string:
+
+#+begin_src emacs-lisp
+(defun org-html-format-spec (info)
+  "Return format specification for preamble and postamble.
+INFO is a plist used as a communication channel."
+  (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
+    `((?t . ,(org-export-data (plist-get info :title) info))
+      (?s . ,(org-export-data (plist-get info :subtitle) info))
+      (?S . ,(format "<a href=%s>Source</a>" (blog-post-source-url))) ; <--  right here!
+      (?d . ,(org-export-data (org-export-get-date info timestamp-format)
+			      info))
+      (?T . ,(format-time-string timestamp-format))
+      (?a . ,(org-export-data (plist-get info :author) info))
+      (?e . ,(mapconcat
+	      (lambda (e) (format "<a href=\"mailto:%s\">%s</a>" e e))
+	      (split-string (plist-get info :email)  ",+ *")
+	      ", "))
+      (?c . ,(plist-get info :creator))
+      (?C . ,(let ((file (plist-get info :input-file)))
+	       (format-time-string timestamp-format
+				   (and file (file-attribute-modification-time
+					      (file-attributes file))))))
+      (?v . ,(or (plist-get info :html-validation-link) "")))))
+#+end_src
+
+And let's add the format string to our HTML preamble snippet:
+
+#+begin_src html
+<ul class="navigation">
+  <div>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/data/resume.pdf">Résumé</a></li>
+  </div>
+</ul>
+
+<p class="metadata">%d by %a. (%S)</p> <!-- lookie here! -->
+#+end_src
+
+We did it... We hacked together some pretty simple functions and made
+it through, unscathed.

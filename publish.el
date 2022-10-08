@@ -53,7 +53,7 @@
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "ba.tahaaziz@gmail.com")
 
-;;; Functions:
+;;; General functions:
 
 (defun sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
@@ -81,6 +81,47 @@
      (file-name-concat "snippets" directory file))
     (buffer-string)))
 
+;;; Blog post source/history functions:
+
+(defvar blog-post-history-prefix-url
+  "https://github.com/grtcdr/grtcdr.tn/commits/main")
+
+(defvar blog-post-source-prefix-url
+  "https://github.com/grtcdr/grtcdr.tn/blob/main")
+
+(defun blog-post-file-name ()
+  (file-name-concat "posts"
+		    (concat (file-name-base (buffer-file-name))
+			    ".org")))
+
+(defun blog-post-url (prefix-url)
+  (file-name-concat
+	  prefix-url
+	  (blog-post-file-name)))
+
+(defun org-html-format-spec (info)
+  "Return format specification for preamble and postamble.
+INFO is a plist used as a communication channel."
+  (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
+    `((?t . ,(org-export-data (plist-get info :title) info))
+      (?s . ,(org-export-data (plist-get info :subtitle) info))
+      (?S . ,(format "<a href=%s>Source</a>" (blog-post-url blog-post-source-prefix-url)))
+      (?H . ,(format "<a href=%s>History</a>" (blog-post-url blog-post-history-prefix-url)))
+      (?d . ,(org-export-data (org-export-get-date info timestamp-format)
+			      info))
+      (?T . ,(format-time-string timestamp-format))
+      (?a . ,(org-export-data (plist-get info :author) info))
+      (?e . ,(mapconcat
+	      (lambda (e) (format "<a href=\"mailto:%s\">%s</a>" e e))
+	      (split-string (plist-get info :email)  ",+ *")
+	      ", "))
+      (?c . ,(plist-get info :creator))
+      (?C . ,(let ((file (plist-get info :input-file)))
+	       (format-time-string timestamp-format
+				   (and file (file-attribute-modification-time
+					      (file-attributes file))))))
+      (?v . ,(or (plist-get info :html-validation-link) "")))))
+
 ;;; Project specification:
 
 (setq org-publish-project-alist
@@ -94,7 +135,21 @@
 	       :base-directory "."
 	       :publishing-directory "public"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("README.org" "_setup.org"))
+	       :exclude (regexp-opt '("README.org" "setup.org"))
+	       :section-numbers nil
+	       :with-toc nil
+	       :with-title t
+	       :html-doctype "html5"
+	       :html-html5-fancy t
+	       :html-preamble content-preamble
+	       :html-postamble nil
+	       :html-head-include-default-style nil)
+	 (list "projects"
+	       :base-extension "org"
+	       :base-directory "projects"
+	       :publishing-directory "public/p"
+	       :publishing-function 'org-html-publish-to-html
+	       :exclude (regexp-opt '("setup.org"))
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
@@ -126,7 +181,7 @@
 	       :base-directory "dotfiles"
 	       :publishing-directory "public/dotfiles"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("README.org" "COPYING.org" "_setup.org"))
+	       :exclude (regexp-opt '("README.org" "COPYING.org" "setup.org"))
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
@@ -159,6 +214,7 @@
 	       :publishing-function 'org-publish-attachment)
 	 (list "all"
 	       :components (list "content"
+				 "projects"
 				 "posts"
 				 "dotfiles"
 				 "stylesheets"

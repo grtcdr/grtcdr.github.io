@@ -47,7 +47,7 @@ span[class^='section-number'] {
 body {
   color: @fg02;
   background-color: @bg00;
-  font-family: 'Noto Mono', sans-serif;
+  font-family: @sans;
 
   margin-top: 6em;
   margin-bottom: 6em;
@@ -204,9 +204,8 @@ pre {
   font-family: @mono;
   overflow: auto;
   margin: 0;
-  padding: 1.0em;
+  padding: 1em;
   background-color: @bg01;
-  border-left: 2px dashed @bg02;
 }
 
 pre.src {
@@ -232,6 +231,14 @@ code {
 }
 
 // = Text
+
+.text-left {
+  float: left;
+}
+
+.text-right {
+  float: right;
+}
 
 .title {
   margin-bottom: .2em

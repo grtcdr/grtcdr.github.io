@@ -26,32 +26,37 @@
 ;; options that affect the building of the website.
 
 (require 'ox-publish)
+(require 'project)
+(require 'vc)
 
-;;; Configurations:
+(defun load-package (pkg)
+  "Add a local PKG to ’load-path’ and load it."
+  (normal-top-level-add-to-load-path (list (symbol-name pkg)))
+  (require pkg))
 
-;; Org caching:
+(let ((default-directory (file-name-concat default-directory "lisp")))
+  (load-package 'htmlize))
+
+;;; Settings:
+
+;; vc:
+
+(setq vc-follow-symlinks t)
+
+;; org:
 
 (setq org-export-time-stamp-file nil
-      org-publish-timestamp-directory ".timestamps/")
+      org-publish-timestamp-directory ".cache/"
+      org-html-metadata-timestamp-format "%B %d, %Y"
+      org-html-htmlize-output-type 'inline-css
+      org-src-fontify-natively t
+      org-src-preserve-indentation t)
 
-;; Org content metadata:
-
-(setq org-html-metadata-timestamp-format "%B %d, %Y")
-
-;; Org source blocks:
-
-(setq org-src-fontify-natively t
-      org-src-preserve-indentation t
-      org-html-htmlize-output-type nil)
-
-;; Emacs:
-
-(setq make-backup-files nil)
-
-;; Metadata:
+;; emacs:
 
 (setq user-full-name "Aziz Ben Ali"
-      user-mail-address "ba.tahaaziz@gmail.com")
+      user-mail-address "tahaaziz.benali@esprit.tn"
+      make-backup-files nil)
 
 ;;; General functions:
 
@@ -81,23 +86,45 @@
      (file-name-concat "snippets" directory file))
     (buffer-string)))
 
-;;; Blog post source/history functions:
+;;; Resource source/history functions:
 
-(defvar blog-post-history-prefix-url
-  "https://github.com/grtcdr/grtcdr.tn/commits/main")
+(defvar forges
+  '(:github "github.com" :sourcehut "git.sr.ht")
+  "A map of various git forges and their respective domain.")
 
-(defvar blog-post-source-prefix-url
-  "https://github.com/grtcdr/grtcdr.tn/blob/main")
+(defun build-forge-url (forge username repo type)
+  "Construct the standard URL of a given FORGE by specifying
+the REPO and the TYPE of information to access.
 
-(defun blog-post-file-name ()
-  (file-name-concat "posts"
-		    (concat (file-name-base (buffer-file-name))
-			    ".org")))
+FORGE is a property from the ’forges’ variable.
 
-(defun blog-post-url (prefix-url)
-  (file-name-concat
-	  prefix-url
-	  (blog-post-file-name)))
+REPO is a string and indicates the name of your repository,
+e.g. \"personal-website\".
+
+TYPE can take a value of ’log’ or ’tree’."
+  (cond ((equal forge :github)
+	 (format "https://%s/%s/%s/%s/"
+		 (plist-get forges :github)
+		 username
+		 repo
+		 (cond ((eq type 'log) "commits/main")
+		       ((eq type 'tree) "blob/main")
+		       (t (error "Invalid type.")))))
+	((equal forge :sourcehut)
+	 (format "https://%s/%s/%s/%s/"
+		 (plist-get forges :sourcehut)
+		 (concat "~" username)
+		 repo
+		 (cond ((eq type 'log) "log/main/item")
+		       ((eq type 'tree) "tree/main/item")
+		       (t (error "Invalid type.")))))))
+
+(defun get-resource-slug ()
+  "Determines the path of a resource relative to the value returned by ’forge-construct-resource-url'"
+  (let* ((buffer (buffer-file-name))
+	 (root (vc-find-root buffer ".git")))
+    (string-remove-prefix
+     (expand-file-name root) buffer)))
 
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
@@ -105,8 +132,6 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?t . ,(org-export-data (plist-get info :title) info))
       (?s . ,(org-export-data (plist-get info :subtitle) info))
-      (?S . ,(format "<a href=%s>Source</a>" (blog-post-url blog-post-source-prefix-url)))
-      (?H . ,(format "<a href=%s>History</a>" (blog-post-url blog-post-history-prefix-url)))
       (?d . ,(org-export-data (org-export-get-date info timestamp-format)
 			      info))
       (?T . ,(format-time-string timestamp-format))
@@ -120,7 +145,27 @@ INFO is a plist used as a communication channel."
 	       (format-time-string timestamp-format
 				   (and file (file-attribute-modification-time
 					      (file-attributes file))))))
-      (?v . ,(or (plist-get info :html-validation-link) "")))))
+      (?v . ,(or (plist-get info :html-validation-link) ""))
+      (?w . ,(format
+	      "<a href=%s>source</a>"
+	      (concat
+	       (build-forge-url :github user-login-name "grtcdr.tn" 'tree)
+	       (get-resource-slug))))
+      (?x . ,(format
+	      "<a href=%s>history</a>"
+	      (concat
+	       (build-forge-url :github user-login-name "grtcdr.tn" 'log)
+	       (get-resource-slug))))
+      (?y . ,(format
+	      "<a href=%s>source</a>"
+	      (concat
+	       (build-forge-url :sourcehut user-login-name "dotfiles" 'tree)
+	       (get-resource-slug))))
+      (?z . ,(format
+	      "<a href=%s>history</a>"
+	      (concat
+	       (build-forge-url :sourcehut user-login-name "dotfiles" 'log)
+	       (get-resource-slug)))))))
 
 ;;; Project specification:
 

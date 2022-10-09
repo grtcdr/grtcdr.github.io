@@ -39,24 +39,15 @@
 
 ;;; Settings:
 
-;; vc:
-
-(setq vc-follow-symlinks t)
-
-;; org:
-
-(setq org-export-time-stamp-file nil
+(setq user-full-name "Aziz Ben Ali"
+      user-mail-address "tahaaziz.benali@esprit.tn"
+      make-backup-files nil
+      org-export-time-stamp-file nil
       org-publish-timestamp-directory ".cache/"
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type 'inline-css
       org-src-fontify-natively t
       org-src-preserve-indentation t)
-
-;; emacs:
-
-(setq user-full-name "Aziz Ben Ali"
-      user-mail-address "tahaaziz.benali@esprit.tn"
-      make-backup-files nil)
 
 ;;; General functions:
 

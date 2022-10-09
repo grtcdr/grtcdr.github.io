@@ -26,7 +26,7 @@ to create their own format strings, instead of using the ones provided
 by the standard libraries. This provides the format strings with more
 context and can help give them more meaning.
 
-Fortunately for us, this applies to =ox-html=, and the macro in
+Fortunately for us, this applies to =ox-html=, and the function in
 question that utilizes this feature is =org-html-format-spec=, which
 as of Org Mode v9.5.5 looks like this:
 

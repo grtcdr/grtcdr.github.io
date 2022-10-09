@@ -121,7 +121,7 @@ We'll need to embed this within some HTML, so the final version of
 =blog-post-source-url= should look like:
 
 #+begin_src emacs-lisp :exports code
-(format "<a href=%S>Source</a>" (blog-post-source-url))
+(format "<a href=%s>Source</a>" (blog-post-source-url))
 #+end_src
 
 And here's what that returns:

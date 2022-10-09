@@ -4,3 +4,6 @@
 [submodule "data/resume"]
 	path = data/resume
 	url = https://github.com/grtcdr/resume
+[submodule "lisp/htmlize"]
+	path = lisp/htmlize
+	url = https://github.com/hniksic/emacs-htmlize

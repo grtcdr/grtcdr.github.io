@@ -31,4 +31,4 @@ publish: publish.el
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:
 	@rm -rvf public/
-	@rm -rvf .timestamps/
+	@rm -rvf .cache/

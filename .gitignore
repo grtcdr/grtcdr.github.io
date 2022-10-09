@@ -1,6 +1,6 @@
 # Ignore these directories
 node_modules/
-.timestamps/
+.cache/
 public/
 stylesheets/*.css
 

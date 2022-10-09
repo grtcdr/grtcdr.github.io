@@ -115,16 +115,23 @@ img {
 }
 
 .metadata {
+  display: flex;
+  justify-content: space-between;
   font-family: @mono;
   font-weight: 300;
 }
 
+@media (max-width: 800px) {
+  .metadata {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .navigation {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-
+  justify-content: space-between;
   padding: 0;
   border-bottom: .1em dotted @fg02;
 

@@ -58,13 +58,14 @@ within this list, is going to be parsed by the library and handed over
 to =org-html--build-pre/postamble= as a "format specification".
 
 Before we do anything we might regret, it's important that we inspect
-how GitHub references source files and dissect the URLs' various
-components. For example, the URL of my first ever blog, "Building a
-website with Emacs" is ~https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-05-18.org~.
+how GitHub references source files, and that we dissect the URLs'
+various components. For example, the URL of my first ever blog,
+"Building a website with Emacs" is
+~https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-05-18.org~.
 
-- ~https://github.com~ is my version control provider.
+- ~https://github.com~, we all know GitHub.
 - ~grtcdr/grtcdr.tn~ is the repository's identifier.
-- ~blob~ is a generalization over the nature of data.
+- ~blob~ to denote source code or data in general.
 - ~main~ refers to the ~main~ branch.
 - ~posts~ is the directory that contains, well... my posts.
 - ~2022-05-18.org~ is the filename we're after.
@@ -75,9 +76,9 @@ changes that I made to any given post, they can just view the file's
 
 /Okay, let's start hacking!/
 
-The objective is to redefine =org-html-format-spec=, and that'll take
-place inside [[../publish.el][publish.el]], which controls how the website's structure is
-laid out.
+The objective is to redefine =org-html-format-spec=, and [[https://github.com/grtcdr/grtcdr.tn/blob/main/publish.el][publish.el]]
+will be taking charge, as it controls the structure of the website by
+providing its specification.
 
 The first step is to define of the source URL prefix.
 
@@ -106,28 +107,20 @@ returns the whole URL that anyone can visit.
 	  (blog-post-file-name)))
 #+end_src
 
-Now, If I visit any particular blog post inside Emacs, e.g. "Extending
-project.el with to-do functionality" aka =2022-08-08.org=, and call
-[[blog-post-source-url][blog-post-source-url]], I'll get back the following:
+Just to make sure we're on the right track, I'm going to take this
+function for a test drive. Let's visit a random blog post inside of
+Emacs, e.g. "Extending project.el with to-do functionality"
+[2022-08-08.org]:
 
-#+begin_src emacs-lisp :exports results :eval no
-(blog-post-source-url)
-#+end_src
+- Hit =M-:=, type =(blog-post-source-url)= and hit =Return=.
 
-#+RESULTS:
-: https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org
+Neat, I get back =https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org=. Just what I'm after!
 
-We'll need to embed this within some HTML, so the final version of
-=blog-post-source-url= should look like:
+We'll need to embed this within some HTML, =format= to the rescue!
 
 #+begin_src emacs-lisp :exports code
-(format "<a href=%s>Source</a>" (blog-post-source-url))
+(format "<a href=%s>Source</a>" (blog-post-source-url)) ; <a href="https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org">Source</a>
 #+end_src
-
-And here's what that returns:
-
-#+RESULTS:
-: <a href="https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-10-08.org">Source</a>
 
 Let's add that bit of code to our redefined =org-html-format-spec=,
 we'll associate this function with our new =%S= format string:

@@ -92,29 +92,27 @@
   '(:github "github.com" :sourcehut "git.sr.ht")
   "A map of various git forges and their respective domain.")
 
-(defun build-forge-url (forge username repo type)
+(defun build-forge-url (forge slug type)
   "Construct the standard URL of a given FORGE by specifying
 the REPO and the TYPE of information to access.
 
 FORGE is a property from the ’forges’ variable.
 
-REPO is a string and indicates the name of your repository,
-e.g. \"personal-website\".
+SLUG is a string and the combination of your username and the
+name of your repository, e.g. \"octopus/website\".
 
 TYPE can take a value of ’log’ or ’tree’."
   (cond ((equal forge :github)
-	 (format "https://%s/%s/%s/%s/"
+	 (format "https://%s/%s/%s/"
 		 (plist-get forges :github)
-		 username
-		 repo
+		 slug
 		 (cond ((eq type 'log) "commits/main")
 		       ((eq type 'tree) "blob/main")
 		       (t (error "Invalid type.")))))
 	((equal forge :sourcehut)
-	 (format "https://%s/%s/%s/%s/"
+	 (format "https://%s/%s/%s/"
 		 (plist-get forges :sourcehut)
-		 (concat "~" username)
-		 repo
+		 (concat "~" slug)
 		 (cond ((eq type 'log) "log/main/item")
 		       ((eq type 'tree) "tree/main/item")
 		       (t (error "Invalid type.")))))))
@@ -149,22 +147,22 @@ INFO is a plist used as a communication channel."
       (?w . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-url :github user-login-name "grtcdr.tn" 'tree)
+	       (build-forge-url :github "grtcdr/grtcdr.tn" 'tree)
 	       (get-resource-slug))))
       (?x . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-url :github user-login-name "grtcdr.tn" 'log)
+	       (build-forge-url :github "grtcdr/grtcdr.tn" 'log)
 	       (get-resource-slug))))
       (?y . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-url :sourcehut user-login-name "dotfiles" 'tree)
+	       (build-forge-url :sourcehut "grtcdr/dotfiles" 'tree)
 	       (get-resource-slug))))
       (?z . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-url :sourcehut user-login-name "dotfiles" 'log)
+	       (build-forge-url :sourcehut "grtcdr/dotfiles" 'log)
 	       (get-resource-slug)))))))
 
 ;;; Project specification:

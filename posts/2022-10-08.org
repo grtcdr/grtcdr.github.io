@@ -1,13 +1,14 @@
-#+TITLE: Tracking blog post changes by leveraging git and ox-html.el
+#+TITLE: Linking articles to their version control system to effectively track changes
 #+DATE: <2022-10-08 Sat>
 #+SETUPFILE: ../setup.org
+#+FILETAGS: emacs
 
 This site has been a super fun side-project, but there's a lot that
 needs to be worked on. For example, even though the source code is
 publicly available, it's not quite visible. I intend to finally fix
 that, and this post is going to detail that experience.
 
-We're going to build on top of =ox-html=, and we're going to make sure
+We're going to build on top of [[https://git.sr.ht/~bzg/org-mode/tree/main/item/lisp/ox-html.el][ox-html]], and we're going to make sure
 that every blog post links back to its source code, meaning I don't
 have to worry about including a changelog with every one of my
 posts. We will indirectly leverage git's primary superpower, *source
@@ -169,9 +170,9 @@ can I be honest with you? I've been postponing working on this feature
 for so long. I just didn't know where to look or where to begin.
 
 But in the end, I learned a few things:
-- Elisp is not as hard as it looks.
-- Org Mode is well designed and well documented, as is the rest of Emacs.
+- Elisp is not as scary as it looks.
+- Org Mode is well designed and documented, as is the rest of Emacs.
 - Choosing =ox-publish= as my static site builder was a really, really
   great choice.
-- Knowing the lingo of your environment goes a long way in helping you
-  research any particular problem or topic.
+- Knowing the lingo goes a long way in helping you research any
+  particular topic.

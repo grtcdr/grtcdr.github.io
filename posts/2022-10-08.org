@@ -335,7 +335,8 @@ Here's what I came up with:
 
 #+begin_src emacs-lisp :eval no
 (defun get-resource-slug ()
-  "Determines the path of a resource relative to the value returned by ’forge-construct-resource-url'"
+  "Determines the path of a resource relative to the value
+returned by ’build-forge-prefix-url'"
   (let* ((buffer (buffer-file-name))
 	 (root (or (vc-find-root buffer (regexp-opt '(".git" ".hg")))
 		   (project-root (project-current)))))

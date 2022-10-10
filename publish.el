@@ -35,7 +35,8 @@
   (require pkg))
 
 (let ((default-directory (file-name-concat default-directory "lisp")))
-  (load-package 'htmlize))
+  (load-package 'htmlize)
+  (load-package 'forgecast))
 
 ;;; Settings:
 
@@ -77,44 +78,6 @@
      (file-name-concat "snippets" directory file))
     (buffer-string)))
 
-;;; Resource source/history functions:
-
-(defvar forges
-  '(:github "github.com" :sourcehut "git.sr.ht")
-  "Propert list of various git forges and their respective domain.")
-
-(defun build-forge-prefix-url (forge slug type)
-  "Construct the standard URL of a given FORGE by specifying
-the repository SLUG and the TYPE of information to access.
-
-FORGE is a property from the ’forges’ variable.
-
-SLUG is a string and the combination of your username and the
-name of your repository, e.g. \"octopus/website\".
-
-TYPE can take a value of ’log’ or ’tree’."
-  (cond ((equal forge :github)
-	 (format "https://%s/%s/%s/"
-		 (plist-get forges :github)
-		 slug
-		 (cond ((eq type 'log) "commits/main")
-		       ((eq type 'tree) "blob/main")
-		       (t (error "Invalid type.")))))
-	((equal forge :sourcehut)
-	 (format "https://%s/%s/%s/"
-		 (plist-get forges :sourcehut)
-		 (concat "~" slug)
-		 (cond ((eq type 'log) "log/main/item")
-		       ((eq type 'tree) "tree/main/item")
-		       (t (error "Invalid type.")))))))
-
-(defun get-resource-slug ()
-  "Determines the path of a resource relative to the value returned by ’forge-construct-resource-url'"
-  (let* ((buffer (buffer-file-name))
-	 (root (vc-find-root buffer ".git")))
-    (string-remove-prefix
-     (expand-file-name root) buffer)))
-
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
@@ -138,23 +101,23 @@ INFO is a plist used as a communication channel."
       (?w . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
-	       (get-resource-slug))))
+	       (forgecast-build-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
+	       (forgecast-get-resource-slug))))
       (?x . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
-	       (get-resource-slug))))
+	       (forgecast-build-prefix-url :github "grtcdr/grtcdr.tn" 'log)
+	       (forgecast-get-resource-slug))))
       (?y . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
-	       (get-resource-slug))))
+	       (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
+	       (forgecast-get-resource-slug))))
       (?z . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
-	       (get-resource-slug)))))))
+	       (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
+	       (forgecast-get-resource-slug)))))))
 
 ;;; Project specification:
 

@@ -1,0 +1,63 @@
+;;; forgecast.el --- Helper functions for linking resources to their forges.
+
+;; Copyright (C) 2022 Aziz Ben Ali
+
+;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
+;; Homepage: https://github.com/grtcdr/grtcdr.tn
+
+;; Forgecast is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published
+;; by the Free Software Foundation, either version 3 of the License,
+;; or (at your option) any later version.
+
+;; Forgecast is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with Stack. If not, see <https://www.gnu.org/licenses/>.
+
+;;; Code:
+
+(require 'project)
+(require 'vc)
+
+(defvar forgecast-forge-plist
+  '(:github "github.com" :sourcehut "git.sr.ht")
+  "A property list mapping forges to their respective domain.")
+
+(defun forgecast-build-prefix-url (forge slug type)
+  "Construct the standard URL of a given FORGE by specifying
+the repository SLUG and the TYPE of information to access.
+
+FORGE is a property from the ’forges’ variable.
+
+SLUG is a string and the combination of your username and the
+name of your repository, e.g. \"octopus/website\".
+
+TYPE can take a value of ’log’ or ’tree’."
+  (cond ((equal forge :github)
+	 (format "https://%s/%s/%s/"
+		 (plist-get forgecast-forge-plist :github)
+		 slug
+		 (cond ((eq type 'log) "commits/main")
+		       ((eq type 'tree) "blob/main")
+		       (t (error "Invalid type.")))))
+	((equal forge :sourcehut)
+	 (format "https://%s/%s/%s/"
+		 (plist-get forgecast-forge-plist :sourcehut)
+		 (concat "~" slug)
+		 (cond ((eq type 'log) "log/main/item")
+		       ((eq type 'tree) "tree/main/item")
+		       (t (error "Invalid type.")))))))
+
+(defun forgecast-get-resource-slug ()
+  "Determines the slug i.e. path of a resource (the current buffer)
+relative to the value returned by ’forgecast-build-prefix-url'."
+  (let* ((buffer (buffer-file-name))
+	 (root (vc-find-root buffer ".git")))
+    (string-remove-prefix
+     (expand-file-name root) buffer)))
+
+(provide 'forgecast)

@@ -81,11 +81,11 @@
 
 (defvar forges
   '(:github "github.com" :sourcehut "git.sr.ht")
-  "A map of various git forges and their respective domain.")
+  "Propert list of various git forges and their respective domain.")
 
-(defun build-forge-url (forge slug type)
+(defun build-forge-prefix-url (forge slug type)
   "Construct the standard URL of a given FORGE by specifying
-the REPO and the TYPE of information to access.
+the repository SLUG and the TYPE of information to access.
 
 FORGE is a property from the ’forges’ variable.
 
@@ -138,22 +138,22 @@ INFO is a plist used as a communication channel."
       (?w . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-url :github "grtcdr/grtcdr.tn" 'tree)
+	       (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
 	       (get-resource-slug))))
       (?x . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-url :github "grtcdr/grtcdr.tn" 'log)
+	       (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
 	       (get-resource-slug))))
       (?y . ,(format
 	      "<a href=%s>source</a>"
 	      (concat
-	       (build-forge-url :sourcehut "grtcdr/dotfiles" 'tree)
+	       (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
 	       (get-resource-slug))))
       (?z . ,(format
 	      "<a href=%s>history</a>"
 	      (concat
-	       (build-forge-url :sourcehut "grtcdr/dotfiles" 'log)
+	       (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
 	       (get-resource-slug)))))))
 
 ;;; Project specification:

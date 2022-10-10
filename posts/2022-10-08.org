@@ -1,35 +1,105 @@
 #+TITLE: Linking articles to their version control system to effectively track changes
 #+DATE: <2022-10-08 Sat>
+#+OPTIONS: toc:nil
 #+SETUPFILE: ../setup.org
 #+FILETAGS: emacs
 
-This site has been a super fun side-project, but there's a lot that
-needs to be worked on. For example, even though the source code is
+* Preface
+:PROPERTIES:
+:CUSTOM_ID: preface
+:END:
+
+This website has been a super fun side-project, but there's a lot of
+room for improvement. For example, even though its source code is
 publicly available, it's not quite visible. I intend to finally fix
-that, and this post is going to detail that experience.
+that, and this post is going to cover that experience in detail.
 
-We're going to build on top of [[https://git.sr.ht/~bzg/org-mode/tree/main/item/lisp/ox-html.el][ox-html]], and we're going to make sure
-that every blog post links back to its source code, meaning I don't
-have to worry about including a changelog with every one of my
-posts. We will indirectly leverage git's primary superpower, *source
-control*.
+We're going to tackle _blog posts_, a category of articles where it's
+pivotal to remain transparent by tracking and divulging any
+alterations we might make to them over time.
 
-I'm not by any means an Elisp connoisseur, but I'm going to give it my
-best shot. And hopefully by the end of this post, I can learn a thing
-or two about this topic.
+As this website is [[https://en.wikipedia.org/wiki/Version_control][source-controlled]], the most passive and efficient
+way to solve this transparency problem, is to utilize my version
+control system, which in my case is [[https://git-scm.com/][git]]... the "stupid content
+tracker".
 
-So, we'll need to implement a format string, similar to =%a= and =%e=
-which are translated respectively by =ox-html= into the author's name
-and email.
+There's no denying that git (or any other VCS) happens to be more
+effective at tracking changes than you, or me. This blog post is a
+proposition (as well as a guide) for writers to cease the manual
+writing of changelogs, and simply let our version control systems take
+care of this task for us.
 
-A little bit of research landed me on [[info:elisp#Custom Format Strings][format-spec]], which allows anyone
-to create their own format strings, instead of using the ones provided
-by the standard libraries. This provides the format strings with more
-context and can help give them more meaning.
+I'm going to be building on top of [[https://git.sr.ht/~bzg/org-mode/tree/main/item/lisp/ox-html.el][ox-html]], an [[info:emacs#Org Mode][org-mode]] library,
+because my website is built upon the tools provided by the [[info:emacs][Emacs]]
+ecosystem. Now, before we dive into the technicalities, let's review
+the exportation and publishing process that a file submits to when
+instructed by the user.
 
-Fortunately for us, this applies to =ox-html=, and the function in
-question that utilizes this feature is =org-html-format-spec=, which
-as of Org Mode v9.5.5 looks like this:
+#+begin_src dot :file ../images/posts/org-publish-process.svg :exports results
+digraph G {
+    publish [
+	     label = "Publishing project?";
+	     shape = rect;
+	     ];
+
+    export [
+	    label = "Exporting file?";
+	    shape = rect;
+	    ];
+    
+    consult [
+	     label = "Consult project specification\n(publish.el)";
+	     shape = rect;
+	     ];
+    
+    process [
+	     label = "Pass Org document\nto ox-html\nfor transpilation";
+	     shape = rect;
+	     ];
+    
+    produce [
+	     label = "Produce output HTML file";
+	     shape = rect;
+	     ];
+    
+
+    publish -> consult;
+    consult -> process;
+    export -> process;
+    process -> produce;
+    
+    {
+	rank=same;
+	publish; export
+    }
+}
+#+end_src
+
+#+ATTR_HTML: :alt The publishing process from an Org file to an HTML document :height 300px :style padding:3em;
+#+CAPTION: Overview of the publishing process of an Org document
+#+RESULTS:
+[[file:../images/posts/org-publish-process.svg]]
+
+* First Implementation
+:PROPERTIES:
+:CUSTOM_ID: first-implementation
+:END:
+
+We'll need to implement a format string, which is recognized by
+=ox-html= as a placeholder for /something/. We can take the =%a= and
+=%e= format strings for example, which are translated/expanded
+respectively into the author's name and email.
+
+/But how do we define our own format strings?/
+
+A tiny bit of research landed me on [[info:elisp#Custom Format Strings][format-spec]], which lets us
+create them, however many we want!
+
+/How does =ox-html= utilize this function?/
+
+If we take a peak at its source code, we find a few references to
+=format-spec= -- but the one that's most interesting to us is
+=org-html-format-spec=, which as of Org Mode v9.5.5 looks like this:
 
 #+begin_src emacs-lisp
 (defun org-html-format-spec (info)
@@ -54,15 +124,16 @@ INFO is a plist used as a communication channel."
       (?v . ,(or (plist-get info :html-validation-link) "")))))
 #+end_src
 
-If I understand this correctly, whatever format string I specify
-within this list, is going to be parsed by the library and handed over
-to =org-html--build-pre/postamble= as a "format specification".
+Whatever format string we specify within this alist, is going to be
+recognized by the library and handed over to
+=org-html--build-pre/postamble= and later expanded to its associated
+S-expression.
 
 Before we do anything we might regret, it's important that we inspect
-how GitHub references source files, and that we dissect the URLs'
-various components. For example, the URL of my first ever blog,
-"Building a website with Emacs" is
-~https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-05-18.org~.
+how GitHub, in my case, references source files. Let's dissect the
+source URL of my first ever blog, "Building a website with Emacs".
+
+Full form: ~https://github.com/grtcdr/grtcdr.tn/blob/main/posts/2022-05-18.org~.
 
 - ~https://github.com~, we all know GitHub.
 - ~grtcdr/grtcdr.tn~ is the repository's identifier.
@@ -164,15 +235,164 @@ And let's add the format string to our HTML preamble snippet:
 <p class="metadata">%d by %a. (%S)</p> <!-- lookie here! -->
 #+end_src
 
-We did it... We hacked together some pretty simple functions and made
-it through, unscathed. I didn't expect this task to be so trivial, and
+*Hurray!* That works!... until it doesn't.
+
+* Second Implementation
+:PROPERTIES:
+:CUSTOM_ID: second-implementation
+:END:
+
+Not only do I host a blog on this website, but also numerous
+documentation files, within which is the content of my system's
+configuration files (dotfiles), and it doesn't help that they're
+hosted on an entirely different website, i.e. SourceHut.
+
+We have to somehow address this situation. We need to make this
+solution more modular, so that it can support these two different
+[[https://en.wikipedia.org/wiki/Forge_(software)][forges]] and use cases.
+
+So let's start by storing these forges in a property list.
+
+#+begin_src emacs-lisp :eval no
+(defvar forges
+  '(:github "github.com" :sourcehut "git.sr.ht")
+  "Property list of mapping git forges to their respective domain.")
+#+end_src
+
+We'll write a function that will incrementally construct the prefix
+URL of any - /yes, any/ - resource, once it matches it against one of
+our predefined forges.
+
+#+begin_src emacs-lisp :eval no
+(defun build-forge-prefix-url (forge slug type)
+  "Construct the standard URL of a given FORGE by specifying
+the repository SLUG and the TYPE of information to access.
+
+FORGE is a property from the ’forges’ variable.
+
+SLUG is a string and the combination of your username and the
+name of your repository, e.g. \"octopus/website\".
+
+TYPE can take a value of ’log’ or ’tree’."
+  (cond ((equal forge :github)
+	 (format "https://%s/%s/%s/"
+		 (plist-get forges :github)
+		 slug
+		 (cond ((eq type 'log) "commits/main")
+		       ((eq type 'tree) "blob/main")
+		       (t (error "Invalid type.")))))
+	((equal forge :sourcehut)
+	 (format "https://%s/%s/%s/"
+		 (plist-get forges :sourcehut)
+		 (concat "~" slug)
+		 (cond ((eq type 'log) "log/main/item")
+		       ((eq type 'tree) "tree/main/item")
+		       (t (error "Invalid type.")))))))
+#+end_src
+
+Let's run a few examples to understand how it works.
+
+1. Return the URL pointing to the history of changes of a resource
+   hosted on GitHub.
+
+   #+begin_src emacs-lisp :exports both :eval no
+   (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
+   #+end_src
+
+   #+RESULTS:
+   : https://github.com/grtcdr/grtcdr.tn/commits/main/
+
+2. Return the URL pointing to the source code of a resource hosted on
+   SourceHut.
+
+   #+begin_src emacs-lisp :exports both :eval no
+   (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
+   #+end_src
+
+   #+RESULTS:
+   : https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/
+
+Wonderful, the function covers whatever forge we throw at it! Let's
+move on.
+
+Do you remember =blog-post-source-url=? Well, that'll break if the
+resource lives within a [[https://www.git-scm.com/book/en/v2/Git-Tools-Submodules][submodule]]. So we'll need to make /that/ more
+modular.
+
+Alright, what can we do to obtain the [[https://developer.mozilla.org/en-US/docs/Glossary/Slug][slug]] of a resource, whilst
+taking into account this new setting?... We can make use of [[info:emacs#Version Control][vc]], a
+built-in library and interface dedicated entirely to version control
+systems.
+
+We can use =vc-root-dir=... but for some reason that won't work when
+we publish the project from a proximity, i.e. [[https://github.com/grtcdr/grtcdr.tn#building][through a Makefile]];
+however, we can do with =vc-find-root=. This function requires that we
+specify the buffer filename, as well as a "witness" i.e. a pattern to
+match against when performing the search (for the project root),
+e.g. =.git=.
+
+Here's what I came up with:
+
+#+begin_src emacs-lisp :eval no
+(defun get-resource-slug ()
+  "Determines the path of a resource relative to the value returned by ’forge-construct-resource-url'"
+  (let* ((buffer (buffer-file-name))
+	 (root (or (vc-find-root buffer (regexp-opt '(".git" ".hg")))
+		   (project-root (project-current)))))
+    (string-remove-prefix
+     (expand-file-name root) buffer)))
+#+end_src
+
+We're done with the new implementation; we should interact with the
+new functions the same way we did with the older ones. For example,
+have a look at the format strings used in this website:
+
+#+begin_src emacs-lisp :eval no
+;; %w format string: expands to a link to the source code
+;; of a given resource (blog post) hosted on GitHub.
+(?w . (format
+       "<a href=%s>source</a>"
+       (concat
+	(build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
+	(get-resource-slug))))
+
+;; %x format string: expands to a link to the list of revisions
+;; of a given resource (blog post) hosted on GitHub.
+(?x . (format
+       "<a href=%s>history</a>"
+       (concat
+	(build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
+	(get-resource-slug))))
+
+;; %y format string: expands to a link to the list of revisions
+;; of a given resource (documentation) hosted on SourceHut.
+(?y . (format
+       "<a href=%s>source</a>"
+       (concat
+	(build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
+	(get-resource-slug))))
+
+;; %z format string: expands to a link to the list of revisions
+;; of a given resource (documentation) hosted on SourceHut.
+(?z . (format
+       "<a href=%s>history</a>"
+       (concat
+	(build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
+	(get-resource-slug))))
+#+end_src
+
+* Conclusion
+:PROPERTIES:
+:CUSTOM_ID: conclusion
+:END:
+
+We did it... We hacked together a set of functions and scratched the
+itch for transparency. I didn't expect this task to be so trivial, and
 can I be honest with you? I've been postponing working on this feature
 for so long. I just didn't know where to look or where to begin.
 
 But in the end, I learned a few things:
 - Elisp is not as scary as it looks.
 - Org Mode is well designed and documented, as is the rest of Emacs.
-- Choosing =ox-publish= as my static site builder was a really, really
-  great choice.
-- Knowing the lingo goes a long way in helping you research any
-  particular topic.
+- I'm starting to profit off of my choosing =ox-publish= as a static
+  site builder.

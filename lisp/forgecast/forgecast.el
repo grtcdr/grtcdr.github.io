@@ -37,20 +37,24 @@ SLUG is a string and the combination of your username and the
 name of your repository, e.g. \"octopus/website\".
 
 TYPE can take a value of ’log’ or ’tree’."
-  (cond ((equal forge :github)
-	 (format "https://%s/%s/%s/"
-		 (plist-get forgecast-forge-plist :github)
-		 slug
-		 (cond ((eq type 'log) "commits/main")
-		       ((eq type 'tree) "blob/main")
-		       (t (error "Invalid type.")))))
-	((equal forge :sourcehut)
-	 (format "https://%s/%s/%s/"
-		 (plist-get forgecast-forge-plist :sourcehut)
-		 (concat "~" slug)
-		 (cond ((eq type 'log) "log/main/item")
-		       ((eq type 'tree) "tree/main/item")
-		       (t (error "Invalid type.")))))))
+  (let ((branch "main"))
+    (cond ((equal forge :github)
+	   (format "https://%s/%s/%s/%s/"
+		   (plist-get forgecast-forge-plist :github)
+		   slug
+		   (cond ((eq type 'log) "commits")
+			 ((eq type 'tree) "blob")
+			 (t (error "Invalid type.")))
+		   branch))
+	  ((equal forge :sourcehut)
+	   (format "https://%s/%s/%s/"
+		   (plist-get forgecast-forge-plist :sourcehut)
+		   (concat "~" slug)
+		   (format "%s/%s/item"
+			   (cond ((eq type 'log) "log")
+				 ((eq type 'tree) "tree")
+				 (t (error "Invalid type.")))
+			   branch))))))
 
 (defun forgecast-get-resource-slug ()
   "Determines the slug i.e. path of a resource (the current buffer)
@@ -64,7 +68,7 @@ relative to the value returned by ’forgecast-build-prefix-url'."
   "Return the URL of a resource (the current buffer) as an HTML link."
   (format "<a href=%s>%s</a>"
 	  (concat
-	   (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
+	   (forgecast-build-prefix-url forge slug type)
 	   (forgecast-get-resource-slug))
 	  text))
 

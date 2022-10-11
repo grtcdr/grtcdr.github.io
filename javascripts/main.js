@@ -22,7 +22,7 @@
   SOFTWARE.
 */
 
-window.addEventListener('load', (event) => {
+window.addEventListener('load', () => {
     const title = document.getElementsByClassName("title")[0];
     let today = new Date();
     let hours = today.getHours();

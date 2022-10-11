@@ -60,4 +60,12 @@ relative to the value returned by ’forgecast-build-prefix-url'."
     (string-remove-prefix
      (expand-file-name root) buffer)))
 
+(defun forgecast-get-url-as-html (forge slug type text)
+  "Return the URL of a resource (the current buffer) as an HTML link."
+  (format "<a href=%s>%s</a>"
+	  (concat
+	   (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
+	   (forgecast-get-resource-slug))
+	  text))
+
 (provide 'forgecast)

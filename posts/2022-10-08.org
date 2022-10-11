@@ -1,6 +1,5 @@
 #+TITLE: Linking articles to their version control system to effectively track changes
 #+DATE: <2022-10-08 Sat>
-#+OPTIONS: toc:nil
 #+SETUPFILE: ../setup.org
 #+FILETAGS: emacs
 
@@ -48,7 +47,7 @@ digraph G {
 	    ];
     
     consult [
-	     label = "Consult project specification\n(publish.el)";
+	     label = "Consult project specification";
 	     shape = rect;
 	     ];
     
@@ -148,9 +147,9 @@ changes that I made to any given post, they can just view the file's
 
 /Okay, let's start hacking!/
 
-The objective is to redefine =org-html-format-spec=, and [[https://github.com/grtcdr/grtcdr.tn/blob/main/publish.el][publish.el]]
+The objective is to redefine =org-html-format-spec=, and [[https://github.com/grtcdr/grtcdr.tn/blob/main/composite.el][composite.el]]
 will be taking charge, as it controls the structure of the website by
-providing its specification.
+providing its specification at the time of transpilation.
 
 The first step is to define of the source URL prefix.
 

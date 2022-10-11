@@ -4,6 +4,9 @@
 # executable and runs it
 LESSC = npx lessc
 
+GRUNTFILE = javascripts/grunt.js
+COMPOSITE = lisp/composite/composite.el
+
 # These two variables indicate the source and destination directories
 LESS_DIR = stylesheets
 CSS_DIR = public/stylesheets
@@ -24,9 +27,9 @@ $(CSS_FILES): $(LESS_FILES)
 	@$(LESSC) $< $@
 
 # Publish the website
-publish: lisp/publish.el
-	@emacs --quick --batch --load lisp/publish.el --funcall org-publish-all t t
-	@grunt cssmin --no-color
+publish: $(COMPOSITE)
+	@emacs --quick --batch --load $(COMPOSITE) --funcall org-publish-all t t
+	@grunt cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:

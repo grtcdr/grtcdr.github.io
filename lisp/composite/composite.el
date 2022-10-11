@@ -1,45 +1,45 @@
-;;; publish.el --- prepares websites for publishing -*- lexical-binding: t; -*-
+;;; composite.el --- prepare a website for publishing -*- lexical-binding: t; -*-
 
 ;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
-;; URL: https://github.com/grtcdr/grtcdr.github.io
+;; URL: https://github.com/grtcdr/grtcdr.tn
 
-;; publish.el is free software: you can redistribute it and/or modify
+;; Composite is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
 ;; by the Free Software Foundation, either version 3 of the License,
 ;; or (at your option) any later version.
 ;;
-;; publish.el is distributed in the hope that it will be useful, but
+;; Composite is distributed in the hope that it will be useful, but
 ;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
 ;;
 ;; You should have received a copy of the GNU General Public License
-;; along with publish.el.  If not, see <https://www.gnu.org/licenses/>.
+;; along with Composite.  If not, see <https://www.gnu.org/licenses/>.
 
 ;; This file contains code taken from GNU Emacs, which is
 ;; Copyright (C) 1976-2022 Free Software Foundation, Inc.
 
 ;;; Commentary:
 
-;; publish.el specifies the structure of a website built atop
+;; Composite specifies the structure of a website built atop
 ;; org-publish-project-alist.  It should also specify any other
 ;; options that affect the building of the website.
 
 (require 'ox-publish)
 (require 'project)
-(require 'vc)
 
-(defun load-package (pkg)
+(setq default-directory (project-root (project-current)))
+
+(defun composite-load-package (pkg)
   "Add a local PKG to ’load-path’ and load it."
   (normal-top-level-add-to-load-path (list (symbol-name pkg)))
   (require pkg))
 
 (let ((default-directory (file-name-concat default-directory "lisp")))
-  (load-package 'htmlize)
-  (load-package 'forgecast))
+  (composite-load-package 'htmlize)
+  (composite-load-package 'forgecast))
 
 ;;; Settings:
-
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
@@ -51,15 +51,14 @@
       org-src-preserve-indentation t)
 
 ;;; General functions:
-
-(defun sitemap-format-entry (entry style project)
+(defun composite-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
   (format "%s - [[file:%s][%s]]"
 	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
 	  entry
 	  (org-publish-find-title entry project)))
 
-(defun org-html-format-headline-function (todo todo-type priority text tags info)
+(defun composite-format-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
   ;; Copyright: Toon Claes
   (let* ((headline (get-text-property 0 :parent text))
@@ -71,13 +70,14 @@
                  text)))
     (org-html-format-headline-default-function todo todo-type priority link tags info)))
 
-(defun read-snippet (directory file)
+(defun composite-read-snippet (slug)
   "Read a snippet from the snippets directory."
-  (with-temp-buffer
-    (insert-file-contents
-     (file-name-concat "snippets" directory file))
-    (buffer-string)))
+    (with-temp-buffer
+      (insert-file-contents
+       (file-name-concat "snippets" slug))
+      (buffer-string)))
 
+;;; Redefinition of built-in org-html-format-spec
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
@@ -98,34 +98,17 @@ INFO is a plist used as a communication channel."
 				   (and file (file-attribute-modification-time
 					      (file-attributes file))))))
       (?v . ,(or (plist-get info :html-validation-link) ""))
-      (?w . ,(format
-	      "<a href=%s>source</a>"
-	      (concat
-	       (forgecast-build-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
-	       (forgecast-get-resource-slug))))
-      (?x . ,(format
-	      "<a href=%s>history</a>"
-	      (concat
-	       (forgecast-build-prefix-url :github "grtcdr/grtcdr.tn" 'log)
-	       (forgecast-get-resource-slug))))
-      (?y . ,(format
-	      "<a href=%s>source</a>"
-	      (concat
-	       (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
-	       (forgecast-get-resource-slug))))
-      (?z . ,(format
-	      "<a href=%s>history</a>"
-	      (concat
-	       (forgecast-build-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
-	       (forgecast-get-resource-slug)))))))
+      (?w . ,(forgecast-get-url-as-html :sourcehut "grtcdr/grtcdr.tn" 'tree "source"))
+      (?x . ,(forgecast-get-url-as-html :sourcehut "grtcdr/grtcdr.tn" 'log "history"))
+      (?y . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'tree "source"))
+      (?z . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
 
-;;; Project specification:
-
+;;; Project specification
 (setq org-publish-project-alist
-      (let ((posts-postamble (read-snippet "postamble" "posts.html"))
-	    (posts-preamble (read-snippet "preamble" "posts.html"))
-	    (content-preamble (read-snippet "preamble" "content.html"))
-	    (dotfiles-preamble (read-snippet "preamble" "dotfiles.html")))
+      (let ((posts-postamble (composite-read-snippet "postamble/posts.html"))
+	    (posts-preamble (composite-read-snippet "preamble/posts.html"))
+	    (content-preamble (composite-read-snippet "preamble/content.html"))
+	    (dotfiles-preamble (composite-read-snippet "preamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -163,12 +146,12 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Posts"
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'sitemap-format-entry
+	       :sitemap-format-entry 'composite-sitemap-format-entry
 	       :with-title t
 	       :with-toc t
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'org-html-format-headline-function
+	       :html-format-headline-function 'composite-format-headline-function
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
 	       :html-head-include-default-style nil)
@@ -184,7 +167,7 @@ INFO is a plist used as a communication channel."
 	       :with-toc t
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'org-html-format-headline-function
+	       :html-format-headline-function 'composite-format-headline-function
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
 	       :html-head-include-default-style nil)
@@ -201,6 +184,7 @@ INFO is a plist used as a communication channel."
 	 (list "javascripts"
 	       :base-extension "js"
 	       :base-directory "javascripts"
+	       :exclude "grunt.js"
 	       :publishing-directory "public/javascripts"
 	       :publishing-function 'org-publish-attachment)
 	 (list "images"

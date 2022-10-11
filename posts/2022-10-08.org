@@ -147,9 +147,11 @@ changes that I made to any given post, they can just view the file's
 
 /Okay, let's start hacking!/
 
-The objective is to redefine =org-html-format-spec=, and [[https://github.com/grtcdr/grtcdr.tn/blob/main/composite.el][composite.el]]
-will be taking charge, as it controls the structure of the website by
-providing its specification at the time of transpilation.
+The objective is to redefine =org-html-format-spec=; [[file:~/projects/grtcdr.tn/lisp/orchestrate/orchestrate.el][orchestrate.el]] as
+its name might suggest, will orchestrate and define the structure the
+various components required to build the website; it does this by
+providing the website specification at the time of document
+transpilation.
 
 The first step is to define of the source URL prefix.
 

@@ -98,8 +98,8 @@ INFO is a plist used as a communication channel."
 				   (and file (file-attribute-modification-time
 					      (file-attributes file))))))
       (?v . ,(or (plist-get info :html-validation-link) ""))
-      (?w . ,(forgecast-get-url-as-html :sourcehut "grtcdr/grtcdr.tn" 'tree "source"))
-      (?x . ,(forgecast-get-url-as-html :sourcehut "grtcdr/grtcdr.tn" 'log "history"))
+      (?w . ,(forgecast-get-url-as-html :github "grtcdr/grtcdr.tn" 'tree "source"))
+      (?x . ,(forgecast-get-url-as-html :github "grtcdr/grtcdr.tn" 'log "history"))
       (?y . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'tree "source"))
       (?z . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
 

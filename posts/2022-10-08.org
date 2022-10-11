@@ -74,7 +74,7 @@ digraph G {
 }
 #+end_src
 
-#+ATTR_HTML: :alt The publishing process from an Org file to an HTML document :height 300px :style padding:3em;
+#+ATTR_HTML: :alt The publishing process from an Org file to an HTML document :height 300px
 #+CAPTION: Overview of the publishing process of an Org document
 #+RESULTS:
 [[file:../images/posts/org-publish-process.svg]]
@@ -255,7 +255,7 @@ So let's start by storing these forges in a property list.
 #+begin_src emacs-lisp :eval no
 (defvar forges
   '(:github "github.com" :sourcehut "git.sr.ht")
-  "Property list of mapping git forges to their respective domain.")
+  "Property list mapping git forges to their respective domain.")
 #+end_src
 
 We'll write a function that will incrementally construct the prefix

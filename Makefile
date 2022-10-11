@@ -3,6 +3,7 @@
 # Behind the scenes, `npm {x|exec} lessc` locates the `lessc`
 # executable and runs it
 LESSC = npx lessc
+GRUNT = npx grunt
 
 GRUNTFILE = javascripts/grunt.js
 COMPOSITE = lisp/composite/composite.el
@@ -29,7 +30,9 @@ $(CSS_FILES): $(LESS_FILES)
 # Publish the website
 publish: $(COMPOSITE)
 	@emacs --quick --batch --load $(COMPOSITE) --funcall org-publish-all t t
-	@grunt cssmin --no-color --gruntfile $(GRUNTFILE) --base .
+
+optimize:
+	$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:

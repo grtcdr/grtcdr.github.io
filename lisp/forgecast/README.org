@@ -1,0 +1,7 @@
+#+TITLE: Forgecast
+
+Forgecast provides a set of helper functions that allow the user to
+link various resources to the forge that hosts them.
+
+For more information, see [[file:~/projects/grtcdr.tn/posts/2022-10-08.org]["Linking articles to their version control
+system to effectively track changes"]].

@@ -6,7 +6,7 @@ LESSC = npx lessc
 GRUNT = npx grunt
 
 GRUNTFILE = javascripts/grunt.js
-COMPOSITE = lisp/composite/composite.el
+ORCHESTRATE = lisp/orchestrate/orchestrate.el
 
 # These two variables indicate the source and destination directories
 LESS_DIR = stylesheets
@@ -28,8 +28,8 @@ $(CSS_FILES): $(LESS_FILES)
 	@$(LESSC) $< $@
 
 # Publish the website
-publish: $(COMPOSITE)
-	@emacs --quick --batch --load $(COMPOSITE) --funcall org-publish-all t t
+publish: $(ORCHESTRATE)
+	@emacs --quick --batch --load $(ORCHESTRATE) --funcall org-publish-all t t
 
 optimize:
 	$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .

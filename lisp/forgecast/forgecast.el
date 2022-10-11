@@ -18,6 +18,11 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with Stack. If not, see <https://www.gnu.org/licenses/>.
 
+;;; Commentary:
+
+;; Forgecast provides a set of helper functions that allow the user to
+;; link various resources to the forge that hosts them.
+
 ;;; Code:
 
 (require 'project)

@@ -4,4 +4,4 @@ Orchestrate is the proxy between the user and the website they wish to
 build.  It defines the various components that consitute the website
 and should be used in conjunction with a build system.
 
-For more information, see [[file:~/projects/grtcdr.tn/posts/2022-05-18.org]["Building a website with Emacs"]].
+For more information, see [[https://grtcdr.tn/posts/2022-05-18]["Building a website with Emacs"]].

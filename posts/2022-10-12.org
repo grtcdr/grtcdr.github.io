@@ -1,22 +1,23 @@
 #+TITLE: Getting a taste of libvirt hooks
 #+DATE: <2022-10-12>
+#+FILETAGS: :systems:
 #+SETUPFILE: ../setup.org
 
 I recently had the pleasure of learning how DNS systems work behind
-the scenes via a miniature academic project. I learned how to set one
-(bind9) up from scratch, stumbled my way through until I eventually
-got the gist of it.
+the scenes through an itsy-bitsy academic project. I learned how to
+set one (bind9) up from scratch and stumbled my way through it until I
+eventually got the gist of it.
 
-The DNS system in question is installed on a virtual machine which I
-only boot up when I attend certain classes (e.g. Network Services
-Administration). Consequently, there are times where the virtual
-machine is powered off so I'd prefer if my /host/ reverted back to the
-default nameserver used by my router.
+The DNS system in question is installed on a virtual machine (we'll
+refer to it as "dumbvm") that I only boot up when I attend certain
+classes. Consequently, there are times where the virtual machine is
+powered off so I would like it if my /host/ reverted back to the
+default nameserver set by our home router.
 
 Fortunately, libvirt has a [[https://libvirt.org/hooks.html][hook system]] in place for us to plug our own
 programs into, so let's make libvirt smarter!
 
-#+caption: /etc/libvirt/hooks/qemu
+#+caption: [host] /etc/libvirt/hooks/qemu
 #+begin_src conf :eval no
 #!/bin/sh
 
@@ -25,22 +26,17 @@ OPER=$2
 SUB_OPER=$3
 OARG=$4
 
-if [ "$VM_NAME" = "centos" ]; then
+if [ "$VM_NAME" = "dumbvm" ]; then
     if [ "$OPER" = "started" ]; then
 	if [ "$SUB_OPER" = "begin" ]; then
-	    systemd-resolve --interface=wlan0 dns --set-dns=192.168.122.2 --set-domain=centi.grtcdr.tn
+	    systemd-resolve --interface=<wlan0> dns --set-dns=<nameserver-ip-addr> --set-domain=<ns.example.com>
 	fi
     elif [ "$OPER" = "stopped" ]; then
 	if [ "$SUB_OPER" = "end" ]; then
-	    systemd-resolve --interface=wlan0 dns --revert
+	    systemd-resolve --interface=<wlan0> dns --revert
 	fi
     fi
-fi	
+fi
 #+end_src
-
-- If the virtual machine is started, the /host/ will use *it* as a
-  nameserver.
-- If the virtual machine is stopped, the /host/ will revert to the
-  default configuration.
 
 For more information on libvirt hooks, [[https://libvirt.org/hooks.html][visit the manual]].

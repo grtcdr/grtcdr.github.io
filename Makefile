@@ -32,7 +32,7 @@ publish: $(ORCHESTRATE)
 	@emacs --quick --batch --load $(ORCHESTRATE) --funcall org-publish-all t t
 
 optimize:
-	$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
+	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
 # Recipe to clean the artifacts produced by the `publish` recipe.
 clean:

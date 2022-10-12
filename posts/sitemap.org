@@ -1,5 +1,6 @@
 #+TITLE: Posts
 
+- 2022-10-12 - [[file:2022-10-12.org][Getting a taste of libvirt hooks]]
 - 2022-10-08 - [[file:2022-10-08.org][Linking articles to their version control system to effectively track changes]]
 - 2022-08-08 - [[file:2022-08-08.org][Extending project.el with to-do functionality]]
 - 2022-07-15 - [[file:2022-07-15.org][A short introduction to PlantUML]]

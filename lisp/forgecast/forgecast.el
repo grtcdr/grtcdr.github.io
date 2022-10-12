@@ -29,10 +29,12 @@
 (require 'vc)
 
 (defvar forgecast-forge-plist
-  '(:github "github.com" :sourcehut "git.sr.ht")
+  '(:github "github.com"
+    :github-usercontent "raw.githubusercontent.com"
+    :sourcehut "git.sr.ht")
   "A property list mapping forges to their respective domain.")
 
-(defun forgecast-build-prefix-url (forge slug type)
+(defun forgecast-build-url (forge slug type)
   "Construct the standard URL of a given FORGE by specifying
 the repository SLUG and the TYPE of information to access.
 
@@ -41,25 +43,34 @@ FORGE is a property from the ’forges’ variable.
 SLUG is a string and the combination of your username and the
 name of your repository, e.g. \"octopus/website\".
 
-TYPE can take a value of ’log’ or ’tree’."
+TYPE can take a value of ’log’, ’tree’ or ’blob’.
+
+RESOURCE is a filename relative to the root of the project."
   (let ((branch "main"))
     (cond ((equal forge :github)
-	   (format "https://%s/%s/%s/%s/"
-		   (plist-get forgecast-forge-plist :github)
-		   slug
-		   (cond ((eq type 'log) "commits")
-			 ((eq type 'tree) "blob")
-			 (t (error "Invalid type.")))
-		   branch))
+	    (format-spec
+	     "https://%d/%s/%t/%b/%r"
+	     `((?d . ,(plist-get forgecast-forge-plist :github))
+	       (?s . ,slug)
+	       (?t . ,(cond ((eq type 'log) "commits")
+			    ((eq type 'tree) "blob")
+			    (t (error "Type is invalid or does not apply to this backend."))))
+	       (?b . ,branch)
+	       (?r . ,(forgecast-get-resource-slug)))))
 	  ((equal forge :sourcehut)
-	   (format "https://%s/%s/%s/"
-		   (plist-get forgecast-forge-plist :sourcehut)
-		   (concat "~" slug)
-		   (format "%s/%s/item"
-			   (cond ((eq type 'log) "log")
-				 ((eq type 'tree) "tree")
-				 (t (error "Invalid type.")))
-			   branch))))))
+	    (format-spec
+	     "https://%d/%s/%t/%b/%x/%r"
+	     `((?d . ,(plist-get forgecast-forge-plist :sourcehut))
+	       (?s . ,(concat "~" slug))
+	       (?t . ,(cond ((eq type 'log) "log")
+			    ((eq type 'tree) "tree")
+			    ((eq type 'blob) "blob")
+			    (t (error "Type is invalid or does not apply to this backend."))))
+	       (?b . ,branch)
+	       (?x . ,(cond ((eq type 'blob) "")
+			    (t "item")))
+	       (?r . ,(forgecast-get-resource-slug)))))
+	  (t (error "Could not find forge from known list of forges.")))))
 
 (defun forgecast-get-resource-slug ()
   "Determines the slug i.e. path of a resource (the current buffer)
@@ -72,9 +83,6 @@ relative to the value returned by ’forgecast-build-prefix-url'."
 (defun forgecast-get-url-as-html (forge slug type text)
   "Return the URL of a resource (the current buffer) as an HTML link."
   (format "<a href=%s>%s</a>"
-	  (concat
-	   (forgecast-build-prefix-url forge slug type)
-	   (forgecast-get-resource-slug))
-	  text))
+	  (forgecast-build-url forge slug type) text))
 
 (provide 'forgecast)

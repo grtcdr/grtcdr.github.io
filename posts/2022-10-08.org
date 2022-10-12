@@ -1,5 +1,5 @@
 #+TITLE: Linking articles to their version control system to effectively track changes
-#+DATE: <2022-10-08 Sat>
+#+DATE: <2022-10-08>
 #+SETUPFILE: ../setup.org
 #+FILETAGS: emacs
 

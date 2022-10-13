@@ -33,8 +33,7 @@
 (let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
   (normal-top-level-add-subdirs-to-load-path)
   (require 'htmlize)
-  (require 'forgecast)
-  (require 'ox-rss))
+  (require 'forgecast))
 
 ;;; Settings:
 (setq user-full-name "Aziz Ben Ali"

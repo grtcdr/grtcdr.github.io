@@ -1,7 +1,7 @@
 #+TITLE: Linking articles to their version control system to effectively track changes
 #+DATE: <2022-10-08>
 #+SETUPFILE: ../setup.org
-#+FILETAGS: emacs
+#+FILETAGS: :emacs:
 
 * Preface
 :PROPERTIES:
@@ -298,20 +298,16 @@ Let's run a few examples to understand how it works.
 
    #+begin_src emacs-lisp :exports both :eval no
    (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
+   ;; https://github.com/grtcdr/grtcdr.tn/commits/main/ 
    #+end_src
-
-   #+RESULTS:
-   : https://github.com/grtcdr/grtcdr.tn/commits/main/
 
 2. Return the URL pointing to the source code of a resource hosted on
    SourceHut.
 
-   #+begin_src emacs-lisp :exports both :eval no
+   #+begin_src emacs-lisp :eval no
    (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
+   ;; >> https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/ 
    #+end_src
-
-   #+RESULTS:
-   : https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/
 
 Wonderful, the function covers whatever forge we throw at it! Let's
 move on.

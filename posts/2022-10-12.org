@@ -24,7 +24,6 @@ programs into, so let's make libvirt smarter!
 VM_NAME=$1
 OPER=$2
 SUB_OPER=$3
-OARG=$4
 
 if [ "$VM_NAME" = "dumbvm" ]; then
     if [ "$OPER" = "started" ]; then

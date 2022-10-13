@@ -33,7 +33,8 @@
 (let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
   (normal-top-level-add-subdirs-to-load-path)
   (require 'htmlize)
-  (require 'forgecast))
+  (require 'forgecast)
+  (require 'ox-rss))
 
 ;;; Settings:
 (setq user-full-name "Aziz Ben Ali"
@@ -49,10 +50,12 @@
 ;;; General functions:
 (defun orchestrate-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
-  (format "%s - [[file:%s][%s]]"
-	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
-	  entry
-	  (org-publish-find-title entry project)))
+  (let ((prefix (file-name-concat (project-root (project-current)) "posts")))
+    (format "%s - [[file:%s][%s]] %s"
+	    (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
+	    entry
+	    (org-publish-find-title entry project)
+	    (org-publish-find-property entry :filetags project 'site-html))))
 
 (defun orchestrate-format-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
@@ -80,6 +83,7 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?t . ,(org-export-data (plist-get info :title) info))
       (?s . ,(org-export-data (plist-get info :subtitle) info))
+      (?o . ,(org-export-data (plist-get info :filetags) info))
       (?d . ,(org-export-data (org-export-get-date info timestamp-format)
 			      info))
       (?T . ,(format-time-string timestamp-format))
@@ -144,7 +148,7 @@ INFO is a plist used as a communication channel."
 	       :sitemap-sort-files 'anti-chronologically
 	       :sitemap-format-entry 'orchestrate-sitemap-format-entry
 	       :with-title t
-	       :with-toc t
+	       :with-toc nil
 	       :html-html5-fancy t
 	       :html-doctype "html5"
 	       :html-format-headline-function 'orchestrate-format-headline-function

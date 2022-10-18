@@ -17,7 +17,7 @@ default nameserver set by our home router.
 Fortunately, libvirt has a [[https://libvirt.org/hooks.html][hook system]] in place for us to plug our own
 programs into, so let's make libvirt smarter!
 
-#+caption: [host] /etc/libvirt/hooks/qemu
+#+caption: /etc/libvirt/hooks/qemu
 #+begin_src conf :eval no
 #!/bin/sh
 

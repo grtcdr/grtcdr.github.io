@@ -1,6 +1,7 @@
 #+TITLE: A short introduction to PlantUML
 #+DATE: <2022-07-15>
 #+SETUPFILE: ../setup.org
+#+FILETAGS: :doc:
 
 * Foreword
 :PROPERTIES:

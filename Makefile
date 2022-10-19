@@ -18,9 +18,12 @@ CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
 # ---- Recipes ----
 
-all: less publish
+all: less build optimize
 
 less: $(CSS_FILES)
+
+publish:
+	miniserve public/
 
 # Compile `.less` files into `.css` files
 $(CSS_FILES): $(LESS_FILES)
@@ -28,7 +31,7 @@ $(CSS_FILES): $(LESS_FILES)
 	@$(LESSC) $< $@
 
 # Publish the website
-publish: $(ORCHESTRATE)
+build: $(ORCHESTRATE)
 	@emacs --quick --batch --load $(ORCHESTRATE) --funcall org-publish-all t t
 
 optimize:

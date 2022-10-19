@@ -306,7 +306,7 @@ Let's run a few examples to understand how it works.
 
    #+begin_src emacs-lisp :eval no
    (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
-   ;; >> https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/ 
+   ;; https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/ 
    #+end_src
 
 Wonderful, the function covers whatever forge we throw at it! Let's
@@ -345,39 +345,50 @@ We're done with the new implementation; we should interact with the
 new functions the same way we did with the older ones. For example,
 have a look at the format strings used in this website:
 
-#+begin_src emacs-lisp :eval no
-;; %w format string: expands to a link to the source code
-;; of a given resource (blog post) hosted on GitHub.
-(?w . (format
+- This format string expands to a link to the source code of a blog
+  post hosted on GitHub.
+
+  #+begin_src emacs-lisp :eval no
+  (?w . (format
        "<a href=%s>source</a>"
        (concat
 	(build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'tree)
 	(get-resource-slug))))
+  #+end_src
 
-;; %x format string: expands to a link to the list of revisions
-;; of a given resource (blog post) hosted on GitHub.
-(?x . (format
-       "<a href=%s>history</a>"
-       (concat
-	(build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
-	(get-resource-slug))))
 
-;; %y format string: expands to a link to the list of revisions
-;; of a given resource (documentation) hosted on SourceHut.
-(?y . (format
-       "<a href=%s>source</a>"
-       (concat
-	(build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
-	(get-resource-slug))))
+- This one expands to a link to the list of revisions of a blog post
+  hosted on GitHub.
 
-;; %z format string: expands to a link to the list of revisions
-;; of a given resource (documentation) hosted on SourceHut.
-(?z . (format
-       "<a href=%s>history</a>"
-       (concat
-	(build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
-	(get-resource-slug))))
-#+end_src
+  #+begin_src emacs-lisp :eval no
+  (?x . (format
+	 "<a href=%s>history</a>"
+	 (concat
+	  (build-forge-prefix-url :github "grtcdr/grtcdr.tn" 'log)
+	  (get-resource-slug))))
+  #+end_src
+
+- While this one expands to a link to the list of revisions of a
+  documentation file hosted on SourceHut.
+
+  #+begin_src emacs-lisp :eval no
+  (?y . (format
+	 "<a href=%s>source</a>"
+	 (concat
+	  (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'tree)
+	  (get-resource-slug))))
+  #+end_src
+
+- And this one expands to a link to the list of revisions of a
+  documentation file hosted on SourceHut.
+
+  #+begin_src emacs-lisp :eval no
+  (?z . (format
+	 "<a href=%s>history</a>"
+	 (concat
+	  (build-forge-prefix-url :sourcehut "grtcdr/dotfiles" 'log)
+	  (get-resource-slug))))
+  #+end_src
 
 * Conclusion
 :PROPERTIES:

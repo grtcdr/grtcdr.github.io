@@ -1,6 +1,7 @@
 #+TITLE: Building a website with Emacs
 #+DATE: <2022-05-18>
 #+SETUPFILE: ../setup.org
+#+FILETAGS: :emacs:
 
 I would like to make a confession... I detest most websites I visit on
 a daily basis. I wanted to make a difference with my little personal

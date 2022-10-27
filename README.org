@@ -5,7 +5,7 @@ This repository stores the source code of [[https://grtcdr.tn][grtcdr.tn]].
 * Structure
 
 The skeleton, i.e. the specification describing the various components
-of this site, is defined in [[file:lisp/composite/composite.el][composite.el]].
+of this site, is defined in [[file:lisp/orchestrate/orchestrate.el][orchestrate.el]].
 
 This site uses the following submodules to achieve a more modular and
 composable structure:
@@ -41,8 +41,8 @@ system]] in use.
 
 The provided [[file:Makefile][Makefile]] contains two recipes, one to compile the
 included stylesheets from =.less= to =.css=, and another to publish
-the site, which outputs a =public/= directory as per the [[file:lisp/composite/composite.el][site
-specification]].
+the site, which outputs a =public/= directory as per the site
+specification.
 
 From the command-line, position yourself at the root of the project,
 and run =make=.

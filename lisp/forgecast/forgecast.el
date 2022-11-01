@@ -52,7 +52,7 @@ returned by ’forgecast-get-resource-url'."
 		    ((eq type 'blob) "")
 		    (t (error "Type is invalid or does not apply to this backend."))))
 	(resource (forgecast-get-resource-slug)))
-    (mapconcat 'identity (remove "" (list "https://" forge slug branch type)) "/")))
+    (mapconcat 'identity (remove "" (list "https://" forge slug type branch resource)) "/")))
 
 (defun forgecast--build-sourcehut-resource-url (slug branch type)
   (format-spec

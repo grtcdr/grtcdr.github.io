@@ -98,9 +98,9 @@ INFO is a plist used as a communication channel."
 				   (and file (file-attribute-modification-time
 					      (file-attributes file))))))
       (?v . ,(or (plist-get info :html-validation-link) ""))
-      (?w . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.tn" 'tree "source"))
-      (?x . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.tn" 'log "history"))
-      (?y . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'blob "source"))
+      (?w . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.github.io" 'blob "raw"))
+      (?x . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.github.io" 'log "history"))
+      (?y . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'blob "raw"))
       (?z . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
 
 ;;; Project specification:

@@ -172,7 +172,7 @@ INFO is a plist used as a communication channel."
 	       :html-postamble nil
 	       :html-head-include-default-style nil)
 	 (list "data"
-	       :base-extension (regexp-opt '("txt" "pdf"))
+	       :base-extension (regexp-opt '("txt" "pdf" "asc"))
 	       :base-directory "data"
 	       :publishing-directory "public/data"
 	       :publishing-function 'org-publish-attachment)

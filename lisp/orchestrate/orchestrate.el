@@ -1,6 +1,6 @@
-;;; orchestrate.el --- the proxy between the user and their website -*- lexical-binding: t; -*-
+;;; orchestrate.el --- A proxy between the user and their website. -*- lexical-binding: t; -*-
 
-;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
+;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
 ;; URL: https://github.com/grtcdr/grtcdr.tn
 
 ;; Orchestrate is free software: you can redistribute it and/or modify
@@ -27,16 +27,16 @@
 
 ;;; Code:
 
+(let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(require 'forgecast)
 (require 'ox-publish)
 (require 'project)
-
-(let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
-  (normal-top-level-add-subdirs-to-load-path)
-  (require 'htmlize)
-  (require 'forgecast))
+(require 'htmlize)
 
 ;;; Settings:
-(setq user-full-name "Aziz Ben Ali"
+(setq user-full-name "Taha Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
       org-export-time-stamp-file nil
@@ -68,11 +68,11 @@
                  text)))
     (org-html-format-headline-default-function todo todo-type priority link tags info)))
 
-(defun orchestrate-read-snippet (slug)
-  "Read a snippet from the snippets directory."
+(defun orchestrate-read-template (slug)
+  "Read a template from the templates directory."
     (with-temp-buffer
       (insert-file-contents
-       (file-name-concat "snippets" slug))
+       (file-name-concat "templates" slug))
       (buffer-string)))
 
 ;;; Redefinition of built-in org-html-format-spec:
@@ -104,10 +104,10 @@ INFO is a plist used as a communication channel."
 
 ;;; Project specification:
 (setq org-publish-project-alist
-      (let ((posts-postamble (orchestrate-read-snippet "postamble/posts.html"))
-	    (posts-preamble (orchestrate-read-snippet "preamble/posts.html"))
-	    (content-preamble (orchestrate-read-snippet "preamble/content.html"))
-	    (dotfiles-preamble (orchestrate-read-snippet "preamble/dotfiles.html")))
+      (let ((posts-postamble (orchestrate-read-template "postamble/posts.html"))
+	    (posts-preamble (orchestrate-read-template "preamble/posts.html"))
+	    (content-preamble (orchestrate-read-template "preamble/content.html"))
+	    (dotfiles-preamble (orchestrate-read-template "preamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -188,9 +188,14 @@ INFO is a plist used as a communication channel."
 	       :publishing-function 'org-publish-attachment)
 	 (list "images"
 	       :recursive t
-	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "ico" "svg"))
+	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "images"
 	       :publishing-directory "public/images" 
+	       :publishing-function 'org-publish-attachment)
+	 (list "favicon"
+	       :base-extension "ico"
+	       :base-directory "images"
+	       :publishing-directory "public"
 	       :publishing-function 'org-publish-attachment)
 	 (list "all"
 	       :components (list "content"
@@ -200,4 +205,5 @@ INFO is a plist used as a communication channel."
 				 "stylesheets"
 				 "javascripts"
 				 "data"
-				 "images")))))
+				 "images"
+				 "favicon")))))

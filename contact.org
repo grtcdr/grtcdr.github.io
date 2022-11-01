@@ -5,7 +5,7 @@
 
   I usually reply within the day.
 
-+ PGP: [[file:data/publickey.txt][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
++ PGP: [[file:data/pubkey.asc][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
 
   For secure communications, you should encrypt the messages you
   intend to send my way with my public key.

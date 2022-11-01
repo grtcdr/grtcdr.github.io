@@ -1,8 +1,8 @@
-;;; forgecast.el --- Helper functions for linking resources to their forges.
+;;; forgecast.el --- Cast resources to their forges. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022 Aziz Ben Ali
 
-;; Author: Aziz Ben Ali <ba.tahaaziz@gmail.com>
+;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
 ;; Homepage: https://github.com/grtcdr/grtcdr.tn
 
 ;; Forgecast is free software: you can redistribute it and/or modify
@@ -30,11 +30,67 @@
 
 (defvar forgecast-forge-plist
   '(:github "github.com"
-    :github-usercontent "raw.githubusercontent.com"
+    :rawgithub "raw.githubusercontent.com"
     :sourcehut "git.sr.ht")
-  "A property list mapping forges to their respective domain.")
+  "A property list mapping forges to their respective domains.")
 
-(defun forgecast-build-url (forge slug type)
+(defun forgecast-get-resource-slug ()
+  "Determines the slug of the current buffer.
+
+The slug is the path of the resource relative to the value
+returned by ’forgecast-get-resource-url'."
+  (let* ((buffer (buffer-file-name))
+	 (root (vc-find-root buffer ".git")))
+    (string-remove-prefix
+     (expand-file-name root) buffer)))
+
+(defun forgecast--build-github-resource-url (slug branch type)
+  (format-spec
+   "https://%d/%s/%t/%b/%r"
+   `((?d . ,(plist-get forgecast-forge-plist :github))
+     (?s . ,slug)
+     (?t . ,(cond ((eq type 'log) "commits")
+		  ((eq type 'tree) "blob")
+		  (t (error "Type is invalid or does not apply to this backend."))))
+     (?b . ,branch)
+     (?r . ,(forgecast-get-resource-slug)))))
+
+(defun forgecast--build-rawgithub-resource-url (slug branch)
+  (format-spec
+   "https://%d/%s/%b/%r"
+   `((?d . ,(plist-get forgecast-forge-plist :rawgithub))
+     (?s . ,slug)
+     (?b . ,branch)
+     (?r . ,(forgecast-get-resource-slug)))))
+
+(defun forgecast--build-gh-resource-url (slug branch type)
+  (let ((forge (plist-get forgecast-forge-plist
+			  (cond ((eq type 'blob) :rawgithub)
+				(t :github))))
+	(type (cond ((eq type 'log) "commits")
+		    ((eq type 'tree) "blob")
+		    ((eq type 'blob) "")
+		    (t (error "Type is invalid or does not apply to this backend."))))
+	(resource (forgecast-get-resource-slug)))
+    (mapconcat 'identity
+	       (remove "" '("https://" forge slug branch type))
+	       "/")))
+
+(defun forgecast--build-sourcehut-resource-url (slug branch type)
+  (format-spec
+   "https://%d/%s/%t/%b/%x/%r"
+   `((?d . ,(plist-get forgecast-forge-plist :sourcehut))
+     (?s . ,(concat "~" slug))
+     (?t . ,(cond ((eq type 'log) "log")
+		  ((eq type 'tree) "tree")
+		  ((eq type 'blob) "blob")
+		  (t (error "Type is invalid or does not apply to this backend."))))
+     (?b . ,branch)
+     (?x . ,(cond ((eq type 'blob) "")
+		  (t "item")))
+     (?r . ,(forgecast-get-resource-slug)))))
+
+(defun forgecast-get-resource-url (forge slug type)
   "Construct the standard URL of a given FORGE by specifying
 the repository SLUG and the TYPE of information to access.
 
@@ -48,41 +104,9 @@ TYPE can take a value of ’log’, ’tree’ or ’blob’.
 RESOURCE is a filename relative to the root of the project."
   (let ((branch "main"))
     (cond ((equal forge :github)
-	    (format-spec
-	     "https://%d/%s/%t/%b/%r"
-	     `((?d . ,(plist-get forgecast-forge-plist :github))
-	       (?s . ,slug)
-	       (?t . ,(cond ((eq type 'log) "commits")
-			    ((eq type 'tree) "blob")
-			    (t (error "Type is invalid or does not apply to this backend."))))
-	       (?b . ,branch)
-	       (?r . ,(forgecast-get-resource-slug)))))
+	   (forgecast--build-github-resource-url slug branch type))
 	  ((equal forge :sourcehut)
-	    (format-spec
-	     "https://%d/%s/%t/%b/%x/%r"
-	     `((?d . ,(plist-get forgecast-forge-plist :sourcehut))
-	       (?s . ,(concat "~" slug))
-	       (?t . ,(cond ((eq type 'log) "log")
-			    ((eq type 'tree) "tree")
-			    ((eq type 'blob) "blob")
-			    (t (error "Type is invalid or does not apply to this backend."))))
-	       (?b . ,branch)
-	       (?x . ,(cond ((eq type 'blob) "")
-			    (t "item")))
-	       (?r . ,(forgecast-get-resource-slug)))))
+	   (forgecast--build-sourcehut-resource-url slug branch type))
 	  (t (error "Could not find forge from known list of forges.")))))
-
-(defun forgecast-get-resource-slug ()
-  "Determines the slug i.e. path of a resource (the current buffer)
-relative to the value returned by ’forgecast-build-prefix-url'."
-  (let* ((buffer (buffer-file-name))
-	 (root (vc-find-root buffer ".git")))
-    (string-remove-prefix
-     (expand-file-name root) buffer)))
-
-(defun forgecast-get-url-as-html (forge slug type text)
-  "Return the URL of a resource (the current buffer) as an HTML link."
-  (format "<a href=%s>%s</a>"
-	  (forgecast-build-url forge slug type) text))
 
 (provide 'forgecast)

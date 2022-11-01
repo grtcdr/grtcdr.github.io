@@ -1,3 +1,2 @@
 #+HTML_HEAD: <link rel="stylesheet" href="/stylesheets/main.css">
-#+HTML_HEAD: <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-#+HTML_HEAD: <meta name="description" content="grtcdr's personal website, containing everything from his blog and résumé, to the scripts and configurations that power his system.">
+#+HTML_HEAD: <meta name="description" content="grtcdr's personal website.">

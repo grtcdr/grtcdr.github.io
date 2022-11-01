@@ -1,0 +1,6 @@
+* =templates=
+
+The purpose of this directory is to minimize redundancy and automate
+the insertion of template content into the pages that require
+them. This is done by passing the content of a template to the
+[[info:org#Publishing publishing options][:html-preamble or :html-postamble options]].

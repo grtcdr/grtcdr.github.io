@@ -1,5 +1,6 @@
 #+TITLE: Depot
 #+SETUPFILE: setup.org
+#+HTML_HEAD: <meta name="description" content="grtcdr's documentation of their personal computing environment">
 
 The documentation found herein follows the [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]
 principle, it /does not/ cover all of my configurations, so you are

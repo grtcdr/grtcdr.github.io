@@ -3,7 +3,7 @@
 ;; Copyright (C) 2022 Aziz Ben Ali
 
 ;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
-;; Homepage: https://github.com/grtcdr/grtcdr.tn
+;; Homepage: https://github.com/grtcdr/forgecast
 
 ;; Forgecast is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
@@ -16,7 +16,7 @@
 ;; General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with Stack. If not, see <https://www.gnu.org/licenses/>.
+;; along with Forgecast. If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -33,6 +33,9 @@
     :rawgithub "raw.githubusercontent.com"
     :sourcehut "git.sr.ht")
   "A property list mapping forges to their respective domains.")
+
+(defun forgecast--get-current-branch ()
+  (car (vc-git-branches)))
 
 (defun forgecast-get-resource-slug ()
   "Determines the slug of the current buffer.
@@ -80,15 +83,12 @@ name of your repository, e.g. \"octopus/website\".
 TYPE can take a value of ’log’, ’tree’ or ’blob’.
 
 RESOURCE is a filename relative to the root of the project."
-  (let ((branch "main"))
+  (let ((branch (forgecast--get-current-branch)))
     (cond ((equal forge :github)
 	   (forgecast--build-github-resource-url slug branch type))
 	  ((equal forge :sourcehut)
 	   (forgecast--build-sourcehut-resource-url slug branch type))
 	  (t (error "Could not find forge from known list of forges.")))))
 
-(defun forgecast-get-resource-html (forge slug type text)
-  (format "<a href=%s>%s</a>"
-	  (forgecast-get-resource-url forge slug type) text))
-
 (provide 'forgecast)
+;; forgecast.el ends here

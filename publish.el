@@ -1,4 +1,4 @@
-;;; orchestrate.el --- A proxy between the user and their website. -*- lexical-binding: t; -*-
+;;; publish.el --- A proxy between the user and their website. -*- lexical-binding: t; -*-
 
 ;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
 ;; URL: https://github.com/grtcdr/grtcdr.tn
@@ -48,7 +48,7 @@
       org-src-preserve-indentation t)
 
 ;;; General functions:
-(defun orchestrate-sitemap-format-entry (entry style project)
+(defun publish-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
   (let ((prefix (file-name-concat (project-root (project-current)) "posts")))
     (format "%s - [[file:%s][%s]] %s"
@@ -57,7 +57,7 @@
 	    (org-publish-find-title entry project)
 	    (org-publish-find-property entry :filetags project 'site-html))))
 
-(defun orchestrate-format-headline-function (todo todo-type priority text tags info)
+(defun publish-format-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
   ;; Copyright: Toon Claes
   (let* ((headline (get-text-property 0 :parent text))
@@ -69,46 +69,31 @@
                  text)))
     (org-html-format-headline-default-function todo todo-type priority link tags info)))
 
-(defun orchestrate-read-template (slug)
+(defun publish-read-template (slug)
   "Read a template from the templates directory."
     (with-temp-buffer
       (insert-file-contents
        (file-name-concat "templates" slug))
       (buffer-string)))
 
-;;; Redefinition of built-in org-html-format-spec:
+;;; Redefinition of built-in org-html-format-spec
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
-    `((?t . ,(org-export-data (plist-get info :title) info))
-      (?s . ,(org-export-data (plist-get info :subtitle) info))
-      (?o . ,(org-export-data (plist-get info :filetags) info))
-      (?d . ,(org-export-data (org-export-get-date info timestamp-format)
-			      info))
-      (?T . ,(format-time-string timestamp-format))
+    `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?e . ,(mapconcat
-	      (lambda (e) (format "<a href=\"mailto:%s\">%s</a>" e e))
-	      (split-string (plist-get info :email)  ",+ *")
-	      ", "))
-      (?c . ,(plist-get info :creator))
-      (?C . ,(let ((file (plist-get info :input-file)))
-	       (format-time-string timestamp-format
-				   (and file (file-attribute-modification-time
-					      (file-attributes file))))))
-      (?v . ,(or (plist-get info :html-validation-link) ""))
-      (?w . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.github.io" 'blob "raw"))
-      (?x . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.github.io" 'log "history"))
-      (?y . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'blob "raw"))
-      (?z . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
+      (?r . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'blob))
+      (?h . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log))
+      (?b . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'blob))
+      (?l . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'log)))))
 
 ;;; Project specification:
 (setq org-publish-project-alist
-      (let ((posts-postamble (orchestrate-read-template "postamble/posts.html"))
-	    (posts-preamble (orchestrate-read-template "preamble/posts.html"))
-	    (content-preamble (orchestrate-read-template "preamble/content.html"))
-	    (dotfiles-preamble (orchestrate-read-template "preamble/dotfiles.html")))
+      (let ((posts-postamble (publish-read-template "postamble/posts.html"))
+	    (posts-preamble (publish-read-template "preamble/posts.html"))
+	    (content-preamble (publish-read-template "preamble/content.html"))
+	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -146,12 +131,12 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Posts"
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'orchestrate-sitemap-format-entry
+	       :sitemap-format-entry 'publish-sitemap-format-entry
 	       :with-title t
 	       :with-toc nil
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'orchestrate-format-headline-function
+	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
 	       :html-head-include-default-style nil)
@@ -167,7 +152,7 @@ INFO is a plist used as a communication channel."
 	       :with-toc t
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'orchestrate-format-headline-function
+	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
 	       :html-head-include-default-style nil)

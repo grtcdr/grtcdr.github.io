@@ -1,0 +1,7 @@
+* Features
+* Documentation
+** TODO Write up a Texinfo manual
+** DONE Include a usage example
+* Bugs
+** DONE Add a live example
+** DONE Automatically detect branch

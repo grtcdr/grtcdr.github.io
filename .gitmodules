@@ -4,6 +4,6 @@
 [submodule "lisp/htmlize"]
 	path = lisp/htmlize
 	url = https://github.com/hniksic/emacs-htmlize
-[submodule "forgecast"]
+[submodule "lisp/forgecast"]
 	path = lisp/forgecast
 	url = https://github.com/grtcdr/forgecast.git

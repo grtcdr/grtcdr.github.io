@@ -45,36 +45,14 @@ returned by ’forgecast-get-resource-url'."
      (expand-file-name root) buffer)))
 
 (defun forgecast--build-github-resource-url (slug branch type)
-  (format-spec
-   "https://%d/%s/%t/%b/%r"
-   `((?d . ,(plist-get forgecast-forge-plist :github))
-     (?s . ,slug)
-     (?t . ,(cond ((eq type 'log) "commits")
-		  ((eq type 'tree) "blob")
-		  (t (error "Type is invalid or does not apply to this backend."))))
-     (?b . ,branch)
-     (?r . ,(forgecast-get-resource-slug)))))
-
-(defun forgecast--build-rawgithub-resource-url (slug branch)
-  (format-spec
-   "https://%d/%s/%b/%r"
-   `((?d . ,(plist-get forgecast-forge-plist :rawgithub))
-     (?s . ,slug)
-     (?b . ,branch)
-     (?r . ,(forgecast-get-resource-slug)))))
-
-(defun forgecast--build-gh-resource-url (slug branch type)
-  (let ((forge (plist-get forgecast-forge-plist
-			  (cond ((eq type 'blob) :rawgithub)
-				(t :github))))
+  (let ((forge (cond ((eq type 'blob) (plist-get forgecast-forge-plist :rawgithub))
+		     (t (plist-get forgecast-forge-plist :github))))
 	(type (cond ((eq type 'log) "commits")
 		    ((eq type 'tree) "blob")
 		    ((eq type 'blob) "")
 		    (t (error "Type is invalid or does not apply to this backend."))))
 	(resource (forgecast-get-resource-slug)))
-    (mapconcat 'identity
-	       (remove "" '("https://" forge slug branch type))
-	       "/")))
+    (mapconcat 'identity (remove "" (list "https://" forge slug branch type)) "/")))
 
 (defun forgecast--build-sourcehut-resource-url (slug branch type)
   (format-spec
@@ -108,5 +86,9 @@ RESOURCE is a filename relative to the root of the project."
 	  ((equal forge :sourcehut)
 	   (forgecast--build-sourcehut-resource-url slug branch type))
 	  (t (error "Could not find forge from known list of forges.")))))
+
+(defun forgecast-get-resource-html (forge slug type text)
+  (format "<a href=%s>%s</a>"
+	  (forgecast-get-resource-url forge slug type) text))
 
 (provide 'forgecast)

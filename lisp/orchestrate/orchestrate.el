@@ -27,12 +27,13 @@
 
 ;;; Code:
 
+(require 'ox-publish)
+(require 'project)
+
 (let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'forgecast)
-(require 'ox-publish)
-(require 'project)
 (require 'htmlize)
 
 ;;; Settings:
@@ -97,10 +98,10 @@ INFO is a plist used as a communication channel."
 				   (and file (file-attribute-modification-time
 					      (file-attributes file))))))
       (?v . ,(or (plist-get info :html-validation-link) ""))
-      (?w . ,(forgecast-get-url-as-html :github "grtcdr/grtcdr.tn" 'tree "source"))
-      (?x . ,(forgecast-get-url-as-html :github "grtcdr/grtcdr.tn" 'log "history"))
-      (?y . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'blob "source"))
-      (?z . ,(forgecast-get-url-as-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
+      (?w . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.tn" 'tree "source"))
+      (?x . ,(forgecast-get-resource-html :github "grtcdr/grtcdr.tn" 'log "history"))
+      (?y . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'blob "source"))
+      (?z . ,(forgecast-get-resource-html :sourcehut "grtcdr/dotfiles" 'log "history")))))
 
 ;;; Project specification:
 (setq org-publish-project-alist

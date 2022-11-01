@@ -37,7 +37,7 @@
 (require 'htmlize)
 
 ;;; Settings:
-(setq user-full-name "Taha Aziz Ben Ali"
+(setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
       org-export-time-stamp-file nil

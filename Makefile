@@ -13,7 +13,11 @@ CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
 # ---- Recipes ----
 
-all: less build optimize
+all: submodule less build optimize
+
+submodule:
+	@echo "Updating submodules..."
+	@git submodule update --remote --merge
 
 publish:
 	miniserve public/

@@ -1,2 +1,2 @@
 #+HTML_HEAD: <link rel="stylesheet" href="/stylesheets/main.css">
-#+HTML_HEAD: <meta name="description" content="grtcdr's personal website.">
+#+DESCRIPTION: grtcdr's website and blog.

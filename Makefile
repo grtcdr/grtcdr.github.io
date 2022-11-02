@@ -19,7 +19,7 @@ submodule:
 	@echo "Updating submodules..."
 	@git submodule update --remote --merge
 
-publish:
+serve:
 	miniserve public/
 
 build: publish.el

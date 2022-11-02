@@ -1,29 +1,28 @@
-;;; publish.el --- A proxy between the user and their website. -*- lexical-binding: t; -*-
+;;; publish.el ---  Org project specification. -*- lexical-binding: t; -*-
 
 ;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
 ;; URL: https://github.com/grtcdr/grtcdr.tn
 
-;; Orchestrate is free software: you can redistribute it and/or modify
+;; Publish is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published
 ;; by the Free Software Foundation, either version 3 of the License,
 ;; or (at your option) any later version.
 ;;
-;; Orchestrate is distributed in the hope that it will be useful, but
+;; Publish is distributed in the hope that it will be useful, but
 ;; WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
 ;;
 ;; You should have received a copy of the GNU General Public License
-;; along with Orchestrate.  If not, see <https://www.gnu.org/licenses/>.
+;; along with publish.  If not, see <https://www.gnu.org/licenses/>.
 
 ;; This file contains code taken from GNU Emacs, which is
 ;; Copyright (C) 1976-2022 Free Software Foundation, Inc.
 
 ;;; Commentary:
 
-;; Orchestrate is the proxy between the user and the website they wish
-;; to build.  It defines the various components that consitute the
-;; website and should be used in conjunction with a build system.
+;; Publish defines the various components that consitute this website
+;; and should be used in conjunction with a build system.
 
 ;;; Code:
 
@@ -84,7 +83,9 @@ INFO is a plist used as a communication channel."
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
       (?b . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'blob))
-      (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log)))))
+      (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log))
+      (?B . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'blob))
+      (?L . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'log)))))
 
 ;;; Project specification:
 (setq org-publish-project-alist

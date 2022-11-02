@@ -7,7 +7,6 @@ on:
 
   workflow_dispatch:
 
-
 permissions:
   contents: read
   pages: write
@@ -40,10 +39,7 @@ jobs:
       - name: Install Emacs
         uses: purcell/setup-emacs@master
         with:
-          version: snapshot
-
-      - name: Setup cache
-        run: mkdir -p .timestamps/grtcdr.tn
+          version: 28.2
 
       - name: Build website
         run: make

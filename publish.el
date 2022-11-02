@@ -84,9 +84,7 @@ INFO is a plist used as a communication channel."
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
       (?b . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'blob))
-      (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log))
-      (?B . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'blob))
-      (?L . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'log)))))
+      (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log)))))
 
 ;;; Project specification:
 (setq org-publish-project-alist

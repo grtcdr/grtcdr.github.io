@@ -29,7 +29,7 @@
 (require 'ox-publish)
 (require 'project)
 
-(let ((default-directory (file-name-concat (project-root (project-current)) "lisp")))
+(let ((default-directory (concat default-directory  "lisp")))
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'forgecast)
@@ -82,9 +82,10 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?b . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'blob))
+      (?p . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'plain))
       (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log))
-      (?B . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'blob))
+      (?e . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'edit))
+      (?B . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'tree))
       (?L . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'log)))))
 
 ;;; Project specification:

@@ -13,9 +13,15 @@ CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
 # ---- Recipes ----
 
-all: submodule less build optimize
+all: submodules less build optimize
 
-submodule:
+less: $(CSS_FILES)
+
+$(CSS_FILES): $(LESS_FILES)
+	@echo "Publishing file $< to $@"
+	@$(LESSC) $< $@
+
+submodules:
 	@echo "Updating submodules..."
 	@git submodule update --remote --merge
 
@@ -24,12 +30,6 @@ serve:
 
 build: publish.el
 	@emacs --quick --batch --load publish.el --funcall org-publish-all t t
-
-less: $(CSS_FILES)
-
-$(CSS_FILES): $(LESS_FILES)
-	@echo "Publishing file $< to $@"
-	@$(LESSC) $< $@
 
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .

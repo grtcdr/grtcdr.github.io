@@ -118,6 +118,20 @@ img {
   justify-content: space-between;
   font-family: @mono;
   font-weight: 300;
+
+  & > .metadata-src {
+    &::before {
+      content: "("
+    }
+
+    &::after {
+      content: ")"
+    }
+
+    a + a {
+      content: "‧"
+    }
+  }
 }
 
 @media (max-width: 800px) {

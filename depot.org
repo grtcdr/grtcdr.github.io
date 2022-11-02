@@ -31,11 +31,6 @@ or /[c]/ dotfiles.
 
   A short =zsh= configuration targeting simplicity.
 
-- [[file:dotfiles/sh/doch.org][doch]]
-
-  A shell script that lists and opens HTML/PDF files found within my
-  =org-directory=.
-
 - [[file:dotfiles/sh/startw.org][startw]]
 
   A shell script that intelligently starts =sway=, built with NVIDIA

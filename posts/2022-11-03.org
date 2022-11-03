@@ -1,0 +1,17 @@
+#+TITLE: Announcing Forgecast - an Emacs Lisp package
+#+DATE: <2022-11-03 Thu>
+#+SETUPFILE: ../setup.org
+#+FILETAGS: :emacs:
+#+OPTIONS: html-postamble:nil
+
+Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/forgecast][Forgecast]]!
+
+This miniscule library provides a helper function that enables you to
+/automatically/ link arbitrary [[info:org#Summary][Org]] documents to their original
+source. It is similar in behavior to the links you find at the end of
+[[https://developer.mozilla.org/en-US/][MDN]] articles.
+
+I hope you find it useful - do let me know if you ever include it in
+your project as I would love to hear your thoughts.
+
+#+HTML: <img src="https://raw.githubusercontent.com/grtcdr/forgecast/main/assets/demo.gif" align="center" width="80%">

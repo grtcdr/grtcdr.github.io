@@ -1,41 +1,14 @@
-;;; publish.el ---  Org project specification. -*- lexical-binding: t; -*-
+;; site-spec.el defines the various components that consitute this
+;; website and should be used in conjunction with a build system.
 
-;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
-;; URL: https://github.com/grtcdr/grtcdr.tn
-
-;; Publish is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published
-;; by the Free Software Foundation, either version 3 of the License,
-;; or (at your option) any later version.
-;;
-;; Publish is distributed in the hope that it will be useful, but
-;; WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-;; General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with publish.  If not, see <https://www.gnu.org/licenses/>.
-
-;; This file contains code taken from GNU Emacs, which is
-;; Copyright (C) 1976-2022 Free Software Foundation, Inc.
-
-;;; Commentary:
-
-;; Publish defines the various components that consitute this website
-;; and should be used in conjunction with a build system.
-
-;;; Code:
-
-(require 'ox-publish)
-(require 'project)
-
-(let ((default-directory (concat default-directory  "lisp")))
+(let ((default-directory (concat default-directory "lisp")))
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'forgecast)
 (require 'htmlize)
+(require 'project)
+(require 'ox-publish)
 
-;;; Settings:
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
@@ -46,7 +19,6 @@
       org-src-fontify-natively t
       org-src-preserve-indentation t)
 
-;;; General functions:
 (defun publish-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
   (let ((prefix (file-name-concat (project-root (project-current)) "posts")))
@@ -75,32 +47,34 @@
        (file-name-concat "templates" slug))
       (buffer-string)))
 
-;;; Redefinition of built-in org-html-format-spec
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?p . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'plain))
-      (?l . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'log))
-      (?e . ,(forgecast-get-resource-url :github "grtcdr/grtcdr.github.io" 'edit))
-      (?B . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'tree))
-      (?L . ,(forgecast-get-resource-url :sourcehut "grtcdr/dotfiles" 'log)))))
+      (?b . ,(forgecast-get-resource-url 'blob))
+      (?l . ,(forgecast-get-resource-url 'log)))))
 
-;;; Project specification:
+(defun publish-html-head ()
+  (string-join
+   '("<link rel=\"stylesheet\" href=\"/stylesheets/main.css\" />"
+     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/icons/favicon.ico\" />")
+   "\n"))
+
 (setq org-publish-project-alist
       (let ((posts-postamble (publish-read-template "postamble/posts.html"))
 	    (posts-preamble (publish-read-template "preamble/posts.html"))
 	    (content-preamble (publish-read-template "preamble/content.html"))
-	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html")))
+	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html"))
+	    (html-head (publish-html-head)))
 	(list
 	 (list "content"
 	       :base-extension "org"
 	       :base-directory "."
 	       :publishing-directory "public"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("README.org" "setup.org"))
+	       :exclude (regexp-opt '("README.org"))
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
@@ -108,13 +82,13 @@ INFO is a plist used as a communication channel."
 	       :html-html5-fancy t
 	       :html-preamble content-preamble
 	       :html-postamble nil
+	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
 	 (list "projects"
 	       :base-extension "org"
 	       :base-directory "projects"
 	       :publishing-directory "public/p"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("setup.org"))
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
@@ -122,6 +96,7 @@ INFO is a plist used as a communication channel."
 	       :html-html5-fancy t
 	       :html-preamble content-preamble
 	       :html-postamble nil
+	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
 	 (list "posts"
 	       :base-extension "org"
@@ -139,6 +114,7 @@ INFO is a plist used as a communication channel."
 	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
+	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
 	 (list "dotfiles"
 	       :recursive t
@@ -146,7 +122,7 @@ INFO is a plist used as a communication channel."
 	       :base-directory "dotfiles"
 	       :publishing-directory "public/dotfiles"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("README.org" "COPYING.org" "setup.org"))
+	       :exclude (regexp-opt '("README.org"))
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
@@ -155,6 +131,7 @@ INFO is a plist used as a communication channel."
 	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
+	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
 	 (list "data"
 	       :base-extension (regexp-opt '("txt" "pdf" "asc"))
@@ -173,16 +150,11 @@ INFO is a plist used as a communication channel."
 	       :publishing-directory "public/javascripts"
 	       :publishing-function 'org-publish-attachment)
 	 (list "images"
-	       :recursive t
-	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
+	       :base-extension (regexp-opt '("ico" "png" "jpg" "jpeg" "svg"))
 	       :base-directory "images"
 	       :publishing-directory "public/images" 
-	       :publishing-function 'org-publish-attachment)
-	 (list "favicon"
-	       :base-extension "ico"
-	       :base-directory "images"
-	       :publishing-directory "public"
-	       :publishing-function 'org-publish-attachment)
+	       :publishing-function 'org-publish-attachment
+	       :recursive t)
 	 (list "all"
 	       :components (list "content"
 				 "projects"
@@ -191,5 +163,6 @@ INFO is a plist used as a communication channel."
 				 "stylesheets"
 				 "javascripts"
 				 "data"
-				 "images"
-				 "favicon")))))
+				 "images")))))
+
+(provide 'site-spec)

@@ -118,20 +118,6 @@ img {
   justify-content: space-between;
   font-family: @mono;
   font-weight: 300;
-
-  & > .metadata-src {
-    &::before {
-      content: "("
-    }
-
-    &::after {
-      content: ")"
-    }
-
-    a + a {
-      content: "‧"
-    }
-  }
 }
 
 @media (max-width: 800px) {
@@ -157,6 +143,10 @@ img {
     display: inline;
     font-size: 1.4em;
     font-weight: 600;
+
+    & + &::before {
+      content: "/"
+    }
 
     &:not(:last-child) {
       padding-right: 1em;

@@ -1,5 +1,5 @@
 #+TITLE: Bonjour
-#+SETUPFILE: setup.org
+#+DESCRIPTION: grtcdr's website and blog.
 #+HTML_HEAD: <script src="javascripts/main.js"></script>
 
 I'm /grtcdr/, a student and open source software developer. I spend a

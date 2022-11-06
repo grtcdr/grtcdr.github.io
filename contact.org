@@ -1,5 +1,4 @@
 #+TITLE: Get in touch
-#+SETUPFILE: setup.org
 
 + Email: [[mailto:tahaaziz.benali@esprit.tn][tahaaziz.benali@esprit.tn]]
 

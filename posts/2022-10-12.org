@@ -1,7 +1,6 @@
 #+TITLE: Getting a taste of libvirt hooks
 #+DATE: <2022-10-12>
 #+FILETAGS: :systems:
-#+SETUPFILE: ../setup.org
 
 I recently had the pleasure of learning how DNS systems work behind
 the scenes through an itsy-bitsy academic project. I learned how to

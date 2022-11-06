@@ -1,2 +1,0 @@
-#+HTML_HEAD: <link rel="stylesheet" href="/stylesheets/main.css">
-#+DESCRIPTION: grtcdr's website and blog.

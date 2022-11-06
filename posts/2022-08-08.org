@@ -1,6 +1,5 @@
 #+TITLE: Extending project.el with to-do functionality
 #+DATE: <2022-08-08>
-#+SETUPFILE: ../setup.org
 #+FILETAGS: emacs
 
 When I work on a personal project which has the potential to grow

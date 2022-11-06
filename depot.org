@@ -1,5 +1,4 @@
 #+TITLE: Depot
-#+SETUPFILE: setup.org
 #+DESCRIPTION: grtcdr's documentation of his personal computing environment.
 
 The documentation found herein follows the [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]]

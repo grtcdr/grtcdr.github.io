@@ -1,19 +1,12 @@
-# ---- Variables ----
-
 LESSC = npx lessc
 GRUNT = npx grunt
-
 GRUNTFILE = javascripts/grunt.js
-
 LESS_DIR = stylesheets
 CSS_DIR = public/stylesheets
-
 LESS_FILES = $(wildcard $(LESS_DIR)/*.less)
 CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
-# ---- Recipes ----
-
-all: submodules less build optimize
+all: less build optimize
 
 less: $(CSS_FILES)
 
@@ -21,14 +14,7 @@ $(CSS_FILES): $(LESS_FILES)
 	@echo "Publishing file $< to $@"
 	@$(LESSC) $< $@
 
-submodules:
-	@echo "Updating submodules..."
-	@git submodule update --remote --merge
-
-serve:
-	miniserve public/
-
-build: publish.el
+build:
 	@emacs --quick --batch --load publish.el --funcall org-publish-all t t
 
 optimize:

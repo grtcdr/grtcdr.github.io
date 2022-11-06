@@ -1,6 +1,5 @@
 #+TITLE: Page not found
 #+OPTIONS: title:nil
-#+SETUPFILE: setup.org
 
 #+begin_export html
 <div style="text-align:center;margin-top:10em">

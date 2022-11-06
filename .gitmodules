@@ -1,7 +1,6 @@
 [submodule "dotfiles"]
 	path = dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
-	update = merge
 [submodule "lisp/htmlize"]
 	path = lisp/htmlize
 	url = https://github.com/hniksic/emacs-htmlize

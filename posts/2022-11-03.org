@@ -6,7 +6,7 @@
 
 Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/forgecast][Forgecast]]!
 
-This miniscule library provides a helper function that enables you to
+This minuscule library provides a helper function that enables you to
 /automatically/ link arbitrary [[info:org#Summary][Org]] documents to their original
 source. It is similar in behavior to the links you find at the end of
 [[https://developer.mozilla.org/en-US/][MDN]] articles.

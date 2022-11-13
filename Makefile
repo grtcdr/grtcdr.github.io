@@ -1,8 +1,8 @@
 LESSC = npx lessc
 GRUNT = npx grunt
-GRUNTFILE = javascripts/grunt.js
-LESS_DIR = stylesheets
-CSS_DIR = public/stylesheets
+GRUNTFILE = src/js/grunt.js
+LESS_DIR = src/less
+CSS_DIR = public/css
 LESS_FILES = $(wildcard $(LESS_DIR)/*.less)
 CSS_FILES = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
@@ -15,7 +15,7 @@ $(CSS_FILES): $(LESS_FILES)
 	@$(LESSC) $< $@
 
 build:
-	@emacs --quick --batch --load publish.el --funcall org-publish-all t t
+	@emacs --quick --batch --load lisp/publish.el --funcall org-publish-all t t
 
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .

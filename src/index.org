@@ -1,6 +1,6 @@
 #+TITLE: Bonjour
 #+DESCRIPTION: grtcdr's website and blog.
-#+HTML_HEAD: <script src="javascripts/main.js"></script>
+#+HTML_HEAD: <script src="js/main.js"></script>
 
 I'm /grtcdr/, a student and open source software developer. I spend a
 lot of time tinkering with software, I also enjoy taking my bike out

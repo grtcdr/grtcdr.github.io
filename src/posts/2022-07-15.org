@@ -179,7 +179,7 @@ your working directory... Go on, open it!
 
 #+name: diagram
 #+attr_html: :alt Animalia class diagram :style width:50%;
-[[../images/posts/animalia.svg]]
+[[../../assets/images/animalia.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

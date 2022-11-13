@@ -1,5 +1,5 @@
 [submodule "dotfiles"]
-	path = dotfiles
+	path = src/dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
 	branch = main
 

@@ -1,8 +1,4 @@
-# Ignore these directories
+*~
 node_modules/
 .cache/
 public/
-stylesheets/*.css
-
-# Ignore backup files
-*~

@@ -1,13 +1,16 @@
 ;; site-spec.el defines the various components that consitute this
 ;; website and should be used in conjunction with a build system.
 
-(let ((default-directory (concat default-directory "lisp")))
-  (normal-top-level-add-subdirs-to-load-path))
+(normal-top-level-add-subdirs-to-load-path)
 
 (require 'forgecast)
 (require 'htmlize)
 (require 'project)
 (require 'ox-publish)
+
+(setq default-directory
+      (expand-file-name
+       (project-root (project-current))))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
@@ -44,7 +47,7 @@
   "Read a template from the templates directory."
     (with-temp-buffer
       (insert-file-contents
-       (file-name-concat "templates" slug))
+       (file-name-concat "src" "templates" slug))
       (buffer-string)))
 
 (defun org-html-format-spec (info)
@@ -58,20 +61,20 @@ INFO is a plist used as a communication channel."
 
 (defun publish-html-head ()
   (string-join
-   '("<link rel=\"stylesheet\" href=\"/stylesheets/main.css\" />"
-     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/icons/favicon.ico\" />")
+   '("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
+     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\" />")
    "\n"))
 
 (setq org-publish-project-alist
-      (let ((posts-postamble (publish-read-template "postamble/posts.html"))
-	    (posts-preamble (publish-read-template "preamble/posts.html"))
-	    (content-preamble (publish-read-template "preamble/content.html"))
+      (let ((posts-postamble   (publish-read-template "postamble/posts.html"))
+	    (posts-preamble    (publish-read-template "preamble/posts.html"))
+	    (content-preamble  (publish-read-template "preamble/content.html"))
 	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html"))
-	    (html-head (publish-html-head)))
+	    (html-head         (publish-html-head)))
 	(list
 	 (list "content"
 	       :base-extension "org"
-	       :base-directory "."
+	       :base-directory "src"
 	       :publishing-directory "public"
 	       :publishing-function 'org-html-publish-to-html
 	       :exclude (regexp-opt '("README.org"))
@@ -84,23 +87,9 @@ INFO is a plist used as a communication channel."
 	       :html-postamble nil
 	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
-	 (list "projects"
-	       :base-extension "org"
-	       :base-directory "projects"
-	       :publishing-directory "public/p"
-	       :publishing-function 'org-html-publish-to-html
-	       :section-numbers nil
-	       :with-toc nil
-	       :with-title t
-	       :html-doctype "html5"
-	       :html-html5-fancy t
-	       :html-preamble content-preamble
-	       :html-postamble nil
-	       :html-head-extra html-head
-	       :html-head-include-default-style nil)
 	 (list "posts"
 	       :base-extension "org"
-	       :base-directory "posts"
+	       :base-directory "src/posts"
 	       :publishing-directory "public/posts"
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
@@ -119,7 +108,7 @@ INFO is a plist used as a communication channel."
 	 (list "dotfiles"
 	       :recursive t
 	       :base-extension "org"
-	       :base-directory "dotfiles"
+	       :base-directory "src/dotfiles"
 	       :publishing-directory "public/dotfiles"
 	       :publishing-function 'org-html-publish-to-html
 	       :exclude (regexp-opt '("README.org"))
@@ -134,30 +123,29 @@ INFO is a plist used as a communication channel."
 	       :html-head-extra html-head
 	       :html-head-include-default-style nil)
 	 (list "data"
-	       :base-extension (regexp-opt '("txt" "pdf" "asc"))
-	       :base-directory "data"
-	       :publishing-directory "public/data"
+	       :base-extension (regexp-opt '("ico" "txt" "pdf" "asc"))
+	       :base-directory "assets"
+	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
+	 (list "images"
+	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
+	       :base-directory "assets/images"
+	       :publishing-directory "public/assets/images"
+	       :publishing-function 'org-publish-attachment
+	       :recursive t)
 	 (list "stylesheets"
 	       :base-extension "css"
-	       :base-directory "stylesheets" 
-	       :publishing-directory "public/stylesheets"
+	       :base-directory "src/less" 
+	       :publishing-directory "public/css"
 	       :publishing-function 'org-publish-attachment)
 	 (list "javascripts"
 	       :base-extension "js"
-	       :base-directory "javascripts"
+	       :base-directory "src/js"
 	       :exclude "grunt.js"
-	       :publishing-directory "public/javascripts"
+	       :publishing-directory "public/js"
 	       :publishing-function 'org-publish-attachment)
-	 (list "images"
-	       :base-extension (regexp-opt '("ico" "png" "jpg" "jpeg" "svg"))
-	       :base-directory "images"
-	       :publishing-directory "public/images" 
-	       :publishing-function 'org-publish-attachment
-	       :recursive t)
 	 (list "all"
 	       :components (list "content"
-				 "projects"
 				 "posts"
 				 "dotfiles"
 				 "stylesheets"

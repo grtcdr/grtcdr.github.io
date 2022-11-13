@@ -2,12 +2,11 @@
 	path = dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
 	branch = main
+
 [submodule "lisp/htmlize"]
 	path = lisp/htmlize
 	url = https://github.com/hniksic/emacs-htmlize
+
 [submodule "lisp/forgecast"]
 	path = lisp/forgecast
-	url = https://github.com/grtcdr/forgecast.git
-[submodule "lisp/emacs-web-server"]
-	path = lisp/emacs-web-server
-	url = https://github.com/skeeto/emacs-web-server.git
+	url = https://github.com/grtcdr/forgecast

@@ -56,13 +56,12 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?b . ,(forgecast-get-resource-url 'blob))
       (?l . ,(forgecast-get-resource-url 'log)))))
 
 (defun publish-html-head ()
   (string-join
    '("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
-     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\" />")
+     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />")
    "\n"))
 
 (setq org-publish-project-alist

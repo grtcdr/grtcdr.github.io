@@ -4,7 +4,7 @@
 
   I usually reply within the day.
 
-+ PGP: [[file:data/pubkey.asc][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
++ PGP: [[../assets/pubkey.asc][EFA6 ECD0 64BA 7448 4B27 4B25 ACBF 041B DFD2 B01D]]
 
   For secure communications, you should encrypt the messages you
   intend to send my way with my public key.
@@ -12,4 +12,4 @@
   You can [[https://keyoxide.org/EFA6ECD064BA74484B274B25ACBF041BDFD2B01D][verify my identity]] to rest assured that you're speaking to
   me, not some stranger.
 
-+ Also, check out my [[file:data/cv.pdf][curriculum vitae]] if you're interested.
++ Also, check out my [[../assets/cv.pdf][curriculum vitae]] if you're interested.

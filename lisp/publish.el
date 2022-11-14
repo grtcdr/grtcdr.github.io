@@ -76,7 +76,6 @@ INFO is a plist used as a communication channel."
 	       :base-directory "src"
 	       :publishing-directory "public"
 	       :publishing-function 'org-html-publish-to-html
-	       :exclude (regexp-opt '("README.org"))
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t

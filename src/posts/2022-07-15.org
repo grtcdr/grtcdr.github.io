@@ -97,7 +97,8 @@ the objected oriented way.
 
 Give this a good read, and then jump to the next section for my explanation.
 
-#+begin_example
+#+name: diagram
+#+begin_src plantuml :file ../../assets/images/plantuml-example-diagram.svg :exports both
 @startuml
 package Animalia {
 
@@ -137,7 +138,7 @@ package Animalia {
   }
 }
 @enduml
-#+end_example
+#+end_src
 
 Reading over the syntax, we can see that everything is wrapped inside
 ~@startuml~ and ~@enduml~, a notation that is required for PlantUML to
@@ -158,7 +159,7 @@ such as what you see between the different enums and classes, we can
 use ~<--~ or ~-->~.
 
 The direction of the pointy bit matters, and it will be reflected *as
-is*, in the [[diagram][output diagram]].
+is* in the output diagram.
 
 The last thing I'll cover is access modifiers, all of which are
 assigned a unique icon by PlantUML. Prepending a method or attribute
@@ -177,9 +178,9 @@ plantuml animalia.puml -tpng animalia.png
 If all goes smoothly, you should see an ~animalia.png~ file appear in
 your working directory... Go on, open it!
 
-#+name: diagram
 #+attr_html: :alt Animalia class diagram :style width:50%;
-[[../../assets/images/animalia.svg]]
+#+RESULTS: diagram
+[[file:../../assets/images/plantuml-example-diagram.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

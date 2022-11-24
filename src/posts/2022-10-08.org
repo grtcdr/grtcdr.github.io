@@ -33,7 +33,8 @@ ecosystem. Now, before we dive into the technicalities, let's review
 the exportation and publishing process that a file submits to when
 instructed by the user.
 
-#+begin_src dot :file ../../assets/images/posts/org-publish-process.svg :exports results
+#+name: diagram
+#+begin_src dot :file ../../assets/images/org-publish-process.svg :exports results
 digraph G {
     publish [
 	     label = "Publishing project?";
@@ -75,8 +76,8 @@ digraph G {
 
 #+ATTR_HTML: :alt The publishing process from an Org file to an HTML document :height 300px
 #+CAPTION: Overview of the publishing process of an Org document
-#+RESULTS:
-[[file:../../assets/images/posts/org-publish-process.svg]]
+#+RESULTS: diagram
+[[file:../../assets/images/org-publish-process.svg]]
 
 * First Implementation
 :PROPERTIES:

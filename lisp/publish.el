@@ -58,18 +58,15 @@ INFO is a plist used as a communication channel."
       (?a . ,(org-export-data (plist-get info :author) info))
       (?l . ,(forgecast-get-resource-url 'log)))))
 
-(defun publish-html-head ()
-  (string-join
-   '("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
-     "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />")
-   "\n"))
-
 (setq org-publish-project-alist
       (let ((posts-postamble   (publish-read-template "postamble/posts.html"))
 	    (posts-preamble    (publish-read-template "preamble/posts.html"))
 	    (content-preamble  (publish-read-template "preamble/content.html"))
 	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html"))
-	    (html-head         (publish-html-head)))
+	    (html-head (string-join
+			'("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
+			  "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />")
+			"\n")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -148,7 +145,7 @@ INFO is a plist used as a communication channel."
 				 "dotfiles"
 				 "stylesheets"
 				 "javascripts"
-				 "data"
-				 "images")))))
+				 "images"
+				 "data")))))
 
 (provide 'site-spec)

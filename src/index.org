@@ -11,6 +11,8 @@ Find me on:
 + GitHub: [[https://github.com/grtcdr][@grtcdr]]
 + SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
 
+If you want to see what I've been up to, search for /@grtcdr@grtcdr.tn/ on Mastodon.
+
 * Highlights
 
 I've taken it upon myself to document [[file:depot.org][the various configurations of my

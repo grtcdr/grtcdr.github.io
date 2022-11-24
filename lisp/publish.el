@@ -1,5 +1,8 @@
-;; site-spec.el defines the various components that consitute this
+;; publish.el defines the various components that consitute this
 ;; website and should be used in conjunction with a build system.
+
+;; Add neighboring directories (and their subdirectories) to the load
+;; path, these are mostly the dependencies of publish.el.
 
 (normal-top-level-add-subdirs-to-load-path)
 
@@ -8,14 +11,24 @@
 (require 'project)
 (require 'ox-publish)
 
+;; Set the current working directory to the project root
+
 (setq default-directory
       (expand-file-name
        (project-root (project-current))))
 
+;;; My information:
+
 (setq user-full-name "Aziz Ben Ali"
-      user-mail-address "tahaaziz.benali@esprit.tn"
-      make-backup-files nil
-      org-export-time-stamp-file nil
+      user-mail-address "tahaaziz.benali@esprit.tn")
+
+;;; Emacs configuration:
+
+(setq make-backup-files nil)
+
+;;; Org mode configuration:
+
+(setq org-export-time-stamp-file nil
       org-publish-timestamp-directory ".cache/"
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type 'inline-css
@@ -139,6 +152,12 @@ INFO is a plist used as a communication channel."
 	       :exclude "grunt.js"
 	       :publishing-directory "public/js"
 	       :publishing-function 'org-publish-attachment)
+	 (list "wellknown"
+	       :base-extension ".*"
+	       :base-directory ".well-known"
+	       :publishing-directory "public/.well-known"
+	       :publishing-function 'org-publish-attachment
+	       :recursive t)
 	 (list "all"
 	       :components (list "content"
 				 "posts"
@@ -146,6 +165,5 @@ INFO is a plist used as a communication channel."
 				 "stylesheets"
 				 "javascripts"
 				 "images"
+				 "wellknown"
 				 "data")))))
-
-(provide 'site-spec)

@@ -11,11 +11,11 @@ Find me on:
 + GitHub: [[https://github.com/grtcdr][@grtcdr]]
 + SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
 
-If you want to see what I've been up to, search for /@grtcdr@grtcdr.tn/ on Mastodon.
+Also, come hang with me on [[https://joinmastodon.org/][Mastodon]] - just search for @grtcdr@grtcdr.tn.
 
 * Highlights
 
-I've taken it upon myself to document [[file:depot.org][the various configurations of my
+I've taken it upon myself to document [[file:dotfiles/theindex.org][the various configurations of my
 computing environment]], a creative project driven by a motivation to
 converge art with system configuration.
  

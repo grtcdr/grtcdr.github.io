@@ -44,23 +44,11 @@
 	    (org-publish-find-title entry project)
 	    (org-publish-find-property entry :filetags project 'site-html))))
 
-(defun publish-format-headline-function (todo todo-type priority text tags info)
-  "Format a headline with a link to itself."
-  ;; Copyright: Toon Claes
-  (let* ((headline (get-text-property 0 :parent text))
-         (id (or (org-element-property :CUSTOM_ID headline)
-                 (org-export-get-reference headline info)
-                 (org-element-property :ID headline)))
-         (link (if id
-                   (format "<a href=\"#%s\">%s</a>" id text)
-                 text)))
-    (org-html-format-headline-default-function todo todo-type priority link tags info)))
-
-(defun publish-read-template (slug)
+(defun publish-get-template (path)
   "Read a template from the templates directory."
     (with-temp-buffer
       (insert-file-contents
-       (file-name-concat "src" "templates" slug))
+       (file-name-concat "src" "templates" path))
       (buffer-string)))
 
 (defun org-html-format-spec (info)
@@ -72,10 +60,10 @@ INFO is a plist used as a communication channel."
       (?l . ,(forgecast-get-resource-url 'log)))))
 
 (setq org-publish-project-alist
-      (let ((posts-postamble   (publish-read-template "postamble/posts.html"))
-	    (posts-preamble    (publish-read-template "preamble/posts.html"))
-	    (content-preamble  (publish-read-template "preamble/content.html"))
-	    (dotfiles-preamble (publish-read-template "preamble/dotfiles.html"))
+      (let ((posts-postamble   (publish-get-template "postamble/posts.html"))
+	    (posts-preamble    (publish-get-template "preamble/posts.html"))
+	    (content-preamble  (publish-get-template "preamble/content.html"))
+	    (dotfiles-preamble (publish-get-template "preamble/dotfiles.html"))
 	    (html-head (string-join
 			'("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
 			  "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />")
@@ -108,7 +96,6 @@ INFO is a plist used as a communication channel."
 	       :with-toc nil
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
 	       :html-head-extra html-head
@@ -120,12 +107,12 @@ INFO is a plist used as a communication channel."
 	       :publishing-directory "public/dotfiles"
 	       :publishing-function 'org-html-publish-to-html
 	       :exclude (regexp-opt '("README.org"))
+	       :makeindex t
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
 	       :html-html5-fancy t
 	       :html-doctype "html5"
-	       :html-format-headline-function 'publish-format-headline-function
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
 	       :html-head-extra html-head
@@ -152,12 +139,6 @@ INFO is a plist used as a communication channel."
 	       :exclude "grunt.js"
 	       :publishing-directory "public/js"
 	       :publishing-function 'org-publish-attachment)
-	 (list "wellknown"
-	       :base-extension ".*"
-	       :base-directory ".well-known"
-	       :publishing-directory "public/.well-known"
-	       :publishing-function 'org-publish-attachment
-	       :recursive t)
 	 (list "all"
 	       :components (list "content"
 				 "posts"
@@ -165,5 +146,4 @@ INFO is a plist used as a communication channel."
 				 "stylesheets"
 				 "javascripts"
 				 "images"
-				 "wellknown"
 				 "data")))))

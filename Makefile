@@ -1,5 +1,5 @@
-LESSC = npx lessc
-GRUNT = npx grunt
+LESSC = npm exec -- lessc
+GRUNT = npm exec -- grunt
 GRUNTFILE = src/js/grunt.js
 LESS_DIR = src/less
 CSS_DIR = public/css

@@ -4,5 +4,8 @@
     "grunt": "^1.5.3",
     "grunt-contrib-cssmin": "~4.0.0",
     "less": "^4.1.3"
+  },
+  "dependencies": {
+    "grunt-cli": "^1.4.3"
   }
 }

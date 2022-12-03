@@ -52,7 +52,8 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?l . ,(forgecast-get-resource-url 'log)))))
+      (?l . ,(forgecast-get-resource-url 'log))
+      (?t . ,(forgecast-get-resource-url 'tree)))))
 
 (setq org-publish-project-alist
       (let ((posts-postamble   (publish-get-template "postamble/posts.html"))

@@ -1,0 +1,30 @@
+@import "def";
+
+pre {
+  line-height: initial;
+  font-family: @mono;
+  overflow: auto;
+  margin: 0;
+  padding: 1em;
+  background-color: @bg01;
+}
+
+pre.src {
+  position: relative;
+  overflow: auto;
+}
+
+code { color: darkred }
+
+.org-src-name {
+  display: block;
+  font-family: @mono;
+  padding: 0.3em;
+
+  color: @fg02;
+  background-color: @bg02;
+  
+  > .listing-number {
+    display: none
+  }
+}

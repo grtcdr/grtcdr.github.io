@@ -1,0 +1,24 @@
+@import "def";
+
+h1 { font-size: 2.5em }
+
+h2 { font-size: 2.2em }
+h3 { font-size: 2.0em }
+h4 { font-size: 1.84em }
+h5 { font-size: 1.72em }
+h6 { font-size: 1.53em }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  font-family: @sans;
+
+  & > a {
+    color: unset;
+    text-decoration: none;
+  }
+}
+
+span[class^='section-number'] {
+  color: @fg00;
+  font-size: 0.75em;
+}

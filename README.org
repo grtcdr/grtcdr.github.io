@@ -9,7 +9,6 @@ This site uses the following submodules to achieve a more modular and
 composable structure:
 - [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]
 - [[https://github.com/grtcdr/forgecast][forgecast]]
-- [[https://github.com/hniksic/emacs-htmlize][htmlize]]
 
 * Setup
 

@@ -191,5 +191,3 @@ selectively export every single one.
 
 If you'd like to explore this topic in greater detail,
 please read [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][the wonderful documentation]] provided by the Org project.
-
-/Farewell!/

@@ -2,10 +2,6 @@
 	path = src/dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
 
-[submodule "lisp/htmlize"]
-	path = lisp/htmlize
-	url = https://github.com/hniksic/emacs-htmlize
-
 [submodule "lisp/forgecast"]
 	path = lisp/forgecast
 	url = https://github.com/grtcdr/forgecast

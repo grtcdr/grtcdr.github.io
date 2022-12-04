@@ -1,5 +1,3 @@
-* Salut!
-
 This repository stores the source code of [[https://grtcdr.tn][grtcdr.tn]].
 
 * Structure

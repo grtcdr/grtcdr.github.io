@@ -2,16 +2,12 @@
 ;; website and should be used in conjunction with a build system.
 
 ;; Add neighboring directories (and their subdirectories) to the load
-;; path, these are mostly the dependencies of publish.el.
-
+;; path, i.e. the dependencies of publish.el.
 (normal-top-level-add-subdirs-to-load-path)
 
+;; Import the necessary libraries
 (require 'forgecast)
-(require 'htmlize)
-(require 'project)
 (require 'ox-publish)
-
-;; Set the current working directory to the project root
 
 ;;; My information:
 
@@ -25,13 +21,14 @@
 ;;; Org mode configuration:
 
 (setq org-export-time-stamp-file nil
+      org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-html-metadata-timestamp-format "%B %d, %Y"
-      org-html-htmlize-output-type 'inline-css
-      org-src-fontify-natively t
+      org-html-htmlize-output-type nil
+      org-src-fontify-natively nil
       org-src-preserve-indentation t)
 
-(defun publish-sitemap-format-entry (entry style project)
+(defun site/sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
   (format "%s - [[file:%s][%s]] %s"
 	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
@@ -39,7 +36,7 @@
 	  (org-publish-find-title entry project)
 	  (org-publish-find-property entry :filetags project 'site-html)))
 
-(defun publish-get-template (path)
+(defun site/get-template (path)
   "Read a template from the templates directory."
     (with-temp-buffer
       (insert-file-contents
@@ -52,18 +49,28 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?l . ,(forgecast-get-resource-url 'log))
-      (?t . ,(forgecast-get-resource-url 'tree)))))
+      (?l . ,(forgecast-get-resource-url 'log)))))
+
+(defun site/stylesheet (filename)
+  "Format filename as a stylesheet."
+  (format "<link rel=\"stylesheet\" href=\"%s\">\n" filename))
+
+(defvar site/html-head
+  (concat
+   (site/stylesheet "/css/common.css")
+   (site/stylesheet "/css/heading.css")
+   (site/stylesheet "/css/nav.css")
+   (site/stylesheet "/css/org.css")
+   (site/stylesheet "/css/source.css")
+   (site/stylesheet "/css/table.css")
+   "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\"/>")
+  "HTML headers shared across projects.")
 
 (setq org-publish-project-alist
-      (let ((posts-postamble   (publish-get-template "postamble/posts.html"))
-	    (posts-preamble    (publish-get-template "preamble/posts.html"))
-	    (content-preamble  (publish-get-template "preamble/content.html"))
-	    (dotfiles-preamble (publish-get-template "preamble/dotfiles.html"))
-	    (html-head (string-join
-			'("<link rel=\"stylesheet\" href=\"/css/main.css\" />"
-			  "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\" />")
-			"\n")))
+      (let ((posts-postamble   (site/get-template "postamble/posts.html"))
+	    (posts-preamble    (site/get-template "preamble/main.html"))
+	    (content-preamble  (site/get-template "preamble/main.html"))
+	    (dotfiles-preamble (site/get-template "preamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -77,7 +84,7 @@ INFO is a plist used as a communication channel."
 	       :html-html5-fancy t
 	       :html-preamble content-preamble
 	       :html-postamble nil
-	       :html-head-extra html-head
+	       :html-head-extra site/html-head
 	       :html-head-include-default-style nil)
 	 (list "posts"
 	       :base-extension "org"
@@ -87,14 +94,14 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Posts"
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'publish-sitemap-format-entry
+	       :sitemap-format-entry 'site/sitemap-format-entry
 	       :with-title t
 	       :with-toc nil
 	       :html-html5-fancy t
 	       :html-doctype "html5"
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra html-head
+	       :html-head-extra site/html-head
 	       :html-head-include-default-style nil)
 	 (list "dotfiles"
 	       :recursive t
@@ -111,7 +118,7 @@ INFO is a plist used as a communication channel."
 	       :html-doctype "html5"
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
-	       :html-head-extra html-head
+	       :html-head-extra site/html-head
 	       :html-head-include-default-style nil)
 	 (list "data"
 	       :base-extension (regexp-opt '("ico" "txt" "pdf" "asc"))
@@ -126,7 +133,7 @@ INFO is a plist used as a communication channel."
 	       :recursive t)
 	 (list "stylesheets"
 	       :base-extension "css"
-	       :base-directory "src/less" 
+	       :base-directory "src/css" 
 	       :publishing-directory "public/css"
 	       :publishing-function 'org-publish-attachment)
 	 (list "javascripts"
@@ -139,7 +146,7 @@ INFO is a plist used as a communication channel."
 	       :components (list "content"
 				 "posts"
 				 "dotfiles"
-				 "stylesheets"
+		       		 "stylesheets"
 				 "javascripts"
 				 "images"
 				 "data")))))

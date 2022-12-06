@@ -18,11 +18,11 @@ its glory.
 </figure>
 #+end_export
 
-I know, it's *beautiful*!
+I know, it's /beautiful/.
 
 I'm neither an expert in color nor in visual design, but these colors
-are captivating to me. Something about the aesthetic screams: /"Psst
--- hey... Come on over, your text editor misses you!"/.
+are captivating to me. Something about the aesthetic screams: "/Psst
+-- hey... Come get some work done, your text editor misses you./".
 
 Were you expecting a detailed analysis - perhaps one rooted in
 mathematics - of the intricacies of this theme?... No can do, amigo. -

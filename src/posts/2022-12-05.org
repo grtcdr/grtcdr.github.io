@@ -1,0 +1,64 @@
+#+title:    Nimbus appreciation post
+#+date:     <2022-12-05 Mon>
+#+filetags: :emacs:
+
+Emacs' theming community is by no means large, but that has never
+taken away from the diversity nor the quality of their themes. Nimbus,
+or more formally =nimbus-theme=, is a theme authored by Marcin
+Swieczkowski. I would like to take you on a brief visual journey - to
+highlight the aesthetics of this theme, and display it in all of its
+glory.
+
+#+begin_export html
+<figure>
+  <img src="/assets/images/nimbus-misc.png"
+       style="padding-bottom: 1em;"
+       width="100%">
+  <figcaption>Programming in Elisp, writing in Org and managing an agenda</figcaption>
+</figure>
+#+end_export
+
+I know, it's *beautiful*!
+
+I'm neither an expert in color nor in visual design, but these colors
+are captivating to me. Something about the aesthetic screams: /"Psst
+-- hey... Come on over, your text editor misses you!"/.
+
+Were you expecting a detailed analysis - perhaps one rooted in
+mathematics - of the intricacies of this theme?... No can do, amigo. -
+I will try and win you over, though.
+
+#+begin_export html
+<figure>
+  <img src="/assets/images/nimbus-mu4e.png"
+       style="padding-bottom: 1em;"
+       width="100%">
+  <figcaption>Composing email and the mu4e interface</figcaption>
+</figure>
+#+end_export
+
+I could look at this all day long, and more so at night!
+
+We have all come to appreciate [[https://protesilaos.com/][Protesilaos Stavrou]]'s keen eye for
+detail as well as his great taste, but however elegant =modus-vivendi=
+is, it really strains my eyes. Therefore, I've settled on
+=modus-operandi= and =nimbus= during the day and night, respectively.
+
+#+begin_export html
+<figure>
+  <img src="/assets/images/nimbus-erc.png"
+       width="100%">
+  <figcaption>Chatting on ERC</figcaption>
+</figure>
+#+end_export
+
+The show's over :)
+
+If you like what you see, please head over to the [[https://github.com/m-cat/nimbus-theme][project's
+repository]], that should tell you how you can install and enable it
+on your own machine.
+
+* Scratch :noexport:
+
+We have all come to appreciate Protesilaos Stavros' keen eye for
+attention as well as his great taste.

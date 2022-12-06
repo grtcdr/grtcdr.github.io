@@ -6,7 +6,7 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 ;; Import the necessary libraries
-(require 'forgecast)
+(require 'liaison)
 (require 'ox-publish)
 
 ;;; My information:
@@ -49,7 +49,7 @@ INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?l . ,(forgecast-get-resource-url 'log)))))
+      (?l . ,(liaison-get-resource-url 'log)))))
 
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."

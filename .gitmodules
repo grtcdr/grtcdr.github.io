@@ -2,6 +2,6 @@
 	path = src/dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
 
-[submodule "lisp/forgecast"]
-	path = lisp/forgecast
-	url = https://github.com/grtcdr/forgecast
+[submodule "lisp/liaison"]
+	path = lisp/liaison
+	url = https://github.com/grtcdr/liaison

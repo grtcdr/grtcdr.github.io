@@ -11,7 +11,7 @@ glory.
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-misc.png"
+  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-misc.png"
        style="padding-bottom: 1em;"
        width="100%">
   <figcaption>Programming in Elisp, writing in Org and managing an agenda</figcaption>
@@ -30,7 +30,7 @@ I will try and win you over, though.
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-mu4e.png"
+  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-mu4e.png"
        style="padding-bottom: 1em;"
        width="100%">
   <figcaption>Composing email and the mu4e interface</figcaption>
@@ -46,7 +46,7 @@ is, it really strains my eyes. Therefore, I've settled on
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-erc.png"
+  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-erc.png"
        width="100%">
   <figcaption>Chatting on ERC</figcaption>
 </figure>

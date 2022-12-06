@@ -1,11 +1,6 @@
-#+TITLE: Linking articles to their version control system to effectively track changes
-#+DATE: <2022-10-08>
-#+FILETAGS: :emacs:
-
-* Preface
-:PROPERTIES:
-:CUSTOM_ID: preface
-:END:
+#+title:    Linking articles to their version control system to effectively track changes
+#+date:     <2022-10-08>
+#+filetags: :emacs:
 
 This website has been a super fun side-project, but there's a lot of
 room for improvement. For example, even though its source code is

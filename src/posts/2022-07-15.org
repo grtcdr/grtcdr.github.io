@@ -1,6 +1,6 @@
-#+TITLE: A short introduction to PlantUML
-#+DATE: <2022-07-15>
-#+FILETAGS: :doc:
+#+title:     A short introduction to PlantUML
+#+date:     <2022-07-15>
+#+filetags: :doc:
 
 * Foreword
 :PROPERTIES:

@@ -1,6 +1,6 @@
-#+TITLE: Announcing Forgecast - an Emacs Lisp package
-#+DATE: <2022-11-03 Thu>
-#+FILETAGS: :emacs:
+#+title:    Announcing Forgecast - an Emacs Lisp package
+#+date:     <2022-11-03 Thu>
+#+filetags: :emacs:
 
 Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/forgecast][Forgecast]]!
 

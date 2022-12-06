@@ -24,6 +24,9 @@ build:
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
+serve: all
+	@miniserve public
+
 clean:
 	@rm -rvf public/
 	@rm -rvf .cache/

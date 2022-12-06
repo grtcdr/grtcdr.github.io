@@ -1,3 +1,5 @@
+@import "def";
+
 nav {
   padding-top: 0.2em;
 
@@ -8,15 +10,19 @@ nav {
     li {
       display: inline-block;
       font-size: 1.25em;
+      font-weight: 300;
       
-      > a {
-	text-decoration: none;	
+    > a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: @blue;
       }
     }
 
     li + li:before {
-      content: '/';
-      padding: 0 0.7em;
+      content: '|';
+      color: @fg01;
+      padding: 0 0.4em;
     }
   }
 }

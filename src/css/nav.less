@@ -2,26 +2,23 @@
 
 nav {
   padding-top: 0.2em;
-
   > ul {
     list-style-type: none;
     padding: 0;
-    
     li {
       display: inline-block;
-      font-size: 1.25em;
+      font-size: 1.05em;
       font-weight: 300;
-      
-    > a {
+      a {
 	text-transform: uppercase;
 	text-decoration: none;
-	color: @blue;
+	&:hover {
+	  background-color: @bg02
+	}
       }
     }
-
     li + li:before {
       content: '|';
-      color: @fg01;
       padding: 0 0.4em;
     }
   }

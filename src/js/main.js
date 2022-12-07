@@ -23,11 +23,11 @@
 */
 
 window.addEventListener('load', () => {
-    const title = document.getElementsByClassName("title")[0];
-    let today = new Date();
-    let hours = today.getHours();
-    if (hours >= 19) {
-	document.title = "Bonsoir";
-	title.innerHTML = document.title;
-    }
+  const title = document.getElementsByClassName("title")[0];
+  let today = new Date();
+  let hours = today.getHours();
+  if (hours >= 19) {
+    document.title = "Bonsoir";
+    title.innerHTML = document.title;
+  }
 });

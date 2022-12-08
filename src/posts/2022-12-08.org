@@ -29,6 +29,6 @@ deserve that.
 
 * Footnotes
 
-[fn:1] There exists an out-of-tree driver which is supposed to provide
+[fn:1] [[https://github.com/lwfinger/rtl8188eu][There exists an out-of-tree driver]] which is supposed to provide
 a better experience than that of the in-tree driver, but that wasn't
-the case in my experience.
+the case for me.

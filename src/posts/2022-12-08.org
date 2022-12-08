@@ -2,6 +2,10 @@
 #+date:     <2022-12-08 Thu>
 #+filetags: :networks:hardware:
 
+*Update*: I managed to create my "virtual network" by setting up a
+[[https://wiki.archlinux.org/title/software_access_point][software access point]] with [[https://w1.fi/hostapd/][hostapd]] (without touching my existing
+network stack). I'll talk about this process in a future post.
+
 I bought TP-Link's TL-WN722N as an additional network adapter to use
 along with my laptop's built-in Intel-based network adapter.
 
@@ -26,6 +30,8 @@ reliable combination for network management and wireless connectivity
 
 The bottom line is that *Realtek produces garbage* - and you don't
 deserve that.
+
+https://wiki.archlinux.org/title/software_access_point
 
 * Footnotes
 

@@ -1,6 +1,6 @@
-#+TITLE: Experiences with TL-WN722N
-#+DATE: <2022-12-08 Thu>
-#+FILETAGS: :networks:hardware:
+#+title:    Experiences with TL-WN722N
+#+date:     <2022-12-08 Thu>
+#+filetags: :networks:hardware:
 
 I bought TP-Link's TL-WN722N as an additional network adapter to use
 along with my laptop's built-in Intel-based network adapter.

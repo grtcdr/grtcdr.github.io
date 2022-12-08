@@ -1,6 +1,6 @@
 #+title:    Extending project.el with to-do functionality
 #+date:     <2022-08-08>
-#+filetags: emacs
+#+filetags: :emacs:
 
 When I work on a personal project which has the potential to grow
 beyond a few tasks, I like to maintain the project's to-do list within

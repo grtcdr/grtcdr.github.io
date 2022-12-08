@@ -1,0 +1,34 @@
+#+TITLE: Experiences with TL-WN722N
+#+DATE: <2022-12-08 Thu>
+#+FILETAGS: :networks:hardware:
+
+I bought TP-Link's TL-WN722N as an additional network adapter to use
+along with my laptop's built-in Intel-based network adapter.
+
+The idea was to provide a second network (via an access point) for
+computers within my vicinity to connect to, in order to establish a
+home-grown private cloud for an academic project, but as with anything
+Realtek, things didn't go as planned.
+
+After plugging in the Realtek-based adapter, the device was instantly
+recognized and [[https://linux.die.net/man/8/lsusb][lsusb]] was able to list it, the appropriate driver[fn:1],
+i.e. =r8188eu= was automatically loaded, and [[https://linux.die.net/man/7/ip][ip]] showed an entry for
+it. [[https://iwd.wiki.kernel.org][iwd]] on the other hand just wouldn't list it.
+
+I found mentions that some were able to get this device to work by
+using =wpa_supplicant= instead of =iwd=, but /I am not/ ripping out my
+network stack for another just to get a network adapter to /hopefully/
+work.
+
+=iwd= and =systemd-networkd= have been, in my experience, the most
+reliable combination for network management and wireless connectivity
+-- I'm certainly not throwing that away because of Realtek.
+
+The bottom line is that *Realtek produces garbage* - and you don't
+deserve that.
+
+* Footnotes
+
+[fn:1] There exists an out-of-tree driver which is supposed to provide
+a better experience than that of the in-tree driver, but that wasn't
+the case in my experience.

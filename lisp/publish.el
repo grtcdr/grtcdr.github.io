@@ -6,8 +6,9 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 ;; Import the necessary libraries
-(require 'liaison)
 (require 'ox-publish)
+(require 'shr)
+(require 'liaison)
 
 ;;; My information:
 
@@ -25,6 +26,7 @@
       org-publish-timestamp-directory ".cache/"
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
+      org-html-head-include-default-style nil
       org-src-fontify-natively nil
       org-src-preserve-indentation t)
 
@@ -38,10 +40,10 @@
 
 (defun site/get-template (path)
   "Read a template from the templates directory."
-    (with-temp-buffer
-      (insert-file-contents
-       (file-name-concat "src" "templates" path))
-      (buffer-string)))
+  (with-temp-buffer
+    (insert-file-contents
+     (file-name-concat "src" "templates" path))
+    (buffer-string)))
 
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
@@ -53,7 +55,8 @@ INFO is a plist used as a communication channel."
 
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."
-  (format "<link rel=\"stylesheet\" href=\"%s\">\n" filename))
+  (shr-dom-to-xml `(link ((rel . "stylesheet")
+			  (href . ,filename)))))
 
 (defvar site/html-head
   (concat
@@ -63,7 +66,9 @@ INFO is a plist used as a communication channel."
    (site/stylesheet "/css/org.css")
    (site/stylesheet "/css/source.css")
    (site/stylesheet "/css/table.css")
-   "<link rel=\"icon\" type=\"image/x-icon\" href=\"/assets/favicon.ico\"/>")
+   (shr-dom-to-xml '(link ((rel . "icon")
+			   (type . "image/x-icon")
+			   (href . "/assets/favicon.ico")))))
   "HTML headers shared across projects.")
 
 (setq org-publish-project-alist
@@ -82,10 +87,9 @@ INFO is a plist used as a communication channel."
 	       :with-title t
 	       :html-doctype "html5"
 	       :html-html5-fancy t
-	       :html-preamble content-preamble
-	       :html-postamble nil
 	       :html-head-extra site/html-head
-	       :html-head-include-default-style nil)
+	       :html-preamble content-preamble
+	       :html-postamble nil)
 	 (list "posts"
 	       :base-extension "org"
 	       :base-directory "src/posts"
@@ -101,8 +105,7 @@ INFO is a plist used as a communication channel."
 	       :html-doctype "html5"
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra site/html-head
-	       :html-head-include-default-style nil)
+	       :html-head-extra site/html-head)
 	 (list "dotfiles"
 	       :recursive t
 	       :base-extension "org"
@@ -118,8 +121,7 @@ INFO is a plist used as a communication channel."
 	       :html-doctype "html5"
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
-	       :html-head-extra site/html-head
-	       :html-head-include-default-style nil)
+	       :html-head-extra site/html-head)
 	 (list "data"
 	       :base-extension (regexp-opt '("ico" "txt" "pdf" "asc"))
 	       :base-directory "assets"

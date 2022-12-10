@@ -9,10 +9,13 @@ doing that again.
 
 Find me on:
 
-+ GitHub: [[https://github.com/grtcdr][@grtcdr]]
-+ SourceHut: [[https://git.sr.ht/~grtcdr][~grtcdr]]
-
-Also, come hang with me on [[https://joinmastodon.org/][Mastodon]] - just search for @grtcdr@grtcdr.tn.
+#+begin_export html
+<ul>
+  <li>GitHub: <a href="https://github.com/grtcdr">@grtcdr</a></li>
+  <li>SourceHut: <a href="https://git.sr.ht/~grtcdr">~grtcdr</a></li>
+  <li>Mastodon: <a rel="me" href="https://emacs.ch/@grtcdr">@grtcdr</a></li>
+</ul>
+#+end_export
 
 * Highlights
 

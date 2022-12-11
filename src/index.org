@@ -1,6 +1,5 @@
 #+TITLE: Greetings
 #+DESCRIPTION: grtcdr's website and blog.
-#+HTML_HEAD: <script src="js/main.js"></script>
 
 I'm /grtcdr/, a student and [[https://www.gnu.org/philosophy/free-sw.en.html][free software]] developer. I spend a lot of
 time tinkering with software, I also enjoy taking my bike out for a

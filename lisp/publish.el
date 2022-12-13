@@ -50,6 +50,7 @@
 INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
+      (?t . ,(org-export-data (plist-get info :title) info))
       (?a . ,(org-export-data (plist-get info :author) info))
       (?l . ,(liaison-get-resource-url 'log)))))
 

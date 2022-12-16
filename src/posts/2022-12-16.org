@@ -9,8 +9,6 @@ Picture-in-picture is a feature whose potential I'd previously never
 realized -- until now. I just did a little experiment and I'm quite
 satisfied with the results.
 
-#+HTML: <img src="/assets/images/sway-pip-rule.png" alt="Preview of the picture-in-picture window rule in action.">
-
 The idea is to have picture-in-picture windows get automatically
 placed in a non-obstructive location, be semi-transparent and appear
 in every workspace.
@@ -32,6 +30,20 @@ resize set height 280
 resize set width  500
 #+end_src
 
+I don't want to see any borders around the window, so I'll disable those.
+
+#+name: border-rule
+#+begin_src conf
+border none
+#+end_src
+
+I want the window to appear on every workspace.
+
+#+name: stickiness-rule
+#+begin_src conf
+sticky toggle
+#+end_src
+
 The least annoying spot where I could place the window is probably the
 bottom right corner of the screen.
 
@@ -51,30 +63,19 @@ it, so I'll make it slightly transparent.
 opacity 0.7
 #+end_src
 
-I don't want to see any borders around the window, so I'll disable those.
-
-#+name: border-rule
-#+begin_src conf
-border none
-#+end_src
-
-I want the window to appear on every workspace.
-
-#+name: stickiness-rule
-#+begin_src conf
-sticky toggle
-#+end_src
-
-Let's assemble the individual pieces:
+Let's assemble the pieces that compose our new window rule and take a
+look at the result.
 
 #+begin_src conf :noweb yes :comments no
 for_window <<criterion>> {
-  <<stickiness-rule>>
   <<resolution-rule>>
+  <<border-rule>>
+  <<stickiness-rule>>
   move position 1420 800
   <<opacity-rule>>
-  <<border-rule>>
 }
 #+end_src
+
+#+HTML: <img src="/assets/images/sway-pip-rule.png" alt="Preview of the picture-in-picture window rule in action.">
 
 Picture-in-picture makes so much more sense now.

@@ -1,0 +1,79 @@
+#+TITLE: Making the most out of picture-in-picture
+#+DATE: <2022-12-16 Fri>
+#+FILETAGS: :sway:
+
+Being limited to a single 15' screen, I'm /forced/ to make the most
+out of my screen real estate and optimize my window placement game.
+
+Picture-in-picture is a feature whose potential I'd previously never
+realized -- until now. I just did a little experiment and I'm quite
+satisfied with the results, here's what I'm talking about:
+
+#+begin_export html
+<img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/sway-pip-rule.png"
+     alt="Preview of the picture-in-picture window rule in action.">
+#+end_export
+
+To match a picture-in-picture window, we can use the following criterion:
+
+#+name: criterion
+#+begin_src conf
+[title="Picture-in-Picture"]
+#+end_src
+
+My screen resolution is =1920x1080=, so a window size of =500x280= is
+pretty sensible.
+
+#+name: resolution-rule
+#+begin_src conf
+floating enable
+resize set height 280
+resize set width  500
+#+end_src
+
+The least annoying spot where I could place the window is probably the
+bottom right corner of the screen.
+
+#+name: position-rule
+#+begin_src conf :comments no
+#                1920 |    1080
+#              -  500 |  -  280
+#             ------- | -------
+move position    1420       800
+#+end_src
+
+I don't want the window to obstruct any text that might come up behind
+it, so I'll make it slightly transparent.
+
+#+name: opacity-rule
+#+begin_src conf
+opacity 0.7
+#+end_src
+
+I don't want to see any borders around the window, so I'll disable those.
+
+#+name: border-rule
+#+begin_src conf
+border none
+#+end_src
+
+I want the window to appear on every workspace.
+
+#+name: stickiness-rule
+#+begin_src conf
+sticky toggle
+#+end_src
+
+Let's assemble the individual pieces:
+
+#+begin_src conf :noweb yes :comments no
+for_window <<criterion>> {
+  <<stickiness-rule>>
+  <<resolution-rule>>
+  move position 1420 800
+  <<opacity-rule>>
+  <<border-rule>>
+}
+#+end_src
+
+Picture-in-picture makes so much more sense now.

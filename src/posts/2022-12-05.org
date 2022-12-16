@@ -12,9 +12,7 @@ theme and display it in all of its glory.
 
 #+begin_export html
 <figure>
-  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-misc.png"
-       style="padding-bottom: 1em;"
-       width="100%">
+  <img src="/assets/images/nimbus-misc.png">
   <figcaption>Programming in Elisp, writing in Org and managing an agenda</figcaption>
 </figure>
 #+end_export
@@ -31,9 +29,7 @@ I will try and win you over, though.
 
 #+begin_export html
 <figure>
-  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-mu4e.png"
-       style="padding-bottom: 1em;"
-       width="100%">
+  <img src="/assets/images/nimbus-mu4e.png">
   <figcaption>Composing email and the mu4e interface</figcaption>
 </figure>
 #+end_export
@@ -47,8 +43,7 @@ is, it really strains my eyes. Therefore, I've settled on
 
 #+begin_export html
 <figure>
-  <img src="https://media.githubusercontent.com/media/grtcdr/grtcdr.github.io/main/assets/images/nimbus-erc.png"
-       width="100%">
+  <img src="/assets/images/nimbus-erc.png">
   <figcaption>Chatting on ERC</figcaption>
 </figure>
 #+end_export
@@ -58,8 +53,3 @@ The show's over :)
 If you like what you see, please head over to the [[https://github.com/m-cat/nimbus-theme][project's
 repository]], that should tell you how you can install and enable it
 on your own machine.
-
-* Scratch :noexport:
-
-We have all come to appreciate Protesilaos Stavros' keen eye for
-attention as well as his great taste.

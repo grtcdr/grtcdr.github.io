@@ -37,10 +37,10 @@ bottom right corner of the screen.
 
 #+name: position-rule
 #+begin_src conf :comments no
-#                1920 |    1080
-#              -  500 |  -  280
-#             ------- | -------
-move position    1420       800
+#               1920    1080
+#             -  500  -  280
+#             ——————  ——————
+move position   1420     800
 #+end_src
 
 I don't want the window to obstruct any text that might come up behind

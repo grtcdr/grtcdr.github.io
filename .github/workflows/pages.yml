@@ -47,7 +47,7 @@ jobs:
         run: |
           # The purpose of this command is to find and replace the URLs
           # of local images to the URLs that Git LFS assigns to them.
-          find src/posts -type f -exec sed "/#+HTML:/s-/assets/images-${PREFIX}-g" {} +
+          find src/posts -type f -exec sed -i "/#+HTML:/s-/assets/images-${PREFIX}-g" {} +
 
       - name: Build website
         run: make

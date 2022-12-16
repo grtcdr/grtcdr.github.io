@@ -41,6 +41,14 @@ jobs:
         with:
           version: 28.2
 
+      - name: Run pre-hooks
+        env:
+          PREFIX: ${{ format('https://media.githubusercontent.com/media/{0}/{1}/assets/images', github.repository, github.ref_name) }}
+        run: |
+          # The purpose of this command is to find and replace the URLs
+          # of local images to the URLs that Git LFS assigns to them.
+          find src/posts -type f -exec sed "/#+HTML:/s-/assets/images-${PREFIX}-g" {} +
+
       - name: Build website
         run: make
 

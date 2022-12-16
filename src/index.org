@@ -16,12 +16,6 @@ Find me on:
 </ul>
 #+end_export
 
-* Highlights
-
-I've taken it upon myself to document [[file:dotfiles/theindex.org][the various configurations of my
-computing environment]], a creative project driven by a motivation to
-document the intricacies of system configuration.
- 
 * Posts
 
 I like to write about things that I find interesting, such as my

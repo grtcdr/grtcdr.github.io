@@ -273,13 +273,13 @@ entire infrastructure.
 
 Apart from that, everything works as expected!
 
-* Conclusions
+* Conclusion
 
 This venture has proven to a great extent how malleable the Linux
 kernel is in terms of its networking capabilities, and it just goes to
 show the unbelievable amount of variety in userspace.
 
-RedHat - the authors of libvirt, systemd, and long-time contributors
+RedHat - the authors of =libvirt=, =systemd=, and long-time contributors
 to the Linux kernel - have cultivated a great community and built a
 lot of tooling that support Linux and make it stand out.
 

@@ -41,8 +41,8 @@ jobs:
         with:
           version: 28.2
 
-      - name: Install documentation compilers
-        run: apt install -y graphviz plantuml
+      - name: Install graph visualization formats
+        run: sudo apt-get install -y graphviz plantuml
         
       - name: Run pre-hooks
         env:

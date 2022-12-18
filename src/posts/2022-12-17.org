@@ -245,15 +245,20 @@ the virtual machines.
 /Isn't it wonderful?/
 
 Right now, the only thing protecting the network is the authentication
-mechanism of the WLAN; we might consider spinning up a firewall such
-as pfSense to protect the network from outsiders.
+mechanism of the WLAN, but we might consider using a firewall such as
+pfSense to protect the network from outsiders.
 
-Also, traffic from inside the network is significantly slower than
-what a typical cloud infrastructure might require.
+While this article explores an alternative network architecture, it is
+in no way a definitive solution, nor is it a great one -- just one
+that works at no extra cost to me.
 
-We're also committing a grave mistake in terms of network
-architecture, there's a single network serving all of the machines
-(physical and virtual) which turns our little solution into a
+Because it is based on WLAN, traffic from inside the network is
+significantly slower than what a typical production cloud
+infrastructure might require.
+
+Furthermore, we are undeniably committing a grave mistake in terms of
+network architecture, there's a single network serving all of the
+machines (physical and virtual) which turns our little solution into a
 relatively disastrous phenomenon: a single point of failure for the
 entire infrastructure.
 
@@ -263,8 +268,8 @@ entire infrastructure.
    haven't had the opportunity to investigate nor reproduce the
    issue. Investigating a kernel crash requires software like =kdump=,
    which I don't really care to set up at this time.
+2. I cannot for the life of me figure out how to enable =802.11ac=, it
+   just doesn't work for some reason even though my card definitely
+   supports it.
 
-2. This article explores an alternative way of creating a network
-   infrastructure for a very specific academic project. It is in no
-   way a definitive solution, nor is it a great one -- just one that
-   works at no extra cost to me.
+Apart from that, everything works as expected!

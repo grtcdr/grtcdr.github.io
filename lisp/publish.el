@@ -6,6 +6,7 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 ;; Import the necessary libraries
+(require 'ox-publish)
 (require 'shr)
 (require 'liaison)
 (require 'project)
@@ -14,49 +15,31 @@
 
 ;;; Emacs configuration:
 
-(use-package emacs
-  :config
-  (setq user-full-name "Aziz Ben Ali"
+(setq user-full-name "Aziz Ben Ali"
 	user-mail-address "tahaaziz.benali@esprit.tn"
-	make-backup-files nil))
+	make-backup-files nil)
 
 ;;; Org mode configuration:
 
-(use-package ox-publish
-  :custom
-  (org-publish-list-skipped-files nil)
-  (org-publish-timestamp-directory ".cache/"))
+(defun site/should-lang-confirm? (lang body)
+  "Returns non-nil if LANG needs to confirm before babel may evaluate BODY."
+  (not (member lang '("dot" "plantuml"))))
 
-(use-package ox
-  :custom
-  (org-export-time-stamp-file nil)
-  (org-export-global-macros '(("post-count" . "(eval (site/count-posts))"))))
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '((plantuml . t)
+			       (dot      . t)))
 
-(use-package org
-  :config
-  (setq org-src-fontify-natively nil
-	org-src-preserve-indentation t)
-  
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((plantuml . t)
-				 (dot      . t)))
-
-  (defun site/should-lang-confirm? (lang body)
-    "Returns non-nil if LANG needs to confirm before babel may evaluate BODY."
-    (not (member lang '("dot" "plantuml"))))
-
-  (setq org-confirm-babel-evaluate #'site/should-lang-confirm?))
-
-(use-package ox-html
-  :custom
-  (org-html-metadata-timestamp-format "%B %d, %Y")
-  (org-html-htmlize-output-type nil)
-  (org-html-head-include-default-style nil))
-
-(use-package ob-plantuml
-  :defer t
-  :custom
-  (org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+(setq org-publish-list-skipped-files nil
+      org-publish-timestamp-directory ".cache/"
+      org-export-time-stamp-file nil
+      org-export-global-macros '(("post-count" . "(eval (site/count-posts))"))
+      org-src-fontify-natively nil
+      org-src-preserve-indentation t
+      org-html-metadata-timestamp-format "%B %d, %Y"
+      org-html-htmlize-output-type nil
+      org-html-head-include-default-style nil
+      org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"
+      org-confirm-babel-evaluate #'site/should-lang-confirm?)
 
 (defun site/sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."

@@ -61,7 +61,7 @@ a specific virtual interface.
 The following is the XML representation of the virtual network to
 which clients can connect and instantiate their virtual machines.
 
-#+name: vnetX.xml
+#+caption: vnetX.xml
 #+begin_src xml
 <network>
   <name>vnetX</name>
@@ -165,8 +165,6 @@ This next section is going to tell the network to forward (or route)
 the packets that the host receives from the clients communicating via
 the virtual network interface while masquerading their IP addresses.
    
-# 2. Intercept and answer the ARP requests of its clients.
-
 #+begin_src ini
 [Network]
 IPMasquerade=yes
@@ -184,12 +182,13 @@ run the following command:
 With the same command, use the =list= subcommand verify the status of
 the interface. You should see an output like this one:
 
-#+begin_example
+#+caption: $ networkctl list
+#+begin_src sh :eval no
 IDX LINK     TYPE     OPERATIONAL SETUP
   1 lo       loopback carrier     unmanaged
   2 wlan0    wlan     routable    configured
   3 <softap> wlan     no-carrier  configuring
-#+end_example
+#+end_src
 
 Note that, until we use or bridge the device, the operational status
 of =<softap>= will continue to report =no-carrier=.
@@ -213,10 +212,10 @@ bridge=<virbrX>
 For more information on the remaining configuration options, see:
 https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
 
-Now make sure to check the status of the service for errors - it
-should look something like this:
+Now make sure to check the status of the service for errors, =AP-ENABLED= is what you're after:
 
-#+begin_example
+#+caption: $ systemctl status hostapd
+#+begin_src sh :eval no
 ● hostapd.service - Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
      Loaded: loaded (/usr/lib/systemd/system/hostapd.service; disabled; preset: disabled)
      Active: active (running) since Sun 2022-12-18 04:49:29 CET; 8s ago
@@ -231,7 +230,7 @@ Dec 18 04:49:29 ideapad systemd[1]: Started Hostapd IEEE 802.11 AP, IEEE 802.1X/
 Dec 18 04:49:29 ideapad hostapd[36772]: softap: interface state UNINITIALIZED->COUNTRY_UPDATE
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: interface state COUNTRY_UPDATE->ENABLED
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
-#+end_example
+#+end_src
 
 * Results and reflections
 

@@ -61,22 +61,27 @@ idea of the architecture we are going after.
 
 #+HTML: <img src="/assets/images/softap-network.png" alt="Visual representation of the network.">
 
+Clients of the =vnet0= virtual network are assigned by =libvirt= a
+dynamic IPv4 address, while the OpenStack nodes - virtual machines
+bridged (well, it's actually proxy ARP) by their hosts to the =vnet0=
+network - assign themselves a static IPv4 address.
+
 ** Configuring libvirt
 
 The following is the XML representation of the virtual network to
 which clients can connect and instantiate their virtual machines.
 
-#+caption: vnetX.xml
+#+caption: vnet0.xml
 #+begin_src xml
 <network>
-  <name>vnetX</name>
+  <name>vnet0</name>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>
     </nat>
   </forward>
-  <bridge name='virbrX' stp='on' delay='0'/>
-  <domain name='vnetX'/>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <domain name='vnet0'/>
   <ip address='172.16.0.1' netmask='255.255.0.0'>
     <dhcp>
       <range start='172.16.128.0' end='172.16.255.254'/>
@@ -95,7 +100,7 @@ element per your requirements.
 Next, we'll define and start the virtual network:
 
 #+begin_example
-# virsh net-define --file <vnetX.xml> && virsh net-start --network <vnetX>
+# virsh net-define --file <vnet0.xml> && virsh net-start --network <vnet0>
 #+end_example
 
 For more information on this file format, see: https://libvirt.org/formatnetwork.html
@@ -211,7 +216,7 @@ NATed virtual network.
 
 #+begin_src ini
 interface=<softap>
-bridge=<virbrX>
+bridge=<virbr0>
 #+end_src
 
 For more information on the remaining configuration options, see:

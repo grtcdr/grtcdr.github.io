@@ -16,8 +16,8 @@
 ;;; Emacs configuration:
 
 (setq user-full-name "Aziz Ben Ali"
-	user-mail-address "tahaaziz.benali@esprit.tn"
-	make-backup-files nil)
+      user-mail-address "tahaaziz.benali@esprit.tn"
+      make-backup-files nil)
 
 ;;; Org mode configuration:
 

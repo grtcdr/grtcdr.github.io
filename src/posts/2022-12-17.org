@@ -56,6 +56,11 @@ section.
 to define a virtual network, wrap it as an access point and bind it to
 a specific virtual interface.
 
+Here's a visual representation of the network that should give you an
+idea of the architecture we are going after.
+
+#+HTML: <img src="/assets/images/softap-network.png" alt="Visual representation of the network.">
+
 ** Configuring libvirt
 
 The following is the XML representation of the virtual network to
@@ -239,7 +244,7 @@ newly created access point - which I decided to call "jungle" by the
 way - and then visit the OpenStack Horizon dashboard hosted on one of
 the virtual machines.
 
-#+HTML: <img src="/assets/images/softap.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
+#+HTML: <img src="/assets/images/softap-results.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
 
 /Isn't it wonderful?/
 
@@ -261,7 +266,7 @@ machines (physical and virtual) which turns our little solution into a
 relatively disastrous phenomenon: a single point of failure for the
 entire infrastructure.
 
-* Any caveats?
+* Caveats
 
 1. =hostapd= has made my kernel panic on two occasions, though I
    haven't had the opportunity to investigate nor reproduce the

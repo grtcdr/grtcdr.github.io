@@ -1,5 +1,6 @@
 *~
 node_modules/
+assets/images/*.svg
 .cache/
 public/
 src/css/*.css

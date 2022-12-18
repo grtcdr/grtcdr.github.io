@@ -6,29 +6,57 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 ;; Import the necessary libraries
-(require 'ox-publish)
 (require 'shr)
 (require 'liaison)
+(require 'project)
 
 ;;; My information:
 
-(setq user-full-name "Aziz Ben Ali"
-      user-mail-address "tahaaziz.benali@esprit.tn")
-
 ;;; Emacs configuration:
 
-(setq make-backup-files nil)
+(use-package emacs
+  :config
+  (setq user-full-name "Aziz Ben Ali"
+	user-mail-address "tahaaziz.benali@esprit.tn"
+	make-backup-files nil))
 
 ;;; Org mode configuration:
 
-(setq org-export-time-stamp-file nil
-      org-publish-list-skipped-files nil
-      org-publish-timestamp-directory ".cache/"
-      org-html-metadata-timestamp-format "%B %d, %Y"
-      org-html-htmlize-output-type nil
-      org-html-head-include-default-style nil
-      org-src-fontify-natively nil
-      org-src-preserve-indentation t)
+(use-package ox-publish
+  :custom
+  (org-publish-list-skipped-files nil)
+  (org-publish-timestamp-directory ".cache/"))
+
+(use-package ox
+  :custom
+  (org-export-time-stamp-file nil)
+  (org-export-global-macros '(("post-count" . "(eval (site/count-posts))"))))
+
+(use-package org
+  :config
+  (setq org-src-fontify-natively nil
+	org-src-preserve-indentation t)
+  
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((plantuml . t)
+				 (dot      . t)))
+
+  (defun site/should-lang-confirm? (lang body)
+    "Returns non-nil if LANG needs to confirm before babel may evaluate BODY."
+    (not (member lang '("dot" "plantuml"))))
+
+  (setq org-confirm-babel-evaluate #'site/should-lang-confirm?))
+
+(use-package ox-html
+  :custom
+  (org-html-metadata-timestamp-format "%B %d, %Y")
+  (org-html-htmlize-output-type nil)
+  (org-html-head-include-default-style nil))
+
+(use-package ob-plantuml
+  :defer t
+  :custom
+  (org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 
 (defun site/sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date."
@@ -37,6 +65,13 @@
 	  entry
 	  (org-publish-find-title entry project)
 	  (org-publish-find-property entry :filetags project 'site-html)))
+
+(defun site/count-posts ()
+  (length (directory-files
+	   (file-name-concat
+	    (project-root (project-current))
+	    "src/posts")
+	   t directory-files-no-dot-files-regexp)))
 
 (defun site/get-template (path)
   "Read a template from the templates directory."

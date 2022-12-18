@@ -29,7 +29,7 @@ the exportation and publishing process that a file submits to when
 instructed by the user.
 
 #+name: diagram
-#+begin_src dot :file ../../assets/images/org-publish-process.svg :exports results
+#+begin_src dot :file ../../assets/images/org-publish-process.svg :eval yes :results none
 digraph G {
     publish [
 	     label = "Publishing project?";
@@ -69,10 +69,13 @@ digraph G {
 }
 #+end_src
 
-#+ATTR_HTML: :alt The publishing process from an Org file to an HTML document :height 300px
-#+CAPTION: Overview of the publishing process of an Org document
-#+RESULTS: diagram
-[[file:../../assets/images/org-publish-process.svg]]
+#+begin_export html
+<figure>
+  <img src="/assets/images/org-publish-process.svg"
+       height="300">
+  <figcaption>Overview of the publishing process of an Org document</figcaption>
+</figure>
+#+end_export
 
 * First Implementation
 :PROPERTIES:

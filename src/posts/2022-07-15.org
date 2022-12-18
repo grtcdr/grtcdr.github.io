@@ -98,7 +98,7 @@ the objected oriented way.
 Give this a good read, and then jump to the next section for my explanation.
 
 #+name: diagram
-#+begin_src plantuml :file ../../assets/images/plantuml-example-diagram.svg :exports both
+#+begin_src plantuml :file ../../assets/images/plantuml-example-diagram.svg :eval yes :results none
 @startuml
 package Animalia {
 
@@ -178,10 +178,7 @@ plantuml animalia.puml -tpng animalia.png
 If all goes smoothly, you should see an ~animalia.png~ file appear in
 your working directory... Go on, open it!
 
-#+caption: Output of the previous command
-#+attr_html: :alt Animalia class diagram :style width:50%;
-#+RESULTS: diagram
-[[file:../../assets/images/plantuml-example-diagram.svg]]
+#+HTML: <img src="/assets/images/plantuml-example-diagram.svg" alt="Animalia class diagram">
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

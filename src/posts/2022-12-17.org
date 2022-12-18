@@ -1,0 +1,270 @@
+#+TITLE:    Building virtual networks and software-enabled access points
+#+DATE:     <2022-12-17 Sat>
+#+FILETAGS: :linux:networks:virtualization:
+
+This article makes use of three key components:
+- [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
+  defining (often sophisticated) network configurations.
+- [[https://w1.fi/hostapd/][hostapd]] -- a daemon for access points that implements all the
+  authentication mechanisms of the modern age, including WPA, WPA2,
+  EAP, and more.
+- [[https://libvirt.org/][libvirt]] -- a daemon, toolkit, and set of APIs for managing various
+  forms of virtualization technologies, most notably KVM.
+
+[[file:2022-12-08.org][In a previous post]], I criticized Realtek for their alarmingly dreadful
+network devices. In this one, I propose a solution for anyone in a
+situation similar to mine.
+
+One of my academic projects involves the creation of a private,
+multi-node and multi-tenant cloud infrastructure built on top of
+OpenStack.
+
+The single most important property that the cloud environment should
+fulfill is that it has to be portable in terms of its network
+configuration. That's because the laptops my group and I are using to
+build the cloud environment are always connecting to different
+networks which make different assumptions than what we might have
+planned for.
+
+I also have to make do with my own hardware or put down enough money
+to buy the required network devices. However, buying things is
+/always/ hard and it doesn't help when the things you're buying are
+network-related -- choice or rather the paradox which it becomes, is
+nothing but debilitating.
+
+So, why don't we roll out a /software-enabled access point/?
+
+* What exactly is it?
+
+A software-enabled access point is very similar to the special-purpose
+device which it imitates. They are just as capable as a /real/ access
+point and most computers and phones can become one.
+
+Checking if your network adapter supports =ap= mode can be done with
+the following command:
+
+#+begin_example
+$ iw <phyX> info
+#+end_example
+
+Verify that "AP" is listed underneath the "Supported interface modes"
+section.
+
+* How is it done?
+
+=libvirt=, =hostapd= and =systemd-networkd= are the only components we need
+to define a virtual network, wrap it as an access point and bind it to
+a specific virtual interface.
+
+** Configuring libvirt
+
+The following is the XML representation of the virtual network to
+which clients can connect and instantiate their virtual machines.
+
+#+name: vnetX.xml
+#+begin_src xml
+<network>
+  <name>vnetX</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbrX' stp='on' delay='0'/>
+  <domain name='vnetX'/>
+  <ip address='172.16.0.1' netmask='255.255.0.0'>
+    <dhcp>
+      <range start='172.16.128.0' end='172.16.255.254'/>
+    </dhcp>
+  </ip>
+</network>
+#+end_src
+
+Notice how the =mode= attribute of the =forwarding= element was set to
+=nat=, we do this such that no matter what network the portable cloud
+environment operates within, it should just work.
+
+Be sure to change the =name= element and the attributes of the =ip=
+element per your requirements.
+
+Next, we'll define and start the virtual network:
+
+#+begin_example
+# virsh net-define --file <vnetX.xml> && virsh net-start --network <vnetX>
+#+end_example
+
+For more information on this file format, see: https://libvirt.org/formatnetwork.html
+
+** Configuring systemd-networkd
+
+Before we enable the access point, =hostapd= needs an interface to
+bind itself to and that is where =systemd-networkd= comes into play.
+
+You can't just give =hostapd= a managed wireless interface because
+that device will be enslaved by the daemon as it is bridged to some
+other interface. Instead, we should create a virtual interface for
+=hostapd= to control.
+
+Note that:
+- The configuration files of the =systemd-networkd= daemon should be
+  placed in =/etc/systemd/network/=.
+- The configuration files for devices, links and networks all have
+  their own file extension.
+- You can view the status and reload the configuration of the
+  different devices and networks using the =networkctl= command.
+
+*** Defining the virtual network device
+
+The first file we're going to create is going to represent the device
+that =hostapd= is going to use, the name of the file should follow the
+=<name>.netdev= convention.
+
+I will name mine =softap.netdev=.
+
+The following section is going to match this configuration against an
+existing physical network interface, in my case that's =wlan0=.
+
+#+begin_src ini
+[Match]
+Name=<wlan0>
+#+end_src
+
+This next section defines the role of the virtual network device which
+in our case is =wlan=.
+
+#+begin_src ini
+[NetDev]
+Name=<softap>
+Kind=wlan
+Description=vNIC for software-enabled access point
+#+end_src
+
+The last section is going to define how the virtual network device is
+should behave with regard to its type.
+
+#+begin_src ini
+[WLAN]
+PhysicalDevice=<phyX>
+Type=ap
+#+end_src
+
+*** Defining the network
+
+Now that the interface is configured, we move on to slightly higher
+level concepts, i.e. network settings.
+
+The following section is going to match this configuration against the
+previously defined virtual network interface.
+
+#+begin_src ini
+[Match]
+Name=<softap>
+#+end_src
+
+This next section is going to tell the network to forward (or route)
+the packets that the host receives from the clients communicating via
+the virtual network interface while masquerading their IP addresses.
+   
+# 2. Intercept and answer the ARP requests of its clients.
+
+#+begin_src ini
+[Network]
+IPMasquerade=yes
+#+end_src
+
+You're all set now!
+
+In order to tell =systemd-networkd= to reload the new configuration,
+run the following command:
+
+#+begin_example
+# networkctl reload
+#+end_example
+
+With the same command, use the =list= subcommand verify the status of
+the interface. You should see an output like this one:
+
+#+begin_example
+IDX LINK     TYPE     OPERATIONAL SETUP
+  1 lo       loopback carrier     unmanaged
+  2 wlan0    wlan     routable    configured
+  3 <softap> wlan     no-carrier  configuring
+#+end_example
+
+Note that, until we use or bridge the device, the operational status
+of =<softap>= will continue to report =no-carrier=.
+
+** Configuring hostapd
+
+=hostapd= is primarily configured through the
+=/etc/hostapd/hostapd.conf= file, the daemon offers a plethora of
+functionalities so the file can get very long. I will therefore cover
+only a rather tiny subset of its configuration options.
+
+As previously mentioned, =hostapd= must be bound to a network
+interface that we'll bridge to the interface =libvirt= creates for the
+NATed virtual network.
+
+#+begin_src ini
+interface=<softap>
+bridge=<virbrX>
+#+end_src
+
+For more information on the remaining configuration options, see:
+https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
+
+Now make sure to check the status of the service for errors - it
+should look something like this:
+
+#+begin_example
+● hostapd.service - Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
+     Loaded: loaded (/usr/lib/systemd/system/hostapd.service; disabled; preset: disabled)
+     Active: active (running) since Sun 2022-12-18 04:49:29 CET; 8s ago
+   Main PID: 36772 (hostapd)
+      Tasks: 1 (limit: 23674)
+     Memory: 1008.0K
+        CPU: 27ms
+     CGroup: /system.slice/hostapd.service
+             └─36772 /usr/bin/hostapd /etc/hostapd/hostapd.conf
+
+Dec 18 04:49:29 ideapad systemd[1]: Started Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator.
+Dec 18 04:49:29 ideapad hostapd[36772]: softap: interface state UNINITIALIZED->COUNTRY_UPDATE
+Dec 18 04:49:35 ideapad hostapd[36772]: softap: interface state COUNTRY_UPDATE->ENABLED
+Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
+#+end_example
+
+* Results and reflections
+
+To prove that all of this works, I'll connect through my phone to the
+newly created access point - which I decided to call "jungle" by the
+way - and then visit the OpenStack Horizon dashboard hosted on one of
+the virtual machines.
+
+#+HTML: <img src="/assets/images/softap.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
+
+/Isn't it wonderful?/
+
+Right now, the only thing protecting the network is the authentication
+mechanism of the WLAN; we might consider spinning up a firewall such
+as pfSense to protect the network from outsiders.
+
+Also, traffic from inside the network is significantly slower than
+what a typical cloud infrastructure might require.
+
+We're also committing a grave mistake in terms of network
+architecture, there's a single network serving all of the machines
+(physical and virtual) which turns our little solution into a
+relatively disastrous phenomenon: a single point of failure for the
+entire infrastructure.
+
+* Any caveats?
+
+1. =hostapd= has made my kernel panic on two occasions, though I
+   haven't had the opportunity to investigate nor reproduce the
+   issue. Investigating a kernel crash requires software like =kdump=,
+   which I don't really care to set up at this time.
+
+2. This article explores an alternative way of creating a network
+   infrastructure for a very specific academic project. It is in no
+   way a definitive solution, nor is it a great one -- just one that
+   works at no extra cost to me.

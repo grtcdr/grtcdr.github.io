@@ -1,10 +1,11 @@
 #+TITLE: Posts
 
+- 2022-12-17 - [[file:2022-12-17.org][Building virtual networks and software-enabled access points]] (linux networks virtualization)
 - 2022-12-16 - [[file:2022-12-16.org][Making the most out of picture-in-picture]] (sway)
 - 2022-12-08 - [[file:2022-12-08.org][Experiences with TL-WN722N]] (networks hardware)
 - 2022-12-05 - [[file:2022-12-05.org][Nimbus appreciation post]] (emacs)
 - 2022-11-03 - [[file:2022-11-03.org][Announcing Forgecast - an Emacs Lisp package]] (emacs)
-- 2022-10-12 - [[file:2022-10-12.org][Getting a taste of libvirt hooks]] (systems)
+- 2022-10-12 - [[file:2022-10-12.org][Getting a taste of libvirt hooks]] (linux virtualization)
 - 2022-10-08 - [[file:2022-10-08.org][Linking articles to their version control system to effectively track changes]] (emacs)
 - 2022-08-08 - [[file:2022-08-08.org][Extending project.el with to-do functionality]] (emacs)
 - 2022-07-15 - [[file:2022-07-15.org][A short introduction to PlantUML]] (doc)

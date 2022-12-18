@@ -3,3 +3,4 @@ node_modules/
 .cache/
 public/
 src/css/*.css
+assets/images/*.svg

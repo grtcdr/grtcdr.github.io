@@ -38,7 +38,10 @@
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
-      org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"
+      org-plantuml-jar-path (format "/usr/share/%s/plantuml.jar"
+				    (if (string= user-login-name "runner")
+					"plantuml"
+				      "java/plantuml")) 
       org-confirm-babel-evaluate #'site/should-lang-confirm?)
 
 (defun site/sitemap-format-entry (entry style project)

@@ -44,7 +44,7 @@ Checking if your network adapter supports =ap= mode can be done with
 the following command:
 
 #+begin_example
-$ iw <phyX> info
+$ iw <phy0> info
 #+end_example
 
 Verify that "AP" is listed underneath the "Supported interface modes"
@@ -154,7 +154,7 @@ should behave with regard to its type.
 
 #+begin_src ini
 [WLAN]
-PhysicalDevice=<phyX>
+PhysicalDevice=<phy0>
 Type=ap
 #+end_src
 

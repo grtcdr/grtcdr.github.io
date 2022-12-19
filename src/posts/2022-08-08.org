@@ -30,7 +30,7 @@ after, and we should append an expression in the form of ~(COMMAND
 LABEL &optional KEY)~ if we'd like to see it listed. Let's do that.
 
 #+begin_src elisp
-(push '(project-todo "Todo") project-switch-commands)
+(add-to-list 'project-switch-commands '(project-todo "Todo" "t"))
 #+end_src
 
 Map it to something memorable.

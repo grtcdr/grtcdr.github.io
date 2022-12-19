@@ -127,9 +127,7 @@ Note that:
 
 The first file we're going to create is going to represent the device
 that =hostapd= is going to use, the name of the file should follow the
-=<name>.netdev= convention.
-
-I will name mine =softap.netdev=.
+=<name>.netdev= convention. I will name mine =softap.netdev=.
 
 The following section is going to match this configuration against an
 existing physical network interface, in my case that's =wlan0=.
@@ -149,8 +147,9 @@ Kind=wlan
 Description=vNIC for software-enabled access point
 #+end_src
 
-The last section is going to define how the virtual network device is
-should behave with regard to its type.
+The last section is going to define how the virtual network device
+should behave with regard to its type, and =ap= is the appropriate
+mode for the network device we intend to deploy.
 
 #+begin_src ini
 [WLAN]

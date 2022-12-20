@@ -294,12 +294,11 @@ lot of tooling that support Linux and make it stand out.
 
 /Thank you, RedHat./
 
-* Also read
+* Read also
 
-- Brian Linkletter has written a very thorough and very informative
-  publication on emulating real-world networks with =libvirt=:
+- Brian Linkletter's very thorough publication on emulating real-world
+  networks and creating complex network topologies with =libvirt=:
   https://www.brianlinkletter.com/2019/02/build-a-network-emulator-using-libvirt/
-- Lukáš Zapletal has written about using =firewalld= zones in
-  combination with =libvirt=:
+- Lukáš Zapletal's article on combining =firewalld= with =libvirt=:
   https://lukas.zapletalovi.com/posts/2020/setting-a-firewalld-zone-for-libvirt-network/
 

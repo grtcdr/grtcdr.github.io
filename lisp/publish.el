@@ -32,7 +32,6 @@
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-export-time-stamp-file nil
-      org-export-global-macros '(("post-count" . "(eval (site/count-posts))"))
       org-src-fontify-natively nil
       org-src-preserve-indentation t
       org-html-metadata-timestamp-format "%B %d, %Y"
@@ -51,13 +50,6 @@
 	  entry
 	  (org-publish-find-title entry project)
 	  (org-publish-find-property entry :filetags project 'site-html)))
-
-(defun site/count-posts ()
-  (length (directory-files
-	   (file-name-concat
-	    (project-root (project-current))
-	    "src/posts")
-	   t directory-files-no-dot-files-regexp)))
 
 (defun site/get-template (path)
   "Read a template from the templates directory."

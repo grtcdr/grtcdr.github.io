@@ -79,10 +79,7 @@ INFO is a plist used as a communication channel."
    (site/stylesheet "/css/nav.css")
    (site/stylesheet "/css/org.css")
    (site/stylesheet "/css/source.css")
-   (site/stylesheet "/css/table.css")
-   (shr-dom-to-xml '(link ((rel . "icon")
-			   (type . "image/x-icon")
-			   (href . "/assets/favicon.ico")))))
+   (site/stylesheet "/css/table.css"))
   "HTML headers shared across projects.")
 
 (setq org-publish-project-alist

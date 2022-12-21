@@ -17,7 +17,7 @@ To match a picture-in-picture window, we can use the following criterion:
 
 #+name: criterion
 #+begin_src conf
-[title="Picture-in-Picture"]
+[title="^Picture-in-Picture$"]
 #+end_src
 
 My screen resolution is =1920x1080=, so a window size of =500x280= is

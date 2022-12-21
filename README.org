@@ -5,10 +5,9 @@ This repository stores the source code of [[https://grtcdr.tn][grtcdr.tn]].
 The skeleton, i.e. the specification describing the various components
 of this site, is defined in [[file:lisp/publish.el][publish.el]].
 
-This site uses the following submodules to achieve a more modular and
-composable structure:
+This site uses the following submodules:
 - [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]
-- [[https://github.com/grtcdr/forgecast][forgecast]]
+- [[https://github.com/grtcdr/liaison][liaison]]
 
 * Setup
 
@@ -46,7 +45,7 @@ and run =make=.
 * Development
 
 In order to fully utilize the site during development, you should
-serve the ~public~ directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
+serve the =public= directory with a web server, e.g. [[https://github.com/svenstaro/miniserve][miniserve]]:
 
 #+begin_src sh
 cd grtcdr.tn
@@ -58,16 +57,15 @@ miniserve public
 This site is hosted on GitHub Pages, and utilizes a [[file:.github/workflows/pages.yml][CI/CD workflow]] to
 build and deploy the site with every commit made to the =main= branch.
 
-The workflow is split into two major jobs, =build= and =deploy=.
+The workflow is split into two major jobs: *build* and *deploy*.
 
-=build= installs the project's development dependencies and builds the
-site from scratch, using the provided =Makefile=.
+1. *build* installs the project's development dependencies and builds
+   the site from scratch, using the provided =Makefile=. The output of
+   this process generates an artifact, the =public= directory.
 
-The output of this process generates an artifact, the =public= directory.
-
-This artifact is then transferred to =deploy=, which handles the
-deployment of the site to the GitHub Pages servers.
+2. This artifact is then transferred to *deploy*, which handles the
+   deployment of the site to the GitHub Pages servers.
 
 * Copying
 
-The content in this site is CC-BY-SA 2.0, and the source code is MIT.
+The content in this site is [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]] and the source code is [[file:COPYING][MIT]].

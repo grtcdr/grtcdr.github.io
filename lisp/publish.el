@@ -32,7 +32,7 @@
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-export-time-stamp-file nil
-      org-src-fontify-natively nil
+      org-src-fontify-natively t
       org-src-preserve-indentation t
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
@@ -121,12 +121,12 @@ INFO is a plist used as a communication channel."
 	       :html-postamble posts-postamble
 	       :html-head-extra site/html-head)
 	 (list "dotfiles"
-	       :recursive t
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
 	       :publishing-directory "public/dotfiles"
 	       :publishing-function 'org-html-publish-to-html
 	       :exclude (regexp-opt '("README.org"))
+	       :recursive t
 	       :makeindex t
 	       :section-numbers t
 	       :with-title t
@@ -137,7 +137,7 @@ INFO is a plist used as a communication channel."
 	       :html-postamble nil
 	       :html-head-extra site/html-head)
 	 (list "data"
-	       :base-extension (regexp-opt '("ico" "txt" "pdf" "asc"))
+	       :base-extension ".*"
 	       :base-directory "assets"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)

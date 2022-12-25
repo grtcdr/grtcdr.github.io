@@ -61,9 +61,6 @@ jobs:
       - name: Build the website
         run: make
 
-      - name: Copy .well-known directory contents
-        run: cp -R .well-known public
-
       - name: Upload website blob
         uses: actions/upload-pages-artifact@v1
         with:

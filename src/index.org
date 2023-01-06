@@ -1,7 +1,7 @@
 #+TITLE: Greetings
 #+DESCRIPTION: grtcdr's website and blog.
 
-I'm grtcdr, a student and [[https://www.gnu.org/philosophy/free-sw.en.html][free software]] developer.
+I'm grtcdr, a student and free software developer.
 
 I spend most of my time tinkering with things... Well, it's mostly
 just breaking things and then banging my head against the table until

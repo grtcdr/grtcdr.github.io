@@ -30,9 +30,9 @@ jobs:
         with:
           submodules: true
 
-      - name: Update submodules
+      - name: Point to default branch of submodules
         run:
-          git submodule update --remote
+          git submodule foreach 'git checkout main && git pull'
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1

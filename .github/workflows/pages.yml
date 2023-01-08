@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        system-dependencies: [graphviz plantuml]
+        dependencies: [graphviz plantuml]
 
     runs-on: ubuntu-latest
 
@@ -29,6 +29,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: true
+
+      - name: Update submodules
+        run:
+          git submodule update --remote
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1
@@ -47,8 +51,8 @@ jobs:
         with:
           version: snapshot
 
-      - name: Install system dependencies
-        run: sudo apt-get install -y ${{ matrix.system-dependencies }}
+      - name: Install dependencies
+        run: sudo apt-get install -y ${{ matrix.dependencies }}
 
       - name: Run pre-hooks
         env:

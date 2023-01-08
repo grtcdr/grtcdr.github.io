@@ -56,6 +56,7 @@
       org-html-head-include-default-style nil
       org-html-doctype "html5"
       org-html-html5-fancy t
+      org-latex-pdf-process '("tectonic %f")
       org-plantuml-jar-path (site/get-plantuml-jar-path)
       org-confirm-babel-evaluate #'site/should-lang-confirm?)
 

@@ -51,6 +51,11 @@ jobs:
         with:
           version: snapshot
 
+      - name: Install Tectonic
+        uses: wtfjoke/setup-tectonic@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install dependencies
         run: sudo apt-get install -y ${{ matrix.dependencies }}
 

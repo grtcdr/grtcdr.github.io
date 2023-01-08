@@ -67,6 +67,11 @@ dotfiles project."
 		    (?d . ,(if description (format "- %s" description) ""))
 		    (?f . ,(or filetags "")))))))
 
+(defun site/dotfiles-sitemap-function (title list)
+  "Custom site map function for the dotfiles project."
+  (concat "#+OPTIONS: html-postamble:nil\n"
+	  (org-publish-sitemap-default title list)))
+
 (defun site/get-template (path)
   "Read a template from the templates directory."
   (with-temp-buffer
@@ -81,7 +86,8 @@ INFO is a plist used as a communication channel."
     `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?t . ,(org-export-data (plist-get info :title) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?l . ,(liaison-get-resource-url 'log)))))
+      (?l . ,(liaison-get-resource-url 'log))
+      (?b . ,(liaison-get-resource-url 'blob)))))
 
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."
@@ -103,10 +109,11 @@ INFO is a plist used as a communication channel."
   "HTML headers shared across projects.")
 
 (setq org-publish-project-alist
-      (let ((posts-postamble   (site/get-template "postamble/posts.html"))
-	    (posts-preamble    (site/get-template "preamble/main.html"))
-	    (content-preamble  (site/get-template "preamble/main.html"))
-	    (dotfiles-preamble (site/get-template "preamble/dotfiles.html")))
+      (let ((posts-postamble (site/get-template "postamble/posts.html"))
+	    (posts-preamble (site/get-template "preamble/main.html"))
+	    (content-preamble (site/get-template "preamble/main.html"))
+	    (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
+	    (dotfiles-postamble (site/get-template "postamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -144,11 +151,12 @@ INFO is a plist used as a communication channel."
 	       :sitemap-title "Dotfiles"
 	       :sitemap-style 'list
 	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
+	       :sitemap-function 'site/dotfiles-sitemap-function
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
-	       :html-postamble nil
+	       :html-postamble dotfiles-postamble
 	       :html-head-extra site/html-head)
 	 (list "data"
 	       :base-extension ".*"

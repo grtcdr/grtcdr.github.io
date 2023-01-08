@@ -1,25 +1,42 @@
 ;; publish.el defines the various components that consitute this
 ;; website and should be used in conjunction with a build system.
 
-;; Add neighboring directories (and their subdirectories) to the load
-;; path, i.e. the dependencies of publish.el.
+;; This publishing script recognizes the following environment variables:
+;;
+;; *  WITH_PDF:  Enable PDF export of dotfiles
+;; *  CI:        Inform this script that it is being run in a CI context
+
 (normal-top-level-add-subdirs-to-load-path)
 
-;; Import the necessary libraries
 (require 'ox-publish)
 (require 'shr)
 (require 'liaison)
 (require 'project)
 
-;;; My information:
+(with-eval-after-load 'package
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-;;; Emacs configuration:
+  (package-initialize)
+
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (package-install 'ini-mode))
+
+(defun env/enabled? (env)
+  (not (null (member env '("yes" "true")))))
+
+(setq env/ci (getenv "CI")
+      env/with-pdf (getenv "WITH_PDF"))
+
+(defun site/get-plantuml-jar-path ()
+  "Determine the path of the PlantUML JAR file."
+  (format "/usr/share/%s/plantuml.jar"
+	  (if env/ci "plantuml" "java/plantuml")))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil)
-
-;;; Org mode configuration:
 
 (defun site/should-lang-confirm? (lang body)
   "Returns non-nil if LANG needs to confirm before babel may evaluate BODY."
@@ -39,15 +56,12 @@
       org-html-head-include-default-style nil
       org-html-doctype "html5"
       org-html-html5-fancy t
-      org-plantuml-jar-path (format "/usr/share/%s/plantuml.jar"
-				    (if (string= user-login-name "runner")
-					"plantuml"
-				      "java/plantuml")) 
+      org-plantuml-jar-path (site/get-plantuml-jar-path)
       org-confirm-babel-evaluate #'site/should-lang-confirm?)
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
-posts project."
+posts publishing project."
   (format "%s - [[file:%s][%s]] %s"
 	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
 	  entry
@@ -56,19 +70,16 @@ posts project."
 
 (defun site/dotfiles-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
-dotfiles project."
-  (let ((title (org-publish-find-title entry project))
-	(description (org-publish-find-property entry :description project))
-	(filetags (org-publish-find-property entry :filetags project)))
-    (string-trim
-     (format-spec "[[file:%e][%t]] %d %f"
-		  `((?e . ,entry)
-		    (?t . ,title)
-		    (?d . ,(if description (format "- %s" description) ""))
-		    (?f . ,(or filetags "")))))))
+dotfiles publishing project."
+  (let* ((title (org-publish-find-title entry project))
+	(description (org-publish-find-property entry :description project 'html))
+	(link (format "[[file:%s][%s]]" entry title)))
+    (if description
+	(concat link " -- " description "\n")
+      entry)))
 
 (defun site/dotfiles-sitemap-function (title list)
-  "Custom site map function for the dotfiles project."
+  "Custom sitemap function for the dotfiles project."
   (concat "#+OPTIONS: html-postamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
@@ -106,7 +117,7 @@ INFO is a plist used as a communication channel."
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
-  "HTML headers shared across projects.")
+  "HTML headers shared across publishing projects.")
 
 (setq org-publish-project-alist
       (let ((posts-postamble (site/get-template "postamble/posts.html"))
@@ -148,7 +159,7 @@ INFO is a plist used as a communication channel."
 	       :exclude (regexp-opt '("README.org"))
 	       :recursive t
 	       :auto-sitemap t
-	       :sitemap-title "Dotfiles"
+	       :sitemap-title "Peek through my =~/.dotfiles= and into the inner workings of my system"
 	       :sitemap-style 'list
 	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
 	       :sitemap-function 'site/dotfiles-sitemap-function
@@ -171,7 +182,7 @@ INFO is a plist used as a communication channel."
 	       :recursive t)
 	 (list "stylesheets"
 	       :base-extension "css"
-	       :base-directory "src/css" 
+	       :base-directory "src/css"
 	       :publishing-directory "public/css"
 	       :publishing-function 'org-publish-attachment)
 	 (list "javascripts"
@@ -180,10 +191,21 @@ INFO is a plist used as a communication channel."
 	       :exclude "grunt.js"
 	       :publishing-directory "public/js"
 	       :publishing-function 'org-publish-attachment)
+	 (unless (not env/with-pdf)
+	   (list "dotfiles--pdf"
+		     :base-extension "org"
+		     :base-directory "src/dotfiles"
+		     :publishing-directory "public/dotfiles"
+		     :publishing-function 'org-latex-publish-to-pdf
+		     :exclude "sitemap.org"
+		     :recursive t
+		     :with-email t))
 	 (list "all"
 	       :components (list "content"
 				 "posts"
 				 "dotfiles"
+				 (unless (not env/with-pdf)
+				   "dotfiles--pdf")
 		       		 "stylesheets"
 				 "javascripts"
 				 "images"

@@ -63,6 +63,8 @@ jobs:
           find src/posts -type f -exec sed -Ei "/.(png|jpe?g)/s-/assets/images-${PREFIX}-g" {} +
 
       - name: Build the website
+        env:
+          WITH_PDF: "true"
         run: make
 
       - name: Upload website blob

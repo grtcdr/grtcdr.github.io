@@ -1,6 +1,6 @@
-#+TITLE:    Building virtual networks and software-enabled access points
-#+DATE:     <2022-12-17 Sat>
-#+FILETAGS: :linux:networks:virtualization:
+#+title:    Building virtual networks and software-enabled access points
+#+date:     <2022-12-17 Sat>
+#+filetags: :linux:networks:virtualization:
 
 This article makes use of three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for

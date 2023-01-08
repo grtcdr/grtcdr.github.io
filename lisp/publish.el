@@ -37,25 +37,41 @@
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
+      org-html-doctype "html5"
+      org-html-html5-fancy t
       org-plantuml-jar-path (format "/usr/share/%s/plantuml.jar"
 				    (if (string= user-login-name "runner")
 					"plantuml"
 				      "java/plantuml")) 
       org-confirm-babel-evaluate #'site/should-lang-confirm?)
 
-(defun site/sitemap-format-entry (entry style project)
-  "Format a sitemap entry with its date."
+(defun site/posts-sitemap-format-entry (entry style project)
+  "Format a sitemap entry with its date within the context of the
+posts project."
   (format "%s - [[file:%s][%s]] %s"
 	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
 	  entry
 	  (org-publish-find-title entry project)
-	  (org-publish-find-property entry :filetags project 'site-html)))
+	  (org-publish-find-property entry :filetags project)))
+
+(defun site/dotfiles-sitemap-format-entry (entry style project)
+  "Format a sitemap entry with its date within the context of the
+dotfiles project."
+  (let ((title (org-publish-find-title entry project))
+	(description (org-publish-find-property entry :description project))
+	(filetags (org-publish-find-property entry :filetags project)))
+    (string-trim
+     (format-spec "[[file:%e][%t]] %d %f"
+		  `((?e . ,entry)
+		    (?t . ,title)
+		    (?d . ,(if description (format "- %s" description) ""))
+		    (?f . ,(or filetags "")))))))
 
 (defun site/get-template (path)
   "Read a template from the templates directory."
   (with-temp-buffer
     (insert-file-contents
-     (file-name-concat "src" "templates" path))
+     (file-name-concat "src/templates" path))
     (buffer-string)))
 
 (defun org-html-format-spec (info)
@@ -80,6 +96,7 @@ INFO is a plist used as a communication channel."
    (site/stylesheet "/css/org.css")
    (site/stylesheet "/css/source.css")
    (site/stylesheet "/css/table.css")
+   (site/stylesheet "/css/figure.css")
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
@@ -99,8 +116,6 @@ INFO is a plist used as a communication channel."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-doctype "html5"
-	       :html-html5-fancy t
 	       :html-head-extra site/html-head
 	       :html-preamble content-preamble
 	       :html-postamble nil)
@@ -112,11 +127,9 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Posts"
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'site/sitemap-format-entry
+	       :sitemap-format-entry 'site/posts-sitemap-format-entry
 	       :with-title t
 	       :with-toc nil
-	       :html-html5-fancy t
-	       :html-doctype "html5"
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
 	       :html-head-extra site/html-head)
@@ -127,12 +140,13 @@ INFO is a plist used as a communication channel."
 	       :publishing-function 'org-html-publish-to-html
 	       :exclude (regexp-opt '("README.org"))
 	       :recursive t
-	       :makeindex t
+	       :auto-sitemap t
+	       :sitemap-title "Dotfiles"
+	       :sitemap-style 'list
+	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
-	       :html-html5-fancy t
-	       :html-doctype "html5"
 	       :html-preamble dotfiles-preamble
 	       :html-postamble nil
 	       :html-head-extra site/html-head)

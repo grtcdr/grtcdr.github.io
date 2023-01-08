@@ -1,7 +1,8 @@
-[submodule "lisp/liaison"]
-	path = lisp/liaison
-	url = https://github.com/grtcdr/liaison
-
 [submodule "src/dotfiles"]
 	path = src/dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
+	shallow = true
+[submodule "lisp/liaison"]
+	path = lisp/liaison
+	url = https://github.com/grtcdr/liaison
+	shallow = true

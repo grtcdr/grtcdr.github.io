@@ -60,7 +60,7 @@
       org-html-doctype "html5"
       org-html-html5-fancy t)
 
-(setq org-latex-pdf-process '("tectonic %f"))
+(setq org-latex-pdf-process '("latexmk -f -pdf %f"))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the

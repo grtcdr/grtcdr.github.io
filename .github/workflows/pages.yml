@@ -1,4 +1,4 @@
-name: Publish
+name: Publish the site
 
 on:
   push:
@@ -18,9 +18,10 @@ concurrency:
 
 jobs:
   build:
+    name: "Build the site"
     strategy:
       matrix:
-        dependencies: [graphviz plantuml]
+        dependencies: [graphviz plantuml texlive-full]
 
     runs-on: ubuntu-latest
 
@@ -30,9 +31,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Point to default branch of submodules
-        run:
-          git submodule foreach 'git checkout main && git pull'
+      - name: Checkout submodules
+        run: |
+          # Pull every submodule
+          git submodule update --init --recursive --remote
+          # Checkout the default branch (so as to reattach HEAD) for
+          # the "dotfiles" submodule
+          cd src/dotfiles
+          git checkout main
+          git pull
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1
@@ -50,11 +57,6 @@ jobs:
         uses: purcell/setup-emacs@master
         with:
           version: snapshot
-
-      - name: Install Tectonic
-        uses: wtfjoke/setup-tectonic@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: sudo apt-get install -y ${{ matrix.dependencies }}
@@ -78,6 +80,7 @@ jobs:
           path: public
 
   deploy:
+    name: "Deploy the site"
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

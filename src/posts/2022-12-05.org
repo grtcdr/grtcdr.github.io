@@ -44,7 +44,7 @@ is, it really strains my eyes. Therefore, I've settled on
 #+begin_export html
 <figure>
   <img src="/assets/images/nimbus-erc.png">
-  <figcaption>Chatting on ERC</figcaption>
+  <figcaption>Using ERC</figcaption>
 </figure>
 #+end_export
 

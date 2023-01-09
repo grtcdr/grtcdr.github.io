@@ -13,8 +13,6 @@ JS_DIR      = src/js
 GRUNT       = npm exec -- grunt
 GRUNTFILE   = $(JS_DIR)/grunt.js
 
-# Recipes
-
 all: less optimize build
 
 less: $(CSS_FILES)

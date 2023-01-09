@@ -69,7 +69,7 @@ jobs:
 
       - name: Build the website
         env:
-          WITH_PDF: "true"
+          WITH_PDF: "false"
         run: make
 
       - name: Upload website blob

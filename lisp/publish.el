@@ -51,14 +51,16 @@
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
-      org-html-metadata-timestamp-format "%B %d, %Y"
+      org-confirm-babel-evaluate #'site/should-lang-confirm?
+      org-plantuml-jar-path (site/get-plantuml-jar-path))
+
+(setq org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
       org-html-doctype "html5"
-      org-html-html5-fancy t
-      org-latex-pdf-process '("tectonic %f")
-      org-plantuml-jar-path (site/get-plantuml-jar-path)
-      org-confirm-babel-evaluate #'site/should-lang-confirm?)
+      org-html-html5-fancy t)
+
+(setq org-latex-pdf-process '("tectonic %f"))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
@@ -200,7 +202,7 @@ INFO is a plist used as a communication channel."
 		     :publishing-function 'org-latex-publish-to-pdf
 		     :exclude "sitemap.org"
 		     :recursive t
-		     :with-email t))
+		     :with-date nil))
 	 (list "all"
 	       :components (list "content"
 				 "posts"

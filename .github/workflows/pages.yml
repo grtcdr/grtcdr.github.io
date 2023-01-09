@@ -50,11 +50,11 @@ jobs:
           working_directory: src/cv
           root_file: cv.tex
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
+      - run: npm install
 
       - name: Install Emacs
         uses: purcell/setup-emacs@master

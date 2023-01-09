@@ -33,4 +33,6 @@ serve: all
 	@miniserve public
 
 clean:
-	git clean -Xdf
+	@rm -rf $(CSS_FILES)
+	@rm -rf public/
+	@rm -rf .cache/

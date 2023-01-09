@@ -85,8 +85,13 @@ dotfiles publishing project."
   "Peek through my =~/.dotfiles= and into the inner workings of my system")
 
 (defun site/dotfiles-sitemap-function (title list)
-  "Custom sitemap function for the dotfiles project."
+  "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil\n"
+	  (org-publish-sitemap-default title list)))
+
+(defun site/posts-sitemap-function (title list)
+  "Custom sitemap function for the posts publishing project."
+  (concat "#+OPTIONS: html-postamble:nil html-preamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
 (defun site/get-template (path)
@@ -100,9 +105,14 @@ dotfiles publishing project."
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
   (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
-    `((?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
+    `((?C . ,(let ((file (plist-get info :input-file)))
+	       (format-time-string timestamp-format
+				   (and file (file-attribute-modification-time
+					      (file-attributes file))))))
+      (?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?t . ,(org-export-data (plist-get info :title) info))
       (?a . ,(org-export-data (plist-get info :author) info))
+      (?e . ,(plist-get info :email))
       (?l . ,(liaison-get-resource-url 'log))
       (?b . ,(liaison-get-resource-url 'blob)))))
 
@@ -126,11 +136,12 @@ INFO is a plist used as a communication channel."
   "HTML headers shared across publishing projects.")
 
 (setq org-publish-project-alist
-      (let ((posts-postamble (site/get-template "postamble/posts.html"))
-	    (posts-preamble (site/get-template "preamble/main.html"))
-	    (content-preamble (site/get-template "preamble/main.html"))
-	    (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
-	    (dotfiles-postamble (site/get-template "postamble/dotfiles.html")))
+      (let* ((footer (site/get-template "footer.html"))
+	     (posts-postamble (concat (site/get-template "postamble/posts.html") footer))
+	     (posts-preamble (site/get-template "preamble/main.html"))
+	     (content-preamble (site/get-template "preamble/main.html"))
+	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
+	     (dotfiles-postamble (site/get-template "postamble/dotfiles.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -149,9 +160,10 @@ INFO is a plist used as a communication channel."
 	       :publishing-directory "public/posts"
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
-	       :sitemap-title "Posts"
+	       :sitemap-title "Read some of my writings"
 	       :sitemap-sort-files 'anti-chronologically
 	       :sitemap-format-entry 'site/posts-sitemap-format-entry
+	       :sitemap-function 'site/dotfiles-sitemap-function
 	       :with-title t
 	       :with-toc nil
 	       :html-preamble posts-preamble

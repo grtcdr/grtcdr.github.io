@@ -113,6 +113,7 @@ INFO is a plist used as a communication channel."
       (?t . ,(org-export-data (plist-get info :title) info))
       (?a . ,(org-export-data (plist-get info :author) info))
       (?e . ,(plist-get info :email))
+      (?E . ,(liaison-get-resource-url 'edit))
       (?l . ,(liaison-get-resource-url 'log))
       (?b . ,(liaison-get-resource-url 'blob)))))
 
@@ -137,7 +138,7 @@ INFO is a plist used as a communication channel."
 
 (setq org-publish-project-alist
       (let* ((footer (site/get-template "footer.html"))
-	     (posts-postamble (concat (site/get-template "postamble/posts.html") footer))
+	     (posts-postamble (site/get-template "postamble/posts.html"))
 	     (posts-preamble (site/get-template "preamble/main.html"))
 	     (content-preamble (site/get-template "preamble/main.html"))
 	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))

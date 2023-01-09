@@ -13,6 +13,8 @@ JS_DIR      = src/js
 GRUNT       = npm exec -- grunt
 GRUNTFILE   = $(JS_DIR)/grunt.js
 
+CI?=false
+
 all: less cv optimize build
 
 less: $(CSS_FILES)
@@ -27,7 +29,9 @@ optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
 cv:
+ifeq ($(CI),false)
 	cd src/cv && make
+endif
 
 serve: all
 	@miniserve public

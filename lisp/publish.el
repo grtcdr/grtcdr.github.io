@@ -27,8 +27,7 @@
 (defun env/enabled? (env)
   (length> (member env '("yes" "true")) 0))
 
-(setq env/ci (getenv "CI")
-      env/with-pdf (getenv "WITH_PDF"))
+(setq env/ci (getenv "CI"))
 
 (defun site/get-plantuml-jar-path ()
   "Determine the path of the PlantUML JAR file."
@@ -217,22 +216,11 @@ INFO is a plist used as a communication channel."
 	       :base-directory "src/cv"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
-	 (if (env/enabled? env/with-pdf)
-	   (list "dotfiles--pdf"
-		 :base-extension "org"
-		 :base-directory "src/dotfiles"
-		 :publishing-directory "public/dotfiles"
-		 :publishing-function 'org-latex-publish-to-pdf
-		 :exclude "sitemap.org"
-		 :recursive t
-		 :with-date nil))
 	 (list "all"
 	       :components (list "content"
 				 "posts"
 				 "dotfiles"
-				 (if (env/enabled? env/with-pdf)
-				   "dotfiles--pdf")
-		       		 "stylesheets"
+			       	 "stylesheets"
 				 "javascripts"
 				 "images"
 				 "data"

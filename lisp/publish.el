@@ -21,10 +21,11 @@
   (unless package-archive-contents
     (package-refresh-contents))
 
-  (package-install 'ini-mode))
+  (package-install 'ini-mode)
+  (package-install 'toml-mode))
 
 (defun env/enabled? (env)
-  (not (null (member env '("yes" "true")))))
+  (length> (member env '("yes" "true")) 0))
 
 (setq env/ci (getenv "CI")
       env/with-pdf (getenv "WITH_PDF"))
@@ -32,7 +33,9 @@
 (defun site/get-plantuml-jar-path ()
   "Determine the path of the PlantUML JAR file."
   (format "/usr/share/%s/plantuml.jar"
-	  (if env/ci "plantuml" "java/plantuml")))
+	  (if (env/enabled? env/ci)
+	      "plantuml"
+	    "java/plantuml")))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
@@ -161,7 +164,6 @@ INFO is a plist used as a communication channel."
 	       :publishing-directory "public/posts"
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
-	       :sitemap-title "Read some of my writings"
 	       :sitemap-sort-files 'anti-chronologically
 	       :sitemap-format-entry 'site/posts-sitemap-format-entry
 	       :sitemap-function 'site/dotfiles-sitemap-function
@@ -215,7 +217,7 @@ INFO is a plist used as a communication channel."
 	       :base-directory "src/cv"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
-	 (if env/with-pdf
+	 (if (env/enabled? env/with-pdf)
 	   (list "dotfiles--pdf"
 		 :base-extension "org"
 		 :base-directory "src/dotfiles"
@@ -228,7 +230,7 @@ INFO is a plist used as a communication channel."
 	       :components (list "content"
 				 "posts"
 				 "dotfiles"
-				 (if env/with-pdf
+				 (if (env/enabled? env/with-pdf)
 				   "dotfiles--pdf")
 		       		 "stylesheets"
 				 "javascripts"

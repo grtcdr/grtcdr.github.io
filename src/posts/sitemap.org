@@ -1,5 +1,5 @@
 #+OPTIONS: html-postamble:nil
-#+TITLE: Read some of my writings
+#+TITLE: Sitemap for project posts
 
 - 2022-12-17 - [[file:2022-12-17.org][Building virtual networks and software-enabled access points]] (linux networks virtualization)
 - 2022-12-16 - [[file:2022-12-16.org][Making the most out of picture-in-picture]] (sway)

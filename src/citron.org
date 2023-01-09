@@ -1,5 +1,5 @@
 #+TITLE: citron
-#+DESCRIPTION: citron's home page - a utility providing system data via on-demand notifications.
+#+DESCRIPTION: citron's home page - system data via on-demand notifications
 
 [[https://git.sr.ht/~grtcdr/citron][citron]] is a lightweight utility that provides system data via
 on-demand notifications. It essentially replaces the need for the
@@ -52,7 +52,8 @@ use it to its full potential?
 
 * Footnotes
 
-[fn:1] Notification content can be customized with special formatters.
+[fn:1] Notification content can be customized with =sprintf=-like
+format specifiers.
 [fn:2] Not opinionated; your system, your rules. Map any (or all) of
 its subcommands to a keybinding in your window manager/desktop
 environment, et voilà, you're good to go!

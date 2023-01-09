@@ -1,0 +1,98 @@
+#+TITLE:       paspio
+#+DESCRIPTION: paspio's home page - password entropy calculator and library
+#+property:    header-args:sh :eval no :exports both
+
+paspio implements the standard formula which dictates the level of
+entropy of a set of symbols. [[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][Entropy]] is a way of measuring the
+unpredictability of a password against brute force attacks, in terms
+of bits.
+
+- API documentation can be found here: <[[https://docs.rs/paspio/latest/paspio]]>
+
+* Installation
+
+** Using the library in your own project
+
+Add the following to your project's =Cargo.toml=:
+
+#+begin_src toml
+paspio = "0.3"
+#+end_src
+
+** Installing the command-line utility
+
+- Cargo:
+
+#+begin_src sh
+cargo install paspio
+#+end_src
+
+#+RESULTS:
+
+- Arch User Repositories:
+
+#+begin_src sh
+git clone https://aur.archlinux.org/paspio-git.git
+cd paspio-git
+makepkg -si
+#+end_src
+
+** Building from source
+
+#+begin_src sh
+git clone https://git.sr.ht/~grtcdr/paspio
+cd paspio
+cargo build --release
+#+end_src
+
+* Usage
+
+This section illustrates what it is like to use =paspio= on the
+command-line and how it integrates with other security tools.
+
+Generate several secure passwords using =pwgen=:
+
+#+name: pwgen-passwords
+#+begin_src sh :results output :type list
+pwgen -sync 28 5
+#+end_src
+
+#+RESULTS: pwgen-passwords
+: y$q5o.wN|Rx<={T_,yl~UD*["^BN
+: Z*Ltt<zXnKXmQAam}cr:5jyYG$}q
+: q2(HZCA{0:8("C:B0Id/)\b$9MI:
+: C(8tRoJ+<uG:c758T2Y}[mfMc|]U
+: q`#x0:=>/R@LXLr66S5X#[hYGu{K
+
+Now return the entropy of the individual passwords:
+
+#+begin_src sh :results output :type list :var passwords=pwgen-passwords
+for pw in $passwords; do
+ echo $pw | paspio
+done
+#+end_src
+
+#+RESULTS:
+: 190.08 bits
+: 190.08 bits
+: 190.08 bits
+: 190.08 bits
+: 190.08 bits
+
+Given that the passwords share the same set of symbols, and have the
+same length, the entropy is equal between all of them.
+
+#+begin_src sh :results output :type list
+weaker_password=$(pwgen 8)
+stronger_password=$(pwgen -sync 16)
+
+weaker_password_entropy=$(paspio $weaker_password)
+stronger_password_entropy=$(paspio $stronger_password)
+
+echo "${weaker_password}: ${weaker_password_entropy}"
+echo "${stronger_password}: ${stronger_password_entropy}"
+#+end_src
+
+#+RESULTS:
+: eithee8I: 47.63 bits
+: ,KP<|ahBKf0rWMK]: 104.87 bits

@@ -20,4 +20,4 @@ Find me on:
 
 * Posts
 
-#+INCLUDE: posts/sitemap.org :lines "2-"
+#+INCLUDE: posts/sitemap.org :lines "3-"

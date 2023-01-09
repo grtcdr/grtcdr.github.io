@@ -1,17 +1,25 @@
 @import "def";
 
 pre {
-  line-height: initial;
-  font-family: @mono;
+  position: relative;
   overflow: auto;
   margin: 0;
   padding: 1em;
   background-color: @bg01;
+  font-family: @mono;
 }
 
-pre.src {
-  position: relative;
-  overflow: auto;
+pre + pre {
+  margin-top: 1em;
+}
+
+pre.example {
+  border: 2px dotted @red;
+  background-color: unset;
+}
+
+.linenr {
+  user-select: none;
 }
 
 code { color: darkred }

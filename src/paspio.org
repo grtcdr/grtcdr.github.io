@@ -7,13 +7,14 @@ entropy of a set of symbols. [[https://en.wikipedia.org/wiki/Password_strength#E
 unpredictability of a password against brute force attacks, in terms
 of bits.
 
-- API documentation can be found here: <[[https://docs.rs/paspio/latest/paspio]]>
+- Repository: <https://sr.ht/~grtcdr/paspio>
+- API documentation: <[[https://docs.rs/paspio/latest/paspio]]>
 
 * Installation
 
-** Using the library in your own project
+** Installing the library in your own project
 
-Add the following to your project's =Cargo.toml=:
+Add the following to your project's =Cargo.toml= file:
 
 #+begin_src toml
 paspio = "0.3"
@@ -37,7 +38,7 @@ cd paspio-git
 makepkg -si
 #+end_src
 
-** Building from source
+** Building the project from source
 
 #+begin_src sh
 git clone https://git.sr.ht/~grtcdr/paspio
@@ -47,40 +48,44 @@ cargo build --release
 
 * Usage
 
-This section illustrates what it is like to use =paspio= on the
-command-line and how it integrates with other security tools.
+This section illustrates a few examples of what it is like to use
+=paspio= in the shell and how it integrates with other security tools.
 
-Generate several secure passwords using =pwgen=:
+1. Generating a password with =pwgen= and verifying its entropy:
 
-#+name: pwgen-passwords
 #+begin_src sh :results output :type list
-pwgen -sync 28 5
+password=$(pwgen -sync 24 1)
+entropy=$(paspio "$password")
+echo "${password} - ${entropy}"
 #+end_src
 
-#+RESULTS: pwgen-passwords
-: y$q5o.wN|Rx<={T_,yl~UD*["^BN
-: Z*Ltt<zXnKXmQAam}cr:5jyYG$}q
-: q2(HZCA{0:8("C:B0Id/)\b$9MI:
-: C(8tRoJ+<uG:c758T2Y}[mfMc|]U
-: q`#x0:=>/R@LXLr66S5X#[hYGu{K
+#+RESULTS:
+: yNsdrAmbfw1FO[s;C0p4,Q}d - 157.31 bits
+
+2. Parsing the password entropy from a list of passwords:
+
+#+name: passwords
+| passw0rd                   |
+| as0nahKainj                |
+| 9fjxQvHuWTA5opx9r2i        |
+| -eW!v8y3bmwLbs_(Exf5Xs4!&r |
 
 Now return the entropy of the individual passwords:
 
-#+begin_src sh :results output :type list :var passwords=pwgen-passwords
-for pw in $passwords; do
- echo $pw | paspio
+#+begin_src sh :results output table :var set=passwords :hlines no
+for password in $set; do
+ entropy=$(paspio "$password")
+ echo "${password} ${entropy}" | awk '{ print $1, $2 }'
 done
 #+end_src
 
 #+RESULTS:
-: 190.08 bits
-: 190.08 bits
-: 190.08 bits
-: 190.08 bits
-: 190.08 bits
+| passw0rd                   |  41.36 |
+| as0nahKainj                |   65.5 |
+| 9fjxQvHuWTA5opx9r2i        | 113.13 |
+| -eW!v8y3bmwLbs_(Exf5Xs4!&r | 170.42 |
 
-Given that the passwords share the same set of symbols, and have the
-same length, the entropy is equal between all of them.
+3. Analyzing the difference in entropy between two passwords:
 
 #+begin_src sh :results output :type list
 weaker_password=$(pwgen 8)
@@ -94,5 +99,7 @@ echo "${stronger_password}: ${stronger_password_entropy}"
 #+end_src
 
 #+RESULTS:
-: eithee8I: 47.63 bits
-: ,KP<|ahBKf0rWMK]: 104.87 bits
+: Eiw1ahgh: 47.63 bits
+: T6IEH`vQ,{%:ziJq: 104.87 bits
+
+That's all you need to know.

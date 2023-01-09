@@ -215,7 +215,7 @@ INFO is a plist used as a communication channel."
 	       :base-directory "src/cv"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
-	 (unless (not env/with-pdf)
+	 (if env/with-pdf
 	   (list "dotfiles--pdf"
 		 :base-extension "org"
 		 :base-directory "src/dotfiles"
@@ -228,7 +228,7 @@ INFO is a plist used as a communication channel."
 	       :components (list "content"
 				 "posts"
 				 "dotfiles"
-				 (unless (not env/with-pdf)
+				 (if env/with-pdf
 				   "dotfiles--pdf")
 		       		 "stylesheets"
 				 "javascripts"

@@ -81,6 +81,9 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
+(defvar site/dotfiles-sitemap-title
+  "Peek through my =~/.dotfiles= and into the inner workings of my system")
+
 (defun site/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles project."
   (concat "#+OPTIONS: html-postamble:nil\n"
@@ -162,7 +165,7 @@ INFO is a plist used as a communication channel."
 	       :exclude (regexp-opt '("README.org"))
 	       :recursive t
 	       :auto-sitemap t
-	       :sitemap-title "Peek through my =~/.dotfiles= and into the inner workings of my system"
+	       :sitemap-title site/dotfiles-sitemap-title
 	       :sitemap-style 'list
 	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
 	       :sitemap-function 'site/dotfiles-sitemap-function
@@ -194,15 +197,20 @@ INFO is a plist used as a communication channel."
 	       :exclude "grunt.js"
 	       :publishing-directory "public/js"
 	       :publishing-function 'org-publish-attachment)
+	 (list "cv"
+	       :base-extension "pdf"
+	       :base-directory "src/cv"
+	       :publishing-directory "public/assets"
+	       :publishing-function 'org-publish-attachment)
 	 (unless (not env/with-pdf)
 	   (list "dotfiles--pdf"
-		     :base-extension "org"
-		     :base-directory "src/dotfiles"
-		     :publishing-directory "public/dotfiles"
-		     :publishing-function 'org-latex-publish-to-pdf
-		     :exclude "sitemap.org"
-		     :recursive t
-		     :with-date nil))
+		 :base-extension "org"
+		 :base-directory "src/dotfiles"
+		 :publishing-directory "public/dotfiles"
+		 :publishing-function 'org-latex-publish-to-pdf
+		 :exclude "sitemap.org"
+		 :recursive t
+		 :with-date nil))
 	 (list "all"
 	       :components (list "content"
 				 "posts"
@@ -212,4 +220,5 @@ INFO is a plist used as a communication channel."
 		       		 "stylesheets"
 				 "javascripts"
 				 "images"
-				 "data")))))
+				 "data"
+				 "cv")))))

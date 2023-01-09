@@ -13,7 +13,7 @@ JS_DIR      = src/js
 GRUNT       = npm exec -- grunt
 GRUNTFILE   = $(JS_DIR)/grunt.js
 
-all: less optimize build
+all: less cv optimize build
 
 less: $(CSS_FILES)
 
@@ -26,10 +26,11 @@ build:
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
+cv:
+	cd src/cv && make
+
 serve: all
 	@miniserve public
 
 clean:
-	@rm -rf $(CSS_FILES)
-	@rm -rf public/
-	@rm -rf .cache/
+	git clean -Xdf

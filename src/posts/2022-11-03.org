@@ -2,9 +2,9 @@
 #+date:     <2022-11-03 Thu>
 #+filetags: :emacs:
 
-Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/forgecast][Forgecast]]!
+Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/liaison][Liaison]]!
 
-Forgecast is a tiny little library that generalizes and automates the
+Liaison is a tiny little library that generalizes and automates the
 process of linking an HTML document to its corresponding source
 document originally written in the Org markup language.
 

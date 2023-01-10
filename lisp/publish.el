@@ -67,11 +67,10 @@
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
-  (format "%s - [[file:%s][%s]] %s"
+  (format "%s - [[file:%s][%s]]"
 	  (format-time-string "%Y-%m-%d" (org-publish-find-date entry project))
 	  entry
-	  (org-publish-find-title entry project)
-	  (org-publish-find-property entry :filetags project)))
+	  (org-publish-find-title entry project)))
 
 (defun site/dotfiles-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the

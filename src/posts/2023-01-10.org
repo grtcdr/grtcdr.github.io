@@ -1,0 +1,19 @@
+#+TITLE: Announcing darkman.el
+#+DATE: <2023-01-10 Tue>
+#+FILETAGS: :emacs:
+
+Happy new year, folks!
+
+I just released a new package, [[https://github.com/grtcdr/darkman.el][darkman.el]], which integrates [[https://darkman.whynothugo.nl/][Darkman]]
+with [[https://www.gnu.org/software/emacs/][Emacs]].
+
+This package allows you to automatically switch the theme according to
+the current mode or set an appropriate theme on startup.
+
+Special thanks to Ian Eure whose [[https://emacsconf.org/2022/talks/dbus/][talk in EmacsConf 2022 on the D-Bus
+protocol]] helped me immensely in writing this package and
+understanding how things are pieced together.
+
+And I'd also like to express my appreciation to Hugo Osvaldo Barrera,
+the author and maintainer of Darkman, a very nifty tool which solves
+the dark/light-mode switching problem intelligently and seamlessly.

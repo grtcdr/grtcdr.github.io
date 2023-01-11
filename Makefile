@@ -33,7 +33,7 @@ ifeq ($(CI),false)
 	cd src/cv && make
 endif
 
-serve: all
+serve: less build
 	@miniserve public
 
 clean:

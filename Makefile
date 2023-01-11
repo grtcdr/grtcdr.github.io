@@ -1,8 +1,9 @@
 LESSC       = npm exec -- lessc
 LESS_DIR    = src/less
-LESS_IGNORE = def.less
 LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
-LESS_FILES := $(filter-out $(LESS_IGNORE:%=$(LESS_DIR)/%), $(LESS_FILES))
+# Ignore a (list of) file(s):
+# LESS_IGNORE = def.less
+# LESS_FILES := $(filter-out $(LESS_IGNORE:%=$(LESS_DIR)/%), $(LESS_FILES))
 
 CSS_DIR     = src/css
 CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
@@ -15,7 +16,7 @@ GRUNTFILE   = $(JS_DIR)/grunt.js
 
 CI?=false
 
-all: less cv optimize build
+all: less optimize build
 
 less: $(CSS_FILES)
 
@@ -28,13 +29,13 @@ build:
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
 
+serve: less build
+	@miniserve public
+
 cv:
 ifeq ($(CI),false)
 	cd src/cv && make
 endif
-
-serve: less build
-	@miniserve public
 
 clean:
 	@rm -rf $(CSS_FILES)

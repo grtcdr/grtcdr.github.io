@@ -1,36 +1,22 @@
-@import "def";
-
 pre {
   position: relative;
   overflow: auto;
   margin: 0;
   padding: 1em;
-  background-color: @bg01;
-  font-family: @mono;
-}
-
-pre + pre {
-  margin-top: 1em;
-}
-
-pre.example {
-  border: 2px dotted @red;
-  background-color: unset;
+  background-color: var(--bg01);
 }
 
 .linenr {
   user-select: none;
 }
 
-code { color: darkred }
+code { color: var(--red) }
 
 .org-src-name {
   display: block;
-  font-family: @mono;
   padding: 0.3em;
+  color: --fg02;
+  background-color: --bg02;
 
-  color: @fg02;
-  background-color: @bg02;
-  
   > .listing-number { display: none }
 }

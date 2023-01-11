@@ -113,10 +113,9 @@ INFO is a plist used as a communication channel."
       (?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
       (?t . ,(org-export-data (plist-get info :title) info))
       (?a . ,(org-export-data (plist-get info :author) info))
-      (?e . ,(plist-get info :email))
-      (?E . ,(liaison-get-resource-url 'edit))
-      (?l . ,(liaison-get-resource-url 'log))
-      (?b . ,(liaison-get-resource-url 'blob)))))
+      (?m . ,(plist-get info :email))
+      (?e . ,(liaison-get-resource-url 'edit))
+      (?l . ,(liaison-get-resource-url 'log)))))
 
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."
@@ -125,6 +124,7 @@ INFO is a plist used as a communication channel."
 
 (defvar site/html-head
   (concat
+   (site/stylesheet "/css/def.css")
    (site/stylesheet "/css/common.css")
    (site/stylesheet "/css/heading.css")
    (site/stylesheet "/css/nav.css")
@@ -138,12 +138,12 @@ INFO is a plist used as a communication channel."
   "HTML headers shared across publishing projects.")
 
 (setq org-publish-project-alist
-      (let* ((footer (site/get-template "footer.html"))
-	     (posts-postamble (site/get-template "postamble/posts.html"))
+      (let* ((posts-postamble (concat (site/get-template "postamble/posts.html")
+				      (site/get-template "footer.html")))
 	     (posts-preamble (site/get-template "preamble/main.html"))
 	     (content-preamble (site/get-template "preamble/main.html"))
 	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
-	     (dotfiles-postamble (site/get-template "postamble/dotfiles.html")))
+	     (dotfiles-postamble (site/get-template "footer.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -169,7 +169,8 @@ INFO is a plist used as a communication channel."
 	       :with-toc nil
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra site/html-head)
+	       :html-head-extra (concat site/html-head
+					(site/stylesheet "/css/blog.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -187,7 +188,8 @@ INFO is a plist used as a communication channel."
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
 	       :html-postamble dotfiles-postamble
-	       :html-head-extra site/html-head)
+	       :html-head-extra (concat site/html-head
+					(site/stylesheet "/css/indent.css")))
 	 (list "data"
 	       :base-extension ".*"
 	       :base-directory "assets"

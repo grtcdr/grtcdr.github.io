@@ -43,9 +43,9 @@ point and most computers and phones can become one.
 Checking if your network adapter supports =ap= mode can be done with
 the following command:
 
-#+begin_example
-$ iw <phy0> info
-#+end_example
+#+begin_src sh
+iw <phy0> info
+#+end_src
 
 Verify that "AP" is listed underneath the "Supported interface modes"
 section.
@@ -100,7 +100,7 @@ element per your requirements.
 Next, we'll define and start the virtual network:
 
 #+begin_src sh
-# virsh net-define --file <vnet0.xml> && virsh net-start --network <vnet0>
+virsh net-define --file <vnet0.xml> && virsh net-start --network <vnet0>
 #+end_src
 
 For more information on this file format, see: https://libvirt.org/formatnetwork.html
@@ -197,7 +197,7 @@ IDX LINK     TYPE     OPERATIONAL SETUP
   1 lo       loopback carrier     unmanaged
   2 wlan0    wlan     routable    configured
   3 <softap> wlan     no-carrier  configuring
-#+end_src
+#+end_example
 
 Note that, until we use or bridge the device, the operational status
 of =<softap>= will continue to report =no-carrier=.
@@ -225,7 +225,7 @@ Now make sure to check the status of the service for errors,
 =AP-ENABLED= is what you're after:
 
 #+caption: $ systemctl status hostapd
-#+begin_src sh :eval no
+#+begin_src sh
 ● hostapd.service - Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
      Loaded: loaded (/usr/lib/systemd/system/hostapd.service; disabled; preset: disabled)
      Active: active (running) since Sun 2022-12-18 04:49:29 CET; 8s ago
@@ -244,10 +244,10 @@ Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
 
 * Results and reflections
 
-To prove that all of this works, I'll connect through my phone to the
-newly created access point - which I decided to call "jungle" by the
-way - and then visit the OpenStack Horizon dashboard hosted on one of
-the virtual machines.
+To show that everything works, I'll connect through my phone to the my
+new software-enabled access point - which I decided to call "jungle"
+by the way - and then visit the OpenStack Horizon dashboard hosted on
+one of the virtual machines.
 
 #+HTML: <img src="/assets/images/softap-results.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
 
@@ -267,9 +267,9 @@ infrastructure might require.
 
 Furthermore, we are undeniably committing a grave mistake in terms of
 network architecture, there's a single network serving all of the
-machines (physical and virtual) which turns our little solution into a
-relatively disastrous phenomenon: a single point of failure for the
-entire infrastructure.
+machines (physical and virtual) which may at any point turn the
+proposed solution into a relatively disastrous phenomenon: a single
+point of failure for the entire infrastructure.
 
 * Caveats
 

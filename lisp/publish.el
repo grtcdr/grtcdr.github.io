@@ -12,6 +12,7 @@
 (require 'shr)
 (require 'liaison)
 (require 'project)
+(require 'redefinitions)
 
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -101,21 +102,6 @@ dotfiles publishing project."
     (insert-file-contents
      (file-name-concat "src/templates" path))
     (buffer-string)))
-
-(defun org-html-format-spec (info)
-  "Return format specification for preamble and postamble.
-INFO is a plist used as a communication channel."
-  (let ((timestamp-format (plist-get info :html-metadata-timestamp-format)))
-    `((?C . ,(let ((file (plist-get info :input-file)))
-	       (format-time-string timestamp-format
-				   (and file (file-attribute-modification-time
-					      (file-attributes file))))))
-      (?d . ,(org-export-data (org-export-get-date info timestamp-format) info))
-      (?t . ,(org-export-data (plist-get info :title) info))
-      (?a . ,(org-export-data (plist-get info :author) info))
-      (?m . ,(plist-get info :email))
-      (?e . ,(liaison-get-resource-url 'edit))
-      (?l . ,(liaison-get-resource-url 'log)))))
 
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."

@@ -32,10 +32,8 @@ jobs:
 
       - name: Checkout submodules
         run: |
-          # Pull every submodule
-          git submodule update --init --recursive --remote
-          # Checkout the default branch (so as to reattach HEAD) for
-          # the "dotfiles" submodule
+          # Checkout the default branch (so as to reattach HEAD) in
+          # the "dotfiles" submodule.
           cd src/dotfiles
           git checkout main
           git pull

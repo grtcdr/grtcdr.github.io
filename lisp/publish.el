@@ -43,12 +43,15 @@
       make-backup-files nil)
 
 (defun site/should-lang-confirm? (lang body)
-  "Returns non-nil if LANG needs to confirm before babel may evaluate BODY."
+  "Return non-nil if LANG needs to confirm before babel may evaluate BODY."
   (not (member lang '("dot" "plantuml"))))
 
-(org-babel-do-load-languages 'org-babel-load-languages
-                             '((plantuml . t)
-			       (dot      . t)))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)
+   (dot . t)
+   (elisp . nil)
+   (sh . nil)))
 
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"

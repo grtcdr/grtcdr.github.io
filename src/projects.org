@@ -4,13 +4,13 @@ Here's a list of the projects I'm actively maintaining:
 
 - [[https://github.com/Macchina-CLI/macchina][macchina]]
 - [[https://github.com/Macchina-CLI/libmacchina][libmacchina]]
-- [[https://grtcdr.tn/citron][citron]]
+- [[file:citron.org][citron]]
 - [[https://grtcdr.tn/liaison][liaison]]
 - [[https://grtcdr.tn/darkman.el][darkman.el]]
 
 There are other projects, which are not so actively maintained,
 including:
 
-- [[https://grtcdr.tn/paspio][paspio]]
+- [[file:paspio.org][paspio]]
 - [[https://git.sr.ht/~grtcdr/dyna][dyna]]
 - [[https://git.sr.ht/~grtcdr/startpages][startpages]]

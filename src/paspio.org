@@ -1,9 +1,8 @@
 #+TITLE:       paspio
 #+description: paspio's home page - password entropy calculator and library
-#+property:    header-args:sh :eval no :exports both
+#+property:    header-args:sh :exports both
 #+options:     toc:t num:t
 #+html_head:   <link rel="stylesheet" href="/css/indent.css"/>
-
 
 paspio implements the standard formula which dictates the level of
 entropy of a set of symbols. [[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][Entropy]] is a way of measuring the
@@ -63,19 +62,23 @@ echo "${password} - ${entropy}"
 #+end_src
 
 #+RESULTS:
-: yNsdrAmbfw1FO[s;C0p4,Q}d - 157.31 bits
+: gx|jk4+16`,OLfr<(Z(kx9jS - 157.31 bits
 
-** Parsing the password entropy from a list of passwords
+** Parsing the password entropy from a set of passwords
+
+Here's our set:
 
 #+name: passwords
+| Passwords                  |
+|----------------------------|
 | passw0rd                   |
 | as0nahKainj                |
 | 9fjxQvHuWTA5opx9r2i        |
 | -eW!v8y3bmwLbs_(Exf5Xs4!&r |
 
-Now return the entropy of the individual passwords:
+Return the entropy of the individual passwords:
 
-#+begin_src sh :results output table :var set=passwords :hlines no
+#+begin_src sh :results output table :var set=passwords :hlines yes :colnames '("Password" "Entropy")
 for password in $set; do
  entropy=$(paspio "$password")
  echo "${password} ${entropy}" | awk '{ print $1, $2 }'
@@ -83,10 +86,12 @@ done
 #+end_src
 
 #+RESULTS:
-| passw0rd                   |  41.36 |
-| as0nahKainj                |   65.5 |
-| 9fjxQvHuWTA5opx9r2i        | 113.13 |
-| -eW!v8y3bmwLbs_(Exf5Xs4!&r | 170.42 |
+| Password                   | Entropy |
+|----------------------------+---------|
+| passw0rd                   |   41.36 |
+| as0nahKainj                |    65.5 |
+| 9fjxQvHuWTA5opx9r2i        |  113.13 |
+| -eW!v8y3bmwLbs_(Exf5Xs4!&r |  170.42 |
 
 ** Analyzing the difference in entropy between a set of passwords
 
@@ -97,12 +102,12 @@ stronger_password=$(pwgen -sync 16)
 weaker_password_entropy=$(paspio $weaker_password)
 stronger_password_entropy=$(paspio $stronger_password)
 
-echo "${weaker_password}: ${weaker_password_entropy}"
-echo "${stronger_password}: ${stronger_password_entropy}"
+echo "${weaker_password} is ${weaker_password_entropy}"
+echo "${stronger_password} is ${stronger_password_entropy}"
 #+end_src
 
 #+RESULTS:
-: Eiw1ahgh: 47.63 bits
-: T6IEH`vQ,{%:ziJq: 104.87 bits
+: Loosh7ko is 47.63 bits
+: JhB#>xqF8[MTmnqn is 104.87 bits
 
 That's all you need to know.

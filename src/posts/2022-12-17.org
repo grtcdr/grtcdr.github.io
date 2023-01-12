@@ -99,8 +99,8 @@ element per your requirements.
 
 Next, we'll define and start the virtual network:
 
-#+begin_src sh :var xml-file=vnet0.xml vnet-name=vnet0
-# virsh net-define --file $xml-file && virsh net-start --network $vnet-name
+#+begin_src sh
+# virsh net-define --file <vnet0.xml> && virsh net-start --network <vnet0>
 #+end_src
 
 For more information on this file format, see: https://libvirt.org/formatnetwork.html

@@ -21,11 +21,13 @@ I know, it's /beautiful/.
 
 I'm neither an expert in color nor in visual design, but these colors
 are captivating to me. Something about the aesthetic screams: "/Psst
--- hey... Come get some work done, your text editor misses you./".
+-- hey buddy... Come get some some work done, your text editor misses
+you/".
 
-Were you expecting a detailed analysis - perhaps one rooted in
-mathematics - of the intricacies of this theme?... No can do, amigo. -
-I will try and win you over, though.
+I don't have a personal preference for the level of contrast a theme
+chooses to adopt throughout its colors -- I just mostly go by
+"feel". Themes, in my opinion, have to be intuitively beautiful, and
+Nimbus is in my opinion a beautifully-crafted mashup of colors.
 
 #+begin_export html
 <figure>
@@ -34,22 +36,20 @@ I will try and win you over, though.
 </figure>
 #+end_export
 
-I could look at this all day long, and more so at night!
+You know, I could look at this all day long... and even more so at
+night!
 
-We have all come to appreciate [[https://protesilaos.com/][Protesilaos Stavrou]]'s keen eye for
-detail as well as his great taste, but however elegant =modus-vivendi=
-is, it really strains my eyes. Therefore, I've settled on
-=modus-operandi= and =nimbus= during the day and night, respectively.
+In case you were wondering, ERC looks magnificent with Nimbus.
 
 #+begin_export html
 <figure>
   <img src="/assets/images/nimbus-erc.png">
-  <figcaption>Using ERC</figcaption>
+  <figcaption>Chatting on IRC using ERC</figcaption>
 </figure>
 #+end_export
 
-The show's over :)
+/Show's over!/
 
-If you like what you see, please head over to the [[https://github.com/m-cat/nimbus-theme][project's
-repository]], that should tell you how you can install and enable it
-on your own machine.
+If you like what you see, head over to the [[https://github.com/m-cat/nimbus-theme][project's repository]] -
+it'll tell you how you can install and enable the theme on your own
+machine.

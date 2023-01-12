@@ -9,6 +9,7 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 (require 'ox-publish)
+(require 'org-id)
 (require 'shr)
 (require 'liaison)
 (require 'project)
@@ -62,6 +63,8 @@
       org-html-head-include-default-style nil
       org-html-doctype "html5"
       org-html-html5-fancy t)
+
+(setq org-id-files ".org-id-locations")
 
 (setq org-latex-pdf-process '("latexmk -f -pdf %f"))
 

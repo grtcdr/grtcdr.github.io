@@ -1,6 +1,9 @@
 #+TITLE:       paspio
-#+DESCRIPTION: paspio's home page - password entropy calculator and library
+#+description: paspio's home page - password entropy calculator and library
 #+property:    header-args:sh :eval no :exports both
+#+options:     toc:t num:t
+#+html_head:   <link rel="stylesheet" href="/css/indent.css"/>
+
 
 paspio implements the standard formula which dictates the level of
 entropy of a set of symbols. [[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][Entropy]] is a way of measuring the
@@ -51,7 +54,7 @@ cargo build --release
 This section illustrates a few examples of what it is like to use
 =paspio= in the shell and how it integrates with other security tools.
 
-1. Generating a password with =pwgen= and verifying its entropy:
+** Generating a password with =pwgen= and verifying its entropy:
 
 #+begin_src sh :results output :type list
 password=$(pwgen -sync 24 1)
@@ -62,7 +65,7 @@ echo "${password} - ${entropy}"
 #+RESULTS:
 : yNsdrAmbfw1FO[s;C0p4,Q}d - 157.31 bits
 
-2. Parsing the password entropy from a list of passwords:
+** Parsing the password entropy from a list of passwords
 
 #+name: passwords
 | passw0rd                   |
@@ -85,7 +88,7 @@ done
 | 9fjxQvHuWTA5opx9r2i        | 113.13 |
 | -eW!v8y3bmwLbs_(Exf5Xs4!&r | 170.42 |
 
-3. Analyzing the difference in entropy between two passwords:
+** Analyzing the difference in entropy between a set of passwords
 
 #+begin_src sh :results output :type list
 weaker_password=$(pwgen 8)

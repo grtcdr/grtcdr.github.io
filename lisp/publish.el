@@ -8,25 +8,29 @@
 (normal-top-level-add-subdirs-to-load-path)
 
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(with-eval-after-load 'package
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(package-initialize)
+  (package-initialize)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+  (unless package-archive-contents
+    (package-refresh-contents))
 
-(package-install 'ini-mode)
-(package-install 'toml-mode)
-(package-install 'citeproc)
+  (setq package-list
+	'(ini-mode toml-mode citeproc))
+
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package))))
 
 ;; Built-in packages:
 (require 'ox-publish)
+(require 'oc)
+(require 'oc-csl)
 (require 'org-id)
 (require 'shr)
 (require 'project)
-(require 'oc)
-(require 'oc-csl)
 ;; Remote packages:
 (require 'citeproc)
 ;; Local packages:

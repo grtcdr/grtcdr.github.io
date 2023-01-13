@@ -1,12 +1,7 @@
 * Structure
 
 This project defines and describes its various components in a
-publishing script, which it uses to generate the site.
-
-It uses the following submodules:
-- [[https://github.com/grtcdr/cv][cv]]
-- [[https://git.sr.ht/~grtcdr/dotfiles][dotfiles]]
-- [[https://github.com/grtcdr/liaison][liaison]]
+[[file:lisp/publish.el][publishing script]], which it uses to generate the site.
 
 * Setup
 

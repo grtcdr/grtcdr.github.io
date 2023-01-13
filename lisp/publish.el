@@ -22,6 +22,7 @@
 
 (require 'ox-publish)
 (require 'oc)
+(require 'oc-csl)
 (require 'org-id)
 (require 'shr)
 (require 'project)
@@ -70,7 +71,9 @@
       org-html-html5-fancy t
       org-latex-pdf-process '("latexmk -f -pdf %f")
       org-id-files ".org-id-locations"
-      org-cite-global-bibliography (list (expand-file-name "refs.bib")))
+      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
+      org-cite-csl-styles-dir (list (expand-file-name "assets/csl/styles")) 
+      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales")))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the

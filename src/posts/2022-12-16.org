@@ -1,6 +1,6 @@
-#+TITLE: Making the most out of picture-in-picture
-#+DATE: <2022-12-16 Fri>
-#+FILETAGS: :sway:
+#+title:    Making the most out of picture-in-picture
+#+date:     <2022-12-16 Fri>
+#+filetags: :sway:
 
 Being limited to a single 15" screen, I'm /forced/ to make the most
 out of my screen real estate and optimize my window placement game.

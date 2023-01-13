@@ -1,6 +1,6 @@
-#+TITLE: Announcing darkman.el
-#+DATE: <2023-01-10 Tue>
-#+FILETAGS: :emacs:
+#+title:    Announcing darkman.el
+#+date:     <2023-01-10 Tue>
+#+filetags: :emacs:
 
 Happy new year, folks!
 

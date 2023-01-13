@@ -1,7 +1,11 @@
 #+title:       Combining systemd-networkd, libvirt and hostapd to emulate a computer network
 #+date:        <2022-12-17 Sat>
-#+filetags:    :linux:networks:virtualization:cloud:
+#+filetags:    :networks:linux:cloud:
 #+cite_export: csl ~/packages/csl/styles/ergo.csl
+
+/This article is a continution [[file:2022-12-08.org][of a previous post]]./
+
+-----
 
 This article makes use of three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
@@ -11,13 +15,8 @@ This article makes use of three key components:
   EAP, and more.
 - [[https://libvirt.org/][libvirt]] -- a daemon, toolkit, and set of APIs for managing various
   forms of virtualization technologies, most notably KVM; it is, as we
-  will discover, a powerful system for [cite:@brian19libvirt]
-  emulating real-world networks and creating complex network
-  topologies.
-
-[[file:2022-12-08.org][In a previous post]], I criticized Realtek for their (unsurprisingly)
-dreadful network devices. In this one, I propose a solution for anyone
-in a situation similar to mine.
+  will discover, a powerful system for emulating real-world networks
+  [cite:@brian19libvirt] and creating complex network topologies.
 
 One of my academic projects involves the creation of a private,
 multi-node and multi-tenant cloud infrastructure built on top of
@@ -33,10 +32,10 @@ have their unique configurations. What we need is some consistency.
 So, why don't we roll out a /software access point/?
 
 #+begin_quote
-While this approach has so far worked great for me, if you're
-considering designing a software-based architecture such as this one,
-please understand the potential risks which it might entail, some of
-which are discussed later on in this article.
+While this approach has so far worked reasonably well for us, if
+you're considering designing a software-based architecture such as
+this one, please understand the potential risks that it might entail,
+some of which are discussed later on in this article.
 #+end_quote
 
 * What exactly is it?
@@ -288,10 +287,6 @@ Right now, the only thing protecting the network is the authentication
 mechanism of the WLAN, we should consider installing a firewall [cite:@lukas20firewalld] to
 protect the network from outsiders.
 
-While this article explores an alternative network architecture, it is
-in no way a definitive solution, nor is it a great one -- just one
-that works at no extra cost to me.
-
 Because it is based on WLAN, traffic from inside the network is
 significantly slower than what a typical production cloud
 infrastructure might necessitate.
@@ -301,6 +296,11 @@ network architecture, there's a single network serving all of the
 machines (physical and virtual) which may at any point turn the
 proposed solution into a relatively disastrous phenomenon: a single
 point of failure for the entire infrastructure.
+
+While this article explores an alternative network architecture, it
+should not yet be considered a definitive solution as only time will
+tell if that remains true, it does however answer every one of our
+requirements.
 
 * Caveats
 

@@ -25,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install dependencies
+        run: sudo apt-get install -y ${{ matrix.dependencies }}
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -41,33 +44,32 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1
 
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-      - run: npm install
+          
+      - name: Install development dependencies
+        run: npm install
 
       - name: Install Emacs
         uses: purcell/setup-emacs@master
         with:
           version: snapshot
 
-      - name: Install dependencies
-        run: sudo apt-get install -y ${{ matrix.dependencies }}
-
-      - name: Run pre-hooks
-        env:
-          PREFIX: ${{ format('https://media.githubusercontent.com/media/{0}/{1}/assets/images', github.repository, github.ref_name) }}
-        run: |
-          # Find and replace the URLs of local images to the URLs that
-          # Git LFS assigns to them.
-          find src/posts -type f -exec sed -Ei "/.(png|jpe?g)/s-/assets/images-${PREFIX}-g" {} +
-
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v2
         with:
           working_directory: src/cv
           root_file: cv.tex
+
+      - name: Run pre-hooks on source files
+        env:
+          PREFIX: ${{ format('https://media.githubusercontent.com/media/{0}/{1}/assets/images', github.repository, github.ref_name) }}
+        run: |
+          # Find and replace the URLs of local images to their Git LFS equivalent.
+          find src/posts -type f -exec sed -Ei "/.(png|jpe?g)/s-/assets/images-${PREFIX}-g" {} +
 
       - name: Build the website
         run: make

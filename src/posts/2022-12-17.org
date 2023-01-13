@@ -1,6 +1,6 @@
 #+title:    Building virtual networks and software-enabled access points
 #+date:     <2022-12-17 Sat>
-#+filetags: :linux:networks:virtualization:
+#+filetags: :linux:networks:virtualization:cloud:
 
 This article makes use of three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
@@ -47,7 +47,7 @@ the following command:
 iw <phy0> info
 #+end_src
 
-Verify that "AP" is listed underneath the "Supported interface modes"
+Verify that "AP" is listed under the "Supported interface modes"
 section.
 
 * How is it done?
@@ -62,9 +62,12 @@ idea of the architecture we are going after.
 #+HTML: <img src="/assets/images/softap-network.png" alt="Visual representation of the network.">
 
 Clients of the =vnet0= virtual network are assigned by =libvirt= a
-dynamic IPv4 address, while the OpenStack nodes - virtual machines
-bridged (well, it's actually [[https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.bridging.proxy-arp.html][proxy ARP]]) by their hosts to the =vnet0=
-network - assign themselves a static IPv4 address.
+dynamic IPv4 address, while the OpenStack nodes, should assign
+themselves a static IPv4 address.
+
+The virtual machines are, what some might call "bridged" by their
+hosts onto the network, but behind the scenes, they are actually on a
+subnet whose router is [[https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.bridging.proxy-arp.html][proxying ARP requests/replies]].
 
 ** Configuring libvirt
 
@@ -117,9 +120,11 @@ other interface. Instead, we should create a virtual interface for
 
 Note that:
 - The configuration files of the =systemd-networkd= daemon should be
-  placed in =/etc/systemd/network/=.
+  placed underneath =/etc/systemd/network=.
 - The configuration files for devices, links and networks all have
-  their own file extension.
+  their corresponding file extensions and man pages,
+  e.g. =systemd.netdev(5)= describes the syntax of =.netdev=, its
+  configuration options and a plentiful of exeamples.
 - You can view the status and reload the configuration of the
   different devices and networks using the =networkctl= command.
 
@@ -127,7 +132,7 @@ Note that:
 
 The first file we're going to create is going to represent the device
 that =hostapd= is going to use, the name of the file should follow the
-=<name>.netdev= convention. I will name mine =softap.netdev=.
+=<name>.netdev= convention, we'll call it =softap.netdev=.
 
 The following section is going to match this configuration against an
 existing physical network interface, in my case that's =wlan0=.
@@ -144,7 +149,7 @@ in our case is =wlan=.
 [NetDev]
 Name=<softap>
 Kind=wlan
-Description=vNIC for software-enabled access point
+Description=vNIC for a software-enabled access point
 #+end_src
 
 The last section is going to define how the virtual network device
@@ -159,8 +164,13 @@ Type=ap
 
 *** Defining the network
 
-Now that the interface is configured, we move on to slightly higher
-level concepts, i.e. network settings.
+Now that the interface is set up, we can move on to the
+network-related settings, which follows the =<name>.network=
+convention
+
+The first file we're going to create is going to represent the device
+that =hostapd= is going to use, the name of the file should follow the
+=<name>.netdev= convention. I will name mine =softap.netdev=.
 
 The following section is going to match this configuration against the
 previously defined virtual network interface.
@@ -199,19 +209,22 @@ IDX LINK     TYPE     OPERATIONAL SETUP
   3 <softap> wlan     no-carrier  configuring
 #+end_example
 
-Note that, until we use or bridge the device, the operational status
-of =<softap>= will continue to report =no-carrier=.
+Note that until we use or bridge the device, the operational status of
+=<softap>= will continue to report =no-carrier=.
+
+To better understand the operational statuses of =systemd-networkd=,
+visit: [[https://www.freedesktop.org/software/systemd/man/networkctl.html]].
 
 ** Configuring hostapd
 
 =hostapd= is primarily configured through the
 =/etc/hostapd/hostapd.conf= file, the daemon offers a plethora of
-functionalities so the file can get very long. I will therefore cover
+functionalities so the file can is quite long. I will therefore cover
 only a rather tiny subset of its configuration options.
 
 As previously mentioned, =hostapd= must be bound to a network
 interface that we'll bridge to the interface =libvirt= creates for the
-NATed virtual network.
+virtual network.
 
 #+begin_src ini
 interface=<softap>
@@ -265,6 +278,8 @@ Because it is based on WLAN, traffic from inside the network is
 significantly slower than what a typical production cloud
 infrastructure might require.
 
+Proxy ARP is a
+
 Furthermore, we are undeniably committing a grave mistake in terms of
 network architecture, there's a single network serving all of the
 machines (physical and virtual) which may at any point turn the
@@ -273,8 +288,8 @@ point of failure for the entire infrastructure.
 
 * Caveats
 
-=hostapd= has made my kernel panic on two occasions, though I haven't
-had the opportunity to investigate nor reproduce the
+=hostapd= has made my [[https://en.wikipedia.org/wiki/Kernel_panic][kernel panic]] on two occasions, though I didn't
+get the opportunity to investigate (nor was I able to reproduce) the
 issue. Investigating a kernel crash requires software like =kdump=,
 which I don't really care to set up at this time.
 
@@ -286,11 +301,14 @@ This venture has proven to a great extent how malleable the Linux
 kernel is in terms of its networking capabilities, and it just goes to
 show the unbelievable amount of variety in userspace.
 
-RedHat - the authors of =libvirt=, =systemd=, and long-time contributors
-to the Linux kernel - have cultivated a great community and built a
-lot of tooling that support Linux and make it stand out.
+RedHat - the authors of =libvirt=, =systemd= and a large part of the
+Linux userspace - have cultivated a great community and built a lot of
+tooling that support Linux that makes it stand out, both in the
+desktop and server realms.
 
-/Thank you, RedHat./
+It has been wonderful getting to know the intricacies of these systems
+and using them as the basis for architecturing a flexible virtual
+computer network to support my academic project.
 
 * Read also
 

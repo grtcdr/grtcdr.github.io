@@ -20,14 +20,21 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; Publishing
 (require 'ox-publish)
+;; Citing
 (require 'oc)
 (require 'oc-csl)
-(require 'org-id)
-(require 'shr)
-(require 'project)
 (require 'citeproc)
+;; Element IDs
+(require 'org-id)
+;; XML templating
+(require 'shr)
+;; Project management
+(require 'project)
+;; URL generation
 (require 'liaison)
+;; Built-in function redefinitions
 (require 'redefinitions)
 
 (defun env/enabled? (env)
@@ -35,14 +42,14 @@
 
 (setq env/ci (getenv "CI"))
 
-(defun site/get-plantuml-jar-path ()
+(defun s/get-plantuml-jar-path ()
   "Determine the path of the PlantUML JAR file."
   (format "/usr/share/%s/plantuml.jar"
 	  (if (env/enabled? env/ci)
 	      "plantuml"
 	    "java/plantuml")))
 
-(defun site/should-lang-confirm? (lang body)
+(defun s/should-lang-confirm? (lang body)
   "Return non-nil if LANG needs to confirm before babel may evaluate BODY."
   (not (member lang '("dot" "plantuml"))))
 
@@ -62,8 +69,8 @@
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
-      org-confirm-babel-evaluate #'site/should-lang-confirm?
-      org-plantuml-jar-path (site/get-plantuml-jar-path)
+      org-confirm-babel-evaluate #'s/should-lang-confirm?
+      org-plantuml-jar-path (s/get-plantuml-jar-path)
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
@@ -73,9 +80,14 @@
       org-id-files ".org-id-locations"
       org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (list (expand-file-name "assets/csl/styles")) 
-      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales")))
+      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales"))
+      org-cite-export-processors
+      '((html . (csl "chicago-fullnote-bibliography.csl"))
+	(odt . (csl "chicago-fullnote-bibliography.csl"))
+	(latex . biblatex)
+	(t . simple)))
 
-(defun site/posts-sitemap-format-entry (entry style project)
+(defun s/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
   (format "%s - [[file:%s][%s]]"
@@ -83,7 +95,7 @@ posts publishing project."
 	  entry
 	  (org-publish-find-title entry project)))
 
-(defun site/dotfiles-sitemap-format-entry (entry style project)
+(defun s/dotfiles-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 dotfiles publishing project."
   (let* ((title (org-publish-find-title entry project))
@@ -93,54 +105,55 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
-(defvar site/dotfiles-sitemap-title
+(defvar s/dotfiles-sitemap-title
   "Peek into the inner workings of my system")
 
-(defun site/dotfiles-sitemap-function (title list)
+(defun s/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun site/posts-sitemap-function (title list)
+(defun s/posts-sitemap-function (title list)
   "Custom sitemap function for the posts publishing project."
   (concat "#+OPTIONS: html-postamble:nil html-preamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun site/get-template (path)
+(defun s/get-template (path)
   "Read a template from the templates directory."
   (with-temp-buffer
     (insert-file-contents
      (file-name-concat "src/templates" path))
     (buffer-string)))
 
-(defun site/stylesheet (filename)
+(defun s/stylesheet (filename)
   "Format filename as a stylesheet."
   (shr-dom-to-xml `(link ((rel . "stylesheet")
 			  (href . ,filename)))))
 
-(defvar site/html-head
+
+(defvar s/html-head
   (concat
-   (site/stylesheet "/css/def.css")
-   (site/stylesheet "/css/common.css")
-   (site/stylesheet "/css/heading.css")
-   (site/stylesheet "/css/nav.css")
-   (site/stylesheet "/css/org.css")
-   (site/stylesheet "/css/source.css")
-   (site/stylesheet "/css/table.css")
-   (site/stylesheet "/css/figure.css")
-   (site/stylesheet "/css/bib.css")
+   (s/stylesheet "/css/def.css")
+   (s/stylesheet "/css/common.css")
+   (s/stylesheet "/css/heading.css")
+   (s/stylesheet "/css/nav.css")
+   (s/stylesheet "/css/org.css")
+   (s/stylesheet "/css/source.css")
+   (s/stylesheet "/css/table.css")
+   (s/stylesheet "/css/figure.css")
+   (s/stylesheet "/css/bib.css")
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
   "HTML headers shared across publishing projects.")
 
 (setq org-publish-project-alist
-      (let* ((posts-postamble (concat (site/get-template "postamble/posts.html")
-				      (site/get-template "footer.html")))
-	     (posts-preamble (site/get-template "preamble/main.html"))
-	     (content-preamble (site/get-template "preamble/main.html"))
-	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
-	     (dotfiles-postamble (site/get-template "footer.html")))
+      (let* ((posts-postamble (concat (s/get-template "postamble/posts.html")
+				      (s/get-template "footer.html")))
+	     (posts-preamble (s/get-template "preamble/main.html"))
+	     (content-preamble (s/get-template "preamble/main.html"))
+	     (dotfiles-preamble (s/get-template "preamble/dotfiles.html"))
+	     (dotfiles-postamble (s/get-template "footer.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -150,7 +163,7 @@ dotfiles publishing project."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-head-extra site/html-head
+	       :html-head-extra s/html-head
 	       :html-preamble content-preamble
 	       :html-postamble nil)
 	 (list "posts"
@@ -160,14 +173,14 @@ dotfiles publishing project."
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'site/posts-sitemap-format-entry
-	       :sitemap-function 'site/dotfiles-sitemap-function
+	       :sitemap-format-entry 's/posts-sitemap-format-entry
+	       :sitemap-function 's/dotfiles-sitemap-function
 	       :with-title t
 	       :with-toc nil
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra (concat site/html-head
-					(site/stylesheet "/css/blog.css")))
+	       :html-head-extra (concat s/html-head
+					(s/stylesheet "/css/blog.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -176,21 +189,35 @@ dotfiles publishing project."
 	       :exclude (regexp-opt '("README.org"))
 	       :recursive t
 	       :auto-sitemap t
-	       :sitemap-title site/dotfiles-sitemap-title
+	       :sitemap-title s/dotfiles-sitemap-title
 	       :sitemap-style 'list
-	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
-	       :sitemap-function 'site/dotfiles-sitemap-function
+	       :sitemap-format-entry 's/dotfiles-sitemap-format-entry
+	       :sitemap-function 's/dotfiles-sitemap-function
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
 	       :html-postamble dotfiles-postamble
-	       :html-head-extra site/html-head)
+	       :html-head-extra s/html-head)
 	 (list "data"
 	       :base-extension ".*"
 	       :base-directory "assets"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
+	 (list "csl-styles"
+	       :base-extension "csl"
+	       :base-directory "assets/csl/styles"
+	       :exclude ".*"
+	       :include '("ergo.csl")
+	       :publishing-directory "public/assets/csl"
+	       :publishing-function 'org-publish-attachment)
+	 (list "csl-locales"
+	       :base-extension "xml"
+	       :base-directory "assets/csl/locales"
+	       :publishing-directory "public/assets/csl"
+	       :publishing-function 'org-publish-attachment
+	       :exclude ".*"
+	       :include '("locales-en-US.xml"))
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "assets/images"

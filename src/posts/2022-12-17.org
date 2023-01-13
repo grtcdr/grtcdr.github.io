@@ -1,13 +1,9 @@
 #+title:       Combining systemd-networkd, libvirt and hostapd to emulate a computer network
 #+date:        <2022-12-17 Sat>
 #+filetags:    :networks:linux:cloud:
-#+cite_export: csl ~/packages/csl/styles/ergo.csl
+#+cite_export: csl ../../assets/csl/styles/ergo.csl
 
-/This article is a continution [[file:2022-12-08.org][of a previous post]]./
-
------
-
-This article makes use of three key components:
+This article utilizes three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
   defining (often sophisticated) network configurations.
 - [[https://w1.fi/hostapd/][hostapd]] -- a daemon for access points that implements all the

@@ -1,6 +1,7 @@
-#+title:    Building virtual networks and software-enabled access points
-#+date:     <2022-12-17 Sat>
-#+filetags: :linux:networks:virtualization:cloud:
+#+title:       Combining systemd-networkd, libvirt and hostapd to emulate a computer network
+#+date:        <2022-12-17 Sat>
+#+filetags:    :linux:networks:virtualization:cloud:
+#+cite_export: csl ~/packages/csl/styles/ergo.csl
 
 This article makes use of three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
@@ -9,11 +10,14 @@ This article makes use of three key components:
   authentication mechanisms of the modern age, including WPA, WPA2,
   EAP, and more.
 - [[https://libvirt.org/][libvirt]] -- a daemon, toolkit, and set of APIs for managing various
-  forms of virtualization technologies, most notably KVM.
+  forms of virtualization technologies, most notably KVM; it is, as we
+  will discover, a powerful system for [cite:@brian19libvirt]
+  emulating real-world networks and creating complex network
+  topologies.
 
-[[file:2022-12-08.org][In a previous post]], I criticized Realtek for their alarmingly dreadful
-network devices. In this one, I propose a solution for anyone in a
-situation similar to mine.
+[[file:2022-12-08.org][In a previous post]], I criticized Realtek for their (unsurprisingly)
+dreadful network devices. In this one, I propose a solution for anyone
+in a situation similar to mine.
 
 One of my academic projects involves the creation of a private,
 multi-node and multi-tenant cloud infrastructure built on top of
@@ -21,22 +25,23 @@ OpenStack.
 
 The single most important property that the cloud environment should
 fulfill is that it has to be portable in terms of its network
-configuration. That's because the laptops my group and I are using to
-build the cloud environment are always connecting to different
-networks which make different assumptions than what we might have
-planned for.
+configuration. This is because the machines - which are no different
+than any off-the-shelf laptop - we are using to collectively build
+said environment are always connecting to different networks which all
+have their unique configurations. What we need is some consistency.
 
-I also have to make do with my own hardware or put down enough money
-to buy the required network devices. However, buying things is
-/always/ hard and it doesn't help when the things you're buying are
-network-related -- choice or rather the paradox which it becomes, is
-nothing but debilitating.
+So, why don't we roll out a /software access point/?
 
-So, why don't we roll out a /software-enabled access point/?
+#+begin_quote
+While this approach has so far worked great for me, if you're
+considering designing a software-based architecture such as this one,
+please understand the potential risks which it might entail, some of
+which are discussed later on in this article.
+#+end_quote
 
 * What exactly is it?
 
-A software-enabled access point is very similar to the special-purpose
+A software access point is very similar to the special-purpose
 device which it imitates. They are just as capable as a /real/ access
 point and most computers and phones can become one.
 
@@ -66,8 +71,23 @@ dynamic IPv4 address, while the OpenStack nodes, should assign
 themselves a static IPv4 address.
 
 The virtual machines are, what some might call "bridged" by their
-hosts onto the network, but behind the scenes, they are actually on a
-subnet whose router is [[https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.bridging.proxy-arp.html][proxying ARP requests/replies]].
+hosts onto the network, but behind the scenes, they are most likely on
+a different subnet with a router that's [[https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.bridging.proxy-arp.html][proxying ARP requests/replies]]
+for them, which leaves them vulnerable to ARP spoofing attacks, but
+that's besides the point.
+
+Bridging is not possible using a wireless network card because we need
+to accommodate a field for the radio receiver when 802.11, on the
+other hand, limits an AP to Client Station data frame[cite:@roshan04wireless] to only three
+address fields: DA, SA, and BSSID.
+
+- BSSID represents the MAC address of the radio transmitter
+- SA is the source MAC address
+- DA is the destination MAC address
+
+As it turns out, a fourth address can be used to permit bridging over
+wireless. However, it's vendor-dependent and the 802.11 protocol
+doesn't exactly specify how things are supposed to work in this mode.
 
 ** Configuring libvirt
 
@@ -149,7 +169,7 @@ in our case is =wlan=.
 [NetDev]
 Name=<softap>
 Kind=wlan
-Description=vNIC for a software-enabled access point
+Description=vNIC for a software access point
 #+end_src
 
 The last section is going to define how the virtual network device
@@ -258,17 +278,15 @@ Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
 * Results and reflections
 
 To show that everything works, I'll connect through my phone to the my
-new software-enabled access point - which I decided to call "jungle"
+new software access point - which I decided to call "jungle"
 by the way - and then visit the OpenStack Horizon dashboard hosted on
 one of the virtual machines.
 
 #+HTML: <img src="/assets/images/softap-results.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
 
-/Isn't it wonderful?/
-
 Right now, the only thing protecting the network is the authentication
-mechanism of the WLAN, but we might consider using a firewall such as
-pfSense to protect the network from outsiders.
+mechanism of the WLAN, we should consider installing a firewall [cite:@lukas20firewalld] to
+protect the network from outsiders.
 
 While this article explores an alternative network architecture, it is
 in no way a definitive solution, nor is it a great one -- just one
@@ -276,9 +294,7 @@ that works at no extra cost to me.
 
 Because it is based on WLAN, traffic from inside the network is
 significantly slower than what a typical production cloud
-infrastructure might require.
-
-Proxy ARP is a
+infrastructure might necessitate.
 
 Furthermore, we are undeniably committing a grave mistake in terms of
 network architecture, there's a single network serving all of the
@@ -308,13 +324,10 @@ desktop and server realms.
 
 It has been wonderful getting to know the intricacies of these systems
 and using them as the basis for architecturing a flexible virtual
-computer network to support my academic project.
+computer network to support my academic project. If you're considering
+building a software-based architecture such as this one, please
+understand the potential risks involved with such an approach.
 
-* Read also
+* References
 
-- Brian Linkletter's very thorough publication on emulating real-world
-  networks and creating complex network topologies with =libvirt=:
-  https://www.brianlinkletter.com/2019/02/build-a-network-emulator-using-libvirt/
-- Lukáš Zapletal's article on combining =firewalld= with =libvirt=:
-  https://lukas.zapletalovi.com/posts/2020/setting-a-firewalld-zone-for-libvirt-network/
-
+#+print_bibliography:

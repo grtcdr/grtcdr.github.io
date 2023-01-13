@@ -3,28 +3,35 @@
 
 ;; This publishing script recognizes the following environment variables:
 ;;
-;; *  WITH_PDF:  Enable PDF export of dotfiles
-;; *  CI:        Inform this script that it is being run in a CI context
+;; *  CI:   Inform this script that it is being run in a CI context
 
 (normal-top-level-add-subdirs-to-load-path)
 
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(package-install 'ini-mode)
+(package-install 'toml-mode)
+(package-install 'citeproc)
+
+;; Built-in packages:
 (require 'ox-publish)
 (require 'org-id)
 (require 'shr)
-(require 'liaison)
 (require 'project)
+(require 'oc)
+(require 'oc-csl)
+;; Remote packages:
+(require 'citeproc)
+;; Local packages:
+(require 'liaison)
 (require 'redefinitions)
-
-(with-eval-after-load 'package
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
-  (package-initialize)
-
-  (unless package-archive-contents
-    (package-refresh-contents))
-
-  (package-install 'ini-mode)
-  (package-install 'toml-mode))
 
 (defun env/enabled? (env)
   (length> (member env '("yes" "true")) 0))
@@ -38,10 +45,6 @@
 	      "plantuml"
 	    "java/plantuml")))
 
-(setq user-full-name "Aziz Ben Ali"
-      user-mail-address "tahaaziz.benali@esprit.tn"
-      make-backup-files nil)
-
 (defun site/should-lang-confirm? (lang body)
   "Return non-nil if LANG needs to confirm before babel may evaluate BODY."
   (not (member lang '("dot" "plantuml"))))
@@ -53,23 +56,25 @@
    (elisp . nil)
    (sh . nil)))
 
+(setq user-full-name "Aziz Ben Ali"
+      user-mail-address "tahaaziz.benali@esprit.tn"
+      make-backup-files nil)
+
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
       org-confirm-babel-evaluate #'site/should-lang-confirm?
-      org-plantuml-jar-path (site/get-plantuml-jar-path))
-
-(setq org-html-metadata-timestamp-format "%B %d, %Y"
+      org-plantuml-jar-path (site/get-plantuml-jar-path)
+      org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
       org-html-doctype "html5"
-      org-html-html5-fancy t)
-
-(setq org-id-files ".org-id-locations")
-
-(setq org-latex-pdf-process '("latexmk -f -pdf %f"))
+      org-html-html5-fancy t
+      org-latex-pdf-process '("latexmk -f -pdf %f")
+      org-id-files ".org-id-locations"
+      org-cite-global-bibliography '("~/documents/edu/refs.bib"))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
@@ -90,7 +95,7 @@ dotfiles publishing project."
       entry)))
 
 (defvar site/dotfiles-sitemap-title
-  "Peek through my =~/.dotfiles= and into the inner workings of my system")
+  "Peek into the inner workings of my system")
 
 (defun site/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
@@ -124,6 +129,7 @@ dotfiles publishing project."
    (site/stylesheet "/css/source.css")
    (site/stylesheet "/css/table.css")
    (site/stylesheet "/css/figure.css")
+   (site/stylesheet "/css/bib.css")
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
@@ -180,8 +186,7 @@ dotfiles publishing project."
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
 	       :html-postamble dotfiles-postamble
-	       :html-head-extra (concat site/html-head
-					(site/stylesheet "/css/indent.css")))
+	       :html-head-extra site/html-head)
 	 (list "data"
 	       :base-extension ".*"
 	       :base-directory "assets"
@@ -197,7 +202,8 @@ dotfiles publishing project."
 	       :base-extension "css"
 	       :base-directory "src/css"
 	       :publishing-directory "public/css"
-	       :publishing-function 'org-publish-attachment)
+	       :publishing-function 'org-publish-attachment
+	       :sitemap-title "Posts")
 	 (list "javascripts"
 	       :base-extension "js"
 	       :base-directory "src/js"

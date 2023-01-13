@@ -74,7 +74,7 @@
       org-html-html5-fancy t
       org-latex-pdf-process '("latexmk -f -pdf %f")
       org-id-files ".org-id-locations"
-      org-cite-global-bibliography '("~/documents/edu/refs.bib"))
+      org-cite-global-bibliography (list (expand-file-name "refs.bib")))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the

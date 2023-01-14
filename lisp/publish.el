@@ -93,7 +93,6 @@ dotfiles publishing project."
   (shr-dom-to-xml `(link ((rel . "stylesheet")
 			  (href . ,filename)))))
 
-
 (defvar s/html-head
   (concat
    (s/stylesheet "/css/def.css")
@@ -144,13 +143,13 @@ INFO is a plist used as a communication channel."
       org-html-doctype "html5"
       org-html-html5-fancy t
       org-latex-pdf-process '("latexmk -f -pdf %f")
-      org-id-files ".org-id-locations"
-      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
-      org-cite-csl-styles-dir (list (expand-file-name "assets/csl/styles")) 
-      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales"))
+      org-id-files ".org-id-locations")
+
+(setq org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
+      org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
+      org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
       org-cite-export-processors
-      '((html . (csl "chicago-fullnote-bibliography.csl"))
-	(odt . (csl "chicago-fullnote-bibliography.csl"))
+      '((html . (csl "apa.csl"))
 	(latex . biblatex)
 	(t . simple)))
 

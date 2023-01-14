@@ -1,7 +1,6 @@
 #+title:       Combining systemd-networkd, libvirt and hostapd to emulate a computer network
 #+date:        <2022-12-17 Sat>
 #+filetags:    :networks:linux:cloud:
-#+cite_export: csl ../../assets/csl/styles/ergo.csl
 
 This article utilizes three key components:
 - [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
@@ -72,9 +71,10 @@ for them, which leaves them vulnerable to ARP spoofing attacks, but
 that's besides the point.
 
 Bridging is not possible using a wireless network card because we need
-to accommodate a field for the radio receiver when 802.11, on the
-other hand, limits an AP to Client Station data frame[cite:@roshan04wireless] to only three
-address fields: DA, SA, and BSSID.
+to accommodate a fourth field for the radio receiver when 802.11, on
+the other hand, limits an AP to Client Station data
+frame[cite:@roshan04wireless] to only three address fields: DA, SA,
+and BSSID.
 
 - BSSID represents the MAC address of the radio transmitter
 - SA is the source MAC address
@@ -323,7 +323,5 @@ and using them as the basis for architecturing a flexible virtual
 computer network to support my academic project. If you're considering
 building a software-based architecture such as this one, please
 understand the potential risks involved with such an approach.
-
-* References
 
 #+print_bibliography:

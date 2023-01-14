@@ -24,6 +24,7 @@ $(CSS_DIR)/%.css: $(LESS_DIR)/%.less
 	@$(LESSC) $< $@
 
 build:
+	@rm -rf .cache
 	@emacs -Q --script $(LISP_DIR)/publish.el --funcall org-publish-all t t
 
 optimize:
@@ -32,12 +33,13 @@ optimize:
 serve: less build
 	@miniserve public
 
-cv:
-ifeq ($(CI),false)
-	cd src/cv && make
-endif
-
 clean:
 	@rm -rf $(CSS_FILES)
-	@rm -rf public/
-	@rm -rf .cache/
+	@rm -rf public
+	@rm -rf .cache
+
+cv:
+ifeq ($(CI),false)
+	cd src/cv
+	make
+endif

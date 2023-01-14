@@ -3,7 +3,7 @@
 
 ;; This publishing script recognizes the following environment variables:
 ;;
-;; *  CI:   Inform this script that it is being run in a CI context
+;; *  CI:   Inform this script that it is being run in a CI context.
 
 (normal-top-level-add-subdirs-to-load-path)
 
@@ -22,11 +22,9 @@
 
 ;; Publishing
 (require 'ox-publish)
-;; Citing
 (require 'oc)
 (require 'oc-csl)
 (require 'citeproc)
-;; Element IDs
 (require 'org-id)
 ;; XML templating
 (require 'shr)
@@ -49,39 +47,8 @@
   "Return non-nil if LANG needs to confirm before babel may evaluate BODY."
   (not (member lang '("dot" "plantuml"))))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)
-   (dot . t)
-   (elisp . nil)
-   (sh . nil)))
-
-(setq user-full-name "Aziz Ben Ali"
-      user-mail-address "tahaaziz.benali@esprit.tn"
-      make-backup-files nil)
-
-(setq org-publish-list-skipped-files nil
-      org-publish-timestamp-directory ".cache/"
-      org-export-time-stamp-file nil
-      org-src-fontify-natively t
-      org-src-preserve-indentation t
-      org-confirm-babel-evaluate #'s/should-lang-confirm?
-      org-plantuml-jar-path (s/get-plantuml-jar-path)
-      org-html-metadata-timestamp-format "%B %d, %Y"
-      org-html-htmlize-output-type nil
-      org-html-head-include-default-style nil
-      org-html-doctype "html5"
-      org-html-html5-fancy t
-      org-latex-pdf-process '("latexmk -f -pdf %f")
-      org-id-files ".org-id-locations"
-      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
-      org-cite-csl-styles-dir (list (expand-file-name "assets/csl/styles")) 
-      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales"))
-      org-cite-export-processors
-      '((html . (csl "chicago-fullnote-bibliography.csl"))
-	(odt . (csl "chicago-fullnote-bibliography.csl"))
-	(latex . biblatex)
-	(t . simple)))
+(defun s/asset-global-macro (filename)
+  (concat default-directory "assets" filename))
 
 (defun s/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
@@ -137,7 +104,6 @@ dotfiles publishing project."
    (s/stylesheet "/css/source.css")
    (s/stylesheet "/css/table.css")
    (s/stylesheet "/css/figure.css")
-   (s/stylesheet "/css/bib.css")
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
@@ -151,6 +117,42 @@ INFO is a plist used as a communication channel."
     (?m . ,(plist-get info :email))
     (?e . ,(liaison-get-resource-url 'edit))
     (?l . ,(liaison-get-resource-url 'log))))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)
+   (dot . t)
+   (elisp . nil)))
+
+(setq org-export-global-macros
+      '(("asset" . "(s/asset-global-macro $1)")))
+
+(setq user-full-name "Aziz Ben Ali"
+      user-mail-address "tahaaziz.benali@esprit.tn"
+      make-backup-files nil)
+
+(setq org-publish-list-skipped-files nil
+      org-publish-timestamp-directory ".cache/"
+      org-export-time-stamp-file nil
+      org-src-fontify-natively t
+      org-src-preserve-indentation t
+      org-confirm-babel-evaluate #'s/should-lang-confirm?
+      org-plantuml-jar-path (s/get-plantuml-jar-path)
+      org-html-metadata-timestamp-format "%B %d, %Y"
+      org-html-htmlize-output-type nil
+      org-html-head-include-default-style nil
+      org-html-doctype "html5"
+      org-html-html5-fancy t
+      org-latex-pdf-process '("latexmk -f -pdf %f")
+      org-id-files ".org-id-locations"
+      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
+      org-cite-csl-styles-dir (list (expand-file-name "assets/csl/styles")) 
+      org-cite-csl-locales-dir (list (expand-file-name "assets/csl/locales"))
+      org-cite-export-processors
+      '((html . (csl "chicago-fullnote-bibliography.csl"))
+	(odt . (csl "chicago-fullnote-bibliography.csl"))
+	(latex . biblatex)
+	(t . simple)))
 
 (setq org-publish-project-alist
       (let* ((posts-postamble (concat (s/get-template "postamble/posts.html")
@@ -185,7 +187,8 @@ INFO is a plist used as a communication channel."
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
 	       :html-head-extra (concat s/html-head
-					(s/stylesheet "/css/blog.css")))
+					(s/stylesheet "/css/blog.css")
+					(s/stylesheet "/css/bib.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -209,20 +212,6 @@ INFO is a plist used as a communication channel."
 	       :base-directory "assets"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
-	 (list "csl-styles"
-	       :base-extension "csl"
-	       :base-directory "assets/csl/styles"
-	       :exclude ".*"
-	       :include '("ergo.csl")
-	       :publishing-directory "public/assets/csl"
-	       :publishing-function 'org-publish-attachment)
-	 (list "csl-locales"
-	       :base-extension "xml"
-	       :base-directory "assets/csl/locales"
-	       :publishing-directory "public/assets/csl"
-	       :publishing-function 'org-publish-attachment
-	       :exclude ".*"
-	       :include '("locales-en-US.xml"))
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "assets/images"

@@ -68,9 +68,6 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
-(defvar s/dotfiles-sitemap-title
-  "Peek into the inner workings of my system")
-
 (defun s/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil\n"
@@ -196,7 +193,7 @@ INFO is a plist used as a communication channel."
 	       :exclude (regexp-opt '("README.org"))
 	       :recursive t
 	       :auto-sitemap t
-	       :sitemap-title s/dotfiles-sitemap-title
+	       :sitemap-title "Peek into the inner workings of my system"
 	       :sitemap-style 'list
 	       :sitemap-format-entry 's/dotfiles-sitemap-format-entry
 	       :sitemap-function 's/dotfiles-sitemap-function

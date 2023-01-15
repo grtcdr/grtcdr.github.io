@@ -4,6 +4,6 @@
 #+begin_export html
 <div style="text-align:center;margin-top:10em">
   <h2 style="font-weight:700">Page not found</h2>
-  <p>I couldn't locate the page you requested, it <i>most likely</i> doesn't exist.</p>
+  <p>I couldn't locate the page you requested, either it does not exist or it may have been moved elsewhere.</p>
 </div>
 #+end_export

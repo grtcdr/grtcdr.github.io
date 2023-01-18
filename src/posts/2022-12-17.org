@@ -1,17 +1,6 @@
-#+title:       Combining systemd-networkd, libvirt and hostapd to emulate a computer network
-#+date:        <2022-12-17 Sat>
-#+filetags:    :networks:linux:cloud:
-
-This article utilizes three key components:
-- [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
-  defining (often sophisticated) network configurations.
-- [[https://w1.fi/hostapd/][hostapd]] -- a daemon for access points that implements all the
-  authentication mechanisms of the modern age, including WPA, WPA2,
-  EAP, and more.
-- [[https://libvirt.org/][libvirt]] -- a daemon, toolkit, and set of APIs for managing various
-  forms of virtualization technologies, most notably KVM; it is, as we
-  will discover, a powerful system for emulating real-world networks
-  [cite:@brian19libvirt] and creating complex network topologies.
+#+title:    Combining systemd-networkd, libvirt and hostapd to emulate a computer network
+#+date:     <2022-12-17 Sat>
+#+filetags: :networks:linux:cloud:
 
 One of my academic projects involves the creation of a private,
 multi-node and multi-tenant cloud infrastructure built on top of
@@ -22,16 +11,28 @@ fulfill is that it has to be portable in terms of its network
 configuration. This is because the machines - which are no different
 than any off-the-shelf laptop - we are using to collectively build
 said environment are always connecting to different networks which all
-have their unique configurations. What we need is some consistency.
+have their unique configurations.
 
 So, why don't we roll out a /software access point/?
+
+This article will present an implementation which combines the
+following three components:
+- [[https://www.freedesktop.org/software/systemd/man/systemd.network.html][systemd-networkd]] -- a network backend and a daemon for
+  defining (often sophisticated) network configurations.
+- [[https://w1.fi/hostapd/][hostapd]] -- a daemon for access points that implements all the
+  authentication mechanisms of the modern age, including WPA, WPA2,
+  EAP, and more.
+- [[https://libvirt.org/][libvirt]] -- a daemon, toolkit, and set of APIs for managing various
+  forms of virtualization technologies, most notably KVM; it is, as we
+  will discover, a powerful system for emulating real-world networks
+  [cite:@brian19libvirt] and creating complex network topologies.
 
 #+begin_quote
 While this approach has so far worked reasonably well for us, if
 you're considering designing a software-based architecture such as
 this one, please understand the potential risks that it might entail,
 some of which are discussed later on in this article.
-#+end_quote
+#+end_quote  
 
 * What exactly is it?
 
@@ -73,7 +74,7 @@ that's besides the point.
 Bridging is not possible using a wireless network card because we need
 to accommodate a fourth field for the radio receiver when 802.11, on
 the other hand, limits an AP to Client Station data
-frame[cite:@roshan04wireless] to only three address fields: DA, SA,
+frame [cite:@roshan04wireless] to only three address fields: DA, SA,
 and BSSID.
 
 - BSSID represents the MAC address of the radio transmitter
@@ -225,10 +226,9 @@ IDX LINK     TYPE     OPERATIONAL SETUP
 #+end_example
 
 Note that until we use or bridge the device, the operational status of
-=<softap>= will continue to report =no-carrier=.
-
-To better understand the operational statuses of =systemd-networkd=,
-visit: [[https://www.freedesktop.org/software/systemd/man/networkctl.html]].
+=<softap>= will continue to report =no-carrier=, the manual
+[cite:@man:networkctl] explains in detail the different operational
+statuses of =systemd-networkd= and their meaning.
 
 ** Configuring hostapd
 
@@ -323,5 +323,7 @@ and using them as the basis for architecturing a flexible virtual
 computer network to support my academic project. If you're considering
 building a software-based architecture such as this one, please
 understand the potential risks involved with such an approach.
+
+* References
 
 #+print_bibliography:

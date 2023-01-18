@@ -1,6 +1,0 @@
-#+title: Templates
-
-The purpose of this directory is to minimize redundancy and automate
-the insertion of templates into the pages which require them. This is
-done by passing the content of a template to the [[info:org#HTML preamble and postamble][:html-preamble or
-:html-postamble options]].

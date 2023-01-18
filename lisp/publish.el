@@ -36,21 +36,21 @@
 
 (setq env/ci (getenv "CI"))
 
-(defun s/get-plantuml-jar-path ()
+(defun site/get-plantuml-jar-path ()
   "Determine the path of the PlantUML JAR file."
   (format "/usr/share/%s/plantuml.jar"
 	  (if (env/enabled? env/ci)
 	      "plantuml"
 	    "java/plantuml")))
 
-(defun s/should-lang-confirm? (lang body)
-  "Return non-nil if LANG needs to confirm before babel may evaluate BODY."
+(defun site/should-lang-confirm? (lang body)
+  "Return non-nil if LANG is to be evaluated without confirmation."
   (not (member lang '("dot" "plantuml"))))
 
-(defun s/asset-global-macro (filename)
+(defun site/asset-global-macro (filename)
   (concat default-directory "assets" filename))
 
-(defun s/posts-sitemap-format-entry (entry style project)
+(defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
   (format "%s - [[file:%s][%s]]"
@@ -58,7 +58,7 @@ posts publishing project."
 	  entry
 	  (org-publish-find-title entry project)))
 
-(defun s/dotfiles-sitemap-format-entry (entry style project)
+(defun site/dotfiles-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 dotfiles publishing project."
   (let* ((title (org-publish-find-title entry project))
@@ -68,38 +68,38 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
-(defun s/dotfiles-sitemap-function (title list)
+(defun site/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun s/posts-sitemap-function (title list)
+(defun site/posts-sitemap-function (title list)
   "Custom sitemap function for the posts publishing project."
   (concat "#+OPTIONS: html-postamble:nil html-preamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun s/get-template (path)
+(defun site/get-template (path)
   "Read a template from the templates directory."
   (with-temp-buffer
     (insert-file-contents
      (file-name-concat "src/templates" path))
     (buffer-string)))
 
-(defun s/stylesheet (filename)
+(defun site/stylesheet (filename)
   "Format filename as a stylesheet."
   (shr-dom-to-xml `(link ((rel . "stylesheet")
 			  (href . ,filename)))))
 
-(defvar s/html-head
+(defvar site/html-head
   (concat
-   (s/stylesheet "/css/def.css")
-   (s/stylesheet "/css/common.css")
-   (s/stylesheet "/css/heading.css")
-   (s/stylesheet "/css/nav.css")
-   (s/stylesheet "/css/org.css")
-   (s/stylesheet "/css/source.css")
-   (s/stylesheet "/css/table.css")
-   (s/stylesheet "/css/figure.css")
+   (site/stylesheet "/css/def.css")
+   (site/stylesheet "/css/common.css")
+   (site/stylesheet "/css/heading.css")
+   (site/stylesheet "/css/nav.css")
+   (site/stylesheet "/css/org.css")
+   (site/stylesheet "/css/source.css")
+   (site/stylesheet "/css/table.css")
+   (site/stylesheet "/css/figure.css")
    (shr-dom-to-xml '(link ((rel . "icon")
 			   (type . "image/x-icon")
 			   (href . "/assets/favicon.ico")))))
@@ -121,7 +121,7 @@ INFO is a plist used as a communication channel."
    (elisp . nil)))
 
 (setq org-export-global-macros
-      '(("asset" . "(s/asset-global-macro $1)")))
+      '(("asset" . "(site/asset-global-macro $1)")))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
@@ -132,8 +132,8 @@ INFO is a plist used as a communication channel."
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
-      org-confirm-babel-evaluate #'s/should-lang-confirm?
-      org-plantuml-jar-path (s/get-plantuml-jar-path)
+      org-confirm-babel-evaluate #'site/should-lang-confirm?
+      org-plantuml-jar-path (site/get-plantuml-jar-path)
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
@@ -146,17 +146,17 @@ INFO is a plist used as a communication channel."
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
       org-cite-export-processors
-      '((html . (csl "apa.csl"))
+      '((html . (csl "ieee.csl"))
 	(latex . biblatex)
 	(t . simple)))
 
 (setq org-publish-project-alist
-      (let* ((posts-postamble (concat (s/get-template "postamble/posts.html")
-				      (s/get-template "footer.html")))
-	     (posts-preamble (s/get-template "preamble/main.html"))
-	     (content-preamble (s/get-template "preamble/main.html"))
-	     (dotfiles-preamble (s/get-template "preamble/dotfiles.html"))
-	     (dotfiles-postamble (s/get-template "footer.html")))
+      (let* ((posts-postamble (concat (site/get-template "postamble/posts.html")
+				      (site/get-template "footer.html")))
+	     (posts-preamble (site/get-template "preamble/main.html"))
+	     (content-preamble (site/get-template "preamble/main.html"))
+	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
+	     (dotfiles-postamble (site/get-template "footer.html")))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -166,7 +166,7 @@ INFO is a plist used as a communication channel."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-head-extra s/html-head
+	       :html-head-extra site/html-head
 	       :html-preamble content-preamble
 	       :html-postamble nil)
 	 (list "posts"
@@ -176,15 +176,15 @@ INFO is a plist used as a communication channel."
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 's/posts-sitemap-format-entry
-	       :sitemap-function 's/dotfiles-sitemap-function
+	       :sitemap-format-entry 'site/posts-sitemap-format-entry
+	       :sitemap-function 'site/dotfiles-sitemap-function
 	       :with-title t
 	       :with-toc nil
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra (concat s/html-head
-					(s/stylesheet "/css/blog.css")
-					(s/stylesheet "/css/bib.css")))
+	       :html-head-extra (concat site/html-head
+					(site/stylesheet "/css/blog.css")
+					(site/stylesheet "/css/bib.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -195,14 +195,14 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Peek into the inner workings of my system"
 	       :sitemap-style 'list
-	       :sitemap-format-entry 's/dotfiles-sitemap-format-entry
-	       :sitemap-function 's/dotfiles-sitemap-function
+	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
+	       :sitemap-function 'site/dotfiles-sitemap-function
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
 	       :html-postamble dotfiles-postamble
-	       :html-head-extra s/html-head)
+	       :html-head-extra site/html-head)
 	 (list "data"
 	       :base-extension ".*"
 	       :base-directory "assets"

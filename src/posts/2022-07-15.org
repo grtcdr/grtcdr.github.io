@@ -1,6 +1,6 @@
-#+title:        A short introduction to PlantUML
-#+date:        <2022-07-15>
-#+filetags:    :doc:
+#+title:    A short introduction to PlantUML
+#+date:     <2022-07-15>
+#+filetags: :doc:
 
 * Introduction
 
@@ -135,5 +135,7 @@ directory... Go on, open it, it should look like this:
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but
 we're already capable of doing so much.
+
+* References
 
 #+print_bibliography:

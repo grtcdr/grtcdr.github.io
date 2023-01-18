@@ -43,13 +43,6 @@
 	      "plantuml"
 	    "java/plantuml")))
 
-(defun site/should-lang-confirm? (lang body)
-  "Return non-nil if LANG is to be evaluated without confirmation."
-  (not (member lang '("dot" "plantuml"))))
-
-(defun site/asset-global-macro (filename)
-  (concat default-directory "assets" filename))
-
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
@@ -90,6 +83,17 @@ dotfiles publishing project."
   (shr-dom-to-xml `(link ((rel . "stylesheet")
 			  (href . ,filename)))))
 
+(defun site/should-lang-confirm? (lang body)
+  "Return non-nil if LANG is to be evaluated without confirmation."
+  (not (member lang '("dot" "plantuml"))))
+
+;; Load the following languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)
+   (dot . t)
+   (elisp . nil)))
+
 (defvar site/html-head
   (concat
    (site/stylesheet "/css/def.css")
@@ -110,18 +114,9 @@ dotfiles publishing project."
 INFO is a plist used as a communication channel."
   `((?a . ,(org-export-data (plist-get info :author) info))
     (?t . ,(org-export-data (plist-get info :title) info))
-    (?m . ,(plist-get info :email))
+    (?m . ,(org-export-data (plist-get info :email) info))
     (?e . ,(liaison-get-resource-url 'edit))
     (?l . ,(liaison-get-resource-url 'log))))
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)
-   (dot . t)
-   (elisp . nil)))
-
-(setq org-export-global-macros
-      '(("asset" . "(site/asset-global-macro $1)")))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"

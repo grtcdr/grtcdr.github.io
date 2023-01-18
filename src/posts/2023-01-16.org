@@ -1,0 +1,102 @@
+#+title:    Using WebExtensions to set a startpage as a new tab page
+#+date:     <2023-01-16 Mon>
+#+filetags: :browser:
+
+There's a couple of ways you could set your own startpage as the new
+tab page, but my preferred method is to use [[https://github.com/mozilla/web-ext][web-ext]], a command-line
+tool for building, running and testing web extensions for Firefox and
+Chromium-based browsers, maintained by the Mozilla team.
+
+* Prerequisites
+
+You'll need to [[https://github.com/mozilla/web-ext#installation-from-npm][install web-ext]] before you proceed to the next
+section. I would suggest searching for it and installing it from your
+distribution's package repositories.
+
+* Manifest
+
+Your extension will need to define a [[https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json][manifest]] which describes in JSON
+what it's called, what it does, what permissions it needs, etc.
+
+#+caption: manifest.json
+#+begin_src js
+{
+    "manifest_version": 2,
+    "name": "Startpage",
+    "version": "1.0.0",
+    "description": "New Tab Startpage",
+    "chrome_url_overrides": {
+      "newtab": "index.html"
+    }
+}
+#+end_src
+
+Take this manifest for example which, besides the usual metadata,
+states that it would like to override =chrome_url_overrides.newtab= by
+setting it to =index.html= (relative to =manifest.json=).
+
+Your browser will gladly comply because the [[https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions][WebExtensions API]] (which is
+mostly browser-agnostic) allows for such modifications.
+
+* Tinkering
+
+When we're building or tinkering with an extension, we're constantly
+making changes, testing things out and repeating the same process
+until we're finally satisfied with the result.
+
+There's a command which can temporarily load the extension in the
+browser so that we can efficiently and immediately see the results of
+the changes we make to the add-on. In the same directory as
+=manifest.json=, run the following command:
+
+#+begin_src sh
+web-ext run
+#+end_src
+
+You can target a specific browser using the =--target= flag, e.g. if
+you're using [[https://en.wikipedia.org/wiki/Chromium_(web_browser)][Chromium]] or a [[https://en.wikipedia.org/wiki/Chromium_(web_browser)#Browsers_based_on_Chromium][Chromium-based browser]], provide =chromium=
+as an argument and add the =--chromium-binary= flag, specifying the
+path of the Chromium(-based) binary, e.g. =$(whereis chromium)= on
+UNIX and UNIX-like systems.
+
+* Building
+
+Once you're done testing out your add-on, you'll want to package the
+add-on as a =.zip= file. To do that, visit the same directory as
+=manifest.json= and run the following command:
+
+#+begin_src sh
+web-ext build
+#+end_src
+
+* Signing
+
+The last and most crucial part of this guide is the signing
+process. Firefox for example [[https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/][requires add-ons to be signed by Mozilla]]
+before we can install or self-distribute them, keep in mind that any
+changes made to the source code of the extension will only be
+reflected once the add-on is re-built and re-signed.
+
+In the same directory as =manifest.json=, run the following command:
+
+#+begin_src sh
+web-ext sign --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
+#+end_src
+
+For more information on how to obtain your =--api-key= and
+=--api-secret=, read the [[https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext][official documentation]].
+
+If all goes well during the signing process, you will discover that a
+new directory, =web-ext-artifacts= has appeared, and it contains a
+file ending with =.xpi=, that's the extension.
+
+* Installing
+
+Firefox users can install the =.xpi= file like so:
+1. Enter =about:addons= in the search bar
+2. Drag or drap the =.xpi= file onto the page or locate and click on
+   the /gear/ button and select "Install Add-on from File", then
+   manually pick the =.xpi= file
+3. Accept the prompt to add the extension
+
+That's it, you're all set!

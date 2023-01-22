@@ -70,7 +70,7 @@ dotfiles publishing project."
 
 (defun site/should-lang-confirm? (lang body)
   "Return non-nil if LANG is to be evaluated without confirmation."
-  (not (member lang '("dot" "plantuml"))))
+  (not (member lang '("dot" "elisp" "plantuml"))))
 
 (defvar site/html-head
   (concat

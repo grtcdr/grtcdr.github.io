@@ -1,0 +1,19 @@
+#+TITLE: What have you been up to?
+
+- I'm currently focusing on Emacs in general and Emacs Lisp in
+  particular. I've recently released two packages, [[https://grtcdr.tn/darkman.el][darkman.el]] and
+  [[https://grtcdr.tn/liaison][liaison]], both of which have been an absolute blast to write and
+  maintain.
+
+- I've gotten very interested in bibliographic systems and how the
+  scientific community is using them to cite the works which aid them
+  during their research.
+
+- I've also been going back and editing previous blog posts in an
+  effort to relearn the topics and improve them even further.
+
+- I'm thinking of integrating [[https://bit.dev/][Bit]] (as a development-dependency) with
+  this website to reduce the complexity of the project, and also
+  because submodules have reached their limits for me.
+
+Just so you know, this is a [[https://nownownow.com/about][now]] page.

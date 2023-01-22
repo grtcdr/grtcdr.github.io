@@ -87,13 +87,13 @@ For more information on how to obtain your =--api-key= and
 =--api-secret=, read the [[https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext][official documentation]].
 
 If all goes well during the signing process, you will discover that a
-new directory, =web-ext-artifacts= has appeared, and it contains a
-file ending with =.xpi=, that's the extension.
+new directory named =web-ext-artifacts= has appeared and contains a
+=.xpi= file.
 
 * Installing
 
 Firefox users can install the =.xpi= file like so:
-1. Enter =about:addons= in the search bar
+1. Enter “about:addons” in the search bar
 2. Drag or drap the =.xpi= file onto the page or locate and click on
    the /gear/ button and select "Install Add-on from File", then
    manually pick the =.xpi= file

@@ -1,10 +1,6 @@
 ;; publish.el defines the various components that consitute this
 ;; website and should be used in conjunction with a build system.
 
-;; This publishing script recognizes the following environment variables:
-;;
-;; *  CI:   Inform this script that it is being run in a CI context.
-
 (normal-top-level-add-subdirs-to-load-path)
 
 (with-eval-after-load 'package
@@ -22,26 +18,15 @@
 
 ;; Publishing
 (require 'ox-publish)
+(require 'org-id)
+;; Citations
 (require 'oc)
 (require 'oc-csl)
 (require 'citeproc)
-(require 'org-id)
 ;; XML templating
 (require 'shr)
 ;; URL generation
 (require 'liaison)
-
-(defun env/enabled? (env)
-  (length> (member env '("yes" "true")) 0))
-
-(setq env/ci (getenv "CI"))
-
-(defun site/get-plantuml-jar-path ()
-  "Determine the path of the PlantUML JAR file."
-  (format "/usr/share/%s/plantuml.jar"
-	  (if (env/enabled? env/ci)
-	      "plantuml"
-	    "java/plantuml")))
 
 (defun site/posts-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
@@ -87,13 +72,6 @@ dotfiles publishing project."
   "Return non-nil if LANG is to be evaluated without confirmation."
   (not (member lang '("dot" "plantuml"))))
 
-;; Load the following languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)
-   (dot . t)
-   (elisp . nil)))
-
 (defvar site/html-head
   (concat
    (site/stylesheet "/css/def.css")
@@ -128,20 +106,19 @@ INFO is a plist used as a communication channel."
       org-src-fontify-natively t
       org-src-preserve-indentation t
       org-confirm-babel-evaluate #'site/should-lang-confirm?
-      org-plantuml-jar-path (site/get-plantuml-jar-path)
+      org-plantuml-exec-mode 'plantuml
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
       org-html-doctype "html5"
       org-html-html5-fancy t
-      org-latex-pdf-process '("latexmk -f -pdf %f")
       org-id-files ".org-id-locations")
 
 (setq org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
       org-cite-export-processors
-      '((html . (csl "ieee.csl"))
+      '((html . (csl "association-for-computing-machinery.csl"))
 	(latex . biblatex)
 	(t . simple)))
 

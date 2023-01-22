@@ -1,12 +1,11 @@
-#+TITLE: Greetings
+#+TITLE:       Greetings
 #+DESCRIPTION: grtcdr's website and blog.
 
 I'm grtcdr, a student and free software developer.
 
-I spend most of my time tinkering with things... Well, it's mostly
+I spend most of my time tinkering with software... Well, it's mostly
 just breaking things and then banging my head against the table until
-everything goes back to normal, actually. Also, I love cycling around
-the city -- I only ride for fun, though.
+things start to click, actually.
 
 Find me on:
 

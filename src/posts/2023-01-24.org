@@ -46,7 +46,7 @@ command-line to verify that the tool was properly installed.
 Bob’s almost there, he just needs to install and configure Eglot so
 that Emacs can learn to communicate the same language as any LSP
 server. Alice told him to type =M-x package-install RET eglot RET= and
-give the package a second to install. Alice proceeded explained that
+give the package a second to install. Alice proceeded to explain that
 Eglot internally consults the =eglot-server-programs= to check what
 LSP server it should use for a specific major mode.
 

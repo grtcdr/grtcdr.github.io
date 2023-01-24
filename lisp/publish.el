@@ -72,6 +72,15 @@ dotfiles publishing project."
   "Return non-nil if LANG is to be evaluated without confirmation."
   (not (member lang '("dot" "elisp" "plantuml"))))
 
+(defvar site/footnotes
+  (shr-dom-to-xml
+   '(div ((id . "footnotes"))
+	 (h2 ((class . "footnotes"))
+	     "%s")
+	 (div ((id . "text-footnotes"))
+	      "%s")))
+  "HTML snippet representating the footnotes section.")
+
 (defvar site/html-head
   (concat
    (site/stylesheet "/css/def.css")
@@ -102,6 +111,7 @@ INFO is a plist used as a communication channel."
 
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
+      org-html-footnotes-section site/footnotes
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t

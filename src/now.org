@@ -16,4 +16,4 @@
   this website to reduce the complexity of the project, and also
   because submodules have reached their limits for me.
 
-Just so you know, this is a [[https://nownownow.com/about][now]] page.
+- I'm trying to learn the ways of [[https://guix.gnu.org/][Guix]]!

@@ -24,7 +24,7 @@
 (require 'oc-csl)
 (require 'citeproc)
 ;; XML templating
-(require 'shr)
+(require 'site/templates "templates")
 ;; URL generation
 (require 'liaison)
 
@@ -56,13 +56,6 @@ dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil html-preamble:nil\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun site/get-template (path)
-  "Read a template from the templates directory."
-  (with-temp-buffer
-    (insert-file-contents
-     (file-name-concat "src/templates" path))
-    (buffer-string)))
-
 (defun site/stylesheet (filename)
   "Format filename as a stylesheet."
   (shr-dom-to-xml `(link ((rel . "stylesheet")
@@ -71,15 +64,6 @@ dotfiles publishing project."
 (defun site/should-lang-confirm? (lang body)
   "Return non-nil if LANG is to be evaluated without confirmation."
   (not (member lang '("dot" "elisp" "plantuml"))))
-
-(defvar site/footnotes
-  (shr-dom-to-xml
-   '(div ((id . "footnotes"))
-	 (h2 ((class . "footnotes"))
-	     "%s")
-	 (div ((id . "text-footnotes"))
-	      "%s")))
-  "HTML snippet representating the footnotes section.")
 
 (defvar site/html-head
   (concat
@@ -111,7 +95,8 @@ INFO is a plist used as a communication channel."
 
 (setq org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
-      org-html-footnotes-section site/footnotes
+      org-html-footnotes-section (templates/footnotes)
+      org-html-doctype "html5"
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
@@ -120,7 +105,6 @@ INFO is a plist used as a communication channel."
       org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
-      org-html-doctype "html5"
       org-html-html5-fancy t
       org-id-files ".org-id-locations")
 
@@ -133,12 +117,13 @@ INFO is a plist used as a communication channel."
 	(t . simple)))
 
 (setq org-publish-project-alist
-      (let* ((posts-postamble (concat (site/get-template "postamble/posts.html")
-				      (site/get-template "footer.html")))
-	     (posts-preamble (site/get-template "preamble/main.html"))
-	     (content-preamble (site/get-template "preamble/main.html"))
-	     (dotfiles-preamble (site/get-template "preamble/dotfiles.html"))
-	     (dotfiles-postamble (site/get-template "footer.html")))
+      (let* ((posts-postamble
+	      (concat (templates/posts-postamble)
+		      (templates/footer)))
+	     (content-preamble (templates/main-preamble))
+	     (posts-preamble content-preamble)
+	     (dotfiles-preamble (templates/dotfiles-preamble))
+	     (dotfiles-postamble (templates/footer)))
 	(list
 	 (list "content"
 	       :base-extension "org"

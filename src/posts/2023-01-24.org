@@ -1,0 +1,102 @@
+#+title: Emacs as a .NET development environment
+#+date: <2023-01-24 Tue>
+#+filetags: :emacs:
+
+Bob was tempted to use an integrated development environment (IDE) to
+work on his .NET project, even though he’s heavily invested in
+Emacs. Fortunately, Alice knows a thing or two about .NET’s ecosystem
+and she brought up the idea of building one’s own environment,
+proposing that he combine the following tools:
+- [[https://github.com/joaotavora/eglot/][Eglot]] -- /a [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol]] (LSP) client/
+- [[https://github.com/razzmatazz/csharp-language-server][csharp-ls]] -- /a server implementation of LSP/
+
+Alice said to install[fn:1] the .NET SDK to start off:
+
+#+begin_src sh
+pacman -S dotnet-sdk
+#+end_src
+
+She told Bob to run =dotnet --info= in the command-line to verify that
+the installation was successful.
+
+Alice then insisted on adding the [[https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools][.NET tools]] directory onto the =PATH=
+environment variable, so that when Bob finally installs /csharp-ls/,
+the binary will be available from anywhere on his system.
+
+Since Bob is using /zsh/, he decided to put the following snippet in his
+=.zshenv=, a file that is sourced every time the shell is
+instantiated.
+
+#+begin_src sh
+PATH="$HOME/.dotnet/tools:$PATH"
+export PATH
+#+end_src
+
+Alice, knowing how unnecessarily complicated it can be to install
+/omnisharp/, recommended /csharp-ls/ instead which can be installed
+like so:
+
+#+begin_src sh
+dotnet tool install --global csharp-ls
+#+end_src
+
+This time, Bob was told to run =csharp-ls --version= in the
+command-line to verify that the tool was properly installed.
+
+Bob’s almost there, he just needs to install and configure Eglot so
+that Emacs can learn to communicate the same language as any LSP
+server. Alice told him to type =M-x package-install RET eglot RET= and
+give the package a second to install. Alice proceeded explained that
+Eglot internally consults the =eglot-server-programs= to check what
+LSP server it should use for a specific major mode.
+
+Because languages don’t necessarily have a single LSP server
+implementation, meaning Eglot may not directly recognize every single
+one, she told Bob to add /csharp-ls/ to that list like so:
+
+#+name: eglot-csharp-server-program
+#+begin_src elisp
+(add-to-list 'eglot-server-programs
+	     '(csharp-mode . ("csharp-ls")))
+#+end_src
+
+The next snippet instructs Eglot to automatically start in C#
+buffers:
+
+#+name: eglot-csharp-hook
+#+begin_src elisp
+(add-hook 'csharp-mode-hook 'eglot-ensure)
+#+end_src
+
+These functions may be combined and expressed as such:
+
+#+begin_src elisp :noweb yes
+(with-eval-after-load 'eglot
+  <<eglot-csharp-server-program>>
+  <<eglot-csharp-hook>>)
+#+end_src
+
+And that roughly translates to this =use-package= form:
+
+#+begin_src elisp :noweb yes
+(use-package eglot
+  :commands (eglot eglot-ensure)
+  :hook ((csharp-mode . eglot-ensure))
+  :config
+  <<eglot-csharp-server-program>>)
+#+end_src
+
+Bob’s very happy with the result. He’s capable of doing all the smart
+things a modern programming environment can do from the comfort of his
+favorite text editor.
+
+#+HTML: <img src="/assets/images/2023-01-24--dotnet.png" alt="Emacs .NET environment.">
+
+* Footnotes
+
+[fn:1] Bob’s using Arch Linux as his distribution, but you might be
+using something else entirely. Alice advised him not to install it
+through Guix, a package manager she noticed he’d been playing around
+with recently, because the Mono package had been dropped, .NET is only
+unofficially supported and Omnisharp isn’t up-to-date (and is always
+convinced that the .NET SDK isn’t installed).

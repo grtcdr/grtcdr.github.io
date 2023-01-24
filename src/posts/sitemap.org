@@ -1,6 +1,7 @@
 #+OPTIONS: html-postamble:nil
 #+TITLE: Sitemap for project posts
 
+- 2023-01-24 - [[file:2023-01-24.org][Emacs as a .NET development environment]]
 - 2023-01-16 - [[file:2023-01-16.org][Using WebExtensions to set a startpage as a new tab page]]
 - 2023-01-10 - [[file:2023-01-10.org][Announcing darkman.el]]
 - 2022-12-17 - [[file:2022-12-17.org][Combining systemd-networkd, libvirt and hostapd to emulate a computer network]]

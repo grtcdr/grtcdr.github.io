@@ -19,13 +19,16 @@
 ;; Publishing
 (require 'ox-publish)
 (require 'org-id)
+
 ;; Citations
 (require 'oc)
 (require 'oc-csl)
 (require 'citeproc)
-;; XML templating
+
+;; Templating
 (require 'site/templates "templates")
-;; URL generation
+
+;; URLs
 (require 'liaison)
 
 (defun site/posts-sitemap-format-entry (entry style project)
@@ -48,37 +51,17 @@ dotfiles publishing project."
 
 (defun site/dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
-  (concat "#+OPTIONS: html-postamble:nil\n"
+  (concat "#+OPTIONS: html-postamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
 
 (defun site/posts-sitemap-function (title list)
   "Custom sitemap function for the posts publishing project."
-  (concat "#+OPTIONS: html-postamble:nil html-preamble:nil\n"
+  (concat "#+OPTIONS: html-postamble:nil html-preamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
-
-(defun site/stylesheet (filename)
-  "Format filename as a stylesheet."
-  (shr-dom-to-xml `(link ((rel . "stylesheet")
-			  (href . ,filename)))))
 
 (defun site/should-lang-confirm? (lang body)
   "Return non-nil if LANG is to be evaluated without confirmation."
   (not (member lang '("dot" "elisp" "plantuml"))))
-
-(defvar site/html-head
-  (concat
-   (site/stylesheet "/css/def.css")
-   (site/stylesheet "/css/common.css")
-   (site/stylesheet "/css/heading.css")
-   (site/stylesheet "/css/nav.css")
-   (site/stylesheet "/css/org.css")
-   (site/stylesheet "/css/source.css")
-   (site/stylesheet "/css/table.css")
-   (site/stylesheet "/css/figure.css")
-   (shr-dom-to-xml '(link ((rel . "icon")
-			   (type . "image/x-icon")
-			   (href . "/assets/favicon.ico")))))
-  "HTML headers shared across publishing projects.")
 
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
@@ -91,39 +74,35 @@ INFO is a plist used as a communication channel."
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
-      make-backup-files nil)
-
-(setq org-publish-list-skipped-files nil
+      make-backup-files nil
+      org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
-      org-html-footnotes-section (templates/footnotes)
+      org-id-files ".org-id-locations"
       org-html-doctype "html5"
+      org-html-footnotes-section (templates/footnotes-section)
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
       org-confirm-babel-evaluate #'site/should-lang-confirm?
       org-plantuml-exec-mode 'plantuml
-      org-html-metadata-timestamp-format "%B %d, %Y"
       org-html-htmlize-output-type nil
       org-html-head-include-default-style nil
       org-html-html5-fancy t
-      org-id-files ".org-id-locations")
-
-(setq org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
+      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
-      org-cite-export-processors
-      '((html . (csl "association-for-computing-machinery.csl"))
-	(latex . biblatex)
-	(t . simple)))
+      org-cite-export-processors '((html . (csl "apa.csl"))
+				   (latex . biblatex)
+				   (t . simple)))
 
 (setq org-publish-project-alist
       (let* ((posts-postamble
 	      (concat (templates/posts-postamble)
-		      (templates/footer)))
-	     (content-preamble (templates/main-preamble))
+		      (templates/main-footer)))
+	     (content-preamble (templates/main-navbar))
 	     (posts-preamble content-preamble)
-	     (dotfiles-preamble (templates/dotfiles-preamble))
-	     (dotfiles-postamble (templates/footer)))
+	     (dotfiles-preamble (templates/dotfiles-navbar))
+	     (dotfiles-postamble (templates/main-footer)))
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -133,7 +112,7 @@ INFO is a plist used as a communication channel."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-head-extra site/html-head
+	       :html-head-extra (templates/html-head)
 	       :html-preamble content-preamble
 	       :html-postamble nil)
 	 (list "posts"
@@ -149,9 +128,9 @@ INFO is a plist used as a communication channel."
 	       :with-toc nil
 	       :html-preamble posts-preamble
 	       :html-postamble posts-postamble
-	       :html-head-extra (concat site/html-head
-					(site/stylesheet "/css/blog.css")
-					(site/stylesheet "/css/bib.css")))
+	       :html-head-extra (concat (templates/html-head)
+					(templates/stylesheet "/css/blog.css")
+					(templates/stylesheet "/css/bib.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -169,7 +148,7 @@ INFO is a plist used as a communication channel."
 	       :with-toc t
 	       :html-preamble dotfiles-preamble
 	       :html-postamble dotfiles-postamble
-	       :html-head-extra site/html-head)
+	       :html-head-extra (templates/html-head))
 	 (list "data"
 	       :base-extension ".*"
 	       :base-directory "assets"

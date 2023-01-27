@@ -31,7 +31,12 @@
 
 (defalias 'sexp->xml #'shr-dom-to-xml)
 
-(defun templates/footnotes ()
+(defun templates/stylesheet (filename)
+  "Format filename as a stylesheet."
+  (sexp->xml `(link ((rel . "stylesheet")
+		     (href . ,filename)))))
+
+(defun templates/footnotes-section ()
   "HTML snippet representing the footnotes section."
   (sexp->xml
    '(div ((id . "footnotes"))
@@ -40,7 +45,7 @@
 	 (div ((id . "text-footnotes"))
 	      "%s"))))
 
-(defun templates/footer ()
+(defun templates/main-footer ()
   "HTML snippet representing the footer section."
   (sexp->xml
    '(footer nil
@@ -48,16 +53,6 @@
 	    (p nil
 	       (a ((href . "%l"))
 		  "What's changed?")))))
-
-(defun templates/now-footer ()
-  "HTML snippet representing the footer section."
-  (sexp->xml
-   '(footer nil
-	    (p nil
-	       "This is a "
-	       (a ((href . "https://nownownow.com/about"))
-		  "now")
-	       " page."))))
 
 (defun templates/posts-postamble ()
   "HTML snippet representing the postamble of a post."
@@ -74,7 +69,7 @@
 	       "propose an edit")
 	    "."))))
 
-(defun templates/dotfiles-preamble ()
+(defun templates/dotfiles-navbar ()
   "HTML snippet representing the preamble of the dotfiles publishing project."
   (sexp->xml
    '(nav nil
@@ -86,7 +81,7 @@
 		 (a ((href . "/dotfiles/sitemap.html"))
 		    "Top"))))))
 
-(defun templates/main-preamble ()
+(defun templates/main-navbar ()
   "HTML snippet representing the preamble used across the different publishing projects."
   (sexp->xml
    '(nav nil
@@ -103,5 +98,20 @@
 	     (li nil
 		 (a ((href . "/contact.html"))
 		    "Contact"))))))
+
+(defun templates/html-head ()
+    "HTML headers shared across publishing projects."
+    (concat
+     (templates/stylesheet "/css/def.css")
+     (templates/stylesheet "/css/common.css")
+     (templates/stylesheet "/css/heading.css")
+     (templates/stylesheet "/css/nav.css")
+     (templates/stylesheet "/css/org.css")
+     (templates/stylesheet "/css/source.css")
+     (templates/stylesheet "/css/table.css")
+     (templates/stylesheet "/css/figure.css")
+     (sexp->xml '(link ((rel . "icon")
+			     (type . "image/x-icon")
+			     (href . "/assets/favicon.ico"))))))
 
 (provide 'site/templates)

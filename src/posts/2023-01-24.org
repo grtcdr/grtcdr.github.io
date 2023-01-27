@@ -2,7 +2,7 @@
 #+date: <2023-01-24 Tue>
 #+filetags: :emacs:
 
-Bob was tempted to use an integrated development environment (IDE) to
+[[https://urbigenous.net/library/alicebob.html][Bob]] was tempted to use an integrated development environment (IDE) to
 work on his .NET project, even though he’s heavily invested in
 Emacs. Fortunately, Alice knows a thing or two about .NET’s ecosystem
 and she brought up the idea of building one’s own environment,

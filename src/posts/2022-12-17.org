@@ -65,6 +65,11 @@ Clients of the =vnet0= virtual network are assigned by =libvirt= a
 dynamic IPv4 address, while the OpenStack nodes, should assign
 themselves a static IPv4 address.
 
+Note that the virtual network provider should not use the same network
+address and subnet mask as the network it's connected to. Otherwise,
+there'll be two conflicting IP addresses and the virtual network will
+refuse to start.
+
 The virtual machines are, what some might call "bridged" by their
 hosts onto the network, but behind the scenes, they are most likely on
 a different subnet with a router that's [[https://tldp.org/HOWTO/Adv-Routing-HOWTO/lartc.bridging.proxy-arp.html][proxying ARP requests/replies]]

@@ -1,0 +1,61 @@
+// Copyright 2022 Aziz Ben Ali
+
+// Permission to use, copy, modify, and/or distribute this software for
+// any purpose with or without fee is hereby granted, provided that the
+// above copyright notice and this permission notice appear in all
+// copies.
+
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL
+// WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE
+// AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+// DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+// PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+// TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+// PERFORMANCE OF THIS SOFTWARE.
+
+body {
+  background-color: var(--bg00);
+  color: var(--fg02);
+}
+
+#preamble, #content, #postamble {
+  width: 100%;
+  max-width: 55em;
+  margin: 0 auto;
+}
+
+hr {
+  border: 1px solid var(--bg02);
+}
+
+p { text-justify: inter-word }
+p, li { line-height: 1.7em }
+
+a {
+  color: var(--fg02);
+}
+
+blockquote {
+  margin-left: 0;
+  padding: 0.4em 1.2em;
+  border-left: 0.2em solid var(--fg01);
+  background-color: var(--bg01);
+}
+
+#table-of-contents > h2 {
+  display: none;
+}
+
+#text-table-of-contents {
+  margin: 3em auto;
+}
+
+footer {
+  padding-top: 3em;
+  padding-bottom: 0.75em;
+  line-height: 1.3;
+  font-size: 0.7em;
+  text-align: center;
+  user-select: none;
+}

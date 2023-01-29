@@ -17,13 +17,12 @@ If you wish to reproduce this site locally, the most overarching
 dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]].
 
 Once you've set that up, you should install this project's development
-dependencies.
+dependencies. To do that, position yourself at the project root,
+i.e. the location where you cloned this repository, and then run =npm
+install=.
 
-To do that, position yourself at the project root, i.e. the location
-where you cloned this repository, and then run =npm install=.
-
-You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the
-build system in use.
+You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the build
+system in use.
   
 * Building
 
@@ -33,10 +32,8 @@ and run the =make= command.
 * Development
 
 In order to fully utilize the site during development, you should
-serve the =public= directory with a web server.
-
-This project uses [[https://github.com/svenstaro/miniserve][miniserve]] by default and thus has a recipe to
-quickly serve the site:
+serve the =public= directory with a web server. This project uses
+[[https://github.com/svenstaro/miniserve][miniserve]] by default and thus has a recipe to quickly serve the site:
 
 #+begin_src sh
 make serve

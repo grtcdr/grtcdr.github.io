@@ -25,11 +25,11 @@ care of this task for us.
 I'm going to be building on top of [[https://git.sr.ht/~bzg/org-mode/tree/main/item/lisp/ox-html.el][ox-html]], an [[info:emacs#Org Mode][org-mode]] library,
 because my website is built upon the tools provided by the [[info:emacs][Emacs]]
 ecosystem. Now, before we dive into the technicalities, let's review
-the exportation and publishing process that a file submits to when
+the exportation or publishing process that a file submits to when
 instructed by the user.
 
 #+name: diagram
-#+begin_src dot :file ../../assets/images/org-publish-process.svg :eval yes :results none
+#+begin_src dot :file ../../assets/images/2022-10-08--publish.svg :eval yes :results none
 digraph G {
     publish [
 	     label = "Publishing project?";
@@ -71,7 +71,7 @@ digraph G {
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/org-publish-process.svg"
+  <img src="/assets/images/2022-10-08--publish.svg"
        height="300">
   <figcaption>Overview of the publishing process of an Org document</figcaption>
 </figure>

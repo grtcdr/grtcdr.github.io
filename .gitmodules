@@ -1,12 +1,7 @@
-[submodule "src/less"]
-	path = src/less
-	url = https://github.com/grtcdr/subtle.git
-
 [submodule "src/dotfiles"]
 	path = src/dotfiles
 	url = https://git.sr.ht/~grtcdr/dotfiles
 	shallow = true
-	branch = main
 
 [submodule "lisp/liaison"]
 	path = lisp/liaison

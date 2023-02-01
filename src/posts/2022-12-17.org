@@ -52,7 +52,7 @@ section.
 
 * How is it done?
 
-=libvirt=, =hostapd= and =systemd-networkd= are the only components we need
+/libvirt/, /hostapd/ and /systemd-networkd/ are the only components we need
 to define a virtual network, wrap it as an access point and bind it to
 a specific virtual interface.
 
@@ -61,7 +61,7 @@ idea of the architecture we are going after.
 
 #+HTML: <img src="/assets/images/softap-network.png" alt="Visual representation of the network.">
 
-Clients of the =vnet0= virtual network are assigned by =libvirt= a
+Clients of the =vnet0= virtual network are assigned by /libvirt/ a
 dynamic IPv4 address, while the OpenStack nodes, should assign
 themselves a static IPv4 address.
 
@@ -131,16 +131,16 @@ For more information on this file format, see: https://libvirt.org/formatnetwork
 
 ** Configuring systemd-networkd
 
-Before we enable the access point, =hostapd= needs an interface to
-bind itself to and that is where =systemd-networkd= comes into play.
+Before we enable the access point, /hostapd/ needs an interface to
+bind itself to and that is where /systemd-networkd/ comes into play.
 
-You can't just give =hostapd= a managed wireless interface because
+You can't just give /hostapd/ a managed wireless interface because
 that device will be enslaved by the daemon as it is bridged to some
 other interface. Instead, we should create a virtual interface for
-=hostapd= to control.
+/hostapd/ to control.
 
 Note that:
-- The configuration files of the =systemd-networkd= daemon should be
+- The configuration files of the /systemd-networkd/ daemon should be
   placed underneath =/etc/systemd/network=.
 - The configuration files for devices, links and networks all have
   their corresponding file extensions and man pages,
@@ -152,7 +152,7 @@ Note that:
 *** Defining the virtual network device
 
 The first file we're going to create is going to represent the device
-that =hostapd= is going to use, the name of the file should follow the
+that /hostapd/ is going to use, the name of the file should follow the
 =<name>.netdev= convention, we'll call it =softap.netdev=.
 
 The following section is going to match this configuration against an
@@ -190,7 +190,7 @@ network-related settings, which follows the =<name>.network=
 convention
 
 The first file we're going to create is going to represent the device
-that =hostapd= is going to use, the name of the file should follow the
+that /hostapd/ is going to use, the name of the file should follow the
 =<name>.netdev= convention. I will name mine =softap.netdev=.
 
 The following section is going to match this configuration against the
@@ -212,7 +212,7 @@ IPMasquerade=yes
 
 You're all set now!
 
-In order to tell =systemd-networkd= to reload the new configuration,
+In order to tell /systemd-networkd/ to reload the new configuration,
 run the following command:
 
 #+begin_src sh
@@ -233,17 +233,17 @@ IDX LINK     TYPE     OPERATIONAL SETUP
 Note that until we use or bridge the device, the operational status of
 =<softap>= will continue to report =no-carrier=, the manual
 [cite:@man:networkctl] explains in detail the different operational
-statuses of =systemd-networkd= and their meaning.
+statuses of /systemd-networkd/ and their meaning.
 
 ** Configuring hostapd
 
-=hostapd= is primarily configured through the
+/hostapd/ is primarily configured through the
 =/etc/hostapd/hostapd.conf= file, the daemon offers a plethora of
 functionalities so the file can is quite long. I will therefore cover
 only a rather tiny subset of its configuration options.
 
-As previously mentioned, =hostapd= must be bound to a network
-interface that we'll bridge to the interface =libvirt= creates for the
+As previously mentioned, /hostapd/ must be bound to a network
+interface that we'll bridge to the interface /libvirt/ creates for the
 virtual network.
 
 #+begin_src ini
@@ -305,7 +305,7 @@ requirements.
 
 * Caveats
 
-=hostapd= has made my [[https://en.wikipedia.org/wiki/Kernel_panic][kernel panic]] on two occasions, though I didn't
+/hostapd/ has made my [[https://en.wikipedia.org/wiki/Kernel_panic][kernel panic]] on two occasions, though I didn't
 get the opportunity to investigate (nor was I able to reproduce) the
 issue. Investigating a kernel crash requires software like =kdump=,
 which I don't really care to set up at this time.
@@ -318,16 +318,14 @@ This venture has proven to a great extent how malleable the Linux
 kernel is in terms of its networking capabilities, and it just goes to
 show the unbelievable amount of variety in userspace.
 
-RedHat - the authors of =libvirt=, =systemd= and a large part of the
-Linux userspace - have cultivated a great community and built a lot of
-tooling that support Linux that makes it stand out, both in the
-desktop and server realms.
+RedHat - the authors of /libvirt/, /systemd/ and a large collection of
+Linux userspace tooling - have cultivated a great community and built
+a lot of tooling to support Linux which evidently make it stand out,
+both in the desktop and server realms.
 
 It has been wonderful getting to know the intricacies of these systems
 and using them as the basis for architecturing a flexible virtual
-computer network to support my academic project. If you're considering
-building a software-based architecture such as this one, please
-understand the potential risks involved with such an approach.
+computer network to support my academic project.
 
 * References
 

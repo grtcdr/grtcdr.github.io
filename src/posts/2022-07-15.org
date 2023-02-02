@@ -131,7 +131,7 @@ plantuml animalia.puml -tpng animalia.png
 You should then see an ~animalia.png~ file appear in your working
 directory... Go on, open it, it should look like this:
 
-#+html: <img src="/assets/images/2022-07-15--plantuml.png">
+#+html: <img src="/assets/images/2022-07-15--plantuml.svg">
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

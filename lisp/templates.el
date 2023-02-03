@@ -36,7 +36,7 @@
   (sexp->xml `(link ((rel . "stylesheet")
 		     (href . ,filename)))))
 
-(defun templates/footnotes-section ()
+(defun templates/footnote-section ()
   "HTML snippet representing the footnotes section."
   (sexp->xml
    '(div ((id . "footnotes"))
@@ -54,7 +54,7 @@
 	       (a ((href . "%l"))
 		  "What's changed?")))))
 
-(defun templates/posts-postamble ()
+(defun templates/post-footer ()
   "HTML snippet representing the postamble of a post."
   (sexp->xml
    '(div ((class . "blog-footer"))
@@ -69,7 +69,7 @@
 	       "propose an edit")
 	    "."))))
 
-(defun templates/dotfiles-navbar ()
+(defun templates/dotfile-navbar ()
   "HTML snippet representing the preamble of the dotfiles publishing project."
   (sexp->xml
    '(nav nil
@@ -99,7 +99,7 @@
 		 (a ((href . "/contact.html"))
 		    "Contact"))))))
 
-(defun templates/html-head ()
+(defun templates/metadata ()
     "HTML headers shared across publishing projects."
     (concat
      (templates/stylesheet "/css/def.css")

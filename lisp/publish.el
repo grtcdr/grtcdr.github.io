@@ -3,18 +3,18 @@
 
 (normal-top-level-add-subdirs-to-load-path)
 
-(with-eval-after-load 'package
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents)))
+(defun site/install-packages (packages)
+  "Install the necessary packages. PACKAGES is a list of packages."
+  (with-eval-after-load 'package
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+    (package-initialize)
+    (unless package-archive-contents
+      (package-refresh-contents)))
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (package-install package))))
 
-(setq package-list
-      '(ini-mode toml-mode citeproc))
-
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(site/install-packages '(ini-mode toml-mode citeproc))
 
 ;; Publishing
 (require 'ox-publish)
@@ -31,7 +31,7 @@
 ;; URLs
 (require 'liaison)
 
-(defun site/posts-sitemap-format-entry (entry style project)
+(defun site/post-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
   (format "%s - [[file:%s][%s]]"
@@ -39,7 +39,7 @@ posts publishing project."
 	  entry
 	  (org-publish-find-title entry project)))
 
-(defun site/dotfiles-sitemap-format-entry (entry style project)
+(defun site/dotfile-sitemap-format-entry (entry style project)
   "Format a sitemap entry with its date within the context of the
 dotfiles publishing project."
   (let* ((title (org-publish-find-title entry project))
@@ -49,12 +49,12 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
-(defun site/dotfiles-sitemap-function (title list)
+(defun site/dotfile-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun site/posts-sitemap-function (title list)
+(defun site/post-sitemap-function (title list)
   "Custom sitemap function for the posts publishing project."
   (concat "#+OPTIONS: html-postamble:nil html-preamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
@@ -79,7 +79,7 @@ INFO is a plist used as a communication channel."
       org-publish-timestamp-directory ".cache/"
       org-id-files ".org-id-locations"
       org-html-doctype "html5"
-      org-html-footnotes-section (templates/footnotes-section)
+      org-html-footnotes-section (templates/footnote-section)
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
@@ -91,18 +91,13 @@ INFO is a plist used as a communication channel."
       org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
-      org-cite-export-processors '((html . (csl "apa.csl"))
-				   (latex . biblatex)
-				   (t . simple)))
+      org-cite-export-processors
+      '((html . (csl "apa.csl"))
+	(latex . biblatex)
+	(t . simple)))
 
-(setq org-publish-project-alist
-      (let* ((posts-postamble
-	      (concat (templates/posts-postamble)
-		      (templates/main-footer)))
-	     (content-preamble (templates/main-navbar))
-	     (posts-preamble content-preamble)
-	     (dotfiles-preamble (templates/dotfiles-navbar))
-	     (dotfiles-postamble (templates/main-footer)))
+(let ((main-navbar (templates/main-navbar)))
+  (setq org-publish-project-alist
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -112,8 +107,8 @@ INFO is a plist used as a communication channel."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-head-extra (templates/html-head)
-	       :html-preamble content-preamble
+	       :html-head-extra (templates/metadata)
+	       :html-preamble main-navbar
 	       :html-postamble nil)
 	 (list "posts"
 	       :base-extension "org"
@@ -122,15 +117,18 @@ INFO is a plist used as a communication channel."
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'site/posts-sitemap-format-entry
-	       :sitemap-function 'site/dotfiles-sitemap-function
+	       :sitemap-format-entry 'site/post-sitemap-format-entry
+	       :sitemap-function 'site/dotfile-sitemap-function
 	       :with-title t
 	       :with-toc nil
-	       :html-preamble posts-preamble
-	       :html-postamble posts-postamble
-	       :html-head-extra (concat (templates/html-head)
-					(templates/stylesheet "/css/blog.css")
-					(templates/stylesheet "/css/bib.css")))
+	       :html-preamble main-navbar
+	       :html-postamble
+	       (concat (templates/post-footer)
+			(templates/main-footer))
+	       :html-head-extra
+	       (concat (templates/metadata)
+		       (templates/stylesheet "/css/blog.css")
+		       (templates/stylesheet "/css/bib.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -141,25 +139,25 @@ INFO is a plist used as a communication channel."
 	       :auto-sitemap t
 	       :sitemap-title "Peek into the inner workings of my system"
 	       :sitemap-style 'list
-	       :sitemap-format-entry 'site/dotfiles-sitemap-format-entry
-	       :sitemap-function 'site/dotfiles-sitemap-function
+	       :sitemap-format-entry 'site/dotfile-sitemap-format-entry
+	       :sitemap-function 'site/dotfile-sitemap-function
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
-	       :html-preamble dotfiles-preamble
-	       :html-postamble dotfiles-postamble
-	       :html-head-extra (templates/html-head))
-	 (list "data"
-	       :base-extension ".*"
-	       :base-directory "assets"
-	       :publishing-directory "public/assets"
-	       :publishing-function 'org-publish-attachment)
+	       :html-preamble (templates/dotfile-navbar)
+	       :html-postamble (templates/main-footer)
+	       :html-head-extra (templates/metadata))
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "assets/images"
 	       :publishing-directory "public/assets/images"
 	       :publishing-function 'org-publish-attachment
 	       :recursive t)
+	 (list "data"
+	       :base-extension ".*"
+	       :base-directory "assets"
+	       :publishing-directory "public/assets"
+	       :publishing-function 'org-publish-attachment)
 	 (list "stylesheets"
 	       :base-extension "css"
 	       :base-directory "src/css"
@@ -177,12 +175,4 @@ INFO is a plist used as a communication channel."
 	       :base-directory "src/cv"
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
-	 (list "all"
-	       :components (list "content"
-				 "posts"
-				 "dotfiles"
-			       	 "stylesheets"
-				 "javascripts"
-				 "images"
-				 "data"
-				 "cv")))))
+	 (list "all" :components '("content" "posts" "dotfiles" "stylesheets" "javascripts" "images" "data" "cv")))))

@@ -57,7 +57,7 @@
 (defun templates/post-footer ()
   "HTML snippet representing the postamble of a post."
   (sexp->xml
-   '(div ((class . "blog-footer"))
+   '(div ((class . "post-footer"))
 	 (p nil
 	    (b nil
 	       "Got something to share?"))
@@ -70,7 +70,8 @@
 	    "."))))
 
 (defun templates/dotfile-navbar ()
-  "HTML snippet representing the preamble of the dotfiles publishing project."
+  "HTML snippet representing the preamble of the dotfiles publishing
+project."
   (sexp->xml
    '(nav nil
 	 (ul nil
@@ -82,7 +83,8 @@
 		    "Top"))))))
 
 (defun templates/main-navbar ()
-  "HTML snippet representing the preamble used across the different publishing projects."
+  "HTML snippet representing the preamble used across the different
+publishing projects."
   (sexp->xml
    '(nav nil
 	 (ul nil
@@ -114,4 +116,4 @@
 			     (type . "image/x-icon")
 			     (href . "/assets/favicon.ico"))))))
 
-(provide 'site/templates)
+(provide 'templates)

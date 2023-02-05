@@ -14,7 +14,9 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(site/install-packages '(ini-mode toml-mode citeproc))
+(site/install-packages '(ini-mode toml-mode citeproc htmlize))
+
+(require 'project)
 
 ;; Publishing
 (require 'ox-publish)
@@ -26,7 +28,7 @@
 (require 'citeproc)
 
 ;; Templating
-(require 'site/templates "templates")
+(require 'templates)
 
 ;; URLs
 (require 'liaison)
@@ -77,7 +79,6 @@ INFO is a plist used as a communication channel."
       make-backup-files nil
       org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
-      org-id-files ".org-id-locations"
       org-html-doctype "html5"
       org-html-footnotes-section (templates/footnote-section)
       org-export-time-stamp-file nil
@@ -85,7 +86,7 @@ INFO is a plist used as a communication channel."
       org-src-preserve-indentation t
       org-confirm-babel-evaluate #'site/should-lang-confirm?
       org-plantuml-exec-mode 'plantuml
-      org-html-htmlize-output-type nil
+      org-html-htmlize-output-type 'css
       org-html-head-include-default-style nil
       org-html-html5-fancy t
       org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
@@ -124,11 +125,11 @@ INFO is a plist used as a communication channel."
 	       :html-preamble main-navbar
 	       :html-postamble
 	       (concat (templates/post-footer)
-			(templates/main-footer))
+		       (templates/main-footer))
 	       :html-head-extra
 	       (concat (templates/metadata)
 		       (templates/stylesheet "/css/blog.css")
-		       (templates/stylesheet "/css/bib.css")))
+		       (templates/stylesheet "/css/highlight.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
 	       :base-directory "src/dotfiles"
@@ -146,7 +147,8 @@ INFO is a plist used as a communication channel."
 	       :with-toc t
 	       :html-preamble (templates/dotfile-navbar)
 	       :html-postamble (templates/main-footer)
-	       :html-head-extra (templates/metadata))
+	       :html-head-extra (concat (templates/metadata)
+					(templates/stylesheet "/css/highlight.css")))
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "assets/images"

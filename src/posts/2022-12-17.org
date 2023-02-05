@@ -59,7 +59,7 @@ a specific virtual interface.
 Here's a visual representation of the network that should give you an
 idea of the architecture we are going after.
 
-#+HTML: <img src="/assets/images/softap-network.png" alt="Visual representation of the network.">
+#+HTML: <img src="/assets/images/softap-network.png">
 
 Clients of the =vnet0= virtual network are assigned by /libvirt/ a
 dynamic IPv4 address, while the OpenStack nodes, should assign
@@ -282,7 +282,7 @@ new software access point - which I decided to call "jungle"
 by the way - and then visit the OpenStack Horizon dashboard hosted on
 one of the virtual machines.
 
-#+HTML: <img src="/assets/images/softap-results.png" alt="Connecting to the access point and accessing the Horizon dashboard.">
+#+HTML: <img src="/assets/images/softap-results.png">
 
 Right now, the only thing protecting the network is the authentication
 mechanism of the WLAN, we should consider installing a firewall [cite:@lukas20firewalld] to

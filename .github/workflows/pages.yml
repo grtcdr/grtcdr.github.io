@@ -64,13 +64,6 @@ jobs:
           working_directory: src/cv
           root_file: cv.tex
 
-      - name: Run pre-hooks on source files
-        env:
-          PREFIX: ${{ format('https://media.githubusercontent.com/media/{0}/{1}/assets/images', github.repository, github.ref_name) }}
-        run: |
-          # Find and replace the URLs of local images to their Git LFS equivalent.
-          find src/posts -type f -exec sed -Ei "/.(png|jpe?g)/s-/assets/images-${PREFIX}-g" {} +
-
       - name: Build the website
         run: make
 

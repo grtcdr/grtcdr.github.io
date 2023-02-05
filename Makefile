@@ -5,7 +5,7 @@ LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
 # LESS_IGNORE = def.less
 # LESS_FILES := $(filter-out $(LESS_IGNORE:%=$(LESS_DIR)/%), $(LESS_FILES))
 
-CSS_DIR     = src/css
+CSS_DIR     = public/css
 CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 
 LISP_DIR    = lisp
@@ -13,8 +13,6 @@ JS_DIR      = src/js
 
 GRUNT       = npm exec -- grunt
 GRUNTFILE   = $(JS_DIR)/grunt.js
-
-CI?=false
 
 all: less optimize build
 
@@ -37,9 +35,3 @@ clean:
 	@rm -rf $(CSS_FILES)
 	@rm -rf public
 	@rm -rf .cache
-
-cv:
-ifeq ($(CI),false)
-	cd src/cv
-	make
-endif

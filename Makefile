@@ -1,9 +1,6 @@
 LESSC       = npm exec -- lessc
 LESS_DIR    = src/less
 LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
-# Ignore a (list of) file(s):
-# LESS_IGNORE = def.less
-# LESS_FILES := $(filter-out $(LESS_IGNORE:%=$(LESS_DIR)/%), $(LESS_FILES))
 
 CSS_DIR     = public/css
 CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
@@ -23,7 +20,7 @@ $(CSS_DIR)/%.css: $(LESS_DIR)/%.less
 
 build:
 	@rm -rf .cache
-	@emacs -Q --script $(LISP_DIR)/publish.el --funcall org-publish-all t t
+	@emacs -Q --script $(LISP_DIR)/op-publish.el --funcall org-publish-all
 
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .

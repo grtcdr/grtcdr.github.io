@@ -1,9 +1,6 @@
-;;; templates.el
+;;; op-template.el  -*- lexical-binding:t -*-
 
-;; Copyright (C) 2023  Aziz Ben Ali
-
-;; Author: Aziz Ben Ali <tahaaziz.benali@esprit.tn>
-;; Homepage: https://github.com/grtcdr/darkman.el
+;; Copyright (C) 2023 Aziz Ben Ali
 
 ;; This file is not part of GNU Emacs.
 
@@ -23,7 +20,7 @@
 
 ;;; Commentary:
 
-;; templates.el provides the XML templates of http://grtcdr.tn/darkman.el.
+;; op-template.el provides the XML templates of https://grtcdr.tn.
 
 ;;; Code:
 
@@ -31,12 +28,12 @@
 
 (defalias 'sexp->xml #'shr-dom-to-xml)
 
-(defun templates/stylesheet (filename)
+(defun op-template-stylesheet (filename)
   "Format filename as a stylesheet."
   (sexp->xml `(link ((rel . "stylesheet")
 		     (href . ,filename)))))
 
-(defun templates/footnote-section ()
+(defun op-template-footnote-section ()
   "HTML snippet representing the footnotes section."
   (sexp->xml
    '(div ((id . "footnotes"))
@@ -45,7 +42,7 @@
 	 (div ((id . "text-footnotes"))
 	      "%s"))))
 
-(defun templates/main-footer ()
+(defun op-template-main-footer ()
   "HTML snippet representing the footer section."
   (sexp->xml
    '(footer nil
@@ -54,7 +51,7 @@
 	       (a ((href . "%l"))
 		  "What's changed?")))))
 
-(defun templates/post-footer ()
+(defun op-template-post-footer ()
   "HTML snippet representing the postamble of a post."
   (sexp->xml
    '(div ((class . "post-footer"))
@@ -69,7 +66,7 @@
 	       "propose an edit")
 	    "."))))
 
-(defun templates/dotfile-navbar ()
+(defun op-template-dotfile-navbar ()
   "HTML snippet representing the preamble of the dotfiles publishing
 project."
   (sexp->xml
@@ -82,7 +79,7 @@ project."
 		 (a ((href . "/dotfiles/sitemap.html"))
 		    "Top"))))))
 
-(defun templates/main-navbar ()
+(defun op-template-main-navbar ()
   "HTML snippet representing the preamble used across the different
 publishing projects."
   (sexp->xml
@@ -93,7 +90,7 @@ publishing projects."
 		    "Home"))
 	     (li nil
 		 (a ((href . "/dotfiles/sitemap.html"))
-		    "Dotfiles"))
+		    "Conf"))
 	     (li nil
 		 (a ((href . "/now.html"))
 		    "Now"))
@@ -101,19 +98,19 @@ publishing projects."
 		 (a ((href . "/contact.html"))
 		    "Contact"))))))
 
-(defun templates/metadata ()
-    "HTML headers shared across publishing projects."
-    (concat
-     (templates/stylesheet "/css/def.css")
-     (templates/stylesheet "/css/common.css")
-     (templates/stylesheet "/css/heading.css")
-     (templates/stylesheet "/css/nav.css")
-     (templates/stylesheet "/css/org.css")
-     (templates/stylesheet "/css/source.css")
-     (templates/stylesheet "/css/table.css")
-     (templates/stylesheet "/css/figure.css")
-     (sexp->xml '(link ((rel . "icon")
-			     (type . "image/x-icon")
-			     (href . "/assets/favicon.ico"))))))
+(defun op-template-metadata ()
+  "HTML headers shared across publishing projects."
+  (concat
+   (op-template-stylesheet "/css/def.css")
+   (op-template-stylesheet "/css/common.css")
+   (op-template-stylesheet "/css/heading.css")
+   (op-template-stylesheet "/css/nav.css")
+   (op-template-stylesheet "/css/org.css")
+   (op-template-stylesheet "/css/source.css")
+   (op-template-stylesheet "/css/table.css")
+   (op-template-stylesheet "/css/figure.css")
+   (sexp->xml '(link ((rel . "icon")
+		      (type . "image/x-icon")
+		      (href . "/assets/favicon.ico"))))))
 
-(provide 'templates)
+(provide 'op-template)

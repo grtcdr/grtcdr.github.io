@@ -55,8 +55,8 @@ extends it.
 Let's represent the animal kingdom in a class diagram, abstracting it
 the objected oriented way. Give this a good read.
 
-#+name: animalia-diagram
-#+begin_src plantuml :file ../../assets/images/2022-07-15--plantuml.svg :eval yes :exports both :results none
+#+name: diagram
+#+begin_src plantuml :file ../../assets/images/2022-07-15--plantuml.svg :eval yes :exports both
 package Animalia {
 
   Animal <|-- Feline
@@ -131,7 +131,8 @@ plantuml animalia.puml -tpng animalia.png
 You should then see an ~animalia.png~ file appear in your working
 directory... Go on, open it, it should look like this:
 
-#+html: <img src="/assets/images/2022-07-15--plantuml.svg">
+#+results: diagram
+[[file:../../assets/images/2022-07-15--plantuml.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       target: {
         files: [{
 	  expand: true,
-          cwd: 'src/css',
+          cwd: 'public/css',
           src: ['*.css', '!*.min.css'],
           dest: 'public/css',
           ext: '.css'

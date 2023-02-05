@@ -7,7 +7,7 @@ room for improvement. For example, even though its source code is
 publicly available, it's not quite visible. I intend to finally fix
 that, and this post is going to cover that experience in detail.
 
-We're going to tackle _blog posts_, a category of articles where it's
+We're going to tackle /blog posts/, a category of articles where it's
 pivotal to remain transparent by tracking and divulging any
 alterations we might make to them over time.
 
@@ -29,33 +29,16 @@ familiarize yourself with the exportation and publishing processes
 that a file submits to when instructed by the user.
 
 #+name: diagram
-#+begin_src dot :file ../../assets/images/2022-10-08--publish.svg :eval yes :results none :exports none
+#+begin_src dot :file ../../assets/images/2022-10-08--publish.svg :exports results
 digraph G {
-    publish [
-	     label = "Publishing project?";
-	     shape = rect;
-	     ];
-
-    export [
-	    label = "Exporting file?";
-	    shape = rect;
-	    ];
+    graph   [ size = 3.0 ]
+    node    [ pad = 0.4, shape = rect ]
     
-    consult [
-	     label = "Consult project specification";
-	     shape = rect;
-	     ];
-    
-    process [
-	     label = "Pass Org document\nto ox-html\nfor transpilation";
-	     shape = rect;
-	     ];
-    
-    produce [
-	     label = "Produce output HTML file";
-	     shape = rect;
-	     ];
-    
+    publish [ label = "Publishing project?" ];
+    export  [ label = "Exporting file?" ];
+    consult [ label = "Consult project specification" ];
+    process [ label = "Pass Org document\nto ox-html\nfor transpilation" ];
+    produce [ label = "Produce output HTML file" ];
 
     publish -> consult;
     consult -> process;
@@ -69,13 +52,8 @@ digraph G {
 }
 #+end_src
 
-#+begin_export html
-<figure>
-  <img src="/assets/images/2022-10-08--publish.svg"
-       height="300">
-  <figcaption>Overview of the publishing process of an Org document</figcaption>
-</figure>
-#+end_export
+#+RESULTS: diagram
+[[file:../../assets/images/2022-10-08--publish.svg]]
 
 * First Implementation
 :PROPERTIES:

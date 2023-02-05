@@ -5,7 +5,7 @@
 Yesterday, I released my first ever Emacs Lisp package -- [[https://github.com/grtcdr/liaison][Liaison]]!
 
 Liaison is a tiny little library that generalizes and automates the
-process of linking an HTML document to its corresponding source
+process of mapping an HTML document to its corresponding source
 document originally written in the Org markup language.
 
 I hope you find it useful - do let me know if you ever include it in

@@ -27,7 +27,6 @@
 ;;; Code:
 
 (normal-top-level-add-subdirs-to-load-path)
-(add-to-list 'load-path (file-name-concat default-directory "lisp"))
 
 ;; Publishing
 (require 'ox-publish)

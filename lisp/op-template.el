@@ -90,7 +90,7 @@ publishing projects."
 		    "Home"))
 	     (li nil
 		 (a ((href . "/dotfiles/sitemap.html"))
-		    "Conf"))
+		    "Dot"))
 	     (li nil
 		 (a ((href . "/now.html"))
 		    "Now"))

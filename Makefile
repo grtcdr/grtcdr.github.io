@@ -1,14 +1,13 @@
+GRUNT       = npm exec -- grunt
 LESSC       = npm exec -- lessc
-LESS_DIR    = src/less
-LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
 
 CSS_DIR     = public/css
-CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
-
+LESS_DIR    = src/less
 LISP_DIR    = lisp
 JS_DIR      = src/js
 
-GRUNT       = npm exec -- grunt
+LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
+CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
 GRUNTFILE   = $(JS_DIR)/grunt.js
 
 all: less optimize build
@@ -20,7 +19,7 @@ $(CSS_DIR)/%.css: $(LESS_DIR)/%.less
 
 build:
 	@rm -rf .cache
-	@emacs -Q --script $(LISP_DIR)/op-publish.el --funcall org-publish-all
+	@emacs -Q --init-directory=.emacs --script $(LISP_DIR)/op-publish.el --funcall org-publish-all
 
 optimize:
 	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .

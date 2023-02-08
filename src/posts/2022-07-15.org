@@ -6,11 +6,10 @@
 
 Unified Modeling Language (UML) is presented in academia mainly
 through GUI applications which implement the aforementioned standard,
-all of which are inefficient to navigate and increasingly harder to
-maintain.
-
-PlantUML is a tool that implements UML in a unique manner - a textual
-language - and the benefits of which affect the following domains:
+all of which are inefficient to navigate and hard to
+maintain. PlantUML is a tool that implements UML in a unique manner -
+a textual language - the benefits of which affect the following
+domains:
 
 - Reproducibility: GUI UML tools do not whatsoever integrate into the
   document compilation process, or the writing environment for that
@@ -56,7 +55,7 @@ Let's represent the animal kingdom in a class diagram, abstracting it
 the objected oriented way. Give this a good read.
 
 #+name: diagram
-#+begin_src plantuml :file ../../assets/images/2022-07-15--plantuml.svg :eval yes :exports both
+#+begin_src plantuml :file ../../assets/images/2022-07-15--plantuml.svg :exports both
 package Animalia {
 
   Animal <|-- Feline
@@ -132,7 +131,6 @@ You should then see an ~animalia.png~ file appear in your working
 directory... Go on, open it, it should look like this:
 
 #+results: diagram
-[[file:../../assets/images/2022-07-15--plantuml.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

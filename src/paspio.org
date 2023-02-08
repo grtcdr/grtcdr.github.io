@@ -3,14 +3,12 @@
 #+PROPERTY:    header-args:sh :exports both
 #+OPTIONS:     toc:t num:t
 
-paspio implements the standard formula which dictates the level of
-entropy of a set of symbols.
+/paspio/ is a library that can help you determine the level of [[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][entropy]]
+of a password to measure its unpredictability against brute force
+attacks.
 
-[[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][Entropy]] is a way of measuring the unpredictability of a password
-against brute force attacks, in terms of bits.
-
-- Repository: <https://sr.ht/~grtcdr/paspio>
-- API documentation: <[[https://docs.rs/paspio/latest/paspio]]>
+- Repository: https://sr.ht/~grtcdr/paspio
+- API documentation: [[https://docs.rs/paspio/latest/paspio]]
 
 * Installation
 
@@ -29,8 +27,6 @@ paspio = "0.3"
 #+begin_src sh
 cargo install paspio
 #+end_src
-
-#+RESULTS:
 
 - Arch User Repositories:
 
@@ -51,7 +47,7 @@ cargo build --release
 * Usage
 
 This section illustrates a few examples of what it is like to use
-=paspio= in the shell and how it integrates with other security tools.
+/paspio/ in the shell and how it integrates with other security tools.
 
 ** Generating a password with =pwgen= and verifying its entropy:
 
@@ -109,5 +105,3 @@ echo "${stronger_password} is ${stronger_password_entropy}"
 #+RESULTS:
 : Loosh7ko is 47.63 bits
 : JhB#>xqF8[MTmnqn is 104.87 bits
-
-That's all you need to know.

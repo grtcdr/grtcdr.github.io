@@ -114,3 +114,4 @@ publishing projects."
 		      (href . "/assets/favicon.ico"))))))
 
 (provide 'op-template)
+;;; op-template.el ends here

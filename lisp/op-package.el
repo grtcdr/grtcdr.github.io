@@ -26,8 +26,17 @@
 ;;; Code:
 
 (require 'package)
+(require 'package-vc)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(defvar op-package--vc-providers
+  '(:github "https://github.com" :sourcehut "https://git.sr.ht")
+  "Property list of version control providers and their associated domains.")
+
+(defun op-package--vc-repo (provider slug)
+  "Construct the repository name from PROVIDER and SLUG."
+  (let ((domain (plist-get op-package--vc-providers provider)))
+    (cond ((eq provider :sourcehut) (format "%s/~%s" domain slug))
+	  (t (format "%s/%s" domain slug)))))
 
 (defun op-package--initialize ()
   "Initialize the package manager and its archives."
@@ -39,7 +48,20 @@
   "Install the list of PACKAGES."
   (op-package--initialize)
   (dolist (pkg packages)
-    (unless (package-installed-p pkg)
-      (package-install pkg))))
+    (if (plistp pkg)
+	(let ((provider (car pkg))
+	      (slug (cadr pkg)))
+	  (when (plist-member op-package--vc-providers provider)
+	    (let* ((base (op-package--vc-repo provider slug))
+		   (package (intern (file-name-base slug))))
+	      (unless (package-installed-p package)
+		(package-vc-install base :last-release)))))
+      (unless (package-installed-p pkg)
+	(package-install pkg)))))
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(op-package-install '(toml-mode citeproc htmlize plantuml-mode (:github "grtcdr/liaison")))
 
 (provide 'op-package)
+;;; op-package.el ends here

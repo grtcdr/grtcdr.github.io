@@ -26,22 +26,15 @@
 
 ;;; Code:
 
-(normal-top-level-add-subdirs-to-load-path)
+(add-to-list 'load-path (file-name-concat default-directory "lisp"))
 
-;; Publishing
+(require 'oc)
+(require 'oc-csl)
 (require 'ox-publish)
 (require 'op-package)
 (require 'op-template)
-
-;; URLs
-(require 'liaison)
-
-(op-package-install '(ini-mode toml-mode citeproc htmlize))
-
-;; Citations
-(require 'oc)
-(require 'oc-csl)
 (require 'citeproc)
+(require 'liaison)
 
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.

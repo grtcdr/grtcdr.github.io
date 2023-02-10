@@ -32,10 +32,11 @@ exists outside of this website's source tree.
 
 One major /pain point/ to my current system was dependency/packagement
 management, an area which can make or break a programming
-language. Thankfully, Emacs 29 added a new flag =--init-directory=
-which we can use to specify a custom =user-emacs-directory=, meaning
-the packages we install from say, a publishing script, will not
-interfere with the user's general environment.
+language. Emacs 29, which has not yet been released, thankfully added
+a new =--init-directory= flag which we can use to specify a custom
+=user-emacs-directory=, meaning the packages we install from say, a
+publishing script, will not interfere with the user's general
+environment.
 
 To give you an example, we can consider citeproc a dependency of this
 project, the way we'd go about handling this dependency follows this general ruleset:

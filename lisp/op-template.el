@@ -61,7 +61,7 @@
 	 (p nil
 	    (a ((href . "mailto:%m?subject=[REPLY] %t"))
 	       "Tell me about it")
-	    ". If you found a problem with this page, don't hesitate to"
+	    ". If you found a problem with this page, please"
 	    (a ((href . "%e"))
 	       "propose an edit")
 	    "."))))

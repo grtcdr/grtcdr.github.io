@@ -39,7 +39,8 @@ publishing script, will not interfere with the user's general
 environment.
 
 To give you an example, we can consider citeproc a dependency of this
-project, the way we'd go about handling this dependency follows this general ruleset:
+project, the way we'd go about handling this dependency follows this
+general ruleset:
 1. Configure the project to use a separate initialization directory
 2. Install the dependency at the beginning of the publishing script
 3. Require the library like any other
@@ -86,7 +87,8 @@ packages provided in a list.
       (package-install pkg))))
 #+end_src
 
-Let's put our functions to use, we'll install /citeproc/ -- and /htmlize/, because why not?
+Let's put our functions to use, we'll install /citeproc/ -- and
+/htmlize/, because why not?
 
 #+begin_src emacs-lisp
 (op-package-install '(citeproc htmlize))
@@ -235,7 +237,7 @@ such as this one ='(citeproc htmlize (:github "grtcdr/liaison"))=,
 installing /citeproc/ and /htmlize/ from the usual package archives
 and /liaison/ from the repository in which it resides.
 
-I'm actively using this setup to try and deliver a great reading
+I'm currently using [[https://github.com/grtcdr/grtcdr.github.io][this setup]] to try and deliver a great reading
 experience for you. These tools have empowered me to create an
 environment that is unique to me, an environment whose elements are
 evolving alongside my progression as a writer and developer, and an

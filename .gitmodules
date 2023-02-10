@@ -3,10 +3,6 @@
 	url = https://git.sr.ht/~grtcdr/dotfiles
 	shallow = true
 
-[submodule "src/cv"]
-	path = src/cv
-	url = https://github.com/grtcdr/cv
-
 [submodule "assets/csl/styles"]
 	path = assets/csl/styles
 	url = https://github.com/citation-style-language/styles.git

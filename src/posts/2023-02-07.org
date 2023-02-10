@@ -1,0 +1,246 @@
+#+title: Implementing per-project package management for ox-publish projects
+#+date: <2023-02-07 Tue>
+#+filetags: :emacs:
+
+Emacs is an insanely liberating hacking environment, it is perpetually
+sucking me in through its intricate systems, many of which help me
+organize and automate different areas of my life.
+
+A key part of the Emacs ecosystem are the Org Mode libraries which
+cover many things from [[info:org#Exporting][exporting documents]] and helping you [[info:org#Tracking your habits][keep track
+of habits]] to an [[info:org#Citations][intuitive citation system]] that can be combined with
+other integral tools, like the magnificent [[https://github.com/andras-simonyi/citeproc-el][citeproc]].
+
+When I initially started using Emacs, it was to distract myself from
+my old Vim habits and to learn something new. I was comfortable with
+my tools, my ways and ideologies, but it was a [[https://youtu.be/SzA2YODtgK4][couple]] [[https://youtu.be/KdcXu_RdKI0][of]] [[https://youtu.be/JWD1Fpdd4Pc][presentations]]
+that helped me realize the vast difference between how I go about
+achieving a task and how others are doing it.
+
+I'm currently leveraging =ox-publish=, an immensely extensible and
+highly documented facility of the Org Mode library, to build and
+architecture this website, a website whose first commit happened
+around seven months ago. I've added lots of tiny features since then:
+[[https://emacs.ch/@grtcdr/109673543873822484][preference-based colorschemes]], [[https://emacs.ch/@grtcdr/109818123826436913][syntax highlighting]], [[https://emacs.ch/@grtcdr/109711989196426299][citations]], and a
+[[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/modules/ab-blog.el][tiny module]] that helps me navigate my blog post directory a lot more
+efficiently, to name a few.
+
+This has also been my first attempt at abstracting the codebase of a
+website so that it can span multiple sub-projects, like [[https://grtcdr.tn/liaison][liaison]] and
+[[https://grtcdr.tn/darkman.el][darkman.el]], both of which are independent projects whose source code
+exists outside of this website's source tree.
+
+One major /pain point/ to my current system was dependency/packagement
+management, an area which can make or break a programming
+language. Thankfully, Emacs 29 added a new flag =--init-directory=
+which we can use to specify a custom =user-emacs-directory=, meaning
+the packages we install from say, a publishing script, will not
+interfere with the user's general environment.
+
+To give you an example, we can consider citeproc a dependency of this
+project, the way we'd go about handling this dependency follows this general ruleset:
+1. Configure the project to use a separate initialization directory
+2. Install the dependency at the beginning of the publishing script
+3. Require the library like any other
+
+To address the first point, we might consider using a Makefile which
+will help us streamline the publishing process.
+
+#+begin_src makefile
+build:
+	emacs --quick --init-directory=.emacs.d --script publish.el --funcall org-publish-all
+#+end_src
+
+When the =build= recipe is invoked, the emacs batch processor will
+create a new =.emacs.d= directory adjacent to the =Makefile= and use
+that to store the source code of the packages we'll install later on.
+We're also loading a file named =publish.el= whose purpose is to
+handle the publishing aspects of the project, this interacts with
+=ox-publish= to configure how the project should turn out when it is
+exported via =org-publish-all=.
+
+Since the packages we'd like to use aren't not available by default,
+we'll have to go out and fetch them like we would any other
+third-party package. This involves some preparation which we can
+easily abstract into two main functions: the first takes care of
+initializing the package archives while the second installs the
+packages provided in a list.
+
+#+begin_src emacs-lisp
+(require 'package)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(defun op-package--initialize ()
+  "Initialize the package manager and its archives."
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents)))
+
+(defun op-package-install (packages)
+  "Install the list of PACKAGES."
+  (op-package--initialize)
+  (dolist (pkg packages)
+    (unless (package-installed-p pkg)
+      (package-install pkg))))
+#+end_src
+
+Let's put our functions to use, we'll install /citeproc/ -- and /htmlize/, because why not?
+
+#+begin_src emacs-lisp
+(op-package-install '(citeproc htmlize))
+#+end_src
+
+We'll jump a couple lines down, and require the two libraries,
+actually we won't require /htmlize/ as it's sort of an exception,
+that's because =ox-publish= will require it when it needs it.
+
+#+begin_src emacs-lisp
+(require 'citeproc)
+#+end_src
+
+This next part, which you may or may not care about, configures =oc=
+to use =citeproc= as a citation processor for the =csl= backend and
+specifically the [[https://github.com/citation-style-language/styles/blob/master/ieee.csl][IEEE]] citation style.
+
+#+begin_src emacs-lisp
+(setq org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
+      org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
+      org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
+      org-cite-export-processors
+      '((html . (csl "ieee.csl"))
+	(latex . biblatex)
+	(t . simple)))
+#+end_src
+
+That's pretty cool and all, but we should get back to the build
+process, it is after all what ties everything together. Let's go take
+that =build= target we just wrote for a spin and see what it generates.
+
+#+begin_example
+$ make build
+
+Importing package-keyring.gpg...
+Contacting host: melpa.org:443
+Package refresh done
+Contacting host: elpa.gnu.org:443
+Package refresh done
+Contacting host: elpa.nongnu.org:443
+Package refresh done
+...
+Checking /home/grtcdr/projects/grtcdr.tn/.emacs.d/elpa/citeproc-20230125.1818...
+Done (Total of 26 files compiled, 2 skipped)
+Package ‘citeproc’ installed.
+...
+Checking /home/grtcdr/projects/grtcdr.tn/.emacs.d/elpa/htmlize-20210825.2150...
+Done (Total of 1 file compiled, 2 skipped)
+Package ‘htmlize’ installed.
+#+end_example
+
+The packages we require should have been installed and placed, along
+with their dependencies, in their new separate environment. We can
+verify this by inspecting the contents of the =.emacs.d= directory
+relative to the root of our project -- let's do that:
+
+#+begin_example
+$ tree -L 2 -I 'archives|gnupg' .emacs.d
+
+.emacs.d
+└── elpa
+    ├── citeproc-20230125.1818
+    ├── dash-20221013.836
+    ├── f-20230116.1032
+    ├── htmlize-20210825.2150
+    ├── parsebib-20221007.1402
+    ├── s-20220902.1511
+    └── string-inflection-20220910.1306
+#+end_example
+
+The most crucial procedure in the build process is that of the
+=org-publish-all= function, which thanks to our neat setup, is now
+able to build the project with all of the libraries we've added along
+the way.
+
+#+begin_example
+Publishing file /home/grtcdr/projects/grtcdr.tn/src/now.org using ‘org-html-publish-to-html’
+Publishing file /home/grtcdr/projects/grtcdr.tn/src/contact.org using ‘org-html-publish-to-html’
+Publishing file /home/grtcdr/projects/grtcdr.tn/src/index.org using ‘org-html-publish-to-html’
+...
+#+end_example
+
+Now, what if a dependency of ours isn't available in any package
+archives? How do we tackle this problem efficiently? I think
+=package-vc=, a library introduced in Emacs 29, is the answer.
+
+We can extend the =op-package-install= function we previously added
+with the capacity to download packages from a repository. First,
+import the library somewhere near the top of the publishing script:
+
+#+begin_src emacs-lisp
+(require 'package-vc)
+#+end_src
+
+Normally, =package-vc-install= would take as its first parameter a URL
+to the repository we wish to download, but that's just plain
+ugly. Instead, we'll introduce an elegant abstraction that will
+receive a tiny bit of information identifying the repository and then
+translate that to a functional URL.
+
+We'll start by defining our version control providers, e.g. GitHub,
+SourceHut, etc. and then create a function that can construct the URL
+bearing in mind the nuances between the different providers.
+
+#+begin_src emacs-lisp
+(defvar op-package--vc-providers
+  '(:github "https://github.com" :sourcehut "https://git.sr.ht")
+  "Property list of version control providers and their associated domains.")
+
+(defun op-package--vc-repo (provider slug)
+  "Construct the repository name from PROVIDER and SLUG."
+  (let ((domain (plist-get op-package--vc-providers provider)))
+    (cond ((eq provider :sourcehut) (format "%s/~%s" domain slug))
+	  (t (format "%s/%s" domain slug)))))
+
+;; Examples:
+;;   (op-package--vc-repo :github "grtcdr/liaison")
+;;   (op-package--vc-repo :sourcehut "protesilaos/denote")
+#+end_src
+
+Although SourceHut prefixes usernames with a tilde, we managed to
+offload that to the =op-package--vc-repo= function, our interactions
+with it can therefore remain consistent.
+
+Now, =op-package-install= should remain an entrypoint for installing
+any kinds of packages, archive or not. It needs to undergo a tiny adjustment for that to be possible.
+
+#+begin_src emacs-lisp
+(defun op-package-install (packages)
+  "Install the list of PACKAGES."
+  (op-package--initialize)
+  (dolist (pkg packages)
+    (if (plistp pkg)
+	(let ((provider (car pkg))
+	      (slug (cadr pkg)))
+	  (when (plist-member op-package--vc-providers provider)
+	    (let* ((base (op-package--vc-repo provider slug))
+		   (package (intern (file-name-base slug))))
+	      (unless (package-installed-p package)
+		(package-vc-install base :last-release)))))
+      (unless (package-installed-p pkg)
+	(package-install pkg)))))
+#+end_src
+
+It's a pretty big transformation, but the function can now take a list
+such as this one ='(citeproc htmlize (:github "grtcdr/liaison"))=,
+installing /citeproc/ and /htmlize/ from the usual package archives
+and /liaison/ from the repository in which it resides.
+
+I'm actively using this setup to try and deliver a great reading
+experience for you. These tools have empowered me to create an
+environment that is unique to me, an environment whose elements are
+evolving alongside my progression as a writer and developer, and an
+environment whose components can be easily swapped with one
+another. It's a place that provides me with an opportunity for
+continuous research, development and improvement. If you're
+considering using /ox-publish/ as a foundation for your next project,
+now's the time.

@@ -1,4 +1,4 @@
-#+title: Implementing per-project package management for ox-publish projects
+#+title: Implementing per-project package management for ox-publish.el projects
 #+date: <2023-02-07 Tue>
 #+filetags: :emacs:
 

@@ -15,7 +15,7 @@ When I initially started using Emacs, it was to distract myself from
 my old Vim habits and to learn something new. I was comfortable with
 my tools, my ways and ideologies, but it was a [[https://youtu.be/SzA2YODtgK4][couple]] [[https://youtu.be/KdcXu_RdKI0][of]] [[https://youtu.be/JWD1Fpdd4Pc][presentations]]
 that helped me realize the vast difference between how I go about
-achieving a task and how others are doing it.
+accomplishing a task and how others are doing it.
 
 I'm currently leveraging =ox-publish=, an immensely extensible and
 highly documented facility of the Org Mode library, to build and

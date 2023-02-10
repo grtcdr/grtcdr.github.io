@@ -197,22 +197,21 @@ bearing in mind the nuances between the different providers.
   "Property list of version control providers and their associated domains.")
 
 (defun op-package--vc-repo (provider slug)
-  "Construct the repository name from PROVIDER and SLUG."
+  "Construct the base URL of a repository from SLUG depending on the PROVIDER."
   (let ((domain (plist-get op-package--vc-providers provider)))
     (cond ((eq provider :sourcehut) (format "%s/~%s" domain slug))
 	  (t (format "%s/%s" domain slug)))))
-
-;; Examples:
-;;   (op-package--vc-repo :github "grtcdr/liaison")
-;;   (op-package--vc-repo :sourcehut "protesilaos/denote")
 #+end_src
 
 Although SourceHut prefixes usernames with a tilde, we managed to
-offload that to the =op-package--vc-repo= function, our interactions
-with it can therefore remain consistent.
+offload that formatting task to the =op-package--vc-repo= function,
+our interactions with =op-package-install= can therefore remain
+consistent.
 
-Now, =op-package-install= should remain an entrypoint for installing
-any kinds of packages, archive or not. It needs to undergo a tiny adjustment for that to be possible.
+Additionally, it would be beneficial to have =op-package-install= be
+our sole entrypoint to installing packages, wherever they may be. It
+does however need to undergo a tiny adjustment for that to be
+possible.
 
 #+begin_src emacs-lisp
 (defun op-package-install (packages)

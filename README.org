@@ -57,4 +57,5 @@ The workflow is split into two major jobs: *build* and *deploy*.
 
 * Copying
 
-The content in this site is [[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]] and the source code is [[file:COPYING][MIT]].
+The content and source code of this site is licensed under the
+[[https://creativecommons.org/licenses/by-sa/2.0/][CC-BY-SA 2.0]] and [[file:COPYING][ISC]] licenses respectively.

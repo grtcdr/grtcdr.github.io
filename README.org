@@ -14,23 +14,15 @@ Clone the repository and its [[file:.gitmodules][submodules]]:
 git clone --recursive https://github.com/grtcdr/grtcdr.github.io.git grtcdr.tn
 #+end_example
 
-* Reproducing
-
-If you wish to reproduce this site locally, the most overarching
-dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]].
-
-Once you've set that up, you should install this project's development
-dependencies. To do that, position yourself at the project root,
-i.e. the location where you cloned this repository, and then run =npm
-install=.
-
-You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap the benefits of the build
-system in use.
-  
 * Building
 
-From the command-line, position yourself at the root of the project
-and run the =make= command.
+If you wish to reproduce this site locally, the most overarching
+dependency is [[https://www.gnu.org/software/emacs/][GNU Emacs]]. You'll also want to install [[https://www.gnu.org/software/make/][GNU Make]] to reap
+the benefits of the build system in use.
+
+Once you've set that up, you should install this project's development
+dependencies. To do that, position yourself at the project root and
+run =npm ci=. To build the project, run the =make= command.
 
 * Development
 

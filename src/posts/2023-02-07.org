@@ -2,14 +2,13 @@
 #+date: <2023-02-07 Tue>
 #+filetags: :emacs:
 
-Emacs is an insanely liberating hacking environment, it is perpetually
-sucking me in through its intricate systems, many of which help me
-organize and automate different areas of my life.
-
-A key part of the Emacs ecosystem are the Org Mode libraries which
-cover many things from [[info:org#Exporting][exporting documents]] and helping you [[info:org#Tracking your habits][keep track
-of habits]] to an [[info:org#Citations][intuitive citation system]] that can be combined with
-other integral tools, like the magnificent [[https://github.com/andras-simonyi/citeproc-el][citeproc]].
+Emacs is an insanely liberating hacking environment, many of the
+intricate systems designed for it help me organize and automate the
+different facets of my life. A key part of the ecosystem is the
+collection of Org Mode libraries which cover many things from
+[[info:org#Exporting][exporting documents]] and helping me [[info:org#Tracking your habits][keep track of habits]] to an
+[[info:org#Citations][intuitive citation system]] that can be combined with other integral
+tools, like the magnificent [[https://github.com/andras-simonyi/citeproc-el][citeproc]].
 
 When I initially started using Emacs, it was to distract myself from
 my old Vim habits and to learn something new. I was comfortable with
@@ -18,12 +17,12 @@ that helped me realize the vast difference between how I go about
 accomplishing a task and how others are doing it.
 
 I'm currently leveraging =ox-publish=, an immensely extensible and
-highly documented facility of the Org Mode library, to build and
-architecture this website, a website whose first commit happened
-around seven months ago. I've added lots of tiny features since then:
-[[https://emacs.ch/@grtcdr/109673543873822484][preference-based colorschemes]], [[https://emacs.ch/@grtcdr/109818123826436913][syntax highlighting]], [[https://emacs.ch/@grtcdr/109711989196426299][citations]], and a
-[[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/modules/ab-blog.el][tiny module]] that helps me navigate my blog post directory a lot more
-efficiently, to name a few.
+highly documented facility of Org Mode, to build and architecture this
+website, a website whose first commit happened around seven months
+ago. I've added lots of tiny features since then: [[https://emacs.ch/@grtcdr/109673543873822484][preference-based
+colorschemes]], [[https://emacs.ch/@grtcdr/109818123826436913][syntax highlighting]], [[https://emacs.ch/@grtcdr/109711989196426299][citations]], and a [[https://git.sr.ht/~grtcdr/dotfiles/tree/main/item/emacs/.config/emacs/modules/ab-blog.el][tiny module]] that
+helps me navigate my blog post directory a lot more efficiently, to
+name a few.
 
 This has also been my first attempt at abstracting the codebase of a
 website so that it can span multiple sub-projects, like [[https://grtcdr.tn/liaison][liaison]] and

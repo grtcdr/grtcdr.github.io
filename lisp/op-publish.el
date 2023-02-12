@@ -45,6 +45,32 @@ INFO is a plist used as a communication channel."
     (?e . ,(liaison-get-resource-url 'edit))
     (?l . ,(liaison-get-resource-url 'log))))
 
+(defun org-html-example-block (example-block _contents info)
+  "Transcode a EXAMPLE-BLOCK element from Org to HTML.
+CONTENTS is nil.  INFO is a plist holding contextual
+information."
+  (let ((attributes (org-export-read-attribute :attr_html example-block)))
+    (if (plist-get attributes :textarea)
+	(org-html--textarea-block example-block)
+      (sexp->xml
+       `(div ((class . "org-example-container"))
+	     ,(let ((caption (org-export-get-caption example-block)))
+		(or (and caption
+			 `(label ((class . "org-example-name"))
+				 ,(org-trim (org-export-data caption info))))
+		    ""))
+	     (pre ((class . "example"))
+		  ,(org-html-format-code example-block info)))))))
+
+(defun op-publish-headline-function (todo todo-type priority text tags info)
+  "Format a headline with a link to itself."
+  (let* ((headline (get-text-property 0 :parent text))
+         (id (or (org-element-property :CUSTOM_ID headline)
+                 (org-export-get-reference headline info)
+                 (org-element-property :ID headline)))
+         (link (or (and id (format "<a href=\"#%s\">%s</a>" id text) text))))
+    (org-html-format-headline-default-function todo todo-type priority link tags info)))
+
 (defun op-publish-post-sitemap-formatter (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
@@ -92,6 +118,7 @@ dotfiles publishing project."
       org-html-htmlize-output-type 'css
       org-html-head-include-default-style nil
       org-html-html5-fancy t
+      org-html-prefer-user-labels t
       org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")

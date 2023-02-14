@@ -35,7 +35,6 @@
 (require 'op-template)
 (require 'op-redefun)
 (require 'citeproc)
-(require 'liaison)
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."

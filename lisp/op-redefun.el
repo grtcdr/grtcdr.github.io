@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'op-template)
+(require 'liaison)
 
 (defun op-publish-listing (block info)
   (let ((number (org-export-get-ordinal block info nil #'org-html--has-caption-p)))

@@ -1,8 +1,9 @@
 {
   "name": "grtcdr.tn",
   "devDependencies": {
-    "grunt": "^1.5.3",
+    "grunt": "^1.6.1",
     "grunt-contrib-cssmin": "~4.0.0",
+    "grunt-contrib-htmlmin": "^3.1.0",
     "less": "^4.1.3"
   },
   "dependencies": {

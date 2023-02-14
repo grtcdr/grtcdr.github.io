@@ -33,6 +33,7 @@
 (require 'ox-publish)
 (require 'op-package)
 (require 'op-template)
+(require 'op-redefun)
 (require 'citeproc)
 (require 'liaison)
 
@@ -44,23 +45,6 @@ INFO is a plist used as a communication channel."
     (?m . ,(org-export-data (plist-get info :email) info))
     (?e . ,(liaison-get-resource-url 'edit))
     (?l . ,(liaison-get-resource-url 'log))))
-
-(defun org-html-example-block (example-block _contents info)
-  "Transcode a EXAMPLE-BLOCK element from Org to HTML.
-CONTENTS is nil.  INFO is a plist holding contextual
-information."
-  (let ((attributes (org-export-read-attribute :attr_html example-block)))
-    (if (plist-get attributes :textarea)
-	(org-html--textarea-block example-block)
-      (sexp->xml
-       `(div ((class . "org-example-container"))
-	     ,(let ((caption (org-export-get-caption example-block)))
-		(or (and caption
-			 `(label ((class . "org-example-name"))
-				 ,(org-trim (org-export-data caption info))))
-		    ""))
-	     (pre ((class . "example"))
-		  ,(org-html-format-code example-block info)))))))
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
@@ -107,7 +91,7 @@ dotfiles publishing project."
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
       org-publish-list-skipped-files nil
-      org-publish-timestamp-directory ".cache/"
+      org-publish-timestamp-directory ".cache/org/"
       org-html-doctype "html5"
       org-html-footnotes-section (op-template-footnote-section)
       org-export-time-stamp-file nil

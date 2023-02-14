@@ -1,33 +1,36 @@
-GRUNT       = npm exec -- grunt
-LESSC       = npm exec -- lessc
+pub_dir   = public
+css_dir   = $(pub_dir)/css
+less_dir  = src/less
+js_dir    = src/js
+lisp_dir  = lisp
+cache_dir = .cache
+emacs_dir = .emacs
 
-CSS_DIR     = public/css
-LESS_DIR    = src/less
-LISP_DIR    = lisp
-JS_DIR      = src/js
+less_files := $(wildcard $(less_dir)/*.less)
+css_files   = $(patsubst $(less_dir)/%.less, $(css_dir)/%.css, $(less_files))
 
-LESS_FILES := $(wildcard $(LESS_DIR)/*.less)
-CSS_FILES   = $(patsubst $(LESS_DIR)/%.less, $(CSS_DIR)/%.css, $(LESS_FILES))
-GRUNTFILE   = $(JS_DIR)/grunt.js
+less    = npm exec -- lessc
+grunt   = npm exec -- grunt --gruntfile $(js_dir)/grunt.js
+emacs   = emacs --quick --init-directory=$(emacs_dir)
 
 all: less optimize build
 
-less: $(CSS_FILES)
+less: $(css_files)
 
-$(CSS_DIR)/%.css: $(LESS_DIR)/%.less
-	@$(LESSC) $< $@
+$(css_dir)/%.css: $(less_dir)/%.less
+	@$(less) $< $@
 
 build:
-	@rm -rf .cache
-	@emacs -Q --init-directory=.emacs --script $(LISP_DIR)/op-publish.el --funcall org-publish-all
+	@rm -rf $(cache_dir)
+	$(emacs) --script $(lisp_dir)/op-publish.el --funcall org-publish-all
 
 optimize:
-	@$(GRUNT) cssmin --no-color --gruntfile $(GRUNTFILE) --base .
+	@$(grunt) cssmin --base .
 
 serve: less build
-	@miniserve public
+	@miniserve $(pub_dir)
 
 clean:
-	@rm -rf $(CSS_FILES)
-	@rm -rf public
-	@rm -rf .cache
+	@rm -rf $(css_files)
+	@rm -rf $(pub_dir)
+	@rm -rf $(cache_dir)

@@ -33,7 +33,7 @@
 
 (defun op-publish-caption-block (listing caption info)
   (let ((caption (org-trim (org-export-data caption info))))
-    (sexp->xml `(label ((class . "org-block-name"))
+    (sexp->xml `(label ((class . "org-example-name"))
 		       ,(concat listing caption)))))
 
 (defun org-html-example-block (example-block _contents info)

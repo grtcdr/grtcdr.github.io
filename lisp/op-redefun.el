@@ -46,8 +46,7 @@ information."
       (format "<div class=\"org-example-container\">%s%s</div>"
 	      (if-let* ((caption (org-export-get-caption example-block))
 			(listing (op-publish-listing example-block info)))
-		  (op-publish-caption-block listing caption info)
-		"")
+		  (op-publish-caption-block listing caption info) "")
 	      (format "<pre class=\"example\"%s>%s</pre>"
 		      (let* ((reference (org-html--reference example-block info))
 			     (a (org-html--make-attribute-string
@@ -56,5 +55,14 @@ information."
 				   (plist-put attributes :id reference)))))
 			(if (org-string-nw-p a) (concat " " a) ""))
 		      (org-html-format-code example-block info))))))
+
+(defun org-html-format-spec (info)
+  "Return format specification for preamble and postamble.
+INFO is a plist used as a communication channel."
+  `((?a . ,(org-export-data (plist-get info :author) info))
+    (?t . ,(org-export-data (plist-get info :title) info))
+    (?m . ,(org-export-data (plist-get info :email) info))
+    (?e . ,(liaison-get-resource-url 'edit))
+    (?l . ,(liaison-get-resource-url 'log))))
 
 (provide 'op-redefun)

@@ -61,7 +61,7 @@
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-(op-package-install '(toml-mode citeproc htmlize plantuml-mode (:github "grtcdr/liaison")))
+(op-package-install '(citeproc htmlize plantuml-mode toml-mode (:github "grtcdr/liaison")))
 
 (provide 'op-package)
 ;;; op-package.el ends here

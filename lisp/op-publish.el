@@ -37,15 +37,6 @@
 (require 'citeproc)
 (require 'liaison)
 
-(defun org-html-format-spec (info)
-  "Return format specification for preamble and postamble.
-INFO is a plist used as a communication channel."
-  `((?a . ,(org-export-data (plist-get info :author) info))
-    (?t . ,(org-export-data (plist-get info :title) info))
-    (?m . ,(org-export-data (plist-get info :email) info))
-    (?e . ,(liaison-get-resource-url 'edit))
-    (?l . ,(liaison-get-resource-url 'log))))
-
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
   (let* ((headline (get-text-property 0 :parent text))

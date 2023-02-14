@@ -16,7 +16,7 @@ my tools, my ways and ideologies, but it was a [[https://youtu.be/SzA2YODtgK4][c
 that helped me realize the vast difference between how I go about
 accomplishing a task and how others are doing it.
 
-I'm currently leveraging =ox-publish=, an immensely extensible and
+I'm currently leveraging /ox-publish/, an immensely extensible and
 highly documented facility of Org Mode, to build and architecture this
 website, a website whose first commit happened around seven months
 ago. I've added lots of tiny features since then: [[https://emacs.ch/@grtcdr/109673543873822484][preference-based
@@ -29,15 +29,14 @@ website so that it can span multiple sub-projects, like [[https://grtcdr.tn/liai
 [[https://grtcdr.tn/darkman.el][darkman.el]], both of which are independent projects whose source code
 exists outside of this website's source tree.
 
-One major /pain point/ to my current system was dependency/packagement
+One major pain point to my current system was dependency/packagement
 management, an area which can make or break a programming
-language. Emacs 29, which has not yet been released, thankfully added
-a new =--init-directory= flag which we can use to specify a custom
-=user-emacs-directory=, meaning the packages we install from say, a
-publishing script, will not interfere with the user's general
-environment.
+language. [[https://lists.gnu.org/archive/html/emacs-devel/2022-11/msg01774.html][Emacs 29]] thankfully added a new =--init-directory= flag
+which we can use to specify a custom =user-emacs-directory=, meaning
+the packages we install from say, a publishing script, will not
+interfere with the user's general environment.
 
-To give you an example, we can consider citeproc a dependency of this
+To give you an example, we can consider /citeproc/ a dependency of this
 project, the way we'd go about handling this dependency follows this
 general ruleset:
 1. Configure the project to use a separate initialization directory
@@ -57,7 +56,7 @@ create a new =.emacs.d= directory adjacent to the =Makefile= and use
 that to store the source code of the packages we'll install later on.
 We're also loading a file named =publish.el= whose purpose is to
 handle the publishing aspects of the project, this interacts with
-=ox-publish= to configure how the project should turn out when it is
+/ox-publish/ to configure how the project should turn out when it is
 exported via =org-publish-all=.
 
 Since the packages we'd like to use aren't not available by default,
@@ -95,7 +94,7 @@ Let's put our functions to use, we'll install /citeproc/ -- and
 
 We'll jump a couple lines down, and require the two libraries,
 actually we won't require /htmlize/ as it's sort of an exception,
-that's because =ox-publish= will require it when it needs it.
+that's because /ox-publish/ will require it when it needs it.
 
 #+begin_src emacs-lisp
 (require 'citeproc)
@@ -106,6 +105,9 @@ to use =citeproc= as a citation processor for the =csl= backend and
 specifically the [[https://github.com/citation-style-language/styles/blob/master/ieee.csl][IEEE]] citation style.
 
 #+begin_src emacs-lisp
+(require 'oc)
+(require 'oc-csl)
+
 (setq org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
       org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
       org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
@@ -119,9 +121,8 @@ That's pretty cool and all, but we should get back to the build
 process, it is after all what ties everything together. Let's go take
 that =build= target we just wrote for a spin and see what it generates.
 
+#+caption: make build
 #+begin_example
-$ make build
-
 Importing package-keyring.gpg...
 Contacting host: melpa.org:443
 Package refresh done
@@ -144,9 +145,8 @@ with their dependencies, in their new separate environment. We can
 verify this by inspecting the contents of the =.emacs.d= directory
 relative to the root of our project -- let's do that:
 
+#+caption: tree -L 2 -I 'archives|gnupg' .emacs.d
 #+begin_example
-$ tree -L 2 -I 'archives|gnupg' .emacs.d
-
 .emacs.d
 └── elpa
     ├── citeproc-20230125.1818
@@ -245,3 +245,8 @@ another. It's a place that provides me with an opportunity for
 continuous research, development and improvement. If you're
 considering using /ox-publish/ as a foundation for your next project,
 now's the time.
+
+I'd like to thank Sacha Chua for including this publication in
+her [[https://sachachua.com/blog/2023/02/2023-02-13-emacs-news/]["Emacs News" posting of February 13, 2023]]. I'm honored to have
+been included in her weekly digest and grateful to be a part of this
+lively community.

@@ -92,8 +92,9 @@ doesn't exactly specify how things are supposed to work in this mode.
 
 ** Configuring libvirt
 
-The following is the XML representation of the virtual network to
-which clients can connect and instantiate their virtual machines.
+The following is the XML representation [cite:@man:libvirt-network] of
+the virtual network to which clients can connect and instantiate their
+virtual machines.
 
 #+caption: vnet0.xml
 #+begin_src xml
@@ -126,8 +127,6 @@ Next, we'll define and start the virtual network:
 #+begin_src sh
 virsh net-define --file <vnet0.xml> && virsh net-start --network <vnet0>
 #+end_src
-
-For more information on this file format, see: https://libvirt.org/formatnetwork.html
 
 ** Configuring systemd-networkd
 
@@ -219,10 +218,10 @@ run the following command:
 networkctl reload
 #+end_src
 
-With the same command, use the =list= subcommand verify the status of
-the interface. You should see an output like this one:
+When you verify the status of the interfaces, you should see an output
+similar to this:
 
-#+caption: $ networkctl list
+#+caption: networkctl list
 #+begin_example
 IDX LINK     TYPE     OPERATIONAL SETUP
   1 lo       loopback carrier     unmanaged
@@ -251,14 +250,11 @@ interface=<softap>
 bridge=<virbr0>
 #+end_src
 
-For more information on the remaining configuration options, see:
-https://w1.fi/cgit/hostap/plain/hostapd/hostapd.conf
-
 Now make sure to check the status of the service for errors,
 =AP-ENABLED= is what you're after:
 
-#+caption: $ systemctl status hostapd
-#+begin_src sh
+#+caption: systemctl status hostapd
+#+results:
 ● hostapd.service - Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
      Loaded: loaded (/usr/lib/systemd/system/hostapd.service; disabled; preset: disabled)
      Active: active (running) since Sun 2022-12-18 04:49:29 CET; 8s ago
@@ -273,7 +269,6 @@ Dec 18 04:49:29 ideapad systemd[1]: Started Hostapd IEEE 802.11 AP, IEEE 802.1X/
 Dec 18 04:49:29 ideapad hostapd[36772]: softap: interface state UNINITIALIZED->COUNTRY_UPDATE
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: interface state COUNTRY_UPDATE->ENABLED
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
-#+end_src
 
 * Results and reflections
 
@@ -285,8 +280,8 @@ one of the virtual machines.
 #+HTML: <img src="/assets/images/softap-results.png">
 
 Right now, the only thing protecting the network is the authentication
-mechanism of the WLAN, we should consider installing a firewall [cite:@lukas20firewalld] to
-protect the network from outsiders.
+mechanism of the WLAN, we should consider installing a firewall
+[cite:@lukas20firewalld] to protect the network from outsiders.
 
 Because it is based on WLAN, traffic from inside the network is
 significantly slower than what a typical production cloud
@@ -305,7 +300,7 @@ requirements.
 
 * Caveats
 
-/hostapd/ has made my [[https://en.wikipedia.org/wiki/Kernel_panic][kernel panic]] on two occasions, though I didn't
+/hostapd/ has made my kernel panic on two occasions, though I didn't
 get the opportunity to investigate (nor was I able to reproduce) the
 issue. Investigating a kernel crash requires software like =kdump=,
 which I don't really care to set up at this time.

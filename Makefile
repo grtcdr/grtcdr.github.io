@@ -9,11 +9,11 @@ emacs_dir = .emacs
 less_files := $(wildcard $(less_dir)/*.less)
 css_files   = $(patsubst $(less_dir)/%.less, $(css_dir)/%.css, $(less_files))
 
-less    = npm exec -- lessc
-grunt   = npm exec -- grunt --gruntfile $(js_dir)/grunt.js
+less    = npm exec -- lessc --verbose --no-color
+grunt   = npm exec -- grunt --gruntfile $(js_dir)/grunt.js --no-color
 emacs   = emacs --quick --init-directory=$(emacs_dir)
 
-all: less optimize build
+all: less build
 
 less: $(css_files)
 
@@ -24,8 +24,11 @@ build:
 	@rm -rf $(cache_dir)
 	$(emacs) --script $(lisp_dir)/op-publish.el --funcall org-publish-all
 
-optimize:
+cssmin:
 	@$(grunt) cssmin --base .
+
+htmlmin:
+	@$(grunt) htmlmin --base .
 
 serve: less build
 	@miniserve $(pub_dir)

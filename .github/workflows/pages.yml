@@ -54,7 +54,10 @@ jobs:
           version: snapshot
 
       - name: Build the website
-        run: make
+        run: |
+          make
+          make cssmin
+          make htmlmin
 
       - name: Upload website blob
         uses: actions/upload-pages-artifact@v1

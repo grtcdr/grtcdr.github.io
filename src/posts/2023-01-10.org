@@ -14,6 +14,6 @@ Special thanks to Ian Eure whose [[https://emacsconf.org/2022/talks/dbus/][talk 
 protocol]] helped me immensely in writing this package and
 understanding how things are pieced together.
 
-And I'd also like to express my appreciation to Hugo Osvaldo Barrera,
-the author and maintainer of Darkman, a very nifty tool which solves
-the dark/light-mode switching problem intelligently and seamlessly.
+I'd also like to express my appreciation to Hugo Osvaldo Barrera, the
+author and maintainer of Darkman which I believe solves the
+dark/light-mode transition problem very intelligently.

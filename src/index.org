@@ -1,11 +1,11 @@
 #+TITLE:       Greetings
 #+DESCRIPTION: grtcdr's website and blog.
 
-I'm grtcdr, a student and free software developer.
-
-I spend most of my time tinkering with software... Well, it's mostly
-just breaking things and then banging my head against the table until
-things start to click, actually.
+You’ve reached grtcdr’s personal website, a computer science student
+and free software developer. I like to mess around with software and
+build small, mostly stupid things. This tiny part of the internet is
+where you can read up on some of my interesting projects, findings and
+opinions.
 
 Find me on:
 

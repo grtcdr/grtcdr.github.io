@@ -54,7 +54,7 @@
 (defun op-template-post-footer ()
   "HTML snippet representing the postamble of a post."
   (sexp->xml
-   '(div ((class . "post-footer"))
+   '(div ((class . "blog-footer"))
 	 (p nil
 	    (b nil
 	       "Got something to share?"))

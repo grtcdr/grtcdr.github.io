@@ -76,6 +76,10 @@ for_window <<criterion>> {
 }
 #+end_src
 
-#+HTML: <img src="/assets/images/sway-pip-rule.png" alt="Preview of the picture-in-picture window rule in action.">
-
-Picture-in-picture makes so much more sense now.
+#+begin_export html
+<figure>
+  <img src="/assets/images/2022-12-16--sway-pip-rule.png"
+       alt="Reading a blog post with a picture-in-picture window on the bottom right of the screen">
+  <figcaption>Picture-in-picture window placement according to the window rule</figcaption>
+</figure>
+#+end_export

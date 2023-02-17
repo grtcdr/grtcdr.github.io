@@ -90,7 +90,7 @@ Bob’s very happy with the result. He’s capable of doing all the smart
 things a modern programming environment can do from the comfort of his
 favorite text editor.
 
-#+HTML: <img src="/assets/images/2023-01-24--dotnet.png" alt="Emacs .NET environment.">
+#+HTML: <img src="/assets/images/2023-01-24--dotnet.png" alt="Emacs .NET development environment.">
 
 * Footnotes
 

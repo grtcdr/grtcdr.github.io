@@ -12,7 +12,7 @@ theme and display it in all of its glory.
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-misc.png">
+  <img src="/assets/images/2022-12-05--nimbus-misc.png">
   <figcaption>Programming in Elisp, writing in Org and managing an agenda</figcaption>
 </figure>
 #+end_export
@@ -31,7 +31,7 @@ Nimbus is in my opinion a beautifully-crafted mashup of colors.
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-mu4e.png">
+  <img src="/assets/images/2022-12-05--nimbus-mu4e.png">
   <figcaption>Composing email and the mu4e interface</figcaption>
 </figure>
 #+end_export
@@ -43,7 +43,7 @@ In case you were wondering, ERC looks magnificent with Nimbus.
 
 #+begin_export html
 <figure>
-  <img src="/assets/images/nimbus-erc.png">
+  <img src="/assets/images/2022-12-05--nimbus-erc.png">
   <figcaption>Chatting on IRC using ERC</figcaption>
 </figure>
 #+end_export

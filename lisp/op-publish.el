@@ -75,7 +75,7 @@ dotfiles publishing project."
 
 (defun op-publish-should-lang-confirm? (lang body)
   "Return non-nil if LANG is to be evaluated without confirmation."
-  (not (member lang '("dot" "elisp" "plantuml"))))
+  (not (member lang '("dot" "emacs-lisp" "plantuml"))))
 
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"

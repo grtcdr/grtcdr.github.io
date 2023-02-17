@@ -1,7 +1,6 @@
 #+OPTIONS: html-postamble:nil
 #+TITLE: Posts
 
-- 2023-02-15 - [[file:2023-02-15.org][Attaching captions to example blocks for the ox-html.el backend]]
 - 2023-02-07 - [[file:2023-02-07.org][Implementing per-project package management for ox-publish.el projects]]
 - 2023-01-24 - [[file:2023-01-24.org][Emacs as a .NET development environment]]
 - 2023-01-16 - [[file:2023-01-16.org][Using WebExtensions to set a startpage as a new tab page]]

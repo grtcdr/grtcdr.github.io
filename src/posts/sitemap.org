@@ -1,5 +1,5 @@
 #+OPTIONS: html-postamble:nil
-#+TITLE: Sitemap for project posts
+#+TITLE: Posts
 
 - 2023-02-07 - [[file:2023-02-07.org][Implementing per-project package management for ox-publish.el projects]]
 - 2023-01-24 - [[file:2023-01-24.org][Emacs as a .NET development environment]]

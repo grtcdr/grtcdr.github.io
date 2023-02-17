@@ -124,6 +124,7 @@ dotfiles publishing project."
 	       :sitemap-sort-files 'anti-chronologically
 	       :sitemap-format-entry 'op-publish-post-sitemap-formatter
 	       :sitemap-function 'op-publish-dotfile-sitemap-function
+	       :sitemap-title "Posts"
 	       :with-title t
 	       :with-toc nil
 	       :html-preamble (op-template-main-navbar)
@@ -166,8 +167,7 @@ dotfiles publishing project."
 	       :base-extension "css"
 	       :base-directory "src/css"
 	       :publishing-directory "public/css"
-	       :publishing-function 'org-publish-attachment
-	       :sitemap-title "Posts")
+	       :publishing-function 'org-publish-attachment)
 	 (list "javascripts"
 	       :base-extension "js"
 	       :base-directory "src/js"

@@ -6,14 +6,13 @@ Being limited to a single 15" screen, I'm /forced/ to make the most
 out of my screen real estate and optimize my window placement game.
 
 Picture-in-picture is a feature whose potential I'd previously never
-realized -- until now. I just did a little experiment and I'm quite
-satisfied with the results.
+realized until now. I just did a little experiment and I'm quite
+satisfied with the results. The idea is to have picture-in-picture
+windows get automatically placed in a non-obstructive location, be
+semi-transparent and appear in every workspace.
 
-The idea is to have picture-in-picture windows get automatically
-placed in a non-obstructive location, be semi-transparent and appear
-in every workspace.
-
-To match a picture-in-picture window, we can use the following criterion:
+To match a picture-in-picture window, we can use the following
+criterion:
 
 #+name: criterion
 #+begin_src conf
@@ -26,8 +25,8 @@ pretty sensible.
 #+name: resolution-rule
 #+begin_src conf
 floating enable
-resize set height 280
 resize set width  500
+resize set height 280
 #+end_src
 
 I don't want to see any borders around the window, so I'll disable those.

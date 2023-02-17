@@ -101,14 +101,7 @@ publishing projects."
 (defun op-template-metadata ()
   "HTML headers shared across publishing projects."
   (concat
-   (op-template-stylesheet "/css/def.css")
    (op-template-stylesheet "/css/common.css")
-   (op-template-stylesheet "/css/heading.css")
-   (op-template-stylesheet "/css/nav.css")
-   (op-template-stylesheet "/css/org.css")
-   (op-template-stylesheet "/css/source.css")
-   (op-template-stylesheet "/css/table.css")
-   (op-template-stylesheet "/css/figure.css")
    (sexp->xml '(link ((rel . "icon")
 		      (type . "image/x-icon")
 		      (href . "/assets/favicon.ico"))))))

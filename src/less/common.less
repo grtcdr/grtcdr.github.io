@@ -14,6 +14,13 @@
 // TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 
+@import "def";
+@import "org";
+@import "table";
+@import "source";
+@import "figure";
+@import "header";
+
 body {
   background-color: var(--bg00);
   color: var(--fg02);
@@ -25,12 +32,25 @@ body {
   margin: 0 auto;
 }
 
+#table-of-contents > h2 {
+  display: none;
+}
+
+#text-table-of-contents {
+  margin: 3em auto;
+}
+
 hr {
   border: 1px solid var(--bg02);
 }
 
-p { text-justify: inter-word }
-p, li { line-height: 1.7em }
+p {
+  text-justify: inter-word;
+}
+
+p, li {
+  line-height: 1.7em;
+}
 
 a {
   color: var(--fg02);
@@ -47,12 +67,28 @@ blockquote {
   background-color: var(--bg01);
 }
 
-#table-of-contents > h2 {
-  display: none;
-}
-
-#text-table-of-contents {
-  margin: 3em auto;
+nav {
+  > ul {
+    list-style-type: none;
+    padding: 0;
+    
+    li {
+      display: inline-block;
+      font-size: 1.05em;
+      font-weight: 300;
+      
+      a {
+	text-transform: uppercase;
+	text-decoration: none;
+      }
+    }
+    
+    li + li:before {
+      content: '|';
+      padding: 0 0.4em;
+      color: var(--bg02);
+    }
+  }
 }
 
 footer {

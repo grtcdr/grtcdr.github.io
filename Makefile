@@ -1,12 +1,13 @@
 pub_dir   = public
-css_dir   = $(pub_dir)/css
 less_dir  = src/less
+css_dir   = $(pub_dir)/css
 js_dir    = src/js
 lisp_dir  = lisp
 cache_dir = .cache
 emacs_dir = .emacs
 
-less_files := $(wildcard $(less_dir)/*.less)
+less_files  = blog.less common.less indent.less
+less_files := $(addprefix $(less_dir)/,$(less_files))
 css_files   = $(patsubst $(less_dir)/%.less, $(css_dir)/%.css, $(less_files))
 
 less    = npm exec -- lessc --verbose --no-color

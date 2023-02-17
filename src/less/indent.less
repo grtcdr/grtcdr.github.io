@@ -30,8 +30,9 @@
 
 */
 
-@spacing: 1em;
-.indent-by(@spacing) { margin-left: @spacing }
+.indent-by(@spacing: 1em) {
+  margin-left: @spacing
+}
 
 h1 ~ * { .indent-by(1em) }
 h2 ~ *:not(#table-of-contents) { .indent-by(1.5em) }

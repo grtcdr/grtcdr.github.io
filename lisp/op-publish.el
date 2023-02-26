@@ -28,16 +28,16 @@
 
 (add-to-list 'load-path (file-name-concat default-directory "lisp"))
 
-(require 'op-package)
-(require 'op-redefun)
-(require 'op-template)
 (require 'oc)
 (require 'oc-csl)
 (require 'ox-publish)
+(require 'op-package)
+(require 'op-redefun)
+(require 'op-template)
 (require 'citeproc)
 
 ;; Prevent excessively large backtraces
-(setq debug-on-error t)
+(setq debug-on-error nil)
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."

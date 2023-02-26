@@ -1,6 +1,6 @@
 ;;; op-publish.el  -*- lexical-binding:t -*-
 
-;; Copyright (C) 2023 Aziz Ben Ali
+;; Copyright (C) 2022 Aziz Ben Ali
 
 ;; This file is not part of GNU Emacs.
 
@@ -35,6 +35,7 @@
 (require 'op-template)
 (require 'op-redefun)
 (require 'citeproc)
+(require 'project)
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
@@ -81,14 +82,14 @@ dotfiles publishing project."
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
       org-publish-list-skipped-files nil
-      org-publish-timestamp-directory ".cache/org/"
+      org-publish-timestamp-directory ".cache/"
       org-html-doctype "html5"
       org-html-footnotes-section (op-template-footnote-section)
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
+      org-plantuml-args '("-headless")
       org-confirm-babel-evaluate #'op-publish-should-lang-confirm?
-      org-plantuml-exec-mode 'plantuml
       org-html-htmlize-output-type 'css
       org-html-head-include-default-style nil
       org-html-html5-fancy t
@@ -100,6 +101,11 @@ dotfiles publishing project."
       '((html . (csl "ieee.csl"))
 	(latex . biblatex)
 	(t . simple)))
+
+(if (string= (getenv "CI") "true")
+    (setq org-plantuml-exec-mode 'plantuml)
+  (setq org-plantuml-exec-mode 'jar
+	org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 
 (let ((main-navbar (op-template-main-navbar)))
   (setq org-publish-project-alist

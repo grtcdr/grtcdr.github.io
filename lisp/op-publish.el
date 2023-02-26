@@ -28,14 +28,16 @@
 
 (add-to-list 'load-path (file-name-concat default-directory "lisp"))
 
+(require 'op-package)
+(require 'op-redefun)
+(require 'op-template)
 (require 'oc)
 (require 'oc-csl)
 (require 'ox-publish)
-(require 'op-package)
-(require 'op-template)
-(require 'op-redefun)
 (require 'citeproc)
-(require 'project)
+
+;; Prevent excessively large backtraces
+(setq debug-on-error t)
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
@@ -46,7 +48,7 @@
          (link (or (and id (format "<a href=\"#%s\">%s</a>" id text) text))))
     (org-html-format-headline-default-function todo todo-type priority link tags info)))
 
-(defun op-publish-post-sitemap-formatter (entry style project)
+(defun op-publish-posts-sitemap-formatter (entry style project)
   "Format a sitemap entry with its date within the context of the
 posts publishing project."
   (format "%s - [[file:%s][%s]]"
@@ -54,7 +56,7 @@ posts publishing project."
 	  entry
 	  (org-publish-find-title entry project)))
 
-(defun op-publish-dotfile-sitemap-formatter (entry style project)
+(defun op-publish-dotfiles-sitemap-formatter (entry style project)
   "Format a sitemap entry with its date within the context of the
 dotfiles publishing project."
   (let* ((title (org-publish-find-title entry project))
@@ -64,12 +66,12 @@ dotfiles publishing project."
 	(concat link " -- " description "\n")
       entry)))
 
-(defun op-publish-dotfile-sitemap-function (title list)
+(defun op-publish-dotfiles-sitemap-function (title list)
   "Custom sitemap function for the dotfiles publishing project."
   (concat "#+OPTIONS: html-postamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
 
-(defun op-publish-post-sitemap-function (title list)
+(defun op-publish-posts-sitemap-function (title list)
   "Custom sitemap function for the posts publishing project."
   (concat "#+OPTIONS: html-postamble:nil html-preamble:nil" "\n"
 	  (org-publish-sitemap-default title list)))
@@ -84,10 +86,11 @@ dotfiles publishing project."
       org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-html-doctype "html5"
-      org-html-footnotes-section (op-template-footnote-section)
+      org-html-footnotes-section (op-template-footnotes-section)
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
+      org-plantuml-exec-mode 'plantuml
       org-plantuml-args '("-headless")
       org-confirm-babel-evaluate #'op-publish-should-lang-confirm?
       org-html-htmlize-output-type 'css
@@ -101,11 +104,6 @@ dotfiles publishing project."
       '((html . (csl "ieee.csl"))
 	(latex . biblatex)
 	(t . simple)))
-
-(if (string= (getenv "CI") "true")
-    (setq org-plantuml-exec-mode 'plantuml)
-  (setq org-plantuml-exec-mode 'jar
-	org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 
 (let ((main-navbar (op-template-main-navbar)))
   (setq org-publish-project-alist
@@ -128,14 +126,14 @@ dotfiles publishing project."
 	       :publishing-function 'org-html-publish-to-html
 	       :auto-sitemap t
 	       :sitemap-sort-files 'anti-chronologically
-	       :sitemap-format-entry 'op-publish-post-sitemap-formatter
-	       :sitemap-function 'op-publish-dotfile-sitemap-function
+	       :sitemap-format-entry 'op-publish-posts-sitemap-formatter
+	       :sitemap-function 'op-publish-dotfiles-sitemap-function
 	       :sitemap-title "Posts"
 	       :with-title t
 	       :with-toc nil
 	       :html-preamble (op-template-main-navbar)
 	       :html-postamble
-	       (concat (op-template-post-footer)
+	       (concat (op-template-posts-footer)
 		       (op-template-main-footer))
 	       :html-head-extra
 	       (concat (op-template-metadata)
@@ -150,13 +148,13 @@ dotfiles publishing project."
 	       :auto-sitemap t
 	       :sitemap-title "Peek into the inner workings of my system"
 	       :sitemap-style 'list
-	       :sitemap-format-entry 'op-publish-dotfile-sitemap-formatter
-	       :sitemap-function 'op-publish-dotfile-sitemap-function
+	       :sitemap-format-entry 'op-publish-dotfiles-sitemap-formatter
+	       :sitemap-function 'op-publish-dotfiles-sitemap-function
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
-	       :html-preamble (op-template-dotfile-navbar)
-	       :html-postamble (op-template-main-footer)
+	       :html-preamble (op-template-dotfiles-navbar)
+	       :html-postamble (op-template-dotfiles-footer)
 	       :html-head-extra (op-template-metadata))
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))

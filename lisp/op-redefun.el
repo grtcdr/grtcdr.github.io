@@ -20,22 +20,34 @@
 
 ;;; Commentary:
 
-;; op-redefun.el redefines core functions from the ‘ox-publish’ library.
+;; op-redefun.el redefines core functions from ‘ox-publish’ and
+;; related libraries.
 
 ;;; Code:
 
-(require 'op-template)
 (require 'liaison)
+
+(defun org-html-format-spec (info)
+  "Return format specification for preamble and postamble.
+INFO is a plist used as a communication channel."
+  `((?a . ,(org-export-data (plist-get info :author) info))
+    (?t . ,(org-export-data (plist-get info :title) info))
+    (?m . ,(plist-get info :email))
+    (?e . ,(liaison-get-resource-url 'edit))
+    (?l . ,(liaison-get-resource-url 'log))
+    (?b . ,(liaison-get-resource-url 'blob))))
 
 (defun op-publish-listing (block info)
   (let ((number (org-export-get-ordinal block info nil #'org-html--has-caption-p)))
-    (sexp->xml `(span ((class . "listing-number"))
-		      ,(format (org-html--translate "Listing %d: " info) number)))))
+    (sexp->xml
+     `(span ((class . "listing-number"))
+	    ,(format (org-html--translate "Listing %d: " info) number)))))
 
 (defun op-publish-caption-block (listing caption info)
   (let ((caption (org-trim (org-export-data caption info))))
-    (sexp->xml `(label ((class . "org-example-name"))
-		       ,(concat listing caption)))))
+    (sexp->xml
+     `(label ((class . "org-example-name"))
+	     ,(concat listing caption)))))
 
 (defun org-html-example-block (example-block _contents info)
   "Transcode an EXAMPLE-BLOCK element from Org to HTML.
@@ -57,13 +69,5 @@ information."
 			(if (org-string-nw-p a) (concat " " a) ""))
 		      (org-html-format-code example-block info))))))
 
-(defun org-html-format-spec (info)
-  "Return format specification for preamble and postamble.
-INFO is a plist used as a communication channel."
-  `((?a . ,(org-export-data (plist-get info :author) info))
-    (?t . ,(org-export-data (plist-get info :title) info))
-    (?m . ,(org-export-data (plist-get info :email) info))
-    (?e . ,(liaison-get-resource-url 'edit))
-    (?l . ,(liaison-get-resource-url 'log))))
-
 (provide 'op-redefun)
+;;; op-redefun.el ends here

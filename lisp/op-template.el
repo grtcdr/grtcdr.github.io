@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; op-template.el provides the XML templates of https://grtcdr.tn.
+;; op-template.el provides the HTML templates of https://grtcdr.tn.
 
 ;;; Code:
 
@@ -29,11 +29,12 @@
 (defalias 'sexp->xml #'shr-dom-to-xml)
 
 (defun op-template-stylesheet (filename)
-  "Format filename as a stylesheet."
-  (sexp->xml `(link ((rel . "stylesheet")
-		     (href . ,filename)))))
+  "Format FILENAME as a stylesheet."
+  (sexp->xml
+   `(link ((rel . "stylesheet")
+	   (href . ,filename)))))
 
-(defun op-template-footnote-section ()
+(defun op-template-footnotes-section ()
   "HTML snippet representing the footnotes section."
   (sexp->xml
    '(div ((id . "footnotes"))
@@ -51,7 +52,20 @@
 	       (a ((href . "%l"))
 		  "What's changed?")))))
 
-(defun op-template-post-footer ()
+(defun op-template-dotfiles-footer ()
+  "HTML snippet representing the footer section."
+  (sexp->xml
+   '(footer nil
+	    (p nil "&alefsym;")
+	    (p nil
+	       (a ((href . "%l"))
+		  "What's changed?")
+	       "See the"
+	       (a ((href . "%b"))
+		  "raw")
+	       "file."))))
+
+(defun op-template-posts-footer ()
   "HTML snippet representing the postamble of a post."
   (sexp->xml
    '(div ((class . "blog-footer"))
@@ -59,14 +73,14 @@
 	    (b nil
 	       "Got something to share?"))
 	 (p nil
-	    (a ((href . "mailto:%m?subject=[REPLY] %t"))
+	    (a ((href . "mailto:%m"))
 	       "Tell me about it")
-	    ". If you found a problem with this page, please"
+	    ". If you found a problem in this page, consider"
 	    (a ((href . "%e"))
-	       "propose an edit")
+	       "proposing an edit")
 	    "."))))
 
-(defun op-template-dotfile-navbar ()
+(defun op-template-dotfiles-navbar ()
   "HTML snippet representing the preamble of the dotfiles publishing
 project."
   (sexp->xml

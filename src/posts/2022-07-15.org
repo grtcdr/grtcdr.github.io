@@ -37,7 +37,7 @@ domains:
 
 - Accessibility: GUI UML tools are exceptionally hard for blind people
   to use, PlantUML is a viable element in making UML more accessible
-  [cite:@karin12uml].
+  [cite:@muller12uml].
 
 My computing environment is revolved around the philosophy of a
 keyboard-centric worfklow.
@@ -131,6 +131,7 @@ You should then see an ~animalia.png~ file appear in your working
 directory... Go on, open it, it should look like this:
 
 #+results: diagram
+[[file:../../assets/images/2022-07-15--plantuml.svg]]
 
 I hope I've given PlantUML the proper introduction it deserves. We
 have barely even touched the surface of what PlantUML can do, but

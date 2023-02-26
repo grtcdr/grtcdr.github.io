@@ -59,7 +59,7 @@ it's very easy to extend =project.el= to
 [[file:2022-08-08.org][support a workflow involving a to-do file at
 the root of the project directory]].
 
-* Compilation
+* Fine-tuned compilation
 
 ~project-compile~ uses ~compile-command~ internally, so if your build
 system is complex then you might consider configuring it using
@@ -72,6 +72,14 @@ directory variables, for example:
 
 This will tell =make= to look for the =Makefile= in the =doc/site=
 directory (relative to the project root).
+
+If you want to run a specific target, prefixing the ~project-compile~
+keybinding with =C-u= will write the value of ~compile-command~ to the
+minibuffer and prompt you to write something more specific.
+
+The manual suggests adding a trailing space, probably to minimize the
+amount of keystrokes you have to type before finally performing your
+build operation.
 
 * Carefully killing buffers
 

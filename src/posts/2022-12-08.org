@@ -24,8 +24,8 @@ work.
 reliable combination for network management and wireless connectivity
 -- I'm certainly not throwing that away because of Realtek.
 
-The bottom line is that Realtek produces garbage - and you really don't
-deserve that.
+The bottom line is that Realtek produces garbage - and you really
+don't deserve that.
 
 *Update*: I managed to create my network by setting up a [[https://wiki.archlinux.org/title/software_access_point][software
 access point]] with [[https://w1.fi/hostapd/][hostapd]] (without touching my existing network

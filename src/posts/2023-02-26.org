@@ -55,9 +55,8 @@ p=, we can extend it as follows:
 
 =C-x p p m= should now take us to the ~magit-status~ view of the
 project we just visited, which it normally doesn't do. Additionally,
-it's very easy to extend =project.el= to
-[[file:2022-08-08.org][support a workflow involving a to-do file at
-the root of the project directory]].
+it's very easy to extend =project.el= to [[file:2022-08-08.org][support a workflow involving
+a to-do file at the root of the project directory]].
 
 * Fine-tuned compilation
 

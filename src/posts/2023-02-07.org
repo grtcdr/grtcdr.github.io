@@ -36,9 +36,9 @@ which we can use to specify a custom =user-emacs-directory=, meaning
 the packages we install from say, a publishing script, will not
 interfere with the user's general environment.
 
-To give you an example, we can consider /citeproc/ a dependency of this
-project, the way we'd go about handling this dependency follows this
-general ruleset:
+To give you an example, we can consider /citeproc/ a dependency of
+this project, the way we'd go about handling this dependency follows
+this general ruleset:
 1. Configure the project to use a separate initialization directory
 2. Install the dependency at the beginning of the publishing script
 3. Require the library like any other
@@ -246,7 +246,7 @@ continuous research, development and improvement. If you're
 considering using /ox-publish/ as a foundation for your next project,
 now's the time.
 
-I'd like to thank Sacha Chua for including this publication in
-her [[https://sachachua.com/blog/2023/02/2023-02-13-emacs-news/]["Emacs News" posting of February 13, 2023]]. I'm honored to have
-been included in her weekly digest and grateful to be a part of this
-lively community.
+I'd like to thank Sacha Chua for including this publication in her
+[[https://sachachua.com/blog/2023/02/2023-02-13-emacs-news/]["Emacs News" posting of February 13, 2023]]. I'm honored to have been
+included in her weekly digest and grateful to be a part of this lively
+community.

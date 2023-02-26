@@ -52,9 +52,9 @@ section.
 
 * How is it done?
 
-/libvirt/, /hostapd/ and /systemd-networkd/ are the only components we need
-to define a virtual network, wrap it as an access point and bind it to
-a specific virtual interface.
+/libvirt/, /hostapd/ and /systemd-networkd/ are the only components we
+need to define a virtual network, wrap it as an access point and bind
+it to a specific virtual interface.
 
 Here's a visual representation of the network that should give you an
 idea of the architecture we are going after.
@@ -273,9 +273,9 @@ Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
 * Results and reflections
 
 To show that everything works, I'll connect through my phone to the my
-new software access point - which I decided to call "jungle"
-by the way - and then visit the OpenStack Horizon dashboard hosted on
-one of the virtual machines.
+new software access point - which I decided to call "jungle" by the
+way - and then visit the OpenStack Horizon dashboard hosted on one of
+the virtual machines.
 
 #+HTML: <img src="/assets/images/2022-12-17--softap-results.png">
 

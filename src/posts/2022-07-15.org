@@ -38,7 +38,6 @@ domains:
 - Accessibility: GUI UML tools are exceptionally hard for blind people
   to use, PlantUML is a viable element in making UML more accessible
   [cite:@muller12uml].
-
 My computing environment is revolved around the philosophy of a
 keyboard-centric worfklow.
 

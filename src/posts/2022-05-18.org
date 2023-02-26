@@ -63,10 +63,11 @@ documents and wanted to automate the export process.
 
 Things to keep in mind:
 + =:base-extension= expects an extension, without a =.= prefix.
-+ =:publishing-function= depends on the type of content you intend to export.
++ =:publishing-function= depends on the type of content you intend to
+  export.
 
-Let's have a look at another example, though this time, we'll
-export some stylesheets, too.
+Let's have a look at another example, though this time, we'll export
+some stylesheets, too.
 
 #+begin_src emacs-lisp :eval no
 (setq org-publish-project-alist
@@ -150,13 +151,11 @@ with strangers on IRC.
       :with-title nil
       :with-toc nil
       :section-numbers nil)
-
      ("grtcdr.github.io/img"
       :base-directory ,(site-content-directory 'base "img/")
       :base-extension "png\\|jpe?g"
       :publishing-directory ,(site-content-directory 'publish "img/")
       :publishing-function org-publish-attachment)
-
      ("grtcdr.github.io/blog"
       :base-directory ,(site-content-directory 'base "blog/")
       :base-extension "org"
@@ -167,26 +166,27 @@ with strangers on IRC.
       :with-title nil
       :with-toc nil
       :section-numbers nil)
-
      ("grtcdr.github.io/css"
       :base-directory ,(site-content-directory 'base "css/")
       :base-extension "css"
       :publishing-directory ,(site-content-directory 'publish "css/")
       :publishing-function org-publish-attachment)
-
      ("grtcdr.github.io/data"
       :base-directory ,(site-content-directory 'base "data/")
       :base-extension "txt\\|pdf"
       :publishing-directory ,(site-content-directory 'publish "data/")
       :publishing-function org-publish-attachment)
-
      ("grtcdr.github.io"
-      :components ("grtcdr.github.io/img" "grtcdr.github.io/data" "grtcdr.github.io/css" "grtcdr.github.io/content" "grtcdr.github.io/blog")))))
+      :components ("grtcdr.github.io/img"
+		   "grtcdr.github.io/data"
+		   "grtcdr.github.io/css"
+		   "grtcdr.github.io/content"
+		   "grtcdr.github.io/blog")))))
 #+end_src
 
 There's a project identifier for every *component* of the website, and
 the last one groups them all together, so that I don't have to
 selectively export every single one.
 
-If you'd like to explore this topic in greater detail,
-please read [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][the wonderful documentation]] provided by the Org project.
+If you'd like to explore this topic in greater detail, please read [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][the
+wonderful documentation]] provided by the Org project.

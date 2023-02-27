@@ -86,7 +86,7 @@ dotfiles publishing project."
       org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-html-doctype "html5"
-      org-html-footnotes-section (op-template-footnotes-section)
+      org-html-footnotes-section op-template-footnotes-section
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
@@ -97,16 +97,14 @@ dotfiles publishing project."
       org-html-head-include-default-style nil
       org-html-html5-fancy t
       org-html-prefer-user-labels t
-      org-cite-global-bibliography (list (expand-file-name "assets/refs.bib"))
-      org-cite-csl-styles-dir (expand-file-name "assets/csl/styles")
-      org-cite-csl-locales-dir (expand-file-name "assets/csl/locales")
-      org-cite-export-processors
-      '((html . (csl "ieee.csl"))
-	(latex . biblatex)
-	(t . simple)))
+      org-cite-global-bibliography (list (expand-file-name "assets/bibliography.bib"))
+      org-cite-csl-styles-dir "/usr/share/citation-style-language/styles"
+      org-cite-csl-locales-dir "/usr/share/citation-style-language/locales"
+      org-cite-export-processors '((html . (csl "ieee.csl"))
+				   (latex . biblatex)
+				   (t . simple)))
 
-(let ((main-navbar (op-template-main-navbar)))
-  (setq org-publish-project-alist
+(setq org-publish-project-alist
 	(list
 	 (list "content"
 	       :base-extension "org"
@@ -116,8 +114,8 @@ dotfiles publishing project."
 	       :section-numbers nil
 	       :with-toc nil
 	       :with-title t
-	       :html-head-extra (op-template-metadata)
-	       :html-preamble (op-template-main-navbar)
+	       :html-head-extra op-template-metadata
+	       :html-preamble op-template-main-navbar
 	       :html-postamble nil)
 	 (list "posts"
 	       :base-extension "org"
@@ -131,12 +129,12 @@ dotfiles publishing project."
 	       :sitemap-title "Posts"
 	       :with-title t
 	       :with-toc nil
-	       :html-preamble (op-template-main-navbar)
+	       :html-preamble op-template-main-navbar
 	       :html-postamble
-	       (concat (op-template-posts-footer)
-		       (op-template-main-footer))
+	       (concat op-template-posts-footer
+		       op-template-main-footer)
 	       :html-head-extra
-	       (concat (op-template-metadata)
+	       (concat op-template-metadata
 		       (op-template-stylesheet "/css/blog.css")))
 	 (list "dotfiles"
 	       :base-extension "org"
@@ -153,9 +151,9 @@ dotfiles publishing project."
 	       :section-numbers t
 	       :with-title t
 	       :with-toc t
-	       :html-preamble (op-template-dotfiles-navbar)
-	       :html-postamble (op-template-dotfiles-footer)
-	       :html-head-extra (op-template-metadata))
+	       :html-preamble op-template-dotfiles-navbar
+	       :html-postamble op-template-dotfiles-footer
+	       :html-head-extra op-template-metadata)
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))
 	       :base-directory "assets/images"
@@ -184,4 +182,4 @@ dotfiles publishing project."
 	       :publishing-directory "public/assets"
 	       :publishing-function 'org-publish-attachment)
 	 (list "all" :components '("content" "posts" "dotfiles" "stylesheets"
-				   "javascripts" "images" "data" "cv")))))
+				   "javascripts" "images" "data" "cv"))))

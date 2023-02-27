@@ -41,7 +41,8 @@ INFO is a plist used as a communication channel."
   (let ((number (org-export-get-ordinal block info nil #'org-html--has-caption-p)))
     (sexp->xml
      `(span ((class . "listing-number"))
-	    ,(format (org-html--translate "Listing %d: " info) number)))))
+	    ,(format (org-html--translate "Listing %d: " info)
+		     number)))))
 
 (defun op-publish-caption-block (listing caption info)
   (let ((caption (org-trim (org-export-data caption info))))

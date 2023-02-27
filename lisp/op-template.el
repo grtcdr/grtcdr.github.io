@@ -34,26 +34,25 @@
    `(link ((rel . "stylesheet")
 	   (href . ,filename)))))
 
-(defun op-template-footnotes-section ()
-  "HTML snippet representing the footnotes section."
+(defvar op-template-footnotes-section
   (sexp->xml
    '(div ((id . "footnotes"))
 	 (h2 ((class . "footnotes"))
 	     "%s")
 	 (div ((id . "text-footnotes"))
-	      "%s"))))
+	      "%s")))
+  "HTML snippet representing the footnotes section.")
 
-(defun op-template-main-footer ()
-  "HTML snippet representing the footer section."
+(defvar op-template-main-footer
   (sexp->xml
    '(footer nil
 	    (p nil "&alefsym;")
 	    (p nil
 	       (a ((href . "%l"))
-		  "What's changed?")))))
+		  "What's changed?"))))
+  "HTML snippet representing the footer section.")
 
-(defun op-template-dotfiles-footer ()
-  "HTML snippet representing the footer section."
+(defvar op-template-dotfiles-footer
   (sexp->xml
    '(footer nil
 	    (p nil "&alefsym;")
@@ -63,10 +62,10 @@
 	       "See the"
 	       (a ((href . "%b"))
 		  "raw")
-	       "file."))))
+	       "file.")))
+  "HTML snippet representing the footer section.")
 
-(defun op-template-posts-footer ()
-  "HTML snippet representing the postamble of a post."
+(defvar op-template-posts-footer
   (sexp->xml
    '(div ((class . "blog-footer"))
 	 (p nil
@@ -78,11 +77,10 @@
 	    ". If you found a problem in this page, consider"
 	    (a ((href . "%e"))
 	       "proposing an edit")
-	    "."))))
+	    ".")))
+  "HTML snippet representing the postamble of a post.")
 
-(defun op-template-dotfiles-navbar ()
-  "HTML snippet representing the preamble of the dotfiles publishing
-project."
+(defvar op-template-dotfiles-navbar
   (sexp->xml
    '(nav nil
 	 (ul nil
@@ -91,11 +89,11 @@ project."
 		    "Home"))
 	     (li nil
 		 (a ((href . "/dotfiles/sitemap.html"))
-		    "Top"))))))
+		    "Top")))))
+  "HTML snippet representing the preamble of the dotfiles publishing
+project.")
 
-(defun op-template-main-navbar ()
-  "HTML snippet representing the preamble used across the different
-publishing projects."
+(defvar op-template-main-navbar
   (sexp->xml
    '(nav nil
 	 (ul nil
@@ -110,15 +108,16 @@ publishing projects."
 		    "Now"))
 	     (li nil
 		 (a ((href . "/contact.html"))
-		    "Contact"))))))
+		    "Contact")))))
+  "HTML snippet representing the preamble used across the different publishing projects.")
 
-(defun op-template-metadata ()
-  "HTML headers shared across publishing projects."
+(defvar op-template-metadata
   (concat
    (op-template-stylesheet "/css/common.css")
    (sexp->xml '(link ((rel . "icon")
 		      (type . "image/x-icon")
-		      (href . "/assets/favicon.ico"))))))
+		      (href . "/assets/favicon.ico")))))
+  "HTML headers shared across publishing projects.")
 
 (provide 'op-template)
 ;;; op-template.el ends here

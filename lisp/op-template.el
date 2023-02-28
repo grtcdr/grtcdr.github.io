@@ -102,13 +102,13 @@ project.")
 		    "Home"))
 	     (li nil
 		 (a ((href . "/dotfiles/sitemap.html"))
-		    "Dot"))
-	     (li nil
-		 (a ((href . "/now.html"))
-		    "Now"))
+		    "Dotfiles"))
 	     (li nil
 		 (a ((href . "/contact.html"))
-		    "Contact")))))
+		    "Contact"))
+	     (li nil
+		 (a ((href . "/now.html"))
+		    "Now")))))
   "HTML snippet representing the preamble used across the different publishing projects.")
 
 (defvar op-template-metadata

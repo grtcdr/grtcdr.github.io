@@ -17,10 +17,6 @@ Find me on:
 </ul>
 #+end_export
 
-#+begin_quote
-This is a test.
-#+end_quote
-
 * Posts
 
 #+INCLUDE: posts/sitemap.org :lines "3-"

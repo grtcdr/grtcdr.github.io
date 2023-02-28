@@ -1,6 +1,7 @@
 #+title:    Delightful project.el features
 #+date:     <2023-02-26 Wed>
 #+filetags: :emacs:
+#+property: header-args:emacs-lisp :eval no-export
 
 * Global ignore list
 

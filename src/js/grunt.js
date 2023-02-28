@@ -11,24 +11,9 @@ module.exports = function(grunt) {
         }]
       }
     },
-    htmlmin: {
-      dist: {
-	options: {
-          removeComments: true,
-          collapseWhitespace: true
-	},
-	files: [{
-	  expand: true,
-	  cwd: 'public',
-          src: ['**/*.html'],
-          dest: 'public'
-	}]
-      }
-    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
-  grunt.registerTask('default', ['cssmin, htmlmin']);
+  grunt.registerTask('default', ['cssmin']);
 };

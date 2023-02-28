@@ -26,6 +26,10 @@
 
 ;;; Code:
 
+;; Prevent excessively large backtraces
+(setq debug-on-error nil
+      no-byte-compile t)
+
 (add-to-list 'load-path (file-name-concat default-directory "lisp"))
 
 (require 'oc)
@@ -35,9 +39,6 @@
 (require 'op-redefun)
 (require 'op-template)
 (require 'citeproc)
-
-;; Prevent excessively large backtraces
-(setq debug-on-error nil)
 
 (defun op-publish-headline-function (todo todo-type priority text tags info)
   "Format a headline with a link to itself."
@@ -100,7 +101,7 @@ dotfiles publishing project."
       org-cite-global-bibliography (list (expand-file-name "assets/bibliography.bib"))
       org-cite-csl-styles-dir "/usr/share/citation-style-language/styles"
       org-cite-csl-locales-dir "/usr/share/citation-style-language/locales"
-      org-cite-export-processors '((html . (csl "ieee.csl"))
+      org-cite-export-processors '((html . (csl "apa.csl"))
 				   (latex . biblatex)
 				   (t . simple)))
 
@@ -152,7 +153,7 @@ dotfiles publishing project."
 	       :with-title t
 	       :with-toc t
 	       :html-preamble op-template-dotfiles-navbar
-	       :html-postamble op-template-dotfiles-footer
+	       :html-postamble op-template-main-footer
 	       :html-head-extra op-template-metadata)
 	 (list "images"
 	       :base-extension (regexp-opt '("png" "jpg" "jpeg" "svg"))

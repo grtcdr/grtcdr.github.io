@@ -52,19 +52,6 @@
 		  "What's changed?"))))
   "HTML snippet representing the footer section.")
 
-(defvar op-template-dotfiles-footer
-  (sexp->xml
-   '(footer nil
-	    (p nil "&alefsym;")
-	    (p nil
-	       (a ((href . "%l"))
-		  "What's changed?")
-	       "See the"
-	       (a ((href . "%b"))
-		  "raw")
-	       "file.")))
-  "HTML snippet representing the footer section.")
-
 (defvar op-template-posts-footer
   (sexp->xml
    '(div ((class . "blog-footer"))

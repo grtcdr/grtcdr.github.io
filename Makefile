@@ -28,10 +28,7 @@ build:
 cssmin:
 	@$(grunt) cssmin --base .
 
-htmlmin:
-	@$(grunt) htmlmin --base .
-
-serve: less build
+serve: all
 	@miniserve $(pub_dir)
 
 clean:

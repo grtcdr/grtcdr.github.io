@@ -1,6 +1,7 @@
-#+title: Emacs as a .NET development environment
-#+date: <2023-01-24 Tue>
+#+title:    Emacs as a .NET development environment
+#+date:     <2023-01-24 Tue>
 #+filetags: :emacs:
+#+property: header-args:emacs-lisp :eval no-export
 
 [[https://urbigenous.net/library/alicebob.html][Bob]] was tempted to use an integrated development environment (IDE) to
 work on his .NET project, even though he’s heavily invested in
@@ -55,7 +56,7 @@ implementation, meaning Eglot may not directly recognize every single
 one, she told Bob to add /csharp-ls/ to that list like so:
 
 #+name: eglot-csharp-server-program
-#+begin_src elisp
+#+begin_src emacs-lisp
 (add-to-list 'eglot-server-programs
 	     '(csharp-mode . ("csharp-ls")))
 #+end_src
@@ -64,13 +65,13 @@ The next snippet instructs Eglot to automatically start in C#
 buffers:
 
 #+name: eglot-csharp-hook
-#+begin_src elisp
+#+begin_src emacs-lisp
 (add-hook 'csharp-mode-hook 'eglot-ensure)
 #+end_src
 
 These functions may be combined and expressed as such:
 
-#+begin_src elisp :noweb yes
+#+begin_src emacs-lisp :noweb yes
 (with-eval-after-load 'eglot
   <<eglot-csharp-server-program>>
   <<eglot-csharp-hook>>)
@@ -78,7 +79,7 @@ These functions may be combined and expressed as such:
 
 And that roughly translates to this =use-package= form:
 
-#+begin_src elisp :noweb yes
+#+begin_src emacs-lisp :noweb yes
 (use-package eglot
   :commands (eglot eglot-ensure)
   :hook ((csharp-mode . eglot-ensure))

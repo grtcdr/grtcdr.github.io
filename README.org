@@ -2,7 +2,7 @@
 
 This project uses [[file:lisp/op-publish.el][a publishing script]], among other modules, to define
 the components which are then used to generate the website. Emacs Lisp
-files inside the [[file:lisp/][lisp]] directory all share one similarity, the =op=
+files inside the =lisp= directory all share one similarity, the =op=
 prefix, a /local/ convention and a reference to the initials of the
 =ox-publish= library.
 

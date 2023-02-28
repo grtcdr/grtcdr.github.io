@@ -1,5 +1,5 @@
-#+title: Implementing per-project package management for ox-publish.el projects
-#+date: <2023-02-07 Tue>
+#+title:    Implementing per-project package management for ox-publish.el projects
+#+date:     <2023-02-07 Tue>
 #+filetags: :emacs:
 
 Emacs is an insanely liberating hacking environment, many of the

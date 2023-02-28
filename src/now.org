@@ -1,4 +1,4 @@
-#+TITLE: What have you been up to?
+#+title: What have you been up to?
 
 - I've been investing a lot of time in Emacs. It's paid off so far,
   both in my personal and academic life. I've released two packages

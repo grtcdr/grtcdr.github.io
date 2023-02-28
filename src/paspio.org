@@ -1,7 +1,7 @@
-#+TITLE:       paspio
-#+DESCRIPTION: paspio's home page - password entropy calculator and library
-#+PROPERTY:    header-args:sh :exports both
-#+OPTIONS:     toc:t num:t
+#+title:       paspio
+#+description: paspio's home page - password entropy calculator and library
+#+property:    header-args:sh :exports both
+#+options:     toc:t num:t
 
 /paspio/ is a library that can help you determine the level of [[https://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength][entropy]]
 of a password to measure its unpredictability against brute force

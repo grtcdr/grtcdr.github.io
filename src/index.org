@@ -1,5 +1,5 @@
-#+TITLE:       Greetings
-#+DESCRIPTION: grtcdr's website and blog.
+#+title:       Greetings
+#+description: grtcdr's website and blog.
 
 You’ve reached grtcdr’s personal website, a computer science student
 and free software developer. I like to mess around with software and
@@ -16,6 +16,10 @@ Find me on:
   <li>Mastodon: <a rel="me" href="https://emacs.ch/@grtcdr">@grtcdr</a></li>
 </ul>
 #+end_export
+
+#+begin_quote
+This is a test.
+#+end_quote
 
 * Posts
 

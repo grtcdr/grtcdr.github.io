@@ -1,5 +1,5 @@
-#+TITLE: Page not found
-#+OPTIONS: title:nil
+#+title: Page not found
+#+options: title:nil
 
 #+begin_export html
 <div style="text-align:center;margin-top:10em">

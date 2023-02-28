@@ -1,4 +1,4 @@
-#+TITLE: Get in touch
+#+title: Get in touch
 
 + Email: [[mailto:tahaaziz.benali@esprit.tn][tahaaziz.benali@esprit.tn]]
 

@@ -57,7 +57,7 @@ options displayed to the user when switching to a project with =C-x p
 p=, we can extend it as follows:
 
 #+begin_src emacs-lisp
-(add-to-list 'project-switch-commands '(magit-project-status "Magit" "m"))
+(add-to-list 'project-switch-commands '(magit-project-status "Magit" ?m))
 #+end_src
 
 =C-x p p m= should now take us to the ~magit-status~ view of the

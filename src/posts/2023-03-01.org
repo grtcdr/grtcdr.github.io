@@ -44,6 +44,12 @@ Directories that contain a =pom.xml= file or files ending with a
 be source-controlled, and we'll still be able to use all the handy
 features of =project.el=.
 
+If your project is made up of multiple subprojects and each one
+contains the same root marker, you should refrain from using the above
+markers and consider something more general, e.g. =.prj= (and it can
+be an empty file). If you don't do this, any actions you perform will
+be limited to the subproject you're currently in.
+
 * Custom switch commands
 
 ~project-switch-commands~ is a variable that determines the list of

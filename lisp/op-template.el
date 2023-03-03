@@ -92,10 +92,7 @@ project.")
 		    "Dotfiles"))
 	     (li nil
 		 (a ((href . "/contact.html"))
-		    "Contact"))
-	     (li nil
-		 (a ((href . "/now.html"))
-		    "Now")))))
+		    "Contact")))))
   "HTML snippet representing the preamble used across the different publishing projects.")
 
 (defvar op-template-metadata

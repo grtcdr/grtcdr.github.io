@@ -29,7 +29,7 @@ cssmin:
 	@$(grunt) cssmin --base .
 
 serve: all
-	@miniserve $(pub_dir)
+	@python -m http.server --directory $(pub_dir)
 
 clean:
 	@rm -rf $(css_files)

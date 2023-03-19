@@ -86,17 +86,16 @@ dotfiles publishing project."
       make-backup-files nil
       org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
-      org-html-doctype "html5"
-      org-html-footnotes-section op-template-footnotes-section
       org-export-time-stamp-file nil
       org-src-fontify-natively t
       org-src-preserve-indentation t
+      org-confirm-babel-evaluate #'op-publish-should-lang-confirm?
       org-plantuml-exec-mode 'plantuml
       org-plantuml-args '("-headless")
-      org-confirm-babel-evaluate #'op-publish-should-lang-confirm?
-      org-html-htmlize-output-type 'css
-      org-html-head-include-default-style nil
+      org-html-doctype "html5"
       org-html-html5-fancy t
+      org-html-footnotes-section op-template-footnotes-section
+      org-html-head-include-default-style nil
       org-html-prefer-user-labels t
       org-cite-global-bibliography (list (expand-file-name "assets/bibliography.bib"))
       org-cite-csl-styles-dir "/usr/share/citation-style-language/styles"

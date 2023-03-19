@@ -254,7 +254,7 @@ Now make sure to check the status of the service for errors,
 =AP-ENABLED= is what you're after:
 
 #+caption: systemctl status hostapd
-#+results:
+#+begin_example
 ● hostapd.service - Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
      Loaded: loaded (/usr/lib/systemd/system/hostapd.service; disabled; preset: disabled)
      Active: active (running) since Sun 2022-12-18 04:49:29 CET; 8s ago
@@ -269,6 +269,7 @@ Dec 18 04:49:29 ideapad systemd[1]: Started Hostapd IEEE 802.11 AP, IEEE 802.1X/
 Dec 18 04:49:29 ideapad hostapd[36772]: softap: interface state UNINITIALIZED->COUNTRY_UPDATE
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: interface state COUNTRY_UPDATE->ENABLED
 Dec 18 04:49:35 ideapad hostapd[36772]: softap: AP-ENABLED
+#+end_example
 
 * Results and reflections
 

@@ -94,6 +94,7 @@ dotfiles publishing project."
       org-plantuml-args '("-headless")
       org-html-doctype "html5"
       org-html-html5-fancy t
+      org-html-htmlize-output-type 'css
       org-html-footnotes-section op-template-footnotes-section
       org-html-head-include-default-style nil
       org-html-prefer-user-labels t

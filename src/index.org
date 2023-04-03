@@ -11,9 +11,9 @@ Find me on:
 
 #+begin_export html
 <ul>
-  <li>GitHub: <a href="https://github.com/grtcdr">@grtcdr</a></li>
-  <li>SourceHut: <a href="https://git.sr.ht/~grtcdr">~grtcdr</a></li>
   <li>Mastodon: <a rel="me" href="https://emacs.ch/@grtcdr">@grtcdr</a></li>
+  <li>Sourcehut: <a href="https://git.sr.ht/~grtcdr">~grtcdr</a></li>
+  <li>Github: <a href="https://github.com/grtcdr">@grtcdr</a></li>
 </ul>
 #+end_export
 

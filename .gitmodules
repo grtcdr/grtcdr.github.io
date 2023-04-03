@@ -1,4 +1,4 @@
 [submodule "src/dotfiles"]
-	path = src/dotfiles
-	url = https://git.sr.ht/~grtcdr/dotfiles
-	shallow = true
+path = src/dotfiles
+url = https://git.sr.ht/~grtcdr/dotfiles
+shallow = true

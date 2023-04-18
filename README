@@ -38,9 +38,15 @@ make serve
 
 * Deployment
 
-This site is hosted using the Sourcehut Pages service and utilizes a
-[[file:.github/workflows/pages.yml][CI workflow]] to build and deploy the site with every commit made to the
-default branch.
+This site is hosted on GitHub Pages, and utilizes a [[file:.github/workflows/pages.yml][CI workflow]] to
+build and deploy the site with every commit made to the default branch.
+
+The workflow is split into two major jobs: *build* and *deploy*.
+
+1. *build* is responsible for producing the site; the output of this
+   process generates an artifact, the =public= directory.
+
+2. *deploy* receives this artifact and proceeds to deploy it to the
 
 * Copying
 

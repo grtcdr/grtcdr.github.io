@@ -57,7 +57,7 @@ dotfiles publishing project."
 (setq user-full-name "Aziz Ben Ali"
       user-mail-address "tahaaziz.benali@esprit.tn"
       make-backup-files nil
-      org-fold-core-style 'overlays
+      ;; org-fold-core-style 'overlays
       org-publish-list-skipped-files nil
       org-publish-timestamp-directory ".cache/"
       org-export-time-stamp-file nil

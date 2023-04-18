@@ -2,16 +2,16 @@
 
 (require 'shr)
 
-(defalias 'sexp->xml #'shr-dom-to-xml)
+(defalias 'sxml #'shr-dom-to-xml)
 
 (defun +template-stylesheet (filename)
   "Format FILENAME as a stylesheet."
-  (sexp->xml
+  (sxml
    `(link ((rel . "stylesheet")
 	   (href . ,filename)))))
 
 (defvar +template-footnotes-section
-  (sexp->xml
+  (sxml
    '(div ((id . "footnotes"))
 	 (h2 ((class . "footnotes"))
 	     "%s")
@@ -20,7 +20,7 @@
   "HTML snippet representing the footnotes section.")
 
 (defvar +template-main-footer
-  (sexp->xml
+  (sxml
    '(footer nil
 	    (p nil "&alefsym;")
 	    (p nil
@@ -29,7 +29,7 @@
   "HTML snippet representing the footer section.")
 
 (defvar +template-posts-footer
-  (sexp->xml
+  (sxml
    '(div ((class . "blog-footer"))
 	 (p nil
 	    "Got something to share?")
@@ -39,7 +39,7 @@
   "HTML snippet representing the postamble of a post.")
 
 (defvar +template-dotfiles-navbar
-  (sexp->xml
+  (sxml
    '(nav nil
 	 (ul nil
 	     (li nil
@@ -52,7 +52,7 @@
 project.")
 
 (defvar +template-main-navbar
-  (sexp->xml
+  (sxml
    '(nav nil
 	 (ul nil
 	     (li nil
@@ -69,7 +69,7 @@ project.")
 (defvar +template-metadata
   (concat
    (+template-stylesheet "/css/common.css")
-   (sexp->xml '(link ((rel . "icon")
-		      (type . "image/x-icon")
-		      (href . "/assets/favicon.ico")))))
+   (sxml '(link ((rel . "icon")
+		 (type . "image/x-icon")
+		 (href . "/assets/favicon.ico")))))
   "HTML headers shared across publishing projects.")

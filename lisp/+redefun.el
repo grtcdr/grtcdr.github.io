@@ -2,26 +2,27 @@
 
 (require 'liaison)
 
+(defalias 'sxml #'shr-dom-to-xml)
+
 (defun org-html-format-spec (info)
   "Return format specification for preamble and postamble.
 INFO is a plist used as a communication channel."
   `((?a . ,(org-export-data (plist-get info :author) info))
     (?t . ,(org-export-data (plist-get info :title) info))
     (?m . ,(plist-get info :email))
-    (?e . ,(liaison-get-resource-url 'edit))
     (?l . ,(liaison-get-resource-url 'log))
     (?b . ,(liaison-get-resource-url 'blob))))
 
-(defun +publish-listing (block info)
+(defun +html-listing (block info)
   (let ((number (org-export-get-ordinal block info nil #'org-html--has-caption-p)))
-    (sexp->xml
+    (sxml
      `(span ((class . "listing-number"))
 	    ,(format (org-html--translate "Listing %d: " info)
 		     number)))))
 
-(defun +publish-caption-block (listing caption info)
+(defun +html-caption-block (listing caption info)
   (let ((caption (org-trim (org-export-data caption info))))
-    (sexp->xml
+    (sxml
      `(label ((class . "org-example-name"))
 	     ,(concat listing caption)))))
 
@@ -34,8 +35,8 @@ information."
 	(org-html--textarea-block example-block)
       (format "<div class=\"org-example-container\">%s%s</div>"
 	      (if-let* ((caption (org-export-get-caption example-block))
-			(listing (+publish-listing example-block info)))
-		  (+publish-caption-block listing caption info) "")
+			(listing (+html-listing example-block info)))
+		  (+html-caption-block listing caption info) "")
 	      (format "<pre class=\"example\"%s>%s</pre>"
 		      (let* ((reference (org-html--reference example-block info))
 			     (a (org-html--make-attribute-string

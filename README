@@ -1,6 +1,8 @@
+# -*- mode: org -*-
+
 * Structure
 
-This project uses [[file:lisp/op-publish.el][a publishing script]], among other modules, to define
+This project uses [[file:lisp/+publish.el][a publishing script]], among other modules, to define
 the components which are then used to generate the website. Emacs Lisp
 files inside the =lisp= directory all share one similarity, the =op=
 prefix, a /local/ convention and a reference to the initials of the
@@ -36,16 +38,9 @@ make serve
 
 * Deployment
 
-This site is hosted on GitHub Pages, and utilizes a [[file:.github/workflows/pages.yml][CI workflow]] to
-build and deploy the site with every commit made to the default branch.
-
-The workflow is split into two major jobs: *build* and *deploy*.
-
-1. *build* is responsible for producing the site; the output of this
-   process generates an artifact, the =public= directory.
-
-2. *deploy* receives this artifact and proceeds to deploy it to the
-   GitHub Pages servers.
+This site is hosted using the Sourcehut Pages service and utilizes a
+[[file:.github/workflows/pages.yml][CI workflow]] to build and deploy the site with every commit made to the
+default branch.
 
 * Copying
 

@@ -23,7 +23,7 @@ $(css_dir)/%.css: $(less_dir)/%.less
 
 build:
 	@rm -rf $(cache_dir)
-	$(emacs) -l $(lisp_dir)/op-publish.el -f org-publish-all
+	$(emacs) -l $(lisp_dir)/+publish.el -f org-publish-all
 
 cssmin:
 	@$(grunt) cssmin --base .

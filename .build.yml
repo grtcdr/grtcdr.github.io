@@ -1,0 +1,16 @@
+image: guix
+packages:
+  - hut
+  - emacs-next
+oauth: pages.sr.ht/PAGES:RW
+sources:
+  - https://git.sr.ht/~grtcdr/grtcdr.tn
+tasks:
+  - build: |
+      cd grtcdr.tn
+      make
+      cd public
+      tar -czf /home/build/site.tar.gz .
+  - upload: |
+      tar -ztvf site.tar.gz
+      hut pages publish -d grtcdr.srht.site site.tar.gz
